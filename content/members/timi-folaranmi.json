@@ -1,0 +1,14 @@
+{
+  "name": "Timi Folaranmi",
+  "slug": "timi-folaranmi",
+  "title": "Data Scientist",
+  "company": "",
+  "bio": "Data Scientist at a private equity firm who builds RAG applications and explores LLM tooling in his spare time.",
+  "photo": "/images/members/timi-folaranmi.svg",
+  "linkedin": "https://www.linkedin.com/in/timifolaranmi/",
+  "twitter": "",
+  "website": "",
+  "tags": ["rag", "llms", "data-science"],
+  "roleType": "data-scientist",
+  "dinners": ["2025-02-february"]
+}

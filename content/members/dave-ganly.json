@@ -1,0 +1,14 @@
+{
+  "name": "Dave Ganly",
+  "slug": "dave-ganly",
+  "title": "Head of Product",
+  "company": "Mindguard",
+  "bio": "Head of Product at Mindguard, an LLM security company protecting enterprise AI deployments.",
+  "photo": "/images/members/dave-ganly.svg",
+  "linkedin": "https://www.linkedin.com/in/daveganly/",
+  "twitter": "",
+  "website": "",
+  "tags": ["ai-agents", "llms", "product"],
+  "roleType": "product-manager",
+  "dinners": ["2024-11-november"]
+}

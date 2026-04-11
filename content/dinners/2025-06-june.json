@@ -1,0 +1,65 @@
+{
+  "name": "June 2025 Dinner",
+  "slug": "2025-06-june",
+  "date": "2025-06-09",
+  "venue": "London",
+  "groupPhoto": "/images/dinners/2025-06-june.jpg",
+  "description": "Evening exploring AI model routing, the UK job market and startup MRR reporting — with returning faces.",
+  "topics": [
+    {
+      "text": "Mary Meeker's AI Report — subsidised AI and model cost decreases",
+      "attribution": "Olivier, Rene",
+      "links": []
+    },
+    {
+      "text": "UK job market tough — but top AI talent getting $100M+ offers",
+      "attribution": "Oliver",
+      "links": []
+    },
+    {
+      "text": "Model routing challenges and OpenRouter interest",
+      "attribution": "Olivier / Alter",
+      "links": ["https://openrouter.ai/"]
+    },
+    {
+      "text": "Pipedream for API integrations",
+      "attribution": "Olivier",
+      "links": ["https://pipedream.com/"]
+    },
+    {
+      "text": "Google Labs for AI experimentation",
+      "attribution": "Xavier",
+      "links": []
+    },
+    {
+      "text": "Startup MRR/ARR reporting toxicity — Replit $10M to $100M ARR",
+      "attribution": "Liberatus, Rene, Olivier, Eddie",
+      "links": []
+    },
+    {
+      "text": "LangGraph for marketing agents",
+      "attribution": "Greg",
+      "links": ["https://www.langchain.com/langgraph"]
+    },
+    {
+      "text": "Interview process in the AI age — allowing AI but requiring understanding",
+      "attribution": "Eddie, Alex, Roberta, Oliver",
+      "links": []
+    }
+  ],
+  "attendees": [
+    "alex-glaser",
+    "greg-asquith",
+    "jairo-diaz",
+    "liberatus",
+    "oliver-short",
+    "olivier-legris",
+    "rene-muhire",
+    "roberta-goodhead",
+    "xavier-akram",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-june-2025-dinner-recap",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

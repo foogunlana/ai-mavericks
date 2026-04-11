@@ -1,0 +1,14 @@
+{
+  "name": "Simon",
+  "slug": "simon",
+  "title": "Founder",
+  "company": "TheEndOfConflict.ai",
+  "bio": "20 years of teaching negotiation and author of \"The End of Conflict\". Building an AI platform for conflict resolution.",
+  "photo": "/images/members/simon.svg",
+  "linkedin": "",
+  "twitter": "",
+  "website": "",
+  "tags": ["ai-agents", "startups"],
+  "roleType": "founder",
+  "dinners": ["2025-07-july"]
+}

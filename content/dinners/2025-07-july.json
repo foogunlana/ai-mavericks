@@ -1,0 +1,65 @@
+{
+  "name": "July 2025 Dinner",
+  "slug": "2025-07-july",
+  "date": "2025-07-14",
+  "venue": "Ramen Space",
+  "groupPhoto": "/images/dinners/2025-07-july.jpg",
+  "description": "A packed evening at Ramen Space on vibe coding tools, evolving tech roles and AI eating software.",
+  "topics": [
+    {
+      "text": "Vibe Coding — Lovable demo; \"last mile problem\"; PRDs are critical",
+      "attribution": "Rachel, Roberta",
+      "links": ["https://lovable.dev/"]
+    },
+    {
+      "text": "AI Tools — Claude Code vs Cursor; multi-agent workflows; Roo Code, tldraw, Vercel v0",
+      "attribution": "Group",
+      "links": ["https://claude.ai/code"]
+    },
+    {
+      "text": "AI is Eating Software — throwaway software; distribution still key; junior engineers must go AI native",
+      "attribution": "Group",
+      "links": []
+    },
+    {
+      "text": "Legacy Languages and AI — q language (Gabi), MUMPS (Simon); COBOL/Fortran migration via bloop.ai",
+      "attribution": "Gabi, Simon",
+      "links": []
+    },
+    {
+      "text": "Evolving Tech Roles — smaller teams; dev/PM/designer coalescence; \"vibe designing\" with MCP servers",
+      "attribution": "Group",
+      "links": []
+    },
+    {
+      "text": "AI in the Enterprise — internal use cases beat customer-facing chatbots; expert systems still valuable",
+      "attribution": "Group",
+      "links": []
+    },
+    {
+      "text": "Startup/Founder Insights — distribution > product (Justin Kan); founder-led sales; domain expertise",
+      "attribution": "Group",
+      "links": []
+    },
+    {
+      "text": "Recommended Reading — \"AI 2027\", \"Situational Awareness: The Decade Ahead\"",
+      "attribution": "Group",
+      "links": []
+    }
+  ],
+  "attendees": [
+    "abrar-rashid",
+    "dexter-awoyemi",
+    "gabi-teodoru",
+    "harvey-yorke",
+    "kitan-ogunfeibo",
+    "rachel-blondon",
+    "roberta-goodhead",
+    "shingi-mureriwa",
+    "simon",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-july-2025-dinner-recap",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

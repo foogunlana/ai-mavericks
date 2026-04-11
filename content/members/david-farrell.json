@@ -1,0 +1,14 @@
+{
+  "name": "David Farrell",
+  "slug": "david-farrell",
+  "title": "Software/AI Consultant & Former Lecturer",
+  "company": "",
+  "bio": "Computer scientist, fast.ai graduate and early ChatGPT adopter. Former university lecturer now teaching AI usage as a consultant and educator.",
+  "photo": "/images/members/david-farrell.svg",
+  "linkedin": "https://www.linkedin.com/in/davidfarrell81/",
+  "twitter": "",
+  "website": "",
+  "tags": ["education", "rag", "consulting"],
+  "roleType": "consultant",
+  "dinners": ["2025-12-december", "2026-q1"]
+}

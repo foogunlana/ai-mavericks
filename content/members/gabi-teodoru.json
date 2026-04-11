@@ -1,0 +1,14 @@
+{
+  "name": "Gabi Teodoru",
+  "slug": "gabi-teodoru",
+  "title": "AI Engineer",
+  "company": "",
+  "bio": "AI Engineer with a quantitative trading background, teaching AI to write q (kdb+) language for time-series financial data.",
+  "photo": "/images/members/gabi-teodoru.svg",
+  "linkedin": "https://www.linkedin.com/in/gabiteodoru/",
+  "twitter": "",
+  "website": "",
+  "tags": ["fintech", "llms"],
+  "roleType": "engineer",
+  "dinners": ["2025-07-july"]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "May 2025 Dinner",
+  "slug": "2025-05-may",
+  "date": "2025-05-19",
+  "venue": "London",
+  "groupPhoto": "/images/dinners/2025-05-may.jpg",
+  "description": "Deep dive into mobile gaming economics, human connection in AI sales and technical co-founding.",
+  "topics": [
+    {
+      "text": "Mobile games as money makers — Candy Crush financials",
+      "attribution": "David",
+      "links": []
+    },
+    {
+      "text": "Human connection in sales — Salesforce hiring 2K+ to sell AI",
+      "attribution": "Group",
+      "links": []
+    },
+    {
+      "text": "EWOR accelerator — potential \"YC of Europe\"",
+      "attribution": "Rockman, Farhath",
+      "links": ["https://ewor.io/"]
+    },
+    {
+      "text": "Financial health and Customer Acquisition Cost",
+      "attribution": "Peter",
+      "links": []
+    },
+    {
+      "text": "Technical co-founders still critical",
+      "attribution": "Rockman, William",
+      "links": []
+    },
+    {
+      "text": "Ex-Palantir founders crushing it",
+      "attribution": "Group",
+      "links": []
+    },
+    {
+      "text": "Pydantic AI for codebase rewriting",
+      "attribution": "William / Sano Genetics",
+      "links": ["https://docs.pydantic.dev/latest/concepts/pydantic_ai/"]
+    }
+  ],
+  "attendees": [
+    "david-hasovic",
+    "farhath-razzaque",
+    "kumell-rizvi",
+    "peter-grillet",
+    "priyesh-sharad",
+    "rene-muhire",
+    "rockman-law",
+    "william-jones",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-may-2025-dinner-recap",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

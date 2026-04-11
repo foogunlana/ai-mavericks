@@ -1,0 +1,43 @@
+{
+  "name": "November 2024 Dinner",
+  "slug": "2024-11-november",
+  "date": "2024-11-18",
+  "venue": "London",
+  "groupPhoto": "/images/dinners/2024-11-november.jpg",
+  "description": "An evening of wide-ranging discussion on AI dev tools, LLM security and the future of AI startups.",
+  "topics": [
+    {
+      "text": "AI developer tools and startup building",
+      "attribution": "Ezo",
+      "links": []
+    },
+    {
+      "text": "LLM security in enterprise",
+      "attribution": "Dave",
+      "links": []
+    },
+    {
+      "text": "AI for the conference market",
+      "attribution": "Oren",
+      "links": []
+    },
+    {
+      "text": "Patient home care automation",
+      "attribution": "Jose",
+      "links": []
+    }
+  ],
+  "attendees": [
+    "ezo-saleh",
+    "oren-horesh",
+    "dave-ganly",
+    "seb-ben-mbarek",
+    "ben-corbett",
+    "alex-glaser",
+    "jose",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

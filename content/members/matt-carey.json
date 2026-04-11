@@ -1,0 +1,14 @@
+{
+  "name": "Matt Carey",
+  "slug": "matt-carey",
+  "title": "AI Engineer",
+  "company": "StackOne",
+  "bio": "AI Engineer at StackOne specialising in AI agents and LLM integrations for HR tech.",
+  "photo": "/images/members/matt-carey.svg",
+  "linkedin": "https://www.linkedin.com/in/mattzcarey/",
+  "twitter": "",
+  "website": "",
+  "tags": ["ai-agents", "llms"],
+  "roleType": "engineer",
+  "dinners": ["2024-12-december"]
+}

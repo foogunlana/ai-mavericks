@@ -1,0 +1,14 @@
+{
+  "name": "Pep Marti",
+  "slug": "pep-marti",
+  "title": "Data Scientist",
+  "company": "British Airways / Aer Lingus",
+  "bio": "Data Scientist at British Airways and Aer Lingus applying ML to revenue management and operations in aviation and fintech.",
+  "photo": "/images/members/pep-marti.svg",
+  "linkedin": "https://www.linkedin.com/in/pep-mart%C3%AD-mascar%C3%B3-monserrat/",
+  "twitter": "",
+  "website": "",
+  "tags": ["data-science", "fintech"],
+  "roleType": "data-scientist",
+  "dinners": ["2025-01-january"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Charlie Daly",
+  "slug": "charlie-daly",
+  "title": "Software Developer",
+  "company": "MixedRealityRooms",
+  "bio": "Software developer building immersive mixed-reality experiences for education and collaboration.",
+  "photo": "/images/members/charlie-daly.svg",
+  "linkedin": "https://www.linkedin.com/in/charlie-daly/",
+  "twitter": "",
+  "website": "",
+  "tags": ["rag", "startups", "education"],
+  "roleType": "engineer",
+  "dinners": ["2024-10-october"]
+}

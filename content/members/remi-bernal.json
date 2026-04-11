@@ -1,0 +1,14 @@
+{
+  "name": "Remi Bernal",
+  "slug": "remi-bernal",
+  "title": "Engineering Manager",
+  "company": "",
+  "bio": "Software engineering manager at a hedge fund, leading AI/ML application development for financial markets.",
+  "photo": "/images/members/remi-bernal.svg",
+  "linkedin": "https://www.linkedin.com/in/remi-bernal/",
+  "twitter": "",
+  "website": "",
+  "tags": ["fintech", "llms"],
+  "roleType": "engineer",
+  "dinners": ["2024-12-december"]
+}

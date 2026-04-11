@@ -1,0 +1,42 @@
+{
+  "name": "February 2025 Dinner",
+  "slug": "2025-02-february",
+  "date": "2025-02-24",
+  "venue": "London",
+  "groupPhoto": "/images/dinners/2025-02-february.jpg",
+  "description": "Conversations spanning FinTech PM perspectives, ML at Meta, climate tech engineering and RAG applications.",
+  "topics": [
+    {
+      "text": "AI agents in FinTech product management",
+      "attribution": "Folajimi",
+      "links": []
+    },
+    {
+      "text": "ML and VR at Meta",
+      "attribution": "Elias",
+      "links": []
+    },
+    {
+      "text": "Climate tech and vibe coding",
+      "attribution": "Tiago",
+      "links": []
+    },
+    {
+      "text": "RAG apps and LLM tooling for PE firms",
+      "attribution": "Timi",
+      "links": []
+    }
+  ],
+  "attendees": [
+    "dominic-o-norton",
+    "elias-nema",
+    "folajimi-odukomaiya",
+    "jordan-mcrae",
+    "tiago-pina",
+    "timi-folaranmi",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

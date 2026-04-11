@@ -1,0 +1,14 @@
+{
+  "name": "Jose",
+  "slug": "jose",
+  "title": "Entrepreneur & Founder",
+  "company": "Hosst",
+  "bio": "Entrepreneur building Hosst, an AI-powered patient home-care platform.",
+  "photo": "/images/members/jose.svg",
+  "linkedin": "https://www.linkedin.com/in/superapps/",
+  "twitter": "",
+  "website": "",
+  "tags": ["healthcare", "startups"],
+  "roleType": "founder",
+  "dinners": ["2024-11-november"]
+}

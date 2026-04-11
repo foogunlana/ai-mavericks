@@ -1,0 +1,42 @@
+{
+  "name": "January 2025 Dinner",
+  "slug": "2025-01-january",
+  "date": "2025-01-30",
+  "venue": "London",
+  "groupPhoto": "/images/dinners/2025-01-january.jpg",
+  "description": "New year kickoff with designers, data scientists and marketers converging on AI's creative and analytical frontiers.",
+  "topics": [
+    {
+      "text": "AI-assisted strategic design and creative tooling",
+      "attribution": "Dylan",
+      "links": []
+    },
+    {
+      "text": "Data science at scale in aviation",
+      "attribution": "Pep",
+      "links": []
+    },
+    {
+      "text": "Multi-company AI leadership",
+      "attribution": "Priyesh",
+      "links": []
+    },
+    {
+      "text": "LLM automation for paid marketing",
+      "attribution": "Greg",
+      "links": []
+    }
+  ],
+  "attendees": [
+    "alex-glaser",
+    "dylan-loveday-powell",
+    "gabriella",
+    "greg-asquith",
+    "pep-marti",
+    "priyesh-sharad",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Tiago Pina",
+  "slug": "tiago-pina",
+  "title": "Head of Engineering",
+  "company": "",
+  "bio": "Head of Engineering at a Climate Tech startup, vibe-coding enthusiast and LLM tooling explorer.",
+  "photo": "/images/members/tiago-pina.svg",
+  "linkedin": "https://www.linkedin.com/in/tpina/",
+  "twitter": "",
+  "website": "",
+  "tags": ["llms", "vibe-coding"],
+  "roleType": "engineer",
+  "dinners": ["2025-02-february"]
+}

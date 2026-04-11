@@ -1,0 +1,14 @@
+{
+  "name": "Alex Glaser",
+  "slug": "alex-glaser",
+  "title": "Data Scientist",
+  "company": "",
+  "bio": "Data scientist with experience across multiple industries including UK government, Shell Digital Ventures and AI-music side projects.",
+  "photo": "/images/members/alex-glaser.svg",
+  "linkedin": "https://www.linkedin.com/in/alexglaser1/",
+  "twitter": "",
+  "website": "",
+  "tags": ["data-science"],
+  "roleType": "data-scientist",
+  "dinners": ["2024-11-november", "2025-01-january", "2025-06-june"]
+}

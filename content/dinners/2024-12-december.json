@@ -1,0 +1,36 @@
+{
+  "name": "December 2024 Dinner",
+  "slug": "2024-12-december",
+  "date": "2024-12-16",
+  "venue": "London",
+  "groupPhoto": "/images/dinners/2024-12-december.jpg",
+  "description": "Year-end dinner exploring AI engineering, fintech applications and the consultant-founder divide.",
+  "topics": [
+    {
+      "text": "AI/ML applications in hedge funds",
+      "attribution": "Remi",
+      "links": []
+    },
+    {
+      "text": "Building an AI consultancy post big-tech",
+      "attribution": "Fred",
+      "links": []
+    },
+    {
+      "text": "AI agents for customer success",
+      "attribution": "Hugh",
+      "links": []
+    }
+  ],
+  "attendees": [
+    "remi-bernal",
+    "fred",
+    "matt-collins",
+    "matt-carey",
+    "hugh-hopkins",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

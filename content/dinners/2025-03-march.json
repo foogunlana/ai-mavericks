@@ -1,0 +1,34 @@
+{
+  "name": "March 2025 Dinner",
+  "slug": "2025-03-march",
+  "date": "2025-03-03",
+  "venue": "London",
+  "groupPhoto": "/images/dinners/2025-03-march.jpg",
+  "description": "A focused dinner on AI product strategy, defence applications and AI-powered customer service.",
+  "topics": [
+    {
+      "text": "AI product strategy post-Synthesia",
+      "attribution": "Nicola",
+      "links": []
+    },
+    {
+      "text": "AI for defence and vibe coding with Gitpod",
+      "attribution": "Louis",
+      "links": []
+    },
+    {
+      "text": "AI-automated customer service resolution",
+      "attribution": "Sam",
+      "links": []
+    }
+  ],
+  "attendees": [
+    "nicola-croce",
+    "louis",
+    "sam-cox",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

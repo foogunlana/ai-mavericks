@@ -1,0 +1,42 @@
+{
+  "name": "Q1 2026 Dinner",
+  "slug": "2026-q1",
+  "date": "2026-03-04",
+  "venue": "Pizza Express Live Holborn",
+  "groupPhoto": "/images/dinners/2026-q1.jpg",
+  "description": "The first AI Mavericks dinner of 2026, reflecting on AI tooling, education, and the road ahead.",
+  "topics": [
+    {
+      "text": "Should junior developers bother learning traditional coding?",
+      "attribution": "Group",
+      "links": []
+    },
+    {
+      "text": "AI in education and teaching AI usage",
+      "attribution": "David",
+      "links": []
+    },
+    {
+      "text": "Building AI products for defence and creative media",
+      "attribution": "Farhath",
+      "links": []
+    },
+    {
+      "text": "LLMs in African fintech data intelligence",
+      "attribution": "Bode",
+      "links": []
+    }
+  ],
+  "attendees": [
+    "bode-ogunlana",
+    "david-farrell",
+    "farhath-razzaque",
+    "liberatus",
+    "neil-cameron",
+    "rene-muhire",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-q1-2026-dinner-recap",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

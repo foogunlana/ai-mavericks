@@ -1,0 +1,14 @@
+{
+  "name": "Fred",
+  "slug": "fred",
+  "title": "Ex-Monzo Staff Engineer & Founder",
+  "company": "Tensor Valley",
+  "bio": "Former Monzo Staff Engineer who founded Tensor Valley, an AI consultancy delivering production-grade ML systems.",
+  "photo": "/images/members/fred.svg",
+  "linkedin": "https://www.linkedin.com/in/enginoid/",
+  "twitter": "",
+  "website": "",
+  "tags": ["ai-agents", "llms", "consulting"],
+  "roleType": "engineer",
+  "dinners": ["2024-12-december"]
+}

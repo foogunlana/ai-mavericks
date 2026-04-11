@@ -1,0 +1,14 @@
+{
+  "name": "Louis",
+  "slug": "louis",
+  "title": "Product Manager",
+  "company": "Gitpod",
+  "bio": "PM at Gitpod building AI-native products, with a side project in AI for defence.",
+  "photo": "/images/members/louis.svg",
+  "linkedin": "https://www.linkedin.com/in/loujaybee/",
+  "twitter": "",
+  "website": "",
+  "tags": ["product", "vibe-coding", "startups"],
+  "roleType": "product-manager",
+  "dinners": ["2025-03-march"]
+}

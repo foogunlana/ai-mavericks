@@ -1,0 +1,14 @@
+{
+  "name": "Harvey Yorke",
+  "slug": "harvey-yorke",
+  "title": "Co-founder & CTO",
+  "company": "Valyu",
+  "bio": "Co-founder and CTO of Valyu, building multimodal search APIs for AI Agents. UCL graduate with AI research background.",
+  "photo": "/images/members/harvey-yorke.svg",
+  "linkedin": "https://www.linkedin.com/in/harveyyorke/",
+  "twitter": "",
+  "website": "",
+  "tags": ["rag", "ai-agents", "startups"],
+  "roleType": "founder",
+  "dinners": ["2025-07-july"]
+}

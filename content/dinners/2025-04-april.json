@@ -1,0 +1,48 @@
+{
+  "name": "April 2025 Dinner",
+  "slug": "2025-04-april",
+  "date": "2025-04-14",
+  "venue": "London",
+  "groupPhoto": "/images/dinners/2025-04-april.jpg",
+  "description": "Lively discussion on market selection, vibe coding and data labelling — the first Beehiiv-era dinner.",
+  "topics": [
+    {
+      "text": "Choosing a big enough market — Marc Andreessen's post on team vs product vs market",
+      "attribution": "Hugh",
+      "links": []
+    },
+    {
+      "text": "Vibe coding with Replit Agent — web games built end-to-end with prompts",
+      "attribution": "Dominic",
+      "links": ["https://replit.com/"]
+    },
+    {
+      "text": "Professional social networks — Happenstance.ai mentioned",
+      "attribution": "Group",
+      "links": ["https://happenstance.ai/"]
+    },
+    {
+      "text": "Data labelling for AI — Scale.ai as the leading company",
+      "attribution": "Markus",
+      "links": ["https://scale.com/"]
+    },
+    {
+      "text": "UI prototyping with magicpatterns.com",
+      "attribution": "Dominic",
+      "links": ["https://www.magicpatterns.com/"]
+    }
+  ],
+  "attendees": [
+    "christina-banjo",
+    "dexter-awoyemi",
+    "dominic-o-norton",
+    "markus-duecker",
+    "mawuli-agamah",
+    "hugh-hopkins",
+    "pyry-takala",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-april-2025-dinner-recap",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

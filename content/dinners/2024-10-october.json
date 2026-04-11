@@ -1,0 +1,36 @@
+{
+  "name": "October 2024 Dinner",
+  "slug": "2024-10-october",
+  "date": "2024-10-09",
+  "venue": "London",
+  "groupPhoto": "/images/dinners/2024-10-october.jpg",
+  "description": "The inaugural AI Mavericks dinner bringing together builders, founders and consultants working on AI.",
+  "topics": [
+    {
+      "text": "Healthcare AI and social media applications",
+      "attribution": "Maureen",
+      "links": []
+    },
+    {
+      "text": "Mixed reality and RAG for education",
+      "attribution": "Charlie",
+      "links": []
+    },
+    {
+      "text": "AI in animal pharma and digital strategy",
+      "attribution": "Rodrigo",
+      "links": []
+    }
+  ],
+  "attendees": [
+    "maureen-emeagi",
+    "charlie-daly",
+    "ollie",
+    "rodrigo-diaz",
+    "kofi",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

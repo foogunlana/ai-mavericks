@@ -1,0 +1,64 @@
+{
+  "name": "December 2025 Dinner",
+  "slug": "2025-12-december",
+  "date": "2025-12-15",
+  "venue": "Pizza Express Live Holborn",
+  "groupPhoto": "/images/dinners/2025-12-december.jpg",
+  "description": "Year-end reflections on AI consulting models, economic impact of AI and the rise of robotics.",
+  "topics": [
+    {
+      "text": "AI Consulting models — 80/20 rule, cloud vs local deployment; bigger projects in 2026",
+      "attribution": "Kitan, Joel",
+      "links": []
+    },
+    {
+      "text": "Economic Impact of AI — capitalism, inequality, automation; \"AI 2027\" reading",
+      "attribution": "Group",
+      "links": []
+    },
+    {
+      "text": "Rise of Robotics — elderly care, healthcare, manufacturing pressures",
+      "attribution": "Kitan",
+      "links": []
+    },
+    {
+      "text": "Expert Systems vs LLMs — chess at 3,500 Elo vs LLMs at 800; right tool for the job",
+      "attribution": "Ian",
+      "links": []
+    },
+    {
+      "text": "AI-Generated Code challenges — duplication; need strong foundations; MCP + Figma",
+      "attribution": "Gaurav, David",
+      "links": []
+    },
+    {
+      "text": "Medical Transcription — human review augmentation and terminology errors",
+      "attribution": "Gaurav",
+      "links": []
+    },
+    {
+      "text": "Deep Research and News — parallel agents for synthesis; ESG signals 300% gain",
+      "attribution": "Eddie, David",
+      "links": []
+    },
+    {
+      "text": "ARC-AGI and Playgroup — Ian's deep-dive events; ARC-AGI 2026 spatial reasoning challenge",
+      "attribution": "Ian",
+      "links": []
+    }
+  ],
+  "attendees": [
+    "david-farrell",
+    "dexter-awoyemi",
+    "dilini-k-sumanapala",
+    "gaurav-pooniwala",
+    "ian-ozsvald",
+    "joel-miller",
+    "joost-de-jonge",
+    "kitan-ogunfeibo",
+    "eddie-forson"
+  ],
+  "beehiivUrl": "https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-december-2025-dinner-recap",
+  "discordUrl": "https://discord.gg/xTxksjUvnE",
+  "lumaUrl": ""
+}

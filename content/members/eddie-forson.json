@@ -1,0 +1,27 @@
+{
+  "name": "Eddie Forson",
+  "slug": "eddie-forson",
+  "title": "Software Engineer & AI Consultant",
+  "company": "Kiseki Labs",
+  "bio": "Software engineer with experience in finance/FX, mobility startups, energy and reinsurance. Founded Kiseki Labs AI Consultancy. CTO at a reinsurance consultancy. Writes about LLMs and AI Agents on Substack.",
+  "photo": "/images/members/eddie-forson.svg",
+  "linkedin": "https://www.linkedin.com/in/eddie-forson/",
+  "twitter": "https://x.com/Ed_Forson",
+  "website": "https://www.kisekilabs.com/",
+  "tags": ["ai-agents", "llms", "consulting", "startups"],
+  "roleType": "engineer",
+  "dinners": [
+    "2024-10-october",
+    "2024-11-november",
+    "2024-12-december",
+    "2025-01-january",
+    "2025-02-february",
+    "2025-03-march",
+    "2025-04-april",
+    "2025-05-may",
+    "2025-06-june",
+    "2025-07-july",
+    "2025-12-december",
+    "2026-q1"
+  ]
+}

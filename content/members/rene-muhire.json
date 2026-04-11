@@ -1,0 +1,14 @@
+{
+  "name": "Rene Muhire",
+  "slug": "rene-muhire",
+  "title": "Product Manager & CTO (non-profit)",
+  "company": "Legal Aid Agency / Professors Without Borders",
+  "bio": "PM consultant spearheading AI Agent development. CTO at Professors Without Borders. Co-organiser of the London HuggingFace Meetup.",
+  "photo": "/images/members/rene-muhire.svg",
+  "linkedin": "https://www.linkedin.com/in/irenemuhire/",
+  "twitter": "",
+  "website": "",
+  "tags": ["ai-agents", "product"],
+  "roleType": "product-manager",
+  "dinners": ["2025-05-may", "2025-06-june", "2026-q1"]
+}

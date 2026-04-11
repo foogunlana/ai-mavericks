@@ -1,0 +1,14 @@
+{
+  "name": "Elias Nema",
+  "slug": "elias-nema",
+  "title": "Engineering Manager",
+  "company": "Meta",
+  "bio": "Engineering Manager at Meta working at the intersection of ML and virtual reality.",
+  "photo": "/images/members/elias-nema.svg",
+  "linkedin": "https://www.linkedin.com/in/eliasnema/",
+  "twitter": "",
+  "website": "",
+  "tags": ["llms"],
+  "roleType": "engineer",
+  "dinners": ["2025-02-february"]
+}
