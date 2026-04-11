@@ -1,0 +1,381 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e6]:
+      - link "AI Mavericks Newsletter" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e9]:
+          - figure [ref=e11]:
+            - img "AI Mavericks Newsletter logo" [ref=e12]
+          - generic [ref=e13]: AI Mavericks Newsletter
+      - button "Menu" [ref=e16] [cursor=pointer]:
+        - img "The logged in user" [ref=e19]
+  - main [ref=e20]:
+    - generic [ref=e21]:
+      - progressbar [ref=e23]
+      - generic [ref=e24]:
+        - generic [ref=e29]:
+          - button [ref=e32] [cursor=pointer]:
+            - img [ref=e33]
+          - generic [ref=e35]:
+            - button [ref=e37] [cursor=pointer]:
+              - img [ref=e40]
+            - button [ref=e43] [cursor=pointer]:
+              - img [ref=e45]
+        - generic [ref=e48]:
+          - list [ref=e50]:
+            - listitem [ref=e51]:
+              - link "AI Mavericks Newsletter" [ref=e52] [cursor=pointer]:
+                - /url: ../
+              - img [ref=e53]
+            - listitem [ref=e55]:
+              - generic [ref=e56]: Posts
+              - img [ref=e57]
+            - listitem [ref=e59]:
+              - generic [ref=e60]: AI Mavericks - July 2025 Dinner Recap
+          - generic [ref=e66]:
+            - generic [ref=e67]:
+              - heading "AI Mavericks - July 2025 Dinner Recap" [level=1] [ref=e68]
+              - heading "Recap of many of the things we covered during our July gathering at Ramen Space." [level=2] [ref=e69]
+              - generic [ref=e70]:
+                - generic [ref=e73]:
+                  - img "Author" [ref=e75]
+                  - paragraph [ref=e77]:
+                    - text: Eddie Forson
+                    - text: August 14, 2025
+                - generic [ref=e78]:
+                  - link [ref=e79] [cursor=pointer]:
+                    - /url: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fai-mavericks-ldn.beehiiv.com%2Fp%2Fai-mavericks-july-2025-dinner-recap
+                    - img [ref=e81]
+                  - link [ref=e84] [cursor=pointer]:
+                    - /url: https://twitter.com/intent/tweet?text=Recap+of+many+of+the+things+we+covered+during+our+July+gathering+at+Ramen+Space.&url=https%3A%2F%2Fai-mavericks-ldn.beehiiv.com%2Fp%2Fai-mavericks-july-2025-dinner-recap
+                    - img [ref=e86]
+                  - link [ref=e89] [cursor=pointer]:
+                    - /url: https://www.threads.net/intent/post?text=Recap+of+many+of+the+things+we+covered+during+our+July+gathering+at+Ramen+Space.+https%3A%2F%2Fai-mavericks-ldn.beehiiv.com%2Fp%2Fai-mavericks-july-2025-dinner-recap
+                    - img [ref=e91]
+                  - link [ref=e94] [cursor=pointer]:
+                    - /url: https://www.linkedin.com/sharing/share-offsite?url=https%3A%2F%2Fai-mavericks-ldn.beehiiv.com%2Fp%2Fai-mavericks-july-2025-dinner-recap
+                    - img [ref=e96]
+            - img [ref=e100]
+            - generic [ref=e101]:
+              - paragraph [ref=e103]: Hey guys,
+              - paragraph [ref=e105]: Great seeing you at Ramen Space recently. It’s time for another dinner recap. And this time I (finally) used AI to help me refine the summary of what we discussed 🤖.
+              - paragraph [ref=e107]: Let’s get started with some guests bios first!
+              - heading "Guests" [level=2] [ref=e109]
+              - paragraph [ref=e111]:
+                - link "Abrar" [ref=e112] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/abrar-rashid/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: is a recent MEng Computing graduate from Imperial College London, where he just won a prize for his final year project
+                - link "KidneyGrader" [ref=e113] [cursor=pointer]:
+                  - /url: https://www.imperial.ac.uk/media/imperial-college/faculty-of-engineering/computing/public/distinguished-projects/2425-ug-projects-/Abrar_Rashid_Project.pdf?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: "- an interpretable deep learning pipeline that automates kidney transplant biopsy grading. He is passionate about applying AI to solve real-world problems by connecting domain experts with technical folks. Speak to him about medical AI, deep learning, and startups."
+              - paragraph [ref=e115]:
+                - link "Dexter" [ref=e116] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/dexterawoyemi?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: is a fellow AI Consultant whom I met through an online course. He has over 10 years of experience in startups & scaleups. Recently he’s gone all in on generative AI and knowledge engineering in the enterprise - covering everything from knowledge graphs to Graph RAG. Speak to him about AI strategy, knowledge engineering, and enterprise sales.
+              - paragraph [ref=e118]:
+                - link "Gabi" [ref=e119] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/gabiteodoru/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: is an AI Engineer with a background in quantitative trading and data science. He’s currently working on a project to teach coding assistants how to understand and write
+                - link "q" [ref=e122] [cursor=pointer]:
+                  - /url: https://en.wikipedia.org/wiki/Q_(programming_language_from_Kx_Systems)?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: "- a terse, functional, array-based language at the heart of high-performance financial systems. Q’s quirks and lack to massive dataset make it very challenging for AI tools to grasp. Speak to Gabi about AI for niche programming languages, time-series data, and the joys (and pains) of q."
+              - paragraph [ref=e124]:
+                - link "Harvey" [ref=e127] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/harveyyorke/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: is co-founder and CTO at
+                - link "Valyu" [ref=e131] [cursor=pointer]:
+                  - /url: https://www.valyu.network/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: ", an AI company building multimodal search APIs for AI Agents over the web, academic papers, and proprietary datasets. He recently graduated from UCL and is now focused on growing Valyu and pushing the boundaries of AI search infrastructure. Speak to him about startups, recent research trends in AI, and the challenges of building a large scale RAG system."
+              - paragraph [ref=e133]:
+                - link "Kitan" [ref=e136] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/kitan-ogunfeibo/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: is a founder of a growth consultancy that partners with businesses on digital transformation projects. Three years ago, he discovered GPT and has been an avid user ever since. Today, Kitan works as a digital strategy consultant in the MedTech space, with clients including Flow Health, several telemedicine agencies, and Health Words AI. Speak to him about growth strategy, AI in healthcare, and scaling digital products.
+              - paragraph [ref=e139]:
+                - link "Rachel" [ref=e141] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/rachblondon/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: is an ex-founder in the crypto space. She has spent the last decade working in tech, starting out as a developer and then moving into developer relation roles. She’s now diving deep into AI, experimenting with generative tools to build AI products. She also runs a meetup where people get together to build cool stuff using AI. Speak to her about AI coding tools, crypto/blockchain, and startups.
+              - paragraph [ref=e143]:
+                - link "Roberta" [ref=e146] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/robertagoodhead/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: is currently a Senior Software Engineer at VodafoneThree. She is a fellow Imperial alumna. Recently she’s been experimenting with vibe coding tools and has formed her own opinion on this new trend. She is also keen to connect with fellow AI enthusiasts and share ideas around Tech and Product. Speak to her about vibe coding and product.
+              - paragraph [ref=e148]:
+                - link "Shingi" [ref=e151] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/shingi-mureriwa-2a602b31/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: is a former Director in financial risk management with a background in software engineering. He brings over a decade of experience in the finance industry spanning roles at Barclays, HSBC, Nordea, etc. As a long time tinkerer, the rise of Gen AI reignited his drive to build again. Shingi is now focused on side ventures, including a personal trading system. Speak to him about finance, product management, and AI product tinkering.
+              - paragraph [ref=e153]:
+                - link "Simon" [ref=e154] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/abrar-rashid/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: is the founder of
+                - link "TheEndOfConflict.ai" [ref=e157] [cursor=pointer]:
+                  - /url: http://TheEndOfConflict.ai?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: . He’s spent the past two decades teaching negotiation skills to organisations worldwide. Before that he spent 12 years in the City designing derivatives trading systems. Simon’s latest book “The End of Conflict“ is an exploration on how AI can resolve disputes and heal divided societies. Speak to him about negotiation strategy, and how AI can help in conflict resolution.
+              - paragraph [ref=e159]:
+                - link "Eddie" [ref=e160] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/eddie-forson/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: (me). I’m a software engineer by trade with experience in a few domains like finance/FX, mobility/transportation startups, and more recently energy and reinsurance. I write about LLMs and AI Agents on my
+                - link "Substack" [ref=e161] [cursor=pointer]:
+                  - /url: https://edforson.substack.com/publish/home?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: . I also recently launched my
+                - link "AI Consultancy" [ref=e164] [cursor=pointer]:
+                  - /url: https://www.kisekilabs.com/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - text: . Happy to talk tech/AI, business and bounce off ideas with this group!
+              - heading "Key discussion points" [level=2] [ref=e166]
+              - list [ref=e168]:
+                - listitem [ref=e169]:
+                  - paragraph [ref=e170]: "Vibe Coding and the Future of Development:"
+                  - list [ref=e171]:
+                    - listitem [ref=e172]:
+                      - paragraph [ref=e173]: Rachel kicked things off with a demo of her language learning web app, built in just a few hours using Lovable.
+                    - listitem [ref=e174]:
+                      - paragraph [ref=e175]: This sparked a conversation about "vibe coding," where developers can quickly generate applications and then have designers refine the UX. This inverts the traditional Spec -> Design -> Coding workflow.
+                    - listitem [ref=e176]:
+                      - paragraph [ref=e177]: Roberta mentioned a "last mile problem" with Lovable, resorting to AI-assisted coding in Windsurf to finalise apps.
+                    - listitem [ref=e178]:
+                      - paragraph [ref=e179]: The group agreed on the increasing importance of well-crafted Product Requirement Documents (PRDs) to guide AI code generation. As Shingi put it, "the clearer instructions you give an LLMs, the better they perform."
+                    - listitem [ref=e180]:
+                      - paragraph [ref=e181]: With code becoming cheap and abundant, robust acceptance criteria and AI-generated tests are crucial for quality control.
+                - listitem [ref=e182]:
+                  - paragraph [ref=e183]: "AI Tools and Workflow:"
+                  - list [ref=e184]:
+                    - listitem [ref=e185]:
+                      - paragraph [ref=e186]: A lively debate ensued on the merits of Claude Code vs. Cursor, with most attendees favouring Claude Code's new paradigm.
+                    - listitem [ref=e187]:
+                      - paragraph [ref=e188]: "Eddie shared his multi-agent approach to building features: a \"product-manager agent\" for PRDs, a \"feature architect agent\" for planning, and a \"normal agent\" for implementation."
+                    - listitem [ref=e189]:
+                      - paragraph [ref=e190]:
+                        - text: Dexter and Eddie are cautious about running with
+                        - code [ref=e191]: "--dangerously-skip-permissions"
+                        - text: ", but Shingi admits to using it when the spec is airtight."
+                    - listitem [ref=e192]:
+                      - paragraph [ref=e193]:
+                        - text: Other recommended tools included
+                        - link "Roo Code" [ref=e194] [cursor=pointer]:
+                          - /url: https://github.com/RooCodeInc/Roo-Code?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                        - text: (another coding agent),
+                        - link "tldraw.com" [ref=e196] [cursor=pointer]:
+                          - /url: https://tldraw.com?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                        - text: and
+                        - link "computer.tldraw.com" [ref=e198] [cursor=pointer]:
+                          - /url: https://computer.tldraw.com?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                        - text: for fun visual applications, and a ChatGPT Agent combining Operator and Deep Research. Harvey also mentioned Vercel's v0 as a useful library for AI-powered UI component building.
+                - listitem [ref=e199]:
+                  - paragraph [ref=e200]: "AI is Eating Software:"
+                  - list [ref=e201]:
+                    - listitem [ref=e202]:
+                      - paragraph [ref=e203]: AI makes it possible to create more personalised, custom, and even "throwaway" software.
+                    - listitem [ref=e204]:
+                      - paragraph [ref=e205]: However, making software commercially viable requires more than just code; distribution, marketing, and intuition are key. Shingi advocates for simply throwing away bad code and starting over, as long as the initial specification is solid.
+                    - listitem [ref=e206]:
+                      - paragraph [ref=e207]: "\"Vibe coded\" applications often have design flaws, performance problems, or security issues. Experienced engineers and designers are still needed to polish them. Replit even has a feature to hire an engineer to fix these kinds of issues."
+                    - listitem [ref=e208]:
+                      - paragraph [ref=e209]: It's a challenging time for junior engineers, who now compete with AI that can write competent code. The consensus is they must become "AI native" to accelerate their learning.
+                    - listitem [ref=e210]:
+                      - paragraph [ref=e211]: While waiting for AI agents to run, the group is not idle. Harvey checks on other AI coding tasks, while Shingi reviews specs for other features, proving we're all doing more concurrently.
+                - listitem [ref=e212]:
+                  - paragraph [ref=e213]: "Legacy/Arcane programming languages and AI:"
+                  - list [ref=e214]:
+                    - listitem [ref=e215]:
+                      - paragraph [ref=e216]:
+                        - text: The conversation took a turn into the esoteric with Gabi schooling the group on q, a terse and powerful descendant of
+                        - link "APL" [ref=e217] [cursor=pointer]:
+                          - /url: https://en.wikipedia.org/wiki/APL_(programming_language)?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                        - text: with a steep learning curve. Simon also reminisced about coding in
+                        - link "MUMPS" [ref=e218] [cursor=pointer]:
+                          - /url: https://en.wikipedia.org/wiki/MUMPS?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                        - text: .
+                    - listitem [ref=e219]:
+                      - paragraph [ref=e220]:
+                        - text: "This led to a key insight: there is a massive opportunity to leverage AI to maintain or migrate code in legacy languages (like COBOL and Fortran) to more modern ones. Startups like"
+                        - link "bloop.ai" [ref=e222] [cursor=pointer]:
+                          - /url: https://bloop.ai?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                        - text: are already capitalising on this.
+                - listitem [ref=e223]:
+                  - paragraph [ref=e224]: "The Evolving Roles of Tech Professionals:"
+                  - list [ref=e225]:
+                    - listitem [ref=e226]:
+                      - paragraph [ref=e227]: AI is leading to smaller, more efficient delivery teams.
+                    - listitem [ref=e228]:
+                      - paragraph [ref=e229]: Eddie predicts a coalescence of software developer, product manager, and designer roles, giving generalists an advantage.
+                    - listitem [ref=e230]:
+                      - paragraph [ref=e231]: Dexter suggested "vibe designing" with MCP servers to infuse design taste into AI-generated products.
+                    - listitem [ref=e232]:
+                      - paragraph [ref=e233]: The group emphasised that design and UX remain critical differentiators, citing Typeform as a company that "won" its category through superior taste and experience.
+                - listitem [ref=e234]:
+                  - paragraph [ref=e235]: "AI in the Enterprise and Beyond:"
+                  - list [ref=e236]:
+                    - listitem [ref=e237]:
+                      - paragraph [ref=e238]: Dexter argued that the most valuable AI use cases are often internal, augmenting employee workflows rather than creating risky, customer-facing chatbots.
+                    - listitem [ref=e239]:
+                      - paragraph [ref=e240]: He also highlighted the continued value of expert systems, especially in the enterprise, and the potential for LLMs to help design them more efficiently.
+                    - listitem [ref=e241]:
+                      - paragraph [ref=e242]: The conversation touched on the "AI consulting gold rush," with large firms and independents all vying for a piece of the market, often leading to a proliferation of thrown-away prototypes.
+                - listitem [ref=e243]:
+                  - paragraph [ref=e244]: "Startup and Founder Insights:"
+                  - list [ref=e245]:
+                    - listitem [ref=e246]:
+                      - paragraph [ref=e247]:
+                        - text: The discussion reinforced the importance of go-to-market strategy and distribution, with Rachel quoting
+                        - link "Justin Kan" [ref=e248] [cursor=pointer]:
+                          - /url: https://x.com/justinkan/status/1059989657218248704?lang=en&utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                        - text: ": \"First time founders are obsessed with product. Second time founders are obsessed with distribution.\""
+                    - listitem [ref=e249]:
+                      - paragraph [ref=e250]:
+                        - text: Founder-led sales are crucial in the early stages, with Eddie recommending the book
+                        - link "Founding Sales" [ref=e251] [cursor=pointer]:
+                          - /url: https://www.foundingsales.com/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                        - text: .
+                    - listitem [ref=e252]:
+                      - paragraph [ref=e253]: Abrar emphasised the importance of either partnering with a domain expert or dedicating years to becoming one.
+                - listitem [ref=e254]:
+                  - paragraph [ref=e255]: "Recommended Reading on AI's Future:"
+                  - list [ref=e256]:
+                    - listitem [ref=e257]:
+                      - paragraph [ref=e258]:
+                        - text: "Two essays were highlighted as both interesting and alarming: \""
+                        - link "AI 2027" [ref=e259] [cursor=pointer]:
+                          - /url: https://ai-2027.com/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                        - text: "\" (recommended by Rachel and Dexter) and \""
+                        - 'link "Situational Awareness: The Decade Ahead" [ref=e260] [cursor=pointer]':
+                          - /url: https://situational-awareness.ai/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                        - text: "\" (recommended by Eddie)."
+              - heading "Jobs" [level=2] [ref=e262]
+              - paragraph [ref=e264]: This is a new section. If you feel you are suitable for any of the below roles reach out to me. I have a direct connection with the founders so I can share your profile with them.
+              - list [ref=e266]:
+                - listitem [ref=e267]:
+                  - paragraph [ref=e268]:
+                    - link "Kernel - Senior Product Engineer" [ref=e269] [cursor=pointer]:
+                      - /url: https://jobs.ashbyhq.com/kernel/2706b559-eddb-42dd-92cc-39abbda9351d?utm_source=kXyYEdoQAJ
+                    - text: (London)
+                  - list [ref=e270]:
+                    - listitem [ref=e271]:
+                      - paragraph [ref=e272]: Series A startup building in the AI Sales/BDR space
+                    - listitem [ref=e273]:
+                      - paragraph [ref=e274]: "Stack: AWS, NodeJS, Typescript, Postgres, NextJS, Tailwind, n8n"
+                    - listitem [ref=e275]:
+                      - paragraph [ref=e276]: "Comp: £120K - £140K + equity"
+                    - listitem [ref=e277]:
+                      - paragraph [ref=e278]: In-Office
+                - listitem [ref=e279]:
+                  - paragraph [ref=e280]:
+                    - link "CoreLoops - Senior Full Stack Engineer" [ref=e281] [cursor=pointer]:
+                      - /url: https://coreloops.zohorecruit.eu/jobs/Careers/87937000000429063/Senior-Full-Stack-Engineer?source=CareerSite&utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                    - text: (London)
+                  - list [ref=e282]:
+                    - listitem [ref=e283]:
+                      - paragraph [ref=e284]: Pre-Seed startup building AI-powered financial management platform for the construction industry
+                    - listitem [ref=e285]:
+                      - paragraph [ref=e286]: "Stack: Javascript, NextJS, NodeJS, Vertex AI, OpenAI"
+                    - listitem [ref=e287]:
+                      - paragraph [ref=e288]: "Comp: £75K - £85K"
+                    - listitem [ref=e289]:
+                      - paragraph [ref=e290]: "Hybrid: 1 day in office every two weeks"
+              - heading "Closing notes" [level=2] [ref=e292]
+              - list [ref=e294]:
+                - listitem [ref=e295]:
+                  - paragraph [ref=e296]:
+                    - text: "Join us on discord to continue the conversation:"
+                    - link "https://discord.gg/xTxksjUvnE" [ref=e297] [cursor=pointer]:
+                      - /url: https://discord.gg/xTxksjUvnE?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                - listitem [ref=e298]:
+                  - paragraph [ref=e299]:
+                    - text: "🎉 AI Mavericks Summer Party is on Wed 27/08/2025: RSVP"
+                    - link "HERE" [ref=e300] [cursor=pointer]:
+                      - /url: https://lu.ma/j2nh79h6?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                  - list [ref=e301]:
+                    - listitem [ref=e302]:
+                      - paragraph [ref=e303]: Is there anyone who can help me create an amazing poster to promote the party?
+                    - listitem [ref=e304]:
+                      - paragraph [ref=e305]: In general I’m looking for volunteers to help me make this event a success.
+                - listitem [ref=e306]:
+                  - paragraph [ref=e307]:
+                    - text: I’m going to the
+                    - link "AI Engineer Paris" [ref=e309] [cursor=pointer]:
+                      - /url: https://www.ai.engineer/paris?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-july-2025-dinner-recap
+                    - text: conference in September - join me if you can!
+              - paragraph [ref=e311]:
+                - text: See you around.
+                - text: Eddie.
+      - generic [ref=e313]:
+        - heading "Keep reading" [level=4] [ref=e314]
+        - generic [ref=e315]:
+          - generic [ref=e316]:
+            - link "AI Mavericks - May 2025 Dinner Recap Recap of many of the things we covered during the May dinner. Eddie Forson /" [ref=e317] [cursor=pointer]:
+              - /url: /p/ai-mavericks-may-2025-dinner-recap
+              - figure [ref=e319]:
+                - img "AI Mavericks - May 2025 Dinner Recap" [ref=e320]
+              - generic [ref=e321]:
+                - heading "AI Mavericks - May 2025 Dinner Recap" [level=2] [ref=e322]
+                - paragraph [ref=e323]: Recap of many of the things we covered during the May dinner.
+                - paragraph [ref=e324]:
+                  - text: Eddie Forson /
+                  - time
+            - link "AI Mavericks - December 2025 Dinner Recap Recap of many of the things we covered during our December gathering at Pizza Express Live Holborn. Eddie Forson /" [ref=e325] [cursor=pointer]:
+              - /url: /p/ai-mavericks-december-2025-dinner-recap
+              - figure [ref=e327]:
+                - img "AI Mavericks - December 2025 Dinner Recap" [ref=e328]
+              - generic [ref=e329]:
+                - heading "AI Mavericks - December 2025 Dinner Recap" [level=2] [ref=e330]
+                - paragraph [ref=e331]: Recap of many of the things we covered during our December gathering at Pizza Express Live Holborn.
+                - paragraph [ref=e332]:
+                  - text: Eddie Forson /
+                  - time
+            - link "AI Mavericks - April 2025 Dinner Recap Recap of many of the things we covered during last month's dinner. Eddie Forson /" [ref=e333] [cursor=pointer]:
+              - /url: /p/ai-mavericks-april-2025-dinner-recap
+              - figure [ref=e335]:
+                - img "AI Mavericks - April 2025 Dinner Recap" [ref=e336]
+              - generic [ref=e337]:
+                - heading "AI Mavericks - April 2025 Dinner Recap" [level=2] [ref=e338]
+                - paragraph [ref=e339]: Recap of many of the things we covered during last month's dinner.
+                - paragraph [ref=e340]:
+                  - text: Eddie Forson /
+                  - time
+          - button "View more" [ref=e341] [cursor=pointer]:
+            - generic [ref=e342]: View more
+            - img [ref=e343]
+  - contentinfo [ref=e345]:
+    - generic [ref=e347]:
+      - generic [ref=e348]:
+        - generic [ref=e350]:
+          - generic [ref=e351]:
+            - img "Recap updates from AI Mavericks Dinners to make sure you guys stay connected and continue the conversation online." [ref=e352]
+            - paragraph [ref=e353]: AI Mavericks Newsletter
+          - paragraph [ref=e355]: Recap updates from AI Mavericks Dinners to make sure you guys stay connected and continue the conversation online.
+        - generic [ref=e356]:
+          - generic [ref=e357]:
+            - paragraph [ref=e358]: Home
+            - link "Posts" [ref=e360] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e361]: Posts
+          - generic [ref=e362]:
+            - paragraph [ref=e363]: Account
+            - link "Manage subscription" [ref=e365] [cursor=pointer]:
+              - /url: /subscribe/5b2ab4f0-cb26-4d73-bd99-165fb0f14309/manage
+              - paragraph [ref=e366]: Manage subscription
+        - generic [ref=e367]:
+          - generic [ref=e371]:
+            - textbox "Enter Your Email" [ref=e373]
+            - button "Subscribe" [ref=e374] [cursor=pointer]
+          - generic [ref=e375]:
+            - link "Twitter" [ref=e376] [cursor=pointer]:
+              - /url: https://x.com/Ed_Forson
+              - img [ref=e379]
+            - link "LinkedIn" [ref=e382] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/eddie-forson/
+              - img [ref=e385]
+            - link "Discord" [ref=e387] [cursor=pointer]:
+              - /url: https://discord.gg/xTxksjUvnE
+              - img "Discord" [ref=e390]
+      - generic [ref=e392]:
+        - paragraph [ref=e394]: © 2026 AI Mavericks Newsletter.
+        - generic [ref=e395]:
+          - generic [ref=e396]:
+            - link "Privacy policy" [ref=e397] [cursor=pointer]:
+              - /url: https://beehiiv.com/privacy
+              - paragraph [ref=e398]: Privacy policy
+            - link "Terms of use" [ref=e399] [cursor=pointer]:
+              - /url: https://beehiiv.com/tou
+              - paragraph [ref=e400]: Terms of use
+          - link "Powered by beehiiv" [ref=e403] [cursor=pointer]:
+            - /url: https://www.beehiiv.com/?utm_source=AI Mavericks Newsletter&utm_medium=footer
+            - img [ref=e404]
+            - generic [ref=e406]: Powered by beehiiv

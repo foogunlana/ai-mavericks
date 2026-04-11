@@ -1,0 +1,232 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e6]:
+      - link "AI Mavericks Newsletter" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e9]:
+          - figure [ref=e11]:
+            - img "AI Mavericks Newsletter logo" [ref=e12]
+          - generic [ref=e13]: AI Mavericks Newsletter
+      - button "Menu" [ref=e16] [cursor=pointer]:
+        - img "The logged in user" [ref=e19]
+  - main [ref=e20]:
+    - generic [ref=e21]:
+      - progressbar [ref=e23]
+      - generic [ref=e24]:
+        - generic [ref=e29]:
+          - button [ref=e32] [cursor=pointer]:
+            - img [ref=e33]
+          - generic [ref=e35]:
+            - button [ref=e37] [cursor=pointer]:
+              - img [ref=e40]
+            - button [ref=e43] [cursor=pointer]:
+              - img [ref=e45]
+        - generic [ref=e48]:
+          - list [ref=e50]:
+            - listitem [ref=e51]:
+              - link "AI Mavericks Newsletter" [ref=e52] [cursor=pointer]:
+                - /url: ../
+              - img [ref=e53]
+            - listitem [ref=e55]:
+              - generic [ref=e56]: Posts
+              - img [ref=e57]
+            - listitem [ref=e59]:
+              - generic [ref=e60]: AI Mavericks - April 2025 Dinner Recap
+          - generic [ref=e66]:
+            - generic [ref=e67]:
+              - heading "AI Mavericks - April 2025 Dinner Recap" [level=1] [ref=e68]
+              - heading "Recap of many of the things we covered during last month's dinner." [level=2] [ref=e69]
+              - generic [ref=e70]:
+                - generic [ref=e73]:
+                  - img "Author" [ref=e75]
+                  - paragraph [ref=e77]:
+                    - text: Eddie Forson
+                    - text: May 19, 2025
+                - generic [ref=e78]:
+                  - link [ref=e79] [cursor=pointer]:
+                    - /url: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fai-mavericks-ldn.beehiiv.com%2Fp%2Fai-mavericks-april-2025-dinner-recap
+                    - img [ref=e81]
+                  - link [ref=e84] [cursor=pointer]:
+                    - /url: https://twitter.com/intent/tweet?text=Recap+of+many+of+the+things+we+covered+during+last+month%27s+dinner.&url=https%3A%2F%2Fai-mavericks-ldn.beehiiv.com%2Fp%2Fai-mavericks-april-2025-dinner-recap
+                    - img [ref=e86]
+                  - link [ref=e89] [cursor=pointer]:
+                    - /url: https://www.threads.net/intent/post?text=Recap+of+many+of+the+things+we+covered+during+last+month%27s+dinner.+https%3A%2F%2Fai-mavericks-ldn.beehiiv.com%2Fp%2Fai-mavericks-april-2025-dinner-recap
+                    - img [ref=e91]
+                  - link [ref=e94] [cursor=pointer]:
+                    - /url: https://www.linkedin.com/sharing/share-offsite?url=https%3A%2F%2Fai-mavericks-ldn.beehiiv.com%2Fp%2Fai-mavericks-april-2025-dinner-recap
+                    - img [ref=e96]
+            - generic [ref=e99]:
+              - paragraph [ref=e101]: Hey guys,
+              - paragraph [ref=e103]: Great seeing you last month and apologies for the late email recap. But as they say… better late than never :).
+              - paragraph [ref=e105]: I’m also turning these emails into newsletters so that current and past attendees of the dinner can connect with each other. Here’s a quick intro of all April 2025 dinner attendees.
+              - heading "Guests" [level=2] [ref=e107]
+              - paragraph [ref=e109]:
+                - link "Christina" [ref=e110] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/cbanjo/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                - text: is the founder of Always Create, a community of creative freelancers. Her community thrives online and offline with in-person events. Christina connects these creatives with job opportunities. Now she is interested in applying AI to streamline the job matchmaking process.
+              - paragraph [ref=e112]:
+                - link "Dexter" [ref=e113] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/dexterawoyemi/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                - text: is a fellow AI Consultant whom I met through an online course. He has over 10 years of experience in startups & scaleups. He’s also got quite a bit of experience (and stories!) around Open Banking. Dexter is keen to share business and technical tips with founders and fellow consultants.
+              - paragraph [ref=e115]:
+                - link "Dominic" [ref=e116] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/dominiconorton/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                - text: is an AI & Community Consultant. Over the last few years he's been focused on low/no-code projects. Now he's tinkering with LLMs on commercial and social projects. He's particularly interested in what these new tools can enable non-coders to achieve.
+              - paragraph [ref=e118]:
+                - link "Markus" [ref=e121] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/markus-duecker/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                - text: is the co-founder of Talentspace, a startup in the events market. He is based in Germany but was travelling through London so he joined us for dinner. From what I recall Markus is now focusing on a startup that provides data labelling services to AI companies. He is keen to connect with fellow founders.
+              - paragraph [ref=e124]:
+                - link "Mawuli" [ref=e127] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/mawuliagamah/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                - text: is a Data-Scientist (with a background in Economics), currently working at the UK Department for Business and Trade. We met at the AI Tinkerers Meetup a few months ago. Mawuli is currently building a mobile application that uses multi-modal AI. He is looking forward to connecting with fellow builders.
+              - paragraph [ref=e129]:
+                - link "Hugh" [ref=e130] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/hughhopkins/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                - text: is the ex co-founder of Delegate (acquired), a startup in the Customer Success and Account Management space. His background is in Product Management. He is keen to learn more about what other AI tools and techniques people are experimenting with for fun and profit, and of course share tips and experiences on company building.
+              - paragraph [ref=e132]:
+                - link "Pyry" [ref=e135] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/pyrytakala/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                - text: is co-founder and CTO of FinTech startup based in the Netherlands. He has a background in Data-Science/Machine Learning and was previously based in London. Pyry is keen to discuss business and (very) technical topics with fellow AI startup founders.
+              - paragraph [ref=e137]:
+                - link "Eddie" [ref=e138] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/eddie-forson/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                - text: (me). I’m a software engineer by trade with experience in a few domains like finance/FX, mobility/transportation startups, and more recently energy and reinsurance. I write about LLMs and AI Agents on my
+                - link "Substack" [ref=e139] [cursor=pointer]:
+                  - /url: https://edforson.substack.com/publish/home?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                - text: . I also recently launched my
+                - link "AI Consultancy" [ref=e142] [cursor=pointer]:
+                  - /url: https://www.kisekilabs.com/?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                - text: . Happy to talk tech, business and bounce off ideas with this group!
+              - heading "What we talked about during dinner" [level=2] [ref=e144]
+              - list [ref=e146]:
+                - listitem [ref=e147]:
+                  - paragraph [ref=e148]: The importance of choosing a big enough (or rapidly growing) market for your company to operate in (Hugh)
+                  - list [ref=e149]:
+                    - listitem [ref=e150]:
+                      - paragraph [ref=e151]:
+                        - text: It reminds me of this very popular
+                        - link "blog post" [ref=e152] [cursor=pointer]:
+                          - /url: https://pmarchive.com/guide_to_startups_part4.html?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                        - text: my Marc Andreessen on team vs product vs market
+                - listitem [ref=e153]:
+                  - paragraph [ref=e154]:
+                    - text: Dominic regaled us with web games he vibe-coded end-to-end using
+                    - link "Replit Agent" [ref=e155] [cursor=pointer]:
+                      - /url: https://docs.replit.com/replitai/agent?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                    - text: "- with nothing else but prompts"
+                  - list [ref=e156]:
+                    - listitem [ref=e157]:
+                      - paragraph [ref=e158]: I was very impressed with the consistency of the design/graphics
+                - listitem [ref=e159]:
+                  - paragraph [ref=e160]:
+                    - text: Somebody mentioned the company
+                    - link "Happenstance.ai" [ref=e161] [cursor=pointer]:
+                      - /url: http://Happenstance.ai?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                    - text: when we were talking about professional social networks (was it Hugh or Dexter?)
+                - listitem [ref=e162]:
+                  - paragraph [ref=e163]:
+                    - text: Markus told us about the importance of data labelling to train IA models, especially in specific niches (
+                    - link "scale.ai" [ref=e164] [cursor=pointer]:
+                      - /url: http://scale.ai?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                    - text: is probably the leading company in this space)
+                - listitem [ref=e165]:
+                  - paragraph [ref=e166]:
+                    - text: Dominic mentioned using
+                    - link "magicpatterns.com" [ref=e167] [cursor=pointer]:
+                      - /url: http://magicpatterns.com?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+                    - text: to create UI prototypes
+              - heading "Closing notes" [level=2] [ref=e169]
+              - list [ref=e171]:
+                - listitem [ref=e172]:
+                  - paragraph [ref=e173]:
+                    - text: "Join us on discord to continue the conversation:"
+                    - link "https://discord.gg/xTxksjUvnE" [ref=e174] [cursor=pointer]:
+                      - /url: https://discord.gg/xTxksjUvnE?utm_source=ai-mavericks-ldn.beehiiv.com&utm_medium=referral&utm_campaign=ai-mavericks-april-2025-dinner-recap
+              - paragraph [ref=e176]:
+                - text: See you around.
+                - text: Eddie.
+      - generic [ref=e240]:
+        - heading "Keep reading" [level=4] [ref=e241]
+        - generic [ref=e242]:
+          - generic [ref=e243]:
+            - link "AI Mavericks - July 2025 Dinner Recap Recap of many of the things we covered during our July gathering at Ramen Space. Eddie Forson /" [ref=e244] [cursor=pointer]:
+              - /url: /p/ai-mavericks-july-2025-dinner-recap
+              - figure [ref=e246]:
+                - img "AI Mavericks - July 2025 Dinner Recap" [ref=e247]
+              - generic [ref=e248]:
+                - heading "AI Mavericks - July 2025 Dinner Recap" [level=2] [ref=e249]
+                - paragraph [ref=e250]: Recap of many of the things we covered during our July gathering at Ramen Space.
+                - paragraph [ref=e251]:
+                  - text: Eddie Forson /
+                  - time
+            - link "AI Mavericks - May 2025 Dinner Recap Recap of many of the things we covered during the May dinner. Eddie Forson /" [ref=e252] [cursor=pointer]:
+              - /url: /p/ai-mavericks-may-2025-dinner-recap
+              - figure [ref=e254]:
+                - img "AI Mavericks - May 2025 Dinner Recap" [ref=e255]
+              - generic [ref=e256]:
+                - heading "AI Mavericks - May 2025 Dinner Recap" [level=2] [ref=e257]
+                - paragraph [ref=e258]: Recap of many of the things we covered during the May dinner.
+                - paragraph [ref=e259]:
+                  - text: Eddie Forson /
+                  - time
+            - link "AI Mavericks - Q1 2026 Dinner Recap Recap of many of the things we covered during our Q1 2026 gathering at Pizza Express Live Holborn. Eddie Forson /" [ref=e260] [cursor=pointer]:
+              - /url: /p/ai-mavericks-q1-2026-dinner-recap
+              - figure [ref=e262]:
+                - img "AI Mavericks - Q1 2026 Dinner Recap" [ref=e263]
+              - generic [ref=e264]:
+                - heading "AI Mavericks - Q1 2026 Dinner Recap" [level=2] [ref=e265]
+                - paragraph [ref=e266]: Recap of many of the things we covered during our Q1 2026 gathering at Pizza Express Live Holborn.
+                - paragraph [ref=e267]:
+                  - text: Eddie Forson /
+                  - time
+          - button "View more" [ref=e268] [cursor=pointer]:
+            - generic [ref=e269]: View more
+            - img [ref=e270]
+  - contentinfo [ref=e177]:
+    - generic [ref=e179]:
+      - generic [ref=e180]:
+        - generic [ref=e182]:
+          - generic [ref=e183]:
+            - img "Recap updates from AI Mavericks Dinners to make sure you guys stay connected and continue the conversation online." [ref=e184]
+            - paragraph [ref=e185]: AI Mavericks Newsletter
+          - paragraph [ref=e187]: Recap updates from AI Mavericks Dinners to make sure you guys stay connected and continue the conversation online.
+        - generic [ref=e188]:
+          - generic [ref=e189]:
+            - paragraph [ref=e190]: Home
+            - link "Posts" [ref=e192] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e193]: Posts
+          - generic [ref=e194]:
+            - paragraph [ref=e195]: Account
+            - link "Manage subscription" [ref=e197] [cursor=pointer]:
+              - /url: /subscribe/5b2ab4f0-cb26-4d73-bd99-165fb0f14309/manage
+              - paragraph [ref=e198]: Manage subscription
+        - generic [ref=e199]:
+          - generic [ref=e203]:
+            - textbox "Enter Your Email" [ref=e205]
+            - button "Subscribe" [ref=e206] [cursor=pointer]
+          - generic [ref=e207]:
+            - link "Twitter" [ref=e208] [cursor=pointer]:
+              - /url: https://x.com/Ed_Forson
+              - img [ref=e211]
+            - link "LinkedIn" [ref=e214] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/eddie-forson/
+              - img [ref=e217]
+            - link "Discord" [ref=e219] [cursor=pointer]:
+              - /url: https://discord.gg/xTxksjUvnE
+              - img "Discord" [ref=e222]
+      - generic [ref=e224]:
+        - paragraph [ref=e226]: © 2026 AI Mavericks Newsletter.
+        - generic [ref=e227]:
+          - generic [ref=e228]:
+            - link "Privacy policy" [ref=e229] [cursor=pointer]:
+              - /url: https://beehiiv.com/privacy
+              - paragraph [ref=e230]: Privacy policy
+            - link "Terms of use" [ref=e231] [cursor=pointer]:
+              - /url: https://beehiiv.com/tou
+              - paragraph [ref=e232]: Terms of use
+          - link "Powered by beehiiv" [ref=e235] [cursor=pointer]:
+            - /url: https://www.beehiiv.com/?utm_source=AI Mavericks Newsletter&utm_medium=footer
+            - img [ref=e236]
+            - generic [ref=e238]: Powered by beehiiv
