@@ -1,0 +1,25 @@
+{
+  "tags": [
+    { "id": "ai-agents", "label": "AI Agents", "category": "interest" },
+    { "id": "llms", "label": "LLMs", "category": "interest" },
+    { "id": "rag", "label": "RAG", "category": "interest" },
+    { "id": "fintech", "label": "FinTech", "category": "interest" },
+    { "id": "healthcare", "label": "Healthcare", "category": "interest" },
+    { "id": "education", "label": "Education", "category": "interest" },
+    { "id": "creative-ai", "label": "Creative AI", "category": "interest" },
+    { "id": "marketing", "label": "Marketing", "category": "interest" },
+    { "id": "robotics", "label": "Robotics", "category": "interest" },
+    { "id": "consulting", "label": "Consulting", "category": "interest" },
+    { "id": "startups", "label": "Startups", "category": "interest" },
+    { "id": "data-science", "label": "Data Science", "category": "interest" },
+    { "id": "vibe-coding", "label": "Vibe Coding", "category": "interest" },
+    { "id": "product", "label": "Product", "category": "interest" },
+    { "id": "engineer", "label": "Engineer", "category": "role" },
+    { "id": "founder", "label": "Founder", "category": "role" },
+    { "id": "data-scientist", "label": "Data Scientist", "category": "role" },
+    { "id": "product-manager", "label": "Product Manager", "category": "role" },
+    { "id": "consultant", "label": "Consultant", "category": "role" },
+    { "id": "designer", "label": "Designer", "category": "role" },
+    { "id": "investor", "label": "Investor", "category": "role" }
+  ]
+}
