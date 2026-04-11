@@ -1,0 +1,92 @@
+import { config, fields, collection } from '@keystatic/core';
+
+export default config({
+  storage: { kind: 'local' },
+  collections: {
+    members: collection({
+      label: 'Members',
+      slugField: 'name',
+      path: 'content/members/*',
+      format: { data: 'json' },
+      schema: {
+        name: fields.text({ label: 'Name', validation: { isRequired: true } }),
+        title: fields.text({ label: 'Title / Role' }),
+        company: fields.text({ label: 'Company' }),
+        bio: fields.text({ label: 'Bio', multiline: true }),
+        photo: fields.text({ label: 'Photo path' }),
+        linkedin: fields.url({ label: 'LinkedIn URL' }),
+        twitter: fields.url({ label: 'Twitter URL' }),
+        website: fields.url({ label: 'Website URL' }),
+        tags: fields.multiselect({
+          label: 'Interest Tags',
+          options: [
+            { label: 'AI Agents', value: 'ai-agents' },
+            { label: 'LLMs', value: 'llms' },
+            { label: 'RAG', value: 'rag' },
+            { label: 'FinTech', value: 'fintech' },
+            { label: 'Healthcare', value: 'healthcare' },
+            { label: 'Education', value: 'education' },
+            { label: 'Creative AI', value: 'creative-ai' },
+            { label: 'Marketing', value: 'marketing' },
+            { label: 'Robotics', value: 'robotics' },
+            { label: 'Consulting', value: 'consulting' },
+            { label: 'Startups', value: 'startups' },
+            { label: 'Data Science', value: 'data-science' },
+            { label: 'Vibe Coding', value: 'vibe-coding' },
+            { label: 'Product', value: 'product' },
+          ],
+        }),
+        roleType: fields.select({
+          label: 'Role Type',
+          options: [
+            { label: 'Engineer', value: 'engineer' },
+            { label: 'Founder', value: 'founder' },
+            { label: 'Data Scientist', value: 'data-scientist' },
+            { label: 'Product Manager', value: 'product-manager' },
+            { label: 'Consultant', value: 'consultant' },
+            { label: 'Designer', value: 'designer' },
+            { label: 'Investor', value: 'investor' },
+          ],
+          defaultValue: 'engineer',
+        }),
+        dinners: fields.multiselect({
+          label: 'Dinners Attended',
+          options: [
+            { label: 'Oct 2024', value: '2024-10-october' },
+            { label: 'Nov 2024', value: '2024-11-november' },
+            { label: 'Dec 2024', value: '2024-12-december' },
+            { label: 'Jan 2025', value: '2025-01-january' },
+            { label: 'Feb 2025', value: '2025-02-february' },
+            { label: 'Mar 2025', value: '2025-03-march' },
+            { label: 'Apr 2025', value: '2025-04-april' },
+            { label: 'May 2025', value: '2025-05-may' },
+            { label: 'Jun 2025', value: '2025-06-june' },
+            { label: 'Jul 2025', value: '2025-07-july' },
+            { label: 'Dec 2025', value: '2025-12-december' },
+            { label: 'Q1 2026', value: '2026-q1' },
+          ],
+        }),
+      },
+    }),
+    dinners: collection({
+      label: 'Dinners',
+      slugField: 'name',
+      path: 'content/dinners/*',
+      format: { data: 'json' },
+      schema: {
+        name: fields.text({ label: 'Dinner Name', validation: { isRequired: true } }),
+        date: fields.date({ label: 'Date' }),
+        venue: fields.text({ label: 'Venue' }),
+        description: fields.text({ label: 'Description', multiline: true }),
+        groupPhoto: fields.text({ label: 'Group Photo path' }),
+        beehiivUrl: fields.url({ label: 'Beehiiv URL' }),
+        discordUrl: fields.url({ label: 'Discord URL' }),
+        lumaUrl: fields.url({ label: 'Luma URL' }),
+        attendees: fields.multiselect({
+          label: 'Attendees (member slugs)',
+          options: [], // Populated dynamically or manually
+        }),
+      },
+    }),
+  },
+});
