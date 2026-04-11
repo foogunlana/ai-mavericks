@@ -1,7 +1,13 @@
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: var(--card-gap);
+}
+
+@media (max-width: 959px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .empty {

@@ -1,36 +1,61 @@
+import { useState } from 'react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
 import { FilterBar } from './components/FilterBar/FilterBar';
 import { MemberGrid } from './components/MemberGrid/MemberGrid';
-import { DinnerSection } from './components/DinnerSection/DinnerSection';
+import { DinnersList } from './components/DinnersList/DinnersList';
+import { DinnerDetail } from './components/DinnerDetail/DinnerDetail';
 import { Footer } from './components/Footer/Footer';
 import { useFilterState } from './hooks/useFilterState';
 import { members } from './data/members';
 
+export type View = 'people' | 'dinners' | 'dinner-detail';
+
 function App() {
-  const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers, dinnerOptions } =
+  const [view, setView] = useState<View>('people');
+  const [selectedDinnerSlug, setSelectedDinnerSlug] = useState<string | null>(null);
+
+  const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers } =
     useFilterState();
 
   const filteredMembers = filterMembers(members);
 
+  const handleSelectDinner = (slug: string) => {
+    setSelectedDinnerSlug(slug);
+    setView('dinner-detail');
+  };
+
+  const handleBackToDinners = () => {
+    setView('dinners');
+    setSelectedDinnerSlug(null);
+  };
+
   return (
     <>
-      <Nav />
+      <Nav currentView={view} onViewChange={setView} />
       <div className={styles.app}>
         <main>
-          <section id="members" className={styles.section}>
-            <FilterBar
-              filters={filters}
-              toggleFilter={toggleFilter}
-              clearFilters={clearFilters}
-              hasActiveFilters={hasActiveFilters}
-              dinnerOptions={dinnerOptions}
-            />
-            <MemberGrid members={filteredMembers} />
-          </section>
-          <section id="dinners" className={styles.section}>
-            <DinnerSection />
-          </section>
+          {view === 'people' && (
+            <section className={styles.section}>
+              <FilterBar
+                filters={filters}
+                toggleFilter={toggleFilter}
+                clearFilters={clearFilters}
+                hasActiveFilters={hasActiveFilters}
+              />
+              <MemberGrid members={filteredMembers} />
+            </section>
+          )}
+          {view === 'dinners' && (
+            <section className={styles.section}>
+              <DinnersList onSelectDinner={handleSelectDinner} />
+            </section>
+          )}
+          {view === 'dinner-detail' && selectedDinnerSlug && (
+            <section className={styles.section}>
+              <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
+            </section>
+          )}
         </main>
         <Footer />
       </div>

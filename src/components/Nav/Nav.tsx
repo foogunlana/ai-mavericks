@@ -1,39 +1,30 @@
-import { useEffect, useState } from 'react';
 import styles from './Nav.module.css';
+import type { View } from '../../App';
 
-export function Nav() {
-  const [active, setActive] = useState<'members' | 'dinners'>('members');
+interface Props {
+  currentView: View;
+  onViewChange: (view: View) => void;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const dinnersEl = document.getElementById('dinners');
-      if (dinnersEl) {
-        const rect = dinnersEl.getBoundingClientRect();
-        setActive(rect.top <= 100 ? 'dinners' : 'members');
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
+export function Nav({ currentView, onViewChange }: Props) {
+  const activeSection = currentView === 'people' ? 'people' : 'dinners';
 
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        <span className={styles.logo}>AI Mavericks</span>
+        <button className={styles.logo} onClick={() => onViewChange('people')}>
+          AI Mavericks
+        </button>
         <div className={styles.links}>
           <button
-            className={`${styles.link} ${active === 'members' ? styles.active : ''}`}
-            onClick={() => scrollTo('members')}
+            className={`${styles.link} ${activeSection === 'people' ? styles.active : ''}`}
+            onClick={() => onViewChange('people')}
           >
-            Members
+            People
           </button>
           <button
-            className={`${styles.link} ${active === 'dinners' ? styles.active : ''}`}
-            onClick={() => scrollTo('dinners')}
+            className={`${styles.link} ${activeSection === 'dinners' ? styles.active : ''}`}
+            onClick={() => onViewChange('dinners')}
           >
             Dinners
           </button>

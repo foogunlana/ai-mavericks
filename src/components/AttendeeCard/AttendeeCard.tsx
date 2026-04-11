@@ -6,13 +6,6 @@ interface Props {
 }
 
 export function AttendeeCard({ member }: Props) {
-  const initials = member.name
-    .split(' ')
-    .map((w) => w[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
-
   return (
     <button
       className={styles.card}

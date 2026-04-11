@@ -24,12 +24,12 @@
   all: unset;
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: 7px;
+  font-size: 13px;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 4px 12px;
-  border-radius: 20px;
+  border-radius: 3px;
   border: 1px solid var(--filter-border);
   background: var(--filter-bg);
   color: var(--text-secondary);
@@ -51,7 +51,7 @@
   all: unset;
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: 7px;
+  font-size: 13px;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;

@@ -1,5 +1,5 @@
 .card {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   perspective: 1000px;
   cursor: pointer;
   border-radius: 2px;
@@ -70,7 +70,7 @@
 
 .hoverBio {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
@@ -83,7 +83,7 @@
   gap: 6px;
   margin-top: 8px;
   font-family: var(--font-sans);
-  font-size: 7px;
+  font-size: 12px;
   font-weight: 300;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -106,7 +106,7 @@
 
 .name {
   font-family: var(--font-serif);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
   font-style: italic;
   color: #fff;
@@ -114,7 +114,7 @@
 
 .role {
   font-family: var(--font-sans);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -124,7 +124,7 @@
 
 .company {
   font-family: var(--font-sans);
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.5);
   margin-top: 2px;
@@ -132,7 +132,7 @@
 
 .bio {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
@@ -141,7 +141,7 @@
 
 .tags {
   font-family: var(--font-sans);
-  font-size: 7px;
+  font-size: 12px;
   font-weight: 300;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -151,7 +151,7 @@
 
 .linkedin {
   font-family: var(--font-sans);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -170,7 +170,7 @@
 
 .dinnerLink {
   font-family: var(--font-sans);
-  font-size: 7px;
+  font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.5px;
   color: rgba(255, 255, 255, 0.5);
@@ -180,7 +180,7 @@
 
 .flipBack {
   font-family: var(--font-sans);
-  font-size: 7px;
+  font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.3);
@@ -199,6 +199,6 @@
 /* Single column on mobile */
 @media (max-width: 639px) {
   .card {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 5;
   }
 }

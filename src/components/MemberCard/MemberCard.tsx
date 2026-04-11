@@ -11,13 +11,6 @@ interface Props {
 export function MemberCard({ member }: Props) {
   const [flipped, setFlipped] = useState(false);
 
-  const initials = member.name
-    .split(' ')
-    .map((w) => w[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
-
   const photoSrc = member.photo.endsWith('.svg')
     ? member.photo
     : member.photo;
