@@ -1,0 +1,53 @@
+.card {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+
+.card:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.photo {
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+  object-fit: cover;
+  filter: var(--photo-filter);
+  flex-shrink: 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.role {
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
