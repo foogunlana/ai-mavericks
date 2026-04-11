@@ -1,0 +1,204 @@
+.card {
+  aspect-ratio: 3 / 4;
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.card.flipped .inner {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Front */
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: var(--photo-filter);
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: linear-gradient(transparent 0%, var(--card-overlay) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hoverOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 25, 20, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .hoverOverlay {
+  opacity: 1;
+}
+
+.card:hover .overlay {
+  opacity: 0;
+}
+
+.hoverBio {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-top: 6px;
+}
+
+.hoverTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Back */
+.back {
+  transform: rotateY(180deg);
+  background: var(--text-primary);
+}
+
+.backContent {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: #fff;
+}
+
+.role {
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 2px;
+}
+
+.company {
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+}
+
+.bio {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+.tags {
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 12px;
+}
+
+.linkedin {
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-top: 12px;
+}
+
+.dinnersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.dinnerLink {
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.flipBack {
+  font-family: var(--font-sans);
+  font-size: 7px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: auto;
+  padding-top: 12px;
+  text-align: center;
+}
+
+/* Disable hover overlay on touch devices */
+@media (hover: none) {
+  .hoverOverlay {
+    display: none;
+  }
+}
+
+/* Single column on mobile */
+@media (max-width: 639px) {
+  .card {
+    aspect-ratio: 3 / 4;
+  }
+}
