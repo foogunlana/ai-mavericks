@@ -1,74 +1,131 @@
 export function StyleGuide() {
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12 font-sans text-primary-900">
+    <div className="max-w-6xl mx-auto px-6 py-12">
       <header className="mb-16">
-        <h1 className="font-serif text-5xl leading-tight tracking-tight text-primary-950 mb-3">
+        <h1 style={{ fontFamily: FONT, fontWeight: 300, fontSize: '2.369rem', lineHeight: 1.15, color: COLORS.text }} className="mb-3">
           Style Guide
         </h1>
-        <p className="text-md text-warm-600 leading-relaxed max-w-2xl">
-          AI Mavericks design system tokens. All colours, typography, spacing, radii, shadows, and
-          breakpoints defined in one place.
+        <p style={{ fontFamily: FONT, fontWeight: 400, fontSize: '1rem', lineHeight: 1.45, color: COLORS.textSecondary }}>
+          Single dropdown filter — minimal, out of the way.
         </p>
       </header>
 
-      {/* ── Font Comparison ── */}
-      <Section title="Font Comparison">
-        <p className="text-warm-600 mb-8">
-          Three directions for the Mavericks typeface. Same content, different personality.
-        </p>
-
+      <Section title="Filter Pattern">
         <div className="space-y-10">
-          {/* Weight + Line-height combinations */}
-          <WeightLineHeightOption
-            number={1}
-            label="Medium & Balanced (baseline)"
-            vibe="Option 3 from before with smaller/tighter small text, more element spacing"
-            levels={{
-              heading:    { weight: 500, lineHeight: 1.15 },
-              subheading: { weight: 500, lineHeight: 1.25 },
-              body:       { weight: 400, lineHeight: 1.6 },
-              small:      { weight: 500, lineHeight: 1.2, size: 0.688 },
-              caption:    { weight: 500, lineHeight: 1.1, size: 0.5 },
-            }}
-          />
+          {/* Closed state */}
+          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
+            <OptionHeader label="Closed — no filters active" />
+            <div style={{ backgroundColor: COLORS.bg }}>
+              <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', margin: '32px' }}>
+                <NavBar filterCount={0} />
+                <MemberGrid />
+              </div>
+            </div>
+          </div>
 
-          <WeightLineHeightOption
-            number={2}
-            label="Medium heads, lighter body"
-            vibe="Same but 300 body weight for more elegance"
-            levels={{
-              heading:    { weight: 500, lineHeight: 1.15 },
-              subheading: { weight: 500, lineHeight: 1.25 },
-              body:       { weight: 300, lineHeight: 1.6 },
-              small:      { weight: 400, lineHeight: 1.2, size: 0.688 },
-              caption:    { weight: 400, lineHeight: 1.1, size: 0.5 },
-            }}
-          />
+          {/* Closed with active filters */}
+          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
+            <OptionHeader label="Closed — 5 filters active (badge shows count)" />
+            <div style={{ backgroundColor: COLORS.bg }}>
+              <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', margin: '32px' }}>
+                <NavBar filterCount={5} />
+                <MemberGrid />
+              </div>
+            </div>
+          </div>
 
-          <WeightLineHeightOption
-            number={3}
-            label="Light heads, medium subs"
-            vibe="Lighter 300 headings with 500 subheadings for contrast"
-            levels={{
-              heading:    { weight: 300, lineHeight: 1.15 },
-              subheading: { weight: 500, lineHeight: 1.25 },
-              body:       { weight: 400, lineHeight: 1.6 },
-              small:      { weight: 500, lineHeight: 1.2, size: 0.688 },
-              caption:    { weight: 500, lineHeight: 1.1, size: 0.5 },
-            }}
-          />
+          {/* Open state */}
+          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
+            <OptionHeader label="Open — dropdown panel showing all categories" />
+            <div style={{ backgroundColor: COLORS.bg }}>
+              <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', margin: '32px' }}>
+                <NavBar filterCount={5} open />
+
+                {/* Dropdown panel */}
+                <div style={{ position: 'relative' }}>
+                  <div style={{
+                    position: 'absolute', top: 0, right: 24, width: '320px', zIndex: 10,
+                    backgroundColor: COLORS.bg, border: `1px solid ${COLORS.border}`, borderRadius: '4px',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+                  }}>
+                    {/* Header */}
+                    <div style={{ padding: '12px 16px', borderBottom: `1px solid ${COLORS.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.text, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
+                        Filters
+                      </span>
+                      <button style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight, color: COLORS.textMuted, background: 'none', border: 'none', cursor: 'pointer', textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
+                        Clear all
+                      </button>
+                    </div>
+
+                    {/* Roles */}
+                    <FilterGroup label="Role" items={ROLE_TAGS} activeCount={3} />
+
+                    {/* Interests */}
+                    <FilterGroup label="Interest" items={INTEREST_TAGS} activeCount={2} />
+
+                    {/* Dinners */}
+                    <FilterGroup label="Dinner" items={DINNER_DATES} activeCount={0} />
+                  </div>
+                </div>
+
+                <MemberGrid />
+              </div>
+            </div>
+          </div>
         </div>
       </Section>
     </div>
   );
 }
 
+/* ─── Constants ─── */
+
+const FONT = "'Space Grotesk', sans-serif";
+
+const COLORS = {
+  bg: '#ffffff',
+  text: '#1a1a1a',
+  textSecondary: '#6b7280',
+  textMuted: '#9ca3af',
+  border: '#e5e7eb',
+  borderLight: '#f3f4f6',
+  surface: '#f9fafb',
+  accent: '#1a1a1a',
+  accentText: '#ffffff',
+};
+
+const TYPE = {
+  heading:    { weight: 300, lineHeight: 1.15, size: '2.369rem' },
+  subheading: { weight: 500, lineHeight: 1.25, size: '1.333rem' },
+  body:       { weight: 400, lineHeight: 1.45, size: '1rem' },
+  list:       { weight: 400, lineHeight: 1.35, size: '1rem' },
+  small:      { weight: 500, lineHeight: 1.2,  size: '0.688rem' },
+  caption:    { weight: 500, lineHeight: 1.1,  size: '0.5rem' },
+};
+
+const LUCIDE = {
+  filter: 'M22 3H2l8 9.46V19l4 2v-8.54L22 3z',
+  x: 'M18 6 6 18M6 6l12 12',
+  check: 'M20 6 9 17l-5-5',
+};
+
+const PHOTOS = [
+  { name: 'Amara Osei', role: 'Engineer', photo: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=533&fit=crop&crop=face' },
+  { name: 'Marcus Webb', role: 'Product Manager', photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=533&fit=crop&crop=face' },
+  { name: 'Priya Nair', role: 'Data Scientist', photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=533&fit=crop&crop=face' },
+];
+
+const ROLE_TAGS = ['Founder', 'Engineer', 'Data Scientist', 'Product Manager', 'Consultant', 'Designer', 'Investor'];
+const INTEREST_TAGS = ['AI Agents', 'LLMs', 'FinTech', 'Healthcare', 'Robotics', 'Creative AI', 'Education', 'Marketing', 'RAG'];
+const DINNER_DATES = ['Oct 2024', 'Nov 2024', 'Dec 2024', 'Jan 2025', 'Feb 2025', 'Mar 2025', 'Apr 2025', 'May 2025', 'Jun 2025', 'Jul 2025', 'Dec 2025', 'Q1 2026'];
+
 /* ─── Sub-components ─── */
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-20">
-      <h2 className="font-serif text-2xl text-primary-900 mb-8 pb-3 border-b border-warm-200">
+      <h2 style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.subheading.size, lineHeight: TYPE.subheading.lineHeight, color: COLORS.text, borderBottom: `1px solid ${COLORS.border}`, paddingBottom: '12px' }} className="mb-8">
         {title}
       </h2>
       {children}
@@ -76,148 +133,111 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
-function WeightLineHeightOption({
-  number,
-  label,
-  vibe,
-  levels,
-}: {
-  number: number;
-  label: string;
-  vibe: string;
-  levels: {
-    heading: { weight: number; lineHeight: number; size?: number };
-    subheading: { weight: number; lineHeight: number; size?: number };
-    body: { weight: number; lineHeight: number; size?: number };
-    small: { weight: number; lineHeight: number; size?: number };
-    caption: { weight: number; lineHeight: number; size?: number };
-  };
-}) {
-  const font = "'Space Grotesk', sans-serif";
-
+function Icon({ path, size = 20, color = 'currentColor', strokeWidth = 2 }: { path: string; size?: number; color?: string; strokeWidth?: number }) {
   return (
-    <div className="bg-surface-raised rounded-lg border border-warm-200 overflow-hidden">
-      <div className="px-6 py-4 border-b border-warm-200 bg-warm-50 flex items-baseline justify-between">
-        <div>
-          <span className="text-xs uppercase tracking-wider text-warm-500 mr-3">Option {number}</span>
-          <span className="text-sm font-medium text-primary-900">{label}</span>
-        </div>
-        <span className="text-xs text-warm-500 italic">{vibe}</span>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+      <path d={path} />
+    </svg>
+  );
+}
+
+function OptionHeader({ label }: { label: string }) {
+  return (
+    <div className="px-6 py-4" style={{ borderBottom: `1px solid ${COLORS.border}`, backgroundColor: COLORS.surface }}>
+      <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.text }}>{label}</span>
+    </div>
+  );
+}
+
+function NavBar({ filterCount, open }: { filterCount: number; open?: boolean }) {
+  return (
+    <nav style={{ height: '56px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', borderBottom: `1px solid ${COLORS.border}` }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <img src="/images/logo.avif" alt="" style={{ width: '30px', height: '30px', borderRadius: '4px' }} />
+        <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight, textTransform: 'uppercase' as const, letterSpacing: '3px', color: COLORS.text }}>
+          AI Mavericks
+        </span>
       </div>
-      <div className="p-12">
-        {/* Nav bar */}
-        <div className="flex items-center gap-6 pb-4 mb-12 border-b border-warm-200">
-          <span
-            style={{ fontFamily: font, fontSize: '0.563rem', fontWeight: levels.caption.weight, lineHeight: levels.caption.lineHeight, textTransform: 'uppercase' as const, letterSpacing: '3px' }}
-            className="text-primary-900"
-          >
-            AI Mavericks
-          </span>
-          <div className="flex gap-4 ml-auto">
-            <span style={{ fontFamily: font, fontSize: '0.75rem', fontWeight: levels.small.weight, textTransform: 'uppercase' as const, letterSpacing: '1.5px' }} className="text-primary-900">
-              People
+      <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+        <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: COLORS.text }}>People</span>
+        <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: COLORS.textMuted }}>Dinners</span>
+
+        {/* Filter button */}
+        <button style={{
+          fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+          color: open ? COLORS.text : COLORS.textSecondary,
+          background: 'none', border: 'none', cursor: 'pointer',
+          display: 'inline-flex', alignItems: 'center', gap: '5px',
+          padding: 0,
+        }}>
+          <Icon path={LUCIDE.filter} size={14} color={open ? COLORS.text : COLORS.textSecondary} />
+          {filterCount > 0 && (
+            <span style={{
+              fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight,
+              color: COLORS.accentText, backgroundColor: COLORS.accent,
+              borderRadius: '9999px', padding: '1px 5px', minWidth: '16px', textAlign: 'center' as const,
+            }}>
+              {filterCount}
             </span>
-            <span style={{ fontFamily: font, fontSize: '0.75rem', fontWeight: levels.small.weight, textTransform: 'uppercase' as const, letterSpacing: '1.5px' }} className="text-warm-400">
-              Dinners
-            </span>
-          </div>
-        </div>
+          )}
+        </button>
+      </div>
+    </nav>
+  );
+}
 
-        {/* Page heading */}
-        <h2
-          style={{ fontFamily: font, fontSize: `${levels.heading.size ?? 2.369}rem`, fontWeight: levels.heading.weight, lineHeight: levels.heading.lineHeight }}
-          className="text-primary-950 mb-16"
-        >
-          January 2025 Dinner
-        </h2>
-
-        {/* Subheading + body paragraph */}
-        <h4
-          style={{ fontFamily: font, fontSize: `${levels.subheading.size ?? 1.333}rem`, fontWeight: levels.subheading.weight, lineHeight: levels.subheading.lineHeight }}
-          className="text-primary-800 mb-5"
-        >
-          Discussion Topics
-        </h4>
-        <p
-          style={{ fontFamily: font, fontSize: `${levels.body.size ?? 1}rem`, fontWeight: levels.body.weight, lineHeight: 1.45 }}
-          className="text-warm-700 max-w-lg mb-6"
-        >
-          Software engineer by trade with experience in finance, mobility startups,
-          energy and reinsurance. Founded Kiseki Labs AI Consultancy. Writes about
-          LLMs and AI Agents on Substack.
-        </p>
-
-        {/* Bulleted list */}
-        <ul className="mb-14 max-w-lg" style={{ fontFamily: font, fontSize: `${levels.body.size ?? 1}rem`, fontWeight: levels.body.weight, lineHeight: 1.35 }}>
-          {['Should junior developers bother learning traditional coding?',
-            'Killing the Code Review — swyx',
-            'Building AI products vs AI features',
-          ].map((item) => (
-            <li key={item} className="text-warm-700 ml-5 mb-1" style={{ listStyleType: 'disc' }}>{item}</li>
-          ))}
-        </ul>
-
-        {/* Section divider + second subheading */}
-        <div className="border-t border-warm-200 pt-12 mb-10">
-          <h4
-            style={{ fontFamily: font, fontSize: `${levels.subheading.size ?? 1.333}rem`, fontWeight: levels.subheading.weight, lineHeight: levels.subheading.lineHeight }}
-            className="text-primary-800 mb-8"
-          >
-            Attendees
-          </h4>
-        </div>
-
-        {/* Member cards row */}
-        <div className="grid grid-cols-3 gap-6 mb-14">
-          {[
-            { name: 'Eddie Forson', role: 'Software Engineer' },
-            { name: 'Bode Ogunlana', role: 'Product Manager' },
-            { name: 'David Farrell', role: 'Data Scientist' },
-          ].map(({ name, role }) => (
-            <div key={name} className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-sm bg-primary-200 shrink-0" />
-              <div>
-                <p
-                  style={{ fontFamily: font, fontSize: `${levels.body.size ?? 1}rem`, fontWeight: levels.body.weight, lineHeight: 1.3 }}
-                  className="text-primary-900"
-                >
-                  {name}
-                </p>
-                <p
-                  style={{ fontFamily: font, fontSize: `${levels.small.size ?? 0.75}rem`, fontWeight: levels.small.weight, lineHeight: levels.small.lineHeight, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}
-                  className="text-warm-500"
-                >
-                  {role}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-12">
-          {['AI Agents', 'LLMs', 'FinTech', 'Healthcare', 'Robotics', 'Creative AI'].map((tag) => (
-            <span
-              key={tag}
-              style={{ fontFamily: font, fontSize: `${levels.small.size ?? 0.75}rem`, fontWeight: levels.small.weight, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}
-              className="px-3 py-1.5 border border-warm-300 rounded-sm text-warm-600"
+function FilterGroup({ label, items, activeCount }: { label: string; items: string[]; activeCount: number }) {
+  return (
+    <div style={{ borderBottom: `1px solid ${COLORS.borderLight}` }}>
+      <div style={{ padding: '10px 16px 6px' }}>
+        <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight, color: COLORS.textMuted, textTransform: 'uppercase' as const, letterSpacing: '1px' }}>
+          {label}
+        </span>
+      </div>
+      <div>
+        {items.map((item, i) => {
+          const isActive = i < activeCount;
+          return (
+            <div
+              key={item}
+              style={{
+                padding: '6px 16px',
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                cursor: 'pointer',
+                backgroundColor: isActive ? COLORS.borderLight : 'transparent',
+              }}
             >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Footer-style caption */}
-        <div className="border-t border-warm-100 pt-6">
-          <p
-            style={{ fontFamily: font, fontSize: `${levels.caption.size ?? 0.563}rem`, fontWeight: levels.caption.weight, lineHeight: levels.caption.lineHeight, textTransform: 'uppercase' as const, letterSpacing: '1.5px' }}
-            className="text-warm-400"
-          >
-            AI Mavericks London &bull; Est. October 2024 &bull; Discord &bull; Newsletter
-          </p>
-        </div>
+              <span style={{
+                fontFamily: FONT,
+                fontSize: TYPE.small.size,
+                fontWeight: isActive ? 600 : TYPE.small.weight,
+                color: isActive ? COLORS.text : COLORS.textSecondary,
+              }}>
+                {item}
+              </span>
+              {isActive && <Icon path={LUCIDE.check} size={14} color={COLORS.text} strokeWidth={2} />}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
+function MemberGrid() {
+  return (
+    <div style={{ padding: '24px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+      {PHOTOS.map(({ name, role, photo }) => (
+        <div key={name} style={{ borderRadius: '4px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+          <div style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden' }}>
+            <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) contrast(1.05)', display: 'block' }} />
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px 12px 10px', background: 'linear-gradient(transparent, rgba(0,0,0,0.55))' }}>
+              <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, fontWeight: TYPE.body.weight, lineHeight: 1.2, color: '#fff' }}>{name}</p>
+              <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, textTransform: 'uppercase' as const, letterSpacing: '0.5px', color: 'rgba(255,255,255,0.7)', marginTop: '2px' }}>{role}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
