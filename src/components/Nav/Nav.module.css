@@ -2,15 +2,15 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--bg-primary);
-  border-bottom: 1px solid var(--border);
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
   height: var(--nav-height);
 }
 
 .inner {
-  max-width: var(--max-width);
+  max-width: var(--content-max);
   margin: 0 auto;
-  padding: 0 var(--nav-h-pad, 24px);
+  padding: 0 var(--nav-h-pad);
   height: 100%;
   display: flex;
   align-items: center;
@@ -21,31 +21,31 @@
   all: unset;
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: var(--font-size-sm);
   font-weight: 300;
-  letter-spacing: 4px;
+  letter-spacing: var(--letter-spacing-wider);
   text-transform: uppercase;
-  color: var(--text-primary);
+  color: var(--color-text);
 }
 
 .links {
   display: flex;
-  gap: var(--nav-link-gap, 24px);
+  gap: var(--nav-link-gap);
 }
 
 .link {
   all: unset;
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: 500;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--color-muted);
   padding-bottom: 2px;
 }
 
 .link.active {
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--text-primary);
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-text);
 }
