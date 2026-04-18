@@ -35,6 +35,7 @@
   height: 24px;
   width: auto;
   display: block;
+  border-radius: var(--radius-sm);
 }
 
 .links {
