@@ -23,6 +23,12 @@
   text-underline-offset: 2px;
 }
 
+.newsletter {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .credit {
   font-family: var(--font-sans);
   font-size: 7px;
