@@ -7,13 +7,14 @@ import { DinnersList } from './components/DinnersList/DinnersList';
 import { DinnerDetail } from './components/DinnerDetail/DinnerDetail';
 import { Footer } from './components/Footer/Footer';
 import { StyleGuide } from './components/StyleGuide/StyleGuide';
+import { LandingIntro } from './components/LandingIntro/LandingIntro';
 import { useFilterState } from './hooks/useFilterState';
 import { members } from './data/members';
 
-export type View = 'people' | 'dinners' | 'dinner-detail' | 'styleguide';
+export type View = 'home' | 'people' | 'dinners' | 'dinner-detail' | 'styleguide';
 
 function App() {
-  const [view, setView] = useState<View>('people');
+  const [view, setView] = useState<View>('home');
   const [selectedDinnerSlug, setSelectedDinnerSlug] = useState<string | null>(null);
 
   const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers } =
@@ -36,6 +37,11 @@ function App() {
       <Nav currentView={view} onViewChange={setView} />
       <div className={styles.app}>
         <main>
+          {view === 'home' && (
+            <section className={styles.section}>
+              <LandingIntro />
+            </section>
+          )}
           {view === 'people' && (
             <section className={styles.section}>
               <FilterBar

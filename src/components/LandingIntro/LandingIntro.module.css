@@ -1,0 +1,22 @@
+.intro {
+  padding: 48px 24px 40px;
+  max-width: 680px;
+}
+
+.heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  font-size: 2.369rem;
+  line-height: 1.15;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+}
+
+.body {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: #6b7280;
+  margin: 0;
+}
