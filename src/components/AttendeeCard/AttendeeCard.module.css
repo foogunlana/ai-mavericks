@@ -16,7 +16,7 @@
 .photo {
   width: 32px;
   height: 32px;
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   object-fit: cover;
   filter: var(--photo-filter);
   flex-shrink: 0;
@@ -30,10 +30,9 @@
 }
 
 .name {
-  font-family: var(--font-serif);
-  font-size: 11px;
-  font-weight: 400;
-  font-style: italic;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
   color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
@@ -42,9 +41,9 @@
 
 .role {
   font-family: var(--font-sans);
-  font-size: 7px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
   color: var(--text-secondary);
   white-space: nowrap;
