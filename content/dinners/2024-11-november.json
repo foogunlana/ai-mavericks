@@ -3,7 +3,7 @@
   "slug": "2024-11-november",
   "date": "2024-11-18",
   "venue": "London",
-  "groupPhoto": "/images/dinners/2024-11-november.jpg",
+  "groupPhoto": "https://picsum.photos/seed/2024-11-november/1400/800",
   "description": "An evening of wide-ranging discussion on AI dev tools, LLM security and the future of AI startups.",
   "topics": [
     {

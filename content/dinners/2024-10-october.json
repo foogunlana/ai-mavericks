@@ -3,7 +3,7 @@
   "slug": "2024-10-october",
   "date": "2024-10-09",
   "venue": "London",
-  "groupPhoto": "/images/dinners/2024-10-october.jpg",
+  "groupPhoto": "https://picsum.photos/seed/2024-10-october/1400/800",
   "description": "The inaugural AI Mavericks dinner bringing together builders, founders and consultants working on AI.",
   "topics": [
     {

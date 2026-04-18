@@ -7,9 +7,11 @@ import { DinnersList } from './components/DinnersList/DinnersList';
 import { DinnerDetail } from './components/DinnerDetail/DinnerDetail';
 import { Footer } from './components/Footer/Footer';
 import { StyleGuide } from './components/StyleGuide/StyleGuide';
+import { LandingHero } from './components/LandingHero/LandingHero';
 import { LandingIntro } from './components/LandingIntro/LandingIntro';
 import { useFilterState } from './hooks/useFilterState';
 import { members } from './data/members';
+import { dinners } from './data/dinners';
 
 export type View = 'home' | 'people' | 'dinners' | 'dinner-detail' | 'styleguide';
 
@@ -38,9 +40,19 @@ function App() {
       <div className={styles.app}>
         <main>
           {view === 'home' && (
-            <section className={styles.section}>
+            <>
+              <LandingHero latestDinner={dinners[0]} />
               <LandingIntro />
-            </section>
+              <section className={styles.section}>
+                <FilterBar
+                  filters={filters}
+                  toggleFilter={toggleFilter}
+                  clearFilters={clearFilters}
+                  hasActiveFilters={hasActiveFilters}
+                />
+                <MemberGrid members={filteredMembers} />
+              </section>
+            </>
           )}
           {view === 'people' && (
             <section className={styles.section}>

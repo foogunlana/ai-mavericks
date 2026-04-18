@@ -3,7 +3,7 @@
   "slug": "2025-01-january",
   "date": "2025-01-30",
   "venue": "London",
-  "groupPhoto": "/images/dinners/2025-01-january.jpg",
+  "groupPhoto": "https://picsum.photos/seed/2025-01-january/1400/800",
   "description": "New year kickoff with designers, data scientists and marketers converging on AI's creative and analytical frontiers.",
   "topics": [
     {

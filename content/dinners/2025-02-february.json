@@ -3,7 +3,7 @@
   "slug": "2025-02-february",
   "date": "2025-02-24",
   "venue": "London",
-  "groupPhoto": "/images/dinners/2025-02-february.jpg",
+  "groupPhoto": "https://picsum.photos/seed/2025-02-february/1400/800",
   "description": "Conversations spanning FinTech PM perspectives, ML at Meta, climate tech engineering and RAG applications.",
   "topics": [
     {

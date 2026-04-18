@@ -3,7 +3,7 @@
   "slug": "2025-03-march",
   "date": "2025-03-03",
   "venue": "London",
-  "groupPhoto": "/images/dinners/2025-03-march.jpg",
+  "groupPhoto": "https://picsum.photos/seed/2025-03-march/1400/800",
   "description": "A focused dinner on AI product strategy, defence applications and AI-powered customer service.",
   "topics": [
     {

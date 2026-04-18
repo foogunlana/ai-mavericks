@@ -3,7 +3,7 @@
   "slug": "2025-05-may",
   "date": "2025-05-19",
   "venue": "London",
-  "groupPhoto": "/images/dinners/2025-05-may.jpg",
+  "groupPhoto": "https://picsum.photos/seed/2025-05-may/1400/800",
   "description": "Deep dive into mobile gaming economics, human connection in AI sales and technical co-founding.",
   "topics": [
     {

@@ -3,7 +3,7 @@
   "slug": "2026-q1",
   "date": "2026-03-04",
   "venue": "Pizza Express Live Holborn",
-  "groupPhoto": "/images/dinners/2026-q1.jpg",
+  "groupPhoto": "https://picsum.photos/seed/2026-q1/1400/800",
   "description": "The first AI Mavericks dinner of 2026, reflecting on AI tooling, education, and the road ahead.",
   "topics": [
     {
