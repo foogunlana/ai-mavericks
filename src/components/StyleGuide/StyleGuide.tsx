@@ -13,108 +13,30 @@ export function StyleGuide() {
         </p>
       </header>
 
-      <Section title="Typography">
-        <div className="space-y-10">
-          {TYPE_OPTIONS.map(opt => (
-            <div key={opt.name} className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
+      <Section title="MemberCard — Hover Overlay">
+        <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+          All three shown in "hovered" state so you can compare. Front: portrait + name + role. Hover reveals bio, interests, last dinner.
+        </p>
+        <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+          {HOVER_OPTIONS.map((opt, i) => (
+            <div key={opt.name} className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}`, flex: '1 1 280px' }}>
               <OptionHeader label={opt.name} />
-              <div style={{ backgroundColor: COLORS.bg, padding: '32px', maxWidth: '560px' }}>
-                <p style={{ fontFamily: FONT, fontSize: TYPE.heading.size, fontWeight: opt.headingWeight, lineHeight: TYPE.heading.lineHeight, color: COLORS.text, letterSpacing: opt.headingTracking, textTransform: opt.headingCase }}>
-                  March 2025 Dinner
-                </p>
-                <p style={{ fontFamily: FONT, fontSize: TYPE.subheading.size, fontWeight: opt.subheadingWeight, lineHeight: TYPE.subheading.lineHeight, color: COLORS.text, marginTop: '8px', letterSpacing: opt.subheadingTracking, textTransform: opt.subheadingCase }}>
-                  The Shard, Level 31
-                </p>
-                <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, fontWeight: TYPE.body.weight, lineHeight: TYPE.body.lineHeight, color: opt.bodyColor, marginTop: '12px' }}>
-                  Eight builders sat down to talk about AI agents in production. The conversation ranged from orchestration frameworks to the surprising ways customers actually use autonomous systems.
-                </p>
-                <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, lineHeight: TYPE.small.lineHeight, color: COLORS.textMuted, marginTop: '16px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  8 attendees · 3 topics · Mar 15, 2025
-                </p>
-              </div>
+              <MemberCardHoverDemo variant={opt.variant} member={SAMPLE_MEMBERS[i]} />
             </div>
           ))}
         </div>
       </Section>
 
-      <Section title="Button">
-        <div className="space-y-10">
-          {/* Flashy */}
-          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
-            <OptionHeader label="Flashy — shimmering purple gradient, confetti on click" />
-            <div style={{ backgroundColor: COLORS.bg, padding: '48px', display: 'flex', gap: '24px', alignItems: 'center', justifyContent: 'center' }}>
-              <FlashyBtn>Read recap</FlashyBtn>
-              <FlashyBtn>Join Discord</FlashyBtn>
-              <FlashyBtn>Subscribe</FlashyBtn>
+      <Section title="MemberCard — Click to Flip">
+        <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+          Click to flip. Front: option B (full overlay). Back: stacked dark layout.
+        </p>
+        <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+          {SAMPLE_MEMBERS.map(member => (
+            <div key={member.name} style={{ flex: '1 1 280px' }}>
+              <MemberCardFlipDemo member={member} />
             </div>
-          </div>
-
-          {/* Shimmer border */}
-          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
-            <OptionHeader label="Shimmer border — white fill, purple orbit on border, periodic" />
-            <div style={{ backgroundColor: COLORS.bg, padding: '48px', display: 'flex', gap: '24px', alignItems: 'center', justifyContent: 'center' }}>
-              <ShimmerBorderBtn>Read recap</ShimmerBorderBtn>
-              <ShimmerBorderBtn>Join Discord</ShimmerBorderBtn>
-              <ShimmerBorderBtn>Subscribe</ShimmerBorderBtn>
-            </div>
-          </div>
-
-          {/* Ghost */}
-          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
-            <OptionHeader label="Ghost — no fill, grey bg on hover" />
-            <div style={{ backgroundColor: COLORS.bg, padding: '32px', display: 'flex', gap: '16px', alignItems: 'center' }}>
-              <Btn variant="ghost">People</Btn>
-              <Btn variant="ghost">Dinners</Btn>
-              <Btn variant="ghost">Clear filters</Btn>
-              <Btn variant="ghost">{'\u2190'} Back</Btn>
-            </div>
-          </div>
-
-          {/* Ghost disabled */}
-          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
-            <OptionHeader label="Ghost disabled — faded, not-allowed cursor" />
-            <div style={{ backgroundColor: COLORS.bg, padding: '32px', display: 'flex', gap: '16px', alignItems: 'center' }}>
-              <Btn variant="ghost" disabled>People</Btn>
-              <Btn variant="ghost" disabled>Dinners</Btn>
-            </div>
-          </div>
-
-          {/* Outline */}
-          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
-            <OptionHeader label="Outline — surface bg + darker border on hover" />
-            <div style={{ backgroundColor: COLORS.bg, padding: '32px', display: 'flex', gap: '16px', alignItems: 'center' }}>
-              <Btn variant="outline">View newsletter</Btn>
-              <Btn variant="outline">See all dinners</Btn>
-            </div>
-          </div>
-
-          {/* Outline disabled */}
-          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
-            <OptionHeader label="Outline disabled — faded, not-allowed cursor" />
-            <div style={{ backgroundColor: COLORS.bg, padding: '32px', display: 'flex', gap: '16px', alignItems: 'center' }}>
-              <Btn variant="outline" disabled>View newsletter</Btn>
-              <Btn variant="outline" disabled>See all dinners</Btn>
-            </div>
-          </div>
-
-          {/* Flashy disabled */}
-          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
-            <OptionHeader label="Flashy disabled — desaturated, no animation" />
-            <div style={{ backgroundColor: COLORS.bg, padding: '48px', display: 'flex', gap: '24px', alignItems: 'center', justifyContent: 'center' }}>
-              <FlashyBtn disabled>Read recap</FlashyBtn>
-              <ShimmerBorderBtn disabled>Join Discord</ShimmerBorderBtn>
-            </div>
-          </div>
-
-          {/* Hierarchy */}
-          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
-            <OptionHeader label="Together — hierarchy in context (hover them)" />
-            <div style={{ backgroundColor: COLORS.bg, padding: '48px', display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center' }}>
-              <FlashyBtn>Read recap</FlashyBtn>
-              <Btn variant="outline">Join Discord</Btn>
-              <Btn variant="ghost">Cancel</Btn>
-            </div>
-          </div>
+          ))}
         </div>
       </Section>
     </div>
@@ -246,6 +168,12 @@ const KEYFRAMES = `
 .btn-shimmer-disabled { opacity: 0.4; cursor: not-allowed; }
 .btn-shimmer-disabled .btn-shimmer-orbit { animation: none !important; opacity: 0 !important; }
 .btn-shimmer-disabled:hover { transform: none; }
+
+.card-flip { perspective: 1000px; }
+.card-flip-inner { position: relative; width: 100%; transition: transform 0.6s ease; transform-style: preserve-3d; }
+.card-flip-inner.flipped { transform: rotateY(180deg); }
+.card-flip-front, .card-flip-back { backface-visibility: hidden; }
+.card-flip-back { transform: rotateY(180deg); position: absolute; inset: 0; }
 `;
 
 /* ─── Sub-components ─── */
@@ -399,6 +327,355 @@ function FlashyBtn({ children, disabled }: { children: React.ReactNode; disabled
     </div>
   );
 }
+
+/* ─── MemberCard hover overlay options ─── */
+
+const HOVER_OPTIONS: { name: string; variant: 'gradient' | 'full' | 'slide' }[] = [
+  { name: 'A · Bottom gradient — dark fade from bottom, text over portrait', variant: 'gradient' },
+  { name: 'B · Full overlay — semi-transparent dark layer, centered text', variant: 'full' },
+  { name: 'C · Slide-up panel — solid panel from bottom, portrait peeks above', variant: 'slide' },
+];
+
+const SAMPLE_MEMBERS = [
+  {
+    name: 'Amara Kone',
+    role: 'CTO, Lattice AI',
+    bio: 'Building autonomous agents for enterprise workflows. Previously led ML infrastructure at Stripe for 4 years.',
+    fullBio: 'Building autonomous agents for enterprise workflows. Previously led ML infrastructure at Stripe for 4 years, shipping the real-time fraud detection pipeline that processes 50M events/day. Before that, research at DeepMind on multi-agent coordination. Passionate about closing the gap between research and production AI.',
+    interests: ['AI Agents', 'Infra', 'Series B'],
+    lastDinner: 'Mar 2025 — The Shard',
+    allDinners: ['Mar 2025 — The Shard', 'Jan 2025 — Shoreditch House', 'Nov 2024 — The Ned'],
+    company: 'Lattice AI',
+    socials: { x: '@amarakone', linkedin: 'amarakone', discord: 'amara#1234' },
+    photo: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=800&fit=crop&crop=face',
+  },
+  {
+    name: 'James Chen',
+    role: 'Founder, Nexus Labs',
+    bio: 'Serial founder exploring the intersection of AI and developer tooling. Two exits, now building autonomous code review.',
+    fullBio: 'Serial founder exploring the intersection of AI and developer tooling. Sold first company (CodePilot) to GitHub in 2021, second (InferDB) to Snowflake in 2023. Now building Nexus Labs — autonomous code review that actually understands your codebase. YC W24 batch. Based in London, originally from Vancouver.',
+    interests: ['Dev Tools', 'LLMs', 'Fintech'],
+    lastDinner: 'Feb 2025 — Shoreditch House',
+    allDinners: ['Feb 2025 — Shoreditch House', 'Dec 2024 — The Shard'],
+    company: 'Nexus Labs',
+    socials: { x: '@jameschen_ai', linkedin: 'jameschenai' },
+    photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&h=800&fit=crop&crop=face',
+  },
+  {
+    name: 'Sarah Okafor',
+    role: 'VP Eng, Cohere',
+    bio: 'Scaling inference infrastructure for production LLMs. Former SRE lead at Google Cloud, passionate about reliability.',
+    fullBio: 'Scaling inference infrastructure for production LLMs at Cohere, leading a team of 40 engineers across Toronto and London. Former SRE lead at Google Cloud where she built the internal GPU scheduling system. Speaks regularly at SREcon and KubeCon. Advisor to three early-stage infra startups.',
+    interests: ['Infrastructure', 'AI Agents', 'Healthcare'],
+    lastDinner: 'Mar 2025 — The Shard',
+    allDinners: ['Mar 2025 — The Shard', 'Feb 2025 — Shoreditch House', 'Jan 2025 — Shoreditch House', 'Nov 2024 — The Ned'],
+    company: 'Cohere',
+    socials: { x: '@sarahokafor', linkedin: 'sarahokafor', discord: 'sarah#5678' },
+    photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=800&fit=crop&crop=face',
+  },
+];
+
+function MemberCardHoverDemo({ variant, member }: { variant: 'gradient' | 'full' | 'slide'; member: typeof SAMPLE_MEMBERS[number] }) {
+  const [hovered, setHovered] = useState(false);
+  const cardH = 420;
+
+  const overlayContent = (
+    <>
+      <p style={{ fontFamily: FONT, fontSize: TYPE.subheading.size, fontWeight: TYPE.subheading.weight, color: '#ffffff', lineHeight: TYPE.subheading.lineHeight }}>
+        {member.name}
+      </p>
+      <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>
+        {member.role}
+      </p>
+      <p style={{ fontFamily: FONT, fontSize: '0.813rem', fontWeight: 400, color: 'rgba(255,255,255,0.85)', lineHeight: 1.4, marginTop: '10px' }}>
+        {member.bio}
+      </p>
+      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '10px' }}>
+        {member.interests.map(tag => (
+          <span key={tag} style={{
+            fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight,
+            color: 'rgba(255,255,255,0.8)', border: '1px solid rgba(255,255,255,0.3)',
+            borderRadius: '3px', padding: '2px 6px', textTransform: 'uppercase', letterSpacing: '0.5px',
+          }}>{tag}</span>
+        ))}
+      </div>
+      <p style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: 'rgba(255,255,255,0.5)', marginTop: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+        Last: {member.lastDinner}
+      </p>
+    </>
+  );
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        width: '100%',
+        height: cardH,
+        position: 'relative',
+        overflow: 'hidden',
+        borderRadius: '0 0 4px 4px',
+        cursor: 'pointer',
+        backgroundColor: '#1a1a1a',
+      }}
+    >
+      {/* Portrait photo — zoomed in by default, zooms out on hover */}
+      <img
+        src={member.photo}
+        alt={member.name}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center top',
+          filter: 'grayscale(100%) contrast(1.1)',
+          transform: hovered ? 'scale(1)' : 'scale(1.15)',
+          transition: 'transform 0.4s ease',
+        }}
+      />
+
+      {/* Name + role — always visible at bottom */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: '16px',
+        background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)',
+        zIndex: 1,
+        opacity: hovered ? 0 : 1,
+        transition: 'opacity 0.3s ease',
+      }}>
+        <p style={{ fontFamily: FONT, fontSize: TYPE.subheading.size, fontWeight: TYPE.subheading.weight, color: '#ffffff', lineHeight: TYPE.subheading.lineHeight }}>
+          {member.name}
+        </p>
+        <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>
+          {member.role}
+        </p>
+      </div>
+
+      {/* Hover overlay */}
+      {variant === 'gradient' && (
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          padding: '20px 16px',
+          background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%)',
+          zIndex: 2,
+          opacity: hovered ? 1 : 0,
+          transition: 'opacity 0.3s ease',
+        }}>
+          {overlayContent}
+        </div>
+      )}
+
+      {variant === 'full' && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: 'rgba(0,0,0,0.75)',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '24px 20px',
+          zIndex: 2,
+          opacity: hovered ? 1 : 0,
+          transition: 'opacity 0.3s ease',
+        }}>
+          {overlayContent}
+        </div>
+      )}
+
+      {variant === 'slide' && (
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          padding: '20px 16px',
+          backgroundColor: 'rgba(26,26,26,0.95)',
+          zIndex: 2,
+          transform: hovered ? 'translateY(0)' : 'translateY(100%)',
+          transition: 'transform 0.3s ease',
+        }}>
+          {overlayContent}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+const DARK = {
+  bg: '#1a1a1a',
+  surface: '#242424',
+  border: '#333333',
+  text: '#f0f0f0',
+  secondary: '#9ca3af',
+  muted: '#6b7280',
+  tagBorder: '#444444',
+};
+
+function MemberCardFlipDemo({ member }: { member: typeof SAMPLE_MEMBERS[number] }) {
+  const [flipped, setFlipped] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const cardH = 420;
+
+  return (
+    <div className="card-flip" style={{ height: cardH, borderRadius: '4px' }}>
+      <div className={`card-flip-inner${flipped ? ' flipped' : ''}`} style={{ height: '100%' }}>
+        {/* Front — option B (full overlay) */}
+        <div
+          className="card-flip-front"
+          onClick={() => setFlipped(true)}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          style={{
+            width: '100%', height: '100%', position: 'relative', overflow: 'hidden',
+            borderRadius: '4px', cursor: 'pointer', backgroundColor: '#1a1a1a',
+          }}
+        >
+          <img src={member.photo} alt={member.name} style={{
+            width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top',
+            filter: 'grayscale(100%) contrast(1.1)',
+            transform: hovered ? 'scale(1)' : 'scale(1.15)', transition: 'transform 0.4s ease',
+          }} />
+          <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px',
+            background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)',
+            opacity: hovered ? 0 : 1, transition: 'opacity 0.3s ease',
+          }}>
+            <p style={{ fontFamily: FONT, fontSize: TYPE.subheading.size, fontWeight: TYPE.subheading.weight, color: '#fff', lineHeight: TYPE.subheading.lineHeight }}>{member.name}</p>
+            <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>{member.role}</p>
+          </div>
+          <div style={{
+            position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.75)',
+            display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '24px 20px',
+            opacity: hovered ? 1 : 0, transition: 'opacity 0.3s ease',
+          }}>
+            <p style={{ fontFamily: FONT, fontSize: TYPE.subheading.size, fontWeight: TYPE.subheading.weight, color: '#fff', lineHeight: TYPE.subheading.lineHeight }}>{member.name}</p>
+            <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>{member.role}</p>
+            <p style={{ fontFamily: FONT, fontSize: '0.813rem', fontWeight: 400, color: 'rgba(255,255,255,0.85)', lineHeight: 1.4, marginTop: '10px' }}>{member.bio}</p>
+            <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '10px' }}>
+              {member.interests.map(tag => (
+                <span key={tag} style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: 'rgba(255,255,255,0.8)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '3px', padding: '2px 6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{tag}</span>
+              ))}
+            </div>
+            <p style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: 'rgba(255,255,255,0.5)', marginTop: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Last: {member.lastDinner}</p>
+          </div>
+        </div>
+
+        {/* Back */}
+        <div
+          className="card-flip-back"
+          onClick={() => setFlipped(false)}
+          style={{
+            width: '100%', height: '100%', borderRadius: '4px',
+            backgroundColor: DARK.bg, cursor: 'pointer', overflow: 'hidden',
+            display: 'flex', flexDirection: 'column',
+          }}
+        >
+          <BackStacked member={member} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Back variants ─── */
+
+function BackLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: DARK.muted, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '4px' }}>
+      {children}
+    </p>
+  );
+}
+
+function BackTags({ tags }: { tags: string[] }) {
+  return (
+    <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
+      {tags.map(t => (
+        <span key={t} style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: DARK.secondary, border: `1px solid ${DARK.tagBorder}`, borderRadius: '3px', padding: '2px 6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{t}</span>
+      ))}
+    </div>
+  );
+}
+
+function SocialIcon({ type }: { type: 'x' | 'linkedin' | 'discord' }) {
+  const size = 14;
+  const style = { width: size, height: size, color: DARK.secondary, display: 'block' } as const;
+  if (type === 'x') return (
+    <svg viewBox="0 0 20 20" fill="none" style={style}><path d="M11.27 8.9 16.54 3h-1.25L10.7 8.09 6.84 3H3l5.54 7.8L3 17h1.25l4.84-5.42L13.16 17H17L11.27 8.9Zm-1.71 1.92-.56-.78-4.46-6.17H6.2l3.6 4.99.56.78 4.68 6.47h-1.66l-3.82-5.29Z" fill="currentColor"/></svg>
+  );
+  if (type === 'linkedin') return (
+    <svg viewBox="0 0 20 20" fill="none" style={style}><path d="M5.37 7.33H3v9.34h2.37V7.33ZM4.19 6.3a1.37 1.37 0 1 0 0-2.74 1.37 1.37 0 0 0 0 2.74ZM17 11.37c0-2.24-1.09-3.28-2.85-3.28-1.31 0-1.9.72-2.22 1.22V7.33H9.57c.03.68 0 9.34 0 9.34h2.36v-5.21c0-.21.02-.42.08-.57.17-.42.56-.86 1.21-.86.86 0 1.2.65 1.2 1.61v5.03H17v-5.3Z" fill="currentColor"/></svg>
+  );
+  return (
+    <svg viewBox="0 0 20 20" fill="none" style={style}><path d="M15.37 4.6A14.22 14.22 0 0 0 11.87 3.5c-.16.29-.35.68-.48.99a13.17 13.17 0 0 0-3.78 0A10.5 10.5 0 0 0 7.13 3.5a14.27 14.27 0 0 0-3.5 1.1C1.32 7.54.76 10.4 1.04 13.22a14.4 14.4 0 0 0 4.3 2.1c.35-.46.66-.95.92-1.46a9.3 9.3 0 0 1-1.45-.68c.12-.09.24-.18.35-.28a10.27 10.27 0 0 0 8.68 0c.11.1.23.19.35.28-.46.27-.94.5-1.45.68.26.51.57 1 .92 1.46a14.34 14.34 0 0 0 4.3-2.1c.35-3.3-.57-6.16-2.09-8.62ZM7.2 11.47c-.81 0-1.48-.73-1.48-1.62 0-.9.65-1.63 1.48-1.63.82 0 1.49.73 1.48 1.63 0 .89-.66 1.62-1.48 1.62Zm5.6 0c-.82 0-1.48-.73-1.48-1.62 0-.9.65-1.63 1.48-1.63.82 0 1.49.73 1.47 1.63 0 .89-.65 1.62-1.47 1.62Z" fill="currentColor"/></svg>
+  );
+}
+
+function BackSocials({ socials }: { socials: typeof SAMPLE_MEMBERS[number]['socials'] }) {
+  return (
+    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+      {socials.x && <SocialIcon type="x" />}
+      {socials.linkedin && <SocialIcon type="linkedin" />}
+      {socials.discord && <SocialIcon type="discord" />}
+    </div>
+  );
+}
+
+/* A · Stacked — socials + interests, divider, bio, prominent dinners */
+function BackStacked({ member }: { member: typeof SAMPLE_MEMBERS[number] }) {
+  const maxDinners = 3;
+  const shownDinners = member.allDinners.slice(0, maxDinners);
+  const extraCount = member.allDinners.length - maxDinners;
+
+  return (
+    <>
+      {/* Header */}
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center', padding: '14px 16px' }}>
+        <img src={member.photo} alt={member.name} style={{ width: 36, height: 36, borderRadius: '4px', objectFit: 'cover', filter: 'grayscale(100%) contrast(1.1)' }} />
+        <div>
+          <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.subheading.weight, color: DARK.text, lineHeight: 1.2 }}>{member.name}</p>
+          <p style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: DARK.muted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{member.company}</p>
+        </div>
+      </div>
+      {/* Scrollable body */}
+      <div style={{ flex: 1, overflow: 'auto', padding: '0' }}>
+        {/* Socials + Interests — single row, no labels */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', padding: '8px 16px' }}>
+          <BackSocials socials={member.socials} />
+          <span style={{ color: DARK.border }}>|</span>
+          <BackTags tags={member.interests} />
+        </div>
+        {/* Divider + Bio */}
+        <div style={{ padding: '12px 16px', borderTop: `1px solid ${DARK.border}` }}>
+          <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 400, color: DARK.secondary, lineHeight: 1.45 }}>{member.fullBio}</p>
+        </div>
+        {/* Dinners — prominent */}
+        <div style={{ padding: '12px 16px' }}>
+          <BackLabel>Dinners attended ({member.allDinners.length})</BackLabel>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '4px' }}>
+            {shownDinners.map(d => (
+              <div key={d} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: 4, height: 4, borderRadius: '50%', backgroundColor: DARK.muted, flexShrink: 0 }} />
+                <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 400, color: DARK.text, lineHeight: 1.3 }}>{d}</p>
+              </div>
+            ))}
+            {extraCount > 0 && (
+              <p style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: DARK.muted, textTransform: 'uppercase', letterSpacing: '0.5px', paddingLeft: '12px' }}>+{extraCount} more</p>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 
 function ShimmerBorderBtn({ children, disabled }: { children: React.ReactNode; disabled?: boolean }) {
   return (

@@ -16,7 +16,7 @@ Decisions made during the brainstorm sessions, including rejected alternatives:
 - **Typography:** "Elegant" (option A). Rejected: Editorial (uppercase sub), Bold (500 heading), All-caps heading, High contrast (600/300), Magazine (uppercase sub).
 - **Filter dropdown:** Confirmed pattern. NOT in the nav bar — placement is a composite-level decision.
 - **MemberCard hover:** Option B (full overlay). Rejected: gradient-from-bottom, slide-up panel.
-- **MemberCard flip back:** TBD (options shown but not yet confirmed in brainstorm).
+- **MemberCard flip back:** Stacked dark layout. Socials (icons) + interest tags inline (no labels, pipe separator), divider, full bio, prominent dinners (bulleted, max 3 shown, "+x more").
 - **Dinner photos:** Should use landscape crop even from portrait sources.
 - **Purple accent:** #5b21b6 is the ONLY non-monochrome color. Used exclusively on CTA buttons.
 
@@ -265,16 +265,53 @@ justify-content: center;
 
 ---
 
-## 7. MemberCard — Hover Overlay (Option B confirmed)
+## 7. MemberCard — Hover Overlay (Option B default, all 3 kept)
 
-**Full overlay style:**
+**Default: Option B — Full overlay.** Options A (bottom gradient) and C (slide-up panel) are kept in the StyleGuide for potential future use.
+
+### Card dimensions & default state
 ```
-- Trigger: mouseenter
-- Photo: zooms out from scale(1.15) to scale(1) on hover, 0.4s ease
-- Name bar: fades out (opacity 0), 0.3s ease
-- Overlay: full card coverage, rgba(0,0,0,0.75)
+- Height: 420px, width: flexible (fills container)
+- Background: #1a1a1a
+- Border radius: 4px
+- Default (no hover): portrait photo fills card, name bar at bottom
+  - Name bar: gradient from bottom (rgba(0,0,0,0.7) to transparent)
+  - Shows: name (subheading, white) + role (small, uppercase, white 70%)
+  - Padding: 16px
+```
+
+### Content shown on each state
+```
+At glance (default): portrait photo + name + role
+On hover: short bio (truncated), interests (tags), last dinner attended
+On click: flips to back — full bio, social links, company, all dinners, everything from front
+```
+
+**Shared behaviour (all variants):**
+```
+- Cursor: pointer
+- Photo: grayscale(100%) contrast(1.1), zoomed in at scale(1.15) by default
+- On hover: photo zooms out to scale(1), 0.4s ease transition
+- Name bar at bottom fades out (opacity 0), 0.3s ease
+```
+
+**Option B — Full overlay (confirmed default):**
+```
+- Overlay: full card coverage, rgba(0,0,0,0.75), opacity fade 0.3s
 - Content centered vertically, 24px 20px padding
 - Shows: name, role, bio (0.813rem), interest tags, last dinner
+```
+
+**Option A — Bottom gradient (kept):**
+```
+- Gradient from bottom: rgba(0,0,0,0.85) to transparent
+- Content pinned to bottom, 20px 16px padding
+```
+
+**Option C — Slide-up panel (kept):**
+```
+- Solid panel rgba(26,26,26,0.95) slides up from translateY(100%) to translateY(0)
+- 0.3s ease transition
 ```
 
 ### Overlay content layout
@@ -291,29 +328,45 @@ Last: Mar 2025 — The Shard (caption, white 50%, mt 8px)
 ## 8. MemberCard — Click to Flip
 
 **Front:** Option B hover overlay (described above)
-**Back:** Full profile card
+**Back:** Stacked dark layout (confirmed)
+
+### Back card dark colors
+```ts
+const DARK = {
+  bg: '#1a1a1a',
+  surface: '#242424',
+  border: '#333333',
+  text: '#f0f0f0',
+  secondary: '#9ca3af',
+  muted: '#6b7280',
+  tagBorder: '#444444',
+};
+```
 
 ### Back card structure
 ```
-┌─ Header: 48px avatar + name + role ──────┐
-├──────────────────────────────────────────┤
-│ Full bio (body text, secondary color)     │
+┌─ Header: 36px avatar + name + company ───┐
 │                                           │
-│ COMPANY (small, muted label)              │
-│ Lattice AI (body, weight 500)             │
+│ [X] [LinkedIn] [Discord] | [Tag] [Tag]    │  ← icons + tags inline, no labels
+├───────────────────────────────────────────┤  ← single divider
+│ Full bio (small type, secondary color)    │
 │                                           │
-│ INTERESTS (small, muted label)            │
-│ [Tag] [Tag] [Tag] (outlined tags)         │
-│                                           │
-│ CONNECT (small, muted label)              │
-│ @amarakone  LinkedIn  Discord             │
-│                                           │
-│ DINNERS ATTENDED (3) (small, muted label) │
-│ Mar 2025 — The Shard                      │
-│ Jan 2025 — Shoreditch House               │
-│ Nov 2024 — The Ned                        │
-└──────────────────────────────────────────┘
+│ DINNERS ATTENDED (3) (caption label)      │
+│ • Mar 2025 — The Shard                   │  ← white text, bullet dots
+│ • Jan 2025 — Shoreditch House            │
+│ • Nov 2024 — The Ned                     │
+│   +1 more                                │  ← if > 3 dinners
+└───────────────────────────────────────────┘
 ```
+
+### Key decisions
+- Dark background (#1a1a1a) — matches front card feel
+- Social links use brand SVG icons (14px), not text labels
+- Interests + socials on one row with `|` separator, no section labels
+- Only one divider (above bio)
+- Dinners are prominent (white text, bullet dots, larger than other back text)
+- Max 3 dinners shown, "+x more" in muted caption if overflow
+- Rejected alternatives: compact grid (converged with stacked), minimal (too sparse)
 
 ### Flip animation
 ```css
@@ -410,30 +463,27 @@ const SAMPLE_MEMBERS = [
 
 ---
 
-## Stock Photos Used
+## Stock Photos Used (StyleGuide demos)
 
-| Usage | URL |
-|-------|-----|
-| Member 1 | `photo-1531123897727-8f129e1688ce` |
-| Member 2 | `photo-1472099645785-5658abf4ff4e` |
-| Member 3 | `photo-1580489944761-15a19d654956` |
-| Member 4 | `photo-1519085360753-af0119f7cbe7` |
-| Member 5 | `photo-1494790108377-be9c29b29330` |
-| Member 6 | `photo-1531746020798-e6953c6e8e04` |
-| Member 7 | `photo-1506794778202-cad84cf45f1d` |
-| Member 8 | `photo-1534528741775-53994a69daeb` |
+| Member | Unsplash photo ID |
+|--------|-------------------|
+| Amara Kone | `photo-1531746020798-e6953c6e8e04` |
+| James Chen | `photo-1506794778202-cad84cf45f1d` |
+| Sarah Okafor | `photo-1534528741775-53994a69daeb` |
 
 All from Unsplash, format: `https://images.unsplash.com/{id}?w=600&h=800&fit=crop&crop=face`
 
 ---
 
-## What's Next: Step 8 — Composite Components
+## What's Next: Step 8 — Remaining Composite Components
 
-Composites to build from these atoms (from `bd remember` notes):
+MemberCard composite is confirmed (hover + flip). Remaining composites to design:
 
-- **Filter dropdown** — placement TBD (confirmed as atom but NOT in nav per latest discussion)
-- **MemberCard molecule** — hover overlay + click flip (already prototyped above)
 - **DinnerCard** — landscape crop, photo + date + title + attendee count
+- **Filter dropdown** — placement TBD (confirmed as atom but NOT in nav)
 - **Nav** — logo + links + filter icon, 56px height, 24px padding
+- **Tabs** — People/Dinners toggle
 - **Footer** — outlined circle social icons (X, LinkedIn, Discord) + caption text
 - **AttendeeGrid** — compact member list inside dinner detail
+- **Empty state** — when no results match filters
+- **Loading skeleton** — placeholder while data loads
