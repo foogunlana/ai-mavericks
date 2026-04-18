@@ -13,41 +13,42 @@
   all: unset;
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--text-primary);
-  border: 1px solid var(--filter-border);
+  color: var(--color-secondary);
+  border: 1px solid var(--color-border);
   padding: 5px 10px;
   border-radius: 3px;
-  background: var(--filter-bg);
+  background: transparent;
   transition: background 0.15s, color 0.15s;
 }
 
 .pill:hover {
-  background: var(--border);
+  border-color: var(--color-text);
+  color: var(--color-text);
 }
 
 .pillActive {
-  background: var(--filter-active-bg);
-  color: var(--filter-active-text);
-  border-color: var(--filter-active-bg);
+  background: var(--color-accent);
+  color: var(--color-background);
+  border-color: var(--color-accent);
 }
 
 .pillActive:hover {
-  background: var(--filter-active-bg);
+  background: var(--color-accent);
 }
 
 .clearBtn {
   all: unset;
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--text-secondary);
+  color: var(--color-secondary);
   text-decoration: underline;
   text-underline-offset: 2px;
   padding: 5px 4px;
@@ -61,11 +62,11 @@
 }
 
 .item {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--color-border);
 }
 
 .item:last-child {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .dinnerRow {
@@ -90,7 +91,7 @@
   aspect-ratio: 16 / 9;
   border-radius: 2px;
   overflow: hidden;
-  background: var(--text-primary);
+  background: var(--color-text);
 }
 
 .heroImg {
@@ -110,35 +111,35 @@
 
 .date {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: var(--font-size-sm);
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-secondary);
+  color: var(--color-secondary);
 }
 
 .name {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: var(--font-size-md);
   font-weight: 400;
   font-style: italic;
-  color: var(--text-primary);
+  color: var(--color-text);
   line-height: 1.2;
 }
 
 .venue {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: var(--font-size-base);
   font-weight: 300;
   letter-spacing: 0.5px;
-  color: var(--text-secondary);
+  color: var(--color-secondary);
 }
 
 .attendees {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: var(--font-size-base);
   font-weight: 300;
-  color: var(--text-muted);
+  color: var(--color-muted);
   line-height: 1.5;
   margin-top: 4px;
 }
@@ -149,6 +150,6 @@
   }
 
   .name {
-    font-size: 18px;
+    font-size: var(--font-size-base);
   }
 }
