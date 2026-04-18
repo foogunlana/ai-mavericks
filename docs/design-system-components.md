@@ -87,12 +87,13 @@ Three sizes confirmed:
 | Size | Dimensions | Usage |
 |------|-----------|-------|
 | sm   | 32px      | Compact lists, attendee grids |
-| md   | 48px      | Card flip back header, inline references |
+| back | 36px      | Card flip back header (non-standard) |
+| md   | 48px      | Inline references |
 | lg   | 80px      | Hero/profile display |
 
 ```
 - Border radius: 4px
-- Filter: grayscale(100%) contrast(1.05)
+- Filter: grayscale(100%) contrast(1.1)
 - Fallback: surface bg (#f9fafb) + border + centered initials (uppercase, muted color)
 - flexShrink: 0 (prevents compression in flex layouts)
 ```
@@ -161,8 +162,8 @@ Used exclusively on CTA buttons.
 ```ts
 const CONFETTI_COLORS = ['#7c3aed', '#a78bfa', '#c4b5fd', '#f472b6', '#818cf8', '#e879f9', '#fbbf24', '#34d399'];
 // 24 particles per click
-// Shapes: circle (6x6), square (6x6), strip (3x10)
-// Spread: random angle, 40-80px distance
+// Shapes: circle (6x6, 50% radius), square (6x6, 1px radius), strip (3x10, 1px radius)
+// Spread: random angle, 40-120px distance (40 + Math.random() * 80)
 // Animation: confetti-fall 0.8s ease-out
 // Auto-cleanup after 800ms
 ```
@@ -173,12 +174,12 @@ const CONFETTI_COLORS = ['#7c3aed', '#a78bfa', '#c4b5fd', '#f472b6', '#818cf8', 
 /* Orbiting element: CIRCULAR (not square) for uniform corner speed */
 /*   - Container: absolute, inset 0, flex centered */
 /*   - Inner circle: 300% width/height, border-radius 50% */
-/*   - Gradient: conic-gradient with purple arc (75%-100% of circle) */
-/*   - Arc colors: #7c3aed → #a855f7 → #c4b5fd (peak) → #a855f7 */
+/*   - Gradient: conic-gradient(from 0deg, transparent 0%, transparent 75%, #7c3aed 83%, #a855f7 89%, #c4b5fd 94%, #a855f7 97%, transparent 100%) */
 /* Animation: border-sweep 4s linear infinite */
 /*   - Fades in at 3%, full opacity 5-32%, fades out by 37% */
 /*   - One full rotation per visible sweep, then hidden for ~2.5s */
 /* Inner button: white bg (#ffffff), dark text, 3px radius, z-index 1 */
+/*   - padding: 10px 24px, fontWeight: 600, letterSpacing: 1.5px */
 /* Hover: translateY(-1px), inner bg becomes surface (#f9fafb) */
 /* Disabled: opacity 0.4, orbit hidden */
 ```
@@ -191,11 +192,27 @@ font-weight: 500;
 line-height: 1.2;
 text-transform: uppercase;
 letter-spacing: 1px;
+padding: 8px 18px;         /* overridden by ghost (8px 10px) and flashy (10px 24px) */
 border-radius: 3px;
 cursor: pointer;
 display: inline-flex;
 align-items: center;
 gap: 6px;
+```
+
+### Transitions (all 0.15s)
+```css
+.ghost:    transition: background-color 0.15s, color 0.15s;
+.outline:  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+.flashy:   transition: filter 0.15s, transform 0.15s;
+.shimmer:  transition: transform 0.15s; /* inner: background-color 0.15s */
+```
+
+### Disabled + hover overrides (prevent hover effects on disabled)
+```css
+.ghost:disabled:hover    { background-color: transparent; color: #6b7280; }
+.outline:disabled:hover  { background-color: transparent; border-color: #e5e7eb; }
+.flashy:disabled:hover   { filter: saturate(0.3) brightness(0.8); transform: none; }
 ```
 
 ---
@@ -258,10 +275,14 @@ align-items: center;
 justify-content: center;
 ```
 
-### Brand icons (filled SVG, not stroked)
-- **X (Twitter):** 14x14, filled with COLORS.text
-- **LinkedIn:** 14x14, stroked with COLORS.text (Lucide style)
-- **Discord:** 16x16, filled with COLORS.text
+### Brand icons (all filled SVGs, `fill="currentColor"`)
+- **X (Twitter):** 14x14
+- **LinkedIn:** 14x14
+- **Discord:** 14x14
+
+SVG paths are in `src/components/SocialIcons/SocialIcons.tsx`.
+
+**Note:** On MemberCard back, icons are rendered bare (no circle wrapper) at 14px with `color: DARK.secondary`. The 36px circle treatment is for standalone use (footer, etc.).
 
 ---
 
@@ -304,7 +325,7 @@ On click: flips to back — full bio, social links, company, all dinners, everyt
 
 **Option A — Bottom gradient (kept):**
 ```
-- Gradient from bottom: rgba(0,0,0,0.85) to transparent
+- Gradient: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%)
 - Content pinned to bottom, 20px 16px padding
 ```
 
@@ -357,6 +378,23 @@ const DARK = {
 │ • Nov 2024 — The Ned                     │
 │   +1 more                                │  ← if > 3 dinners
 └───────────────────────────────────────────┘
+```
+
+### Detailed specs
+```
+- Photo: objectPosition 'center top' on all portraits
+- Header: padding 14px 16px, name uses Small size (0.688rem) at weight 500
+- Socials + tags row: padding 8px 16px, pipe separator colored DARK.border (#333333)
+- Bio section: padding 12px 16px, borderTop 1px solid DARK.border
+- Bio text: Small size, weight 400, color DARK.secondary, lineHeight 1.45
+- Dinners section: padding 12px 16px
+- Dinner label: caption size, DINNERS ATTENDED (n)
+- Dinner items: flex column, gap 6px
+- Bullet dots: 4px × 4px circle, DARK.muted color, gap 8px to text
+- Dinner text: Small size, weight 400, DARK.text (white), lineHeight 1.3
+- "+x more": caption size, DARK.muted, paddingLeft 12px
+- Body: overflow auto (scrollable if content exceeds card height)
+- Overlay tag padding: 2px 6px (smaller than standalone Tag atom's 4px 10px)
 ```
 
 ### Key decisions
