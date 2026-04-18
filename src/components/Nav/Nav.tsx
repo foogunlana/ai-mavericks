@@ -7,24 +7,28 @@ interface Props {
 }
 
 export function Nav({ currentView, onViewChange }: Props) {
-  const activeSection = currentView === 'people' ? 'people' : 'dinners';
-
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        <button className={styles.logo} onClick={() => onViewChange('people')}>
+        <button className={styles.logo} onClick={() => onViewChange('home')}>
           <img src="/ai-mavericks-logo.avif" alt="AI Mavericks" className={styles.logoMark} />
           AI Mavericks
         </button>
         <div className={styles.links}>
           <button
-            className={`${styles.link} ${activeSection === 'people' ? styles.active : ''}`}
+            className={`${styles.link} ${currentView === 'home' ? styles.active : ''}`}
+            onClick={() => onViewChange('home')}
+          >
+            Home
+          </button>
+          <button
+            className={`${styles.link} ${currentView === 'people' ? styles.active : ''}`}
             onClick={() => onViewChange('people')}
           >
             People
           </button>
           <button
-            className={`${styles.link} ${activeSection === 'dinners' ? styles.active : ''}`}
+            className={`${styles.link} ${currentView === 'dinners' || currentView === 'dinner-detail' ? styles.active : ''}`}
             onClick={() => onViewChange('dinners')}
           >
             Dinners
