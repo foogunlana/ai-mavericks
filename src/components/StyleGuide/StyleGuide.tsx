@@ -10,6 +10,65 @@ export function StyleGuide() {
         </p>
       </header>
 
+      <Section title="Tag / Pill">
+        <div className="space-y-10">
+          {/* Outline variant */}
+          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
+            <OptionHeader label="Outline — default / unselected / display" />
+            <div style={{ backgroundColor: COLORS.bg, padding: '32px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {['Engineer', 'Founder', 'Data Scientist', 'Product Manager', 'Consultant'].map(t => (
+                <Tag key={t} variant="outline">{t}</Tag>
+              ))}
+            </div>
+          </div>
+
+          {/* Filled variant */}
+          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
+            <OptionHeader label="Filled — active / selected" />
+            <div style={{ backgroundColor: COLORS.bg, padding: '32px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {['AI Agents', 'LLMs', 'FinTech', 'Healthcare', 'Creative AI'].map(t => (
+                <Tag key={t} variant="filled">{t}</Tag>
+              ))}
+            </div>
+          </div>
+
+          {/* Mixed — realistic filter bar */}
+          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
+            <OptionHeader label="Mixed — realistic filter bar with 2 active" />
+            <div style={{ backgroundColor: COLORS.bg, padding: '32px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              <Tag variant="filled">Engineer</Tag>
+              <Tag variant="outline">Founder</Tag>
+              <Tag variant="outline">Data Scientist</Tag>
+              <Tag variant="filled">AI Agents</Tag>
+              <Tag variant="outline">LLMs</Tag>
+              <Tag variant="outline">FinTech</Tag>
+              <Tag variant="outline">Healthcare</Tag>
+            </div>
+          </div>
+
+          {/* On dark surface */}
+          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}` }}>
+            <OptionHeader label="On card — tags displayed as metadata" />
+            <div style={{ backgroundColor: COLORS.bg, padding: '32px' }}>
+              <div style={{ borderRadius: '4px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', maxWidth: '280px' }}>
+                <div style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden' }}>
+                  <img src={PHOTOS[0].photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) contrast(1.05)', display: 'block' }} />
+                  <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px 12px 10px', background: 'linear-gradient(transparent, rgba(0,0,0,0.55))' }}>
+                    <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, fontWeight: TYPE.body.weight, lineHeight: 1.2, color: '#fff' }}>Amara Osei</p>
+                    <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'rgba(255,255,255,0.7)', marginTop: '2px' }}>Engineer</p>
+                  </div>
+                </div>
+                <div style={{ padding: '10px 12px', display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                  <Tag variant="outline">AI Agents</Tag>
+                  <Tag variant="outline">LLMs</Tag>
+                  <Tag variant="outline">RAG</Tag>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       <Section title="Filter Pattern">
         <div className="space-y-10">
           {/* Closed state */}
@@ -221,6 +280,29 @@ function FilterGroup({ label, items, activeCount }: { label: string; items: stri
         })}
       </div>
     </div>
+  );
+}
+
+function Tag({ variant = 'outline', children }: { variant?: 'outline' | 'filled'; children: React.ReactNode }) {
+  const isFilled = variant === 'filled';
+  return (
+    <span style={{
+      fontFamily: FONT,
+      fontSize: TYPE.small.size,
+      fontWeight: TYPE.small.weight,
+      lineHeight: TYPE.small.lineHeight,
+      textTransform: 'uppercase',
+      letterSpacing: '0.5px',
+      padding: '4px 10px',
+      borderRadius: '3px',
+      display: 'inline-block',
+      ...(isFilled
+        ? { backgroundColor: COLORS.accent, color: COLORS.accentText, border: '1px solid transparent' }
+        : { backgroundColor: 'transparent', color: COLORS.textSecondary, border: `1px solid ${COLORS.border}` }
+      ),
+    }}>
+      {children}
+    </span>
   );
 }
 
