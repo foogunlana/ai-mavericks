@@ -2,8 +2,9 @@
   aspect-ratio: 4 / 5;
   perspective: 1000px;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 4px;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 .inner {
@@ -23,7 +24,7 @@
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
-  border-radius: 2px;
+  border-radius: 4px;
   overflow: hidden;
 }
 
