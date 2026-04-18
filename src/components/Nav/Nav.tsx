@@ -28,6 +28,12 @@ export function Nav({ currentView, onViewChange }: Props) {
           >
             Dinners
           </button>
+          <button
+            className={`${styles.link} ${currentView === 'styleguide' ? styles.active : ''}`}
+            onClick={() => onViewChange('styleguide')}
+          >
+            Style Guide
+          </button>
         </div>
       </div>
     </nav>

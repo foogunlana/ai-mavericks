@@ -6,10 +6,11 @@ import { MemberGrid } from './components/MemberGrid/MemberGrid';
 import { DinnersList } from './components/DinnersList/DinnersList';
 import { DinnerDetail } from './components/DinnerDetail/DinnerDetail';
 import { Footer } from './components/Footer/Footer';
+import { StyleGuide } from './components/StyleGuide/StyleGuide';
 import { useFilterState } from './hooks/useFilterState';
 import { members } from './data/members';
 
-export type View = 'people' | 'dinners' | 'dinner-detail';
+export type View = 'people' | 'dinners' | 'dinner-detail' | 'styleguide';
 
 function App() {
   const [view, setView] = useState<View>('people');
@@ -55,6 +56,9 @@ function App() {
             <section className={styles.section}>
               <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
             </section>
+          )}
+          {view === 'styleguide' && (
+            <StyleGuide />
           )}
         </main>
         <Footer />
