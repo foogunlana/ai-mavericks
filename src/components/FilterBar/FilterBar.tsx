@@ -1,4 +1,4 @@
-import { X } from 'lucide-react';
+import { SlidersHorizontal, X } from 'lucide-react';
 import type { FilterState } from '../../hooks/useFilterState';
 import { getTagsByCategory } from '../../data/tags';
 import styles from './FilterBar.module.css';
@@ -16,6 +16,7 @@ export function FilterBar({ filters, toggleFilter, clearFilters, hasActiveFilter
 
   return (
     <div className={styles.bar}>
+      <SlidersHorizontal size={14} strokeWidth={2} className={styles.icon} />
       <div className={styles.group}>
         {roles.map((tag) => (
           <button
