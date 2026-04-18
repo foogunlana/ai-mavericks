@@ -1,10 +1,24 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
+type SectionId = 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card';
+
+const SECTION_LABELS: { id: SectionId; label: string }[] = [
+  { id: 'member-hover', label: 'MemberCard — Hover Overlay' },
+  { id: 'member-flip',  label: 'MemberCard — Click to Flip' },
+  { id: 'typography',   label: 'Typography' },
+  { id: 'button',       label: 'Button' },
+  { id: 'tag',          label: 'Tag' },
+  { id: 'avatar',       label: 'Avatar' },
+  { id: 'card',         label: 'Card' },
+];
+
 export function StyleGuide() {
+  const [activeSection, setActiveSection] = useState<SectionId>('member-flip');
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
       <style>{KEYFRAMES}</style>
-      <header className="mb-16">
+      <header className="mb-8">
         <h1 style={{ fontFamily: FONT, fontWeight: 300, fontSize: '2.369rem', lineHeight: 1.15, color: COLORS.text }} className="mb-3">
           Style Guide
         </h1>
@@ -13,32 +27,324 @@ export function StyleGuide() {
         </p>
       </header>
 
-      <Section title="MemberCard — Hover Overlay">
-        <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
-          All three shown in "hovered" state so you can compare. Front: portrait + name + role. Hover reveals bio, interests, last dinner.
-        </p>
-        <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-          {HOVER_OPTIONS.map((opt, i) => (
-            <div key={opt.name} className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}`, flex: '1 1 280px' }}>
-              <OptionHeader label={opt.name} />
-              <MemberCardHoverDemo variant={opt.variant} member={SAMPLE_MEMBERS[i]} />
-            </div>
-          ))}
-        </div>
-      </Section>
+      {/* Section switcher */}
+      <nav style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', marginBottom: '48px' }}>
+        {SECTION_LABELS.map(({ id, label }) => (
+          <button
+            key={id}
+            className="btn-ghost"
+            onClick={() => setActiveSection(id)}
+            style={{
+              ...BTN_BASE,
+              ...BTN_VARIANTS.ghost,
+              backgroundColor: activeSection === id ? COLORS.borderLight : 'transparent',
+              color: activeSection === id ? COLORS.text : COLORS.textSecondary,
+            }}
+          >
+            {label}
+          </button>
+        ))}
+      </nav>
 
-      <Section title="MemberCard — Click to Flip">
-        <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
-          Click to flip. Front: option B (full overlay). Back: stacked dark layout.
-        </p>
-        <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-          {SAMPLE_MEMBERS.map(member => (
-            <div key={member.name} style={{ flex: '1 1 280px' }}>
-              <MemberCardFlipDemo member={member} />
+      {activeSection === 'member-hover' && (
+        <Section title="MemberCard — Hover Overlay">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            All three shown in "hovered" state so you can compare. Front: portrait + name + role. Hover reveals bio, interests, last dinner.
+          </p>
+          <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+            {HOVER_OPTIONS.map((opt, i) => (
+              <div key={opt.name} className="rounded-lg overflow-hidden" style={{ border: `1px solid ${COLORS.border}`, flex: '1 1 280px' }}>
+                <OptionHeader label={opt.name} />
+                <MemberCardHoverDemo variant={opt.variant} member={SAMPLE_MEMBERS[i]} />
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'member-flip' && (
+        <Section title="MemberCard — Click to Flip">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Click to flip. Front: option B (full overlay). Back: stacked dark layout.
+          </p>
+          <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+            {SAMPLE_MEMBERS.map(member => (
+              <div key={member.name} style={{ flex: '1 1 280px' }}>
+                <MemberCardFlipDemo member={member} />
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'typography' && (
+        <Section title="Typography">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Six type treatments — heading weight, subheading tracking, and body colour. All use Space Grotesk.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {TYPE_OPTIONS.map(opt => (
+              <div key={opt.name} style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+                <OptionHeader label={opt.name} />
+                <div style={{ padding: '28px 24px', backgroundColor: COLORS.bg }}>
+                  <h2 style={{
+                    fontFamily: FONT,
+                    fontWeight: opt.headingWeight,
+                    fontSize: TYPE.heading.size,
+                    lineHeight: TYPE.heading.lineHeight,
+                    color: COLORS.text,
+                    letterSpacing: opt.headingTracking,
+                    textTransform: opt.headingCase,
+                    marginBottom: '8px',
+                  }}>
+                    The Founders' Table
+                  </h2>
+                  <p style={{
+                    fontFamily: FONT,
+                    fontWeight: opt.subheadingWeight,
+                    fontSize: TYPE.subheading.size,
+                    lineHeight: TYPE.subheading.lineHeight,
+                    color: COLORS.text,
+                    letterSpacing: opt.subheadingTracking,
+                    textTransform: opt.subheadingCase,
+                    marginBottom: '12px',
+                  }}>
+                    Intimate dinners for people building the future
+                  </p>
+                  <p style={{
+                    fontFamily: FONT,
+                    fontWeight: TYPE.body.weight,
+                    fontSize: TYPE.body.size,
+                    lineHeight: TYPE.body.lineHeight,
+                    color: opt.bodyColor,
+                  }}>
+                    Twelve founders, operators, and investors. One table. Real conversations about what it actually takes — the messy middle, the near-misses, the breakthroughs that came from nowhere.
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'button' && (
+        <Section title="Button">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            All variants — active and disabled states.
+          </p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {/* Flashy */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Flashy — animated gradient, confetti on click" />
+              <div style={{ padding: '24px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <FlashyBtn>Join the Table</FlashyBtn>
+                <FlashyBtn disabled>Join the Table</FlashyBtn>
+                <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>disabled →</span>
+              </div>
             </div>
-          ))}
-        </div>
-      </Section>
+
+            {/* Shimmer border */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Shimmer border — orbiting gradient border" />
+              <div style={{ padding: '24px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <ShimmerBorderBtn>Apply Now</ShimmerBorderBtn>
+                <ShimmerBorderBtn disabled>Apply Now</ShimmerBorderBtn>
+                <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>disabled →</span>
+              </div>
+            </div>
+
+            {/* Ghost */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Ghost — transparent, subtle hover" />
+              <div style={{ padding: '24px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <Btn variant="ghost">Learn More</Btn>
+                <Btn variant="ghost" disabled>Learn More</Btn>
+                <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>disabled →</span>
+              </div>
+            </div>
+
+            {/* Outline */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Outline — bordered, solid hover" />
+              <div style={{ padding: '24px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <Btn variant="outline">View Profile</Btn>
+                <Btn variant="outline" disabled>View Profile</Btn>
+                <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>disabled →</span>
+              </div>
+            </div>
+
+            {/* Together — hierarchy */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Together — hierarchy (primary → secondary → tertiary)" />
+              <div style={{ padding: '24px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <FlashyBtn>Join the Table</FlashyBtn>
+                <Btn variant="outline">View Profile</Btn>
+                <Btn variant="ghost">Learn More</Btn>
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'tag' && (
+        <Section title="Tag / Pill">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Outline tag style — used for interests and filters.
+          </p>
+          <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+            <OptionHeader label="Outline tag — dark border, sentence case" />
+            <div style={{ padding: '24px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {SAMPLE_TAGS.map(tag => (
+                <span
+                  key={tag}
+                  style={{
+                    fontFamily: FONT,
+                    fontSize: TYPE.small.size,
+                    fontWeight: TYPE.small.weight,
+                    color: COLORS.text,
+                    border: `1px solid ${COLORS.border}`,
+                    borderRadius: '3px',
+                    padding: '4px 10px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px',
+                    backgroundColor: COLORS.bg,
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'avatar' && (
+        <Section title="Avatar">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Four sizes — sm (32px), back-thumbnail (36px), md (48px), lg (80px). Grayscale + contrast filter, 4px border radius. Initials fallback shown on the right.
+          </p>
+          <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden', marginBottom: '24px' }}>
+            <OptionHeader label="Photo avatars — all sizes" />
+            <div style={{ padding: '24px', display: 'flex', gap: '24px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
+              {AVATAR_SIZES.map(({ label, size }) => (
+                <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                  <img
+                    src={SAMPLE_MEMBERS[0].photo}
+                    alt={SAMPLE_MEMBERS[0].name}
+                    style={{
+                      width: size,
+                      height: size,
+                      borderRadius: '4px',
+                      objectFit: 'cover',
+                      objectPosition: 'center top',
+                      filter: 'grayscale(100%) contrast(1.1)',
+                    }}
+                  />
+                  <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    {label} · {size}px
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+            <OptionHeader label="Initials fallback — all sizes" />
+            <div style={{ padding: '24px', display: 'flex', gap: '24px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
+              {AVATAR_SIZES.map(({ label, size }) => (
+                <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                  <div
+                    style={{
+                      width: size,
+                      height: size,
+                      borderRadius: '4px',
+                      backgroundColor: COLORS.surface,
+                      border: `1px solid ${COLORS.border}`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontFamily: FONT,
+                      fontWeight: 500,
+                      fontSize: Math.round(size * 0.35),
+                      color: COLORS.textSecondary,
+                    }}
+                  >
+                    AK
+                  </div>
+                  <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    {label} · {size}px
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'card' && (
+        <Section title="Card">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Two shadow levels. White background, 4px radius.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {/* Elevated */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Elevated — 0 4px 12px rgba(0,0,0,0.10) · for photo cards" />
+              <div style={{ padding: '24px', backgroundColor: COLORS.surface }}>
+                <div style={{
+                  backgroundColor: COLORS.bg,
+                  borderRadius: '4px',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.10)',
+                  overflow: 'hidden',
+                  maxWidth: '320px',
+                }}>
+                  <img
+                    src={SAMPLE_MEMBERS[1].photo}
+                    alt={SAMPLE_MEMBERS[1].name}
+                    style={{ width: '100%', height: '180px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', display: 'block' }}
+                  />
+                  <div style={{ padding: '16px' }}>
+                    <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.subheading.size, color: COLORS.text, marginBottom: '4px' }}>{SAMPLE_MEMBERS[1].name}</p>
+                    <p style={{ fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.small.size, color: COLORS.textSecondary, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{SAMPLE_MEMBERS[1].role}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Subtle */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Subtle — 0 1px 3px rgba(0,0,0,0.06) · for list items" />
+              <div style={{ padding: '24px', backgroundColor: COLORS.surface, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {SAMPLE_MEMBERS.map(member => (
+                  <div
+                    key={member.name}
+                    style={{
+                      backgroundColor: COLORS.bg,
+                      borderRadius: '4px',
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                      padding: '12px 16px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                    }}
+                  >
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      style={{ width: 36, height: 36, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }}
+                    />
+                    <div>
+                      <p style={{ fontFamily: FONT, fontWeight: 500, fontSize: TYPE.small.size, color: COLORS.text, lineHeight: 1.2 }}>{member.name}</p>
+                      <p style={{ fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.caption.size, color: COLORS.textSecondary, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>{member.role}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
     </div>
   );
 }
@@ -116,6 +422,15 @@ const TYPE_OPTIONS: {
     subheadingWeight: 600, subheadingTracking: '1.5px', subheadingCase: 'uppercase',
     bodyColor: '#4b5563',
   },
+];
+
+const SAMPLE_TAGS = ['AI Agents', 'Infra', 'LLMs', 'Fintech', 'Healthcare', 'Dev Tools', 'Series B'];
+
+const AVATAR_SIZES: { label: string; size: number }[] = [
+  { label: 'sm',   size: 32 },
+  { label: 'back', size: 36 },
+  { label: 'md',   size: 48 },
+  { label: 'lg',   size: 80 },
 ];
 
 const CONFETTI_COLORS = ['#7c3aed', '#a78bfa', '#c4b5fd', '#f472b6', '#818cf8', '#e879f9', '#fbbf24', '#34d399'];
