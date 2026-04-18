@@ -4,7 +4,7 @@
   gap: var(--card-gap);
 }
 
-@media (max-width: 959px) {
+@media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -19,7 +19,7 @@
   color: var(--text-secondary);
 }
 
-@media (max-width: 639px) {
+@media (max-width: 480px) {
   .grid {
     grid-template-columns: 1fr;
   }
