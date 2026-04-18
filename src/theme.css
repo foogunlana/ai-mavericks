@@ -1,25 +1,33 @@
+/*
+ * theme.css — compatibility aliases for design system tokens
+ * Single source of truth lives in tailwind.css @theme block.
+ * These vars re-export tailwind tokens under legacy names used by CSS modules.
+ */
 :root {
-  --bg-primary: #ffffff;
-  --text-primary: #1a1a1a;
-  --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
-  --border: #e5e7eb;
+  /* Colors */
+  --bg-primary: var(--color-background);
+  --text-primary: var(--color-text);
+  --text-secondary: var(--color-secondary);
+  --text-muted: var(--color-muted);
+  --border: var(--color-border);
+  --card-overlay: var(--color-overlay);
+
+  /* Filter/pill state — alias to semantic tokens */
   --filter-bg: transparent;
-  --filter-border: #e5e7eb;
-  --filter-active-bg: #1a1a1a;
-  --filter-active-text: #ffffff;
-  --card-overlay: rgba(0, 0, 0, 0.5);
+  --filter-border: var(--color-border);
+  --filter-active-bg: var(--color-accent);
+  --filter-active-text: var(--color-background);
+
+  /* Photo treatment — no tailwind equivalent */
   --photo-filter: grayscale(100%);
 
-  --font-serif: 'Space Grotesk', sans-serif;
-  --font-sans: 'Space Grotesk', sans-serif;
+  /* Layout — alias to spacing tokens */
+  --max-width: var(--content-max);
+  --section-padding: var(--section-gap);
 
-  --max-width: 960px;
-  --card-gap: 16px;
-  --section-padding: 80px;
-  --nav-height: 56px;
-  --nav-h-pad: 24px;
-  --nav-link-gap: 24px;
+  /* The following are identical in tailwind.css @theme — no alias needed:
+     --font-serif, --font-sans, --nav-height, --nav-h-pad, --nav-link-gap,
+     --card-gap, --shadow-sm */
 }
 
 * {
