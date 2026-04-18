@@ -1,8 +1,10 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-type SectionId = 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter';
+type SectionId = 'landing-hero' | 'landing-attendees' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
+  { id: 'landing-hero', label: 'Landing Hero' },
+  { id: 'landing-attendees', label: 'Landing Attendees' },
   { id: 'member-hover', label: 'MemberCard — Hover' },
   { id: 'member-flip',  label: 'MemberCard — Flip' },
   { id: 'typography',   label: 'Typography' },
@@ -16,7 +18,7 @@ const SECTION_LABELS: { id: SectionId; label: string }[] = [
 ];
 
 export function StyleGuide() {
-  const [activeSection, setActiveSection] = useState<SectionId>('member-flip');
+  const [activeSection, setActiveSection] = useState<SectionId>('landing-hero');
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
@@ -48,6 +50,38 @@ export function StyleGuide() {
           </button>
         ))}
       </nav>
+
+      {activeSection === 'landing-hero' && (
+        <Section title="Landing Page — Hero">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            First thing visitors see. Goal: inspire them to attend a dinner. Shows the most recent dinner as proof of what they're missing.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {HERO_OPTIONS.map(opt => (
+              <div key={opt.name} style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+                <OptionHeader label={opt.name} />
+                <LandingHeroDemo variant={opt.variant} />
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'landing-attendees' && (
+        <Section title="Landing Page — Attendee Cards">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            How attendees appear below the hero in the "Attendees" tab. Using sample dinner attendees.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {ATTENDEE_OPTIONS.map(opt => (
+              <div key={opt.name} style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+                <OptionHeader label={opt.name} />
+                <AttendeeLayoutDemo variant={opt.variant} />
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {activeSection === 'member-hover' && (
         <Section title="MemberCard — Hover Overlay">
@@ -1232,6 +1266,644 @@ function ShimmerBorderBtn({ children, disabled }: { children: React.ReactNode; d
       >
         {children}
       </button>
+    </div>
+  );
+}
+
+/* ─── Landing Hero ─── */
+
+const HERO_PHOTO = 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&h=800&fit=crop&crop=center';
+
+const HERO_OPTIONS = [
+  { name: 'A — Full-bleed cinematic', variant: 'cinematic' as const },
+  { name: 'B — Split editorial', variant: 'split' as const },
+  { name: 'C — Stacked minimal', variant: 'stacked' as const },
+];
+
+function LandingHeroDemo({ variant }: { variant: 'cinematic' | 'split' | 'stacked' }) {
+  if (variant === 'cinematic') return <HeroCinematic />;
+  if (variant === 'split') return <HeroSplit />;
+  return <HeroStacked />;
+}
+
+/* Option A: Full-bleed photo, dark overlay, centered text, flashy CTA */
+function HeroCinematic() {
+  return (
+    <div style={{
+      position: 'relative',
+      height: '480px',
+      overflow: 'hidden',
+      backgroundColor: '#0a0a0a',
+    }}>
+      <img
+        src={HERO_PHOTO}
+        alt=""
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          filter: 'grayscale(100%) contrast(1.1)',
+          opacity: 0.5,
+        }}
+      />
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%)',
+      }} />
+      <div style={{
+        position: 'relative',
+        zIndex: 1,
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        padding: '24px',
+        gap: '12px',
+      }}>
+        <img src="/images/logo.avif" alt="" style={{ width: 40, height: 40, borderRadius: '4px' }} />
+        <span style={{
+          fontFamily: FONT,
+          fontSize: TYPE.caption.size,
+          fontWeight: TYPE.caption.weight,
+          color: 'rgba(255,255,255,0.5)',
+          textTransform: 'uppercase',
+          letterSpacing: '3px',
+        }}>
+          Q1 2026 · Pizza Express Live Holborn
+        </span>
+        <h1 style={{
+          fontFamily: FONT,
+          fontWeight: TYPE.heading.weight,
+          fontSize: '2.8rem',
+          lineHeight: 1.1,
+          color: '#ffffff',
+          margin: 0,
+        }}>
+          AI Mavericks
+        </h1>
+        <p style={{
+          fontFamily: FONT,
+          fontWeight: TYPE.body.weight,
+          fontSize: TYPE.body.size,
+          lineHeight: TYPE.body.lineHeight,
+          color: 'rgba(255,255,255,0.7)',
+          maxWidth: '420px',
+          margin: 0,
+        }}>
+          Where AI builders meet. Intimate dinners for founders, engineers, and operators shaping the future.
+        </p>
+        <p style={{
+          fontFamily: FONT,
+          fontSize: TYPE.small.size,
+          fontWeight: TYPE.small.weight,
+          color: 'rgba(255,255,255,0.4)',
+          textTransform: 'uppercase',
+          letterSpacing: '1px',
+          margin: '4px 0 8px',
+        }}>
+          7 builders · One table · Real talk
+        </p>
+        <FlashyBtn>Join the Next Dinner</FlashyBtn>
+      </div>
+    </div>
+  );
+}
+
+/* Option B: Left text / right photo, editorial feel */
+function HeroSplit() {
+  return (
+    <div style={{
+      display: 'flex',
+      height: '480px',
+      overflow: 'hidden',
+      backgroundColor: COLORS.bg,
+    }}>
+      {/* Left: text */}
+      <div style={{
+        flex: '1 1 50%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '48px 40px',
+        gap: '12px',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+          <img src="/images/logo.avif" alt="" style={{ width: 28, height: 28, borderRadius: '4px' }} />
+          <span style={{
+            fontFamily: FONT,
+            fontSize: TYPE.small.size,
+            fontWeight: TYPE.small.weight,
+            color: COLORS.textMuted,
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+          }}>
+            AI Mavericks
+          </span>
+        </div>
+        <span style={{
+          fontFamily: FONT,
+          fontSize: TYPE.caption.size,
+          fontWeight: TYPE.caption.weight,
+          color: COLORS.textMuted,
+          textTransform: 'uppercase',
+          letterSpacing: '3px',
+        }}>
+          Most recent dinner
+        </span>
+        <h1 style={{
+          fontFamily: FONT,
+          fontWeight: TYPE.heading.weight,
+          fontSize: '2.369rem',
+          lineHeight: TYPE.heading.lineHeight,
+          color: COLORS.text,
+          margin: 0,
+        }}>
+          Q1 2026 Dinner
+        </h1>
+        <p style={{
+          fontFamily: FONT,
+          fontWeight: TYPE.subheading.weight,
+          fontSize: TYPE.subheading.size,
+          lineHeight: TYPE.subheading.lineHeight,
+          color: COLORS.text,
+          margin: 0,
+        }}>
+          Pizza Express Live Holborn
+        </p>
+        <p style={{
+          fontFamily: FONT,
+          fontWeight: TYPE.body.weight,
+          fontSize: TYPE.body.size,
+          lineHeight: TYPE.body.lineHeight,
+          color: COLORS.textSecondary,
+          maxWidth: '380px',
+          margin: '4px 0',
+        }}>
+          7 builders debating whether junior devs should bother learning to code, AI in education, and LLMs in African fintech.
+        </p>
+        <div style={{ display: 'flex', gap: '12px', marginTop: '8px', alignItems: 'center' }}>
+          <FlashyBtn>Join the Next Dinner</FlashyBtn>
+          <button style={{
+            ...BTN_BASE,
+            ...BTN_VARIANTS.outline,
+          }}>
+            See All Dinners
+          </button>
+        </div>
+      </div>
+      {/* Right: photo */}
+      <div style={{
+        flex: '1 1 50%',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        <img
+          src={HERO_PHOTO}
+          alt=""
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            filter: 'grayscale(100%) contrast(1.1)',
+          }}
+        />
+        {/* Attendee count pill */}
+        <div style={{
+          position: 'absolute',
+          bottom: '16px',
+          right: '16px',
+          backgroundColor: 'rgba(0,0,0,0.7)',
+          borderRadius: '3px',
+          padding: '6px 12px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px',
+        }}>
+          <span style={{
+            fontFamily: FONT,
+            fontSize: TYPE.caption.size,
+            fontWeight: TYPE.caption.weight,
+            color: 'rgba(255,255,255,0.8)',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+          }}>
+            7 Attendees
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Option C: Stacked — photo strip on top, text block below, compact */
+function HeroStacked() {
+  return (
+    <div style={{
+      overflow: 'hidden',
+      backgroundColor: '#0a0a0a',
+    }}>
+      {/* Photo strip — short and wide */}
+      <div style={{
+        position: 'relative',
+        height: '200px',
+        overflow: 'hidden',
+      }}>
+        <img
+          src={HERO_PHOTO}
+          alt=""
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center 40%',
+            filter: 'grayscale(100%) contrast(1.1)',
+            opacity: 0.7,
+          }}
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, transparent 40%, #0a0a0a 100%)',
+        }} />
+      </div>
+      {/* Text content */}
+      <div style={{
+        padding: '0 40px 48px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+          <img src="/images/logo.avif" alt="" style={{ width: 28, height: 28, borderRadius: '4px' }} />
+          <span style={{
+            fontFamily: FONT,
+            fontSize: TYPE.small.size,
+            fontWeight: TYPE.small.weight,
+            color: 'rgba(255,255,255,0.5)',
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+          }}>
+            AI Mavericks
+          </span>
+        </div>
+        <h1 style={{
+          fontFamily: FONT,
+          fontWeight: TYPE.heading.weight,
+          fontSize: '2.369rem',
+          lineHeight: TYPE.heading.lineHeight,
+          color: '#ffffff',
+          margin: 0,
+        }}>
+          The table where AI gets real
+        </h1>
+        <p style={{
+          fontFamily: FONT,
+          fontWeight: TYPE.body.weight,
+          fontSize: TYPE.body.size,
+          lineHeight: TYPE.body.lineHeight,
+          color: 'rgba(255,255,255,0.6)',
+          maxWidth: '500px',
+          margin: 0,
+        }}>
+          Intimate dinners for builders, founders, and operators. No panels. No pitches. Just honest conversation over good food.
+        </p>
+        <div style={{
+          display: 'flex',
+          gap: '16px',
+          alignItems: 'center',
+          marginTop: '12px',
+        }}>
+          <FlashyBtn>Join the Next Dinner</FlashyBtn>
+          <span style={{
+            fontFamily: FONT,
+            fontSize: TYPE.small.size,
+            fontWeight: TYPE.small.weight,
+            color: 'rgba(255,255,255,0.35)',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+          }}>
+            Q1 2026 · 7 builders · Holborn
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Landing Attendees ─── */
+
+const ATTENDEE_OPTIONS = [
+  { name: 'A — Full MemberCards (420px, hover + flip)', variant: 'full' as const },
+  { name: 'B — Compact horizontal (photo + name + role)', variant: 'compact' as const },
+  { name: 'C — Mid-size portrait (280px, hover name only)', variant: 'mid' as const },
+];
+
+const ATTENDEE_MEMBERS = [
+  { ...SAMPLE_MEMBERS[0], interests: ['AI Agents', 'Infra', 'Series B'] },
+  { ...SAMPLE_MEMBERS[1], interests: ['Dev Tools', 'LLMs', 'Fintech'] },
+  { ...SAMPLE_MEMBERS[2], interests: ['Infrastructure', 'AI Agents', 'Healthcare'] },
+  {
+    name: 'Bode Ogunlana',
+    role: 'Data Lead, Fintech Co',
+    bio: 'African fintech data intelligence and LLM applications...',
+    fullBio: 'African fintech data intelligence and LLM applications across emerging markets...',
+    interests: ['Fintech', 'LLMs', 'Data'],
+    lastDinner: 'Q1 2026 — Holborn',
+    allDinners: ['Q1 2026 — Holborn'],
+    company: 'Fintech Co',
+    socials: { linkedin: 'bodeogunlana' },
+    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=face',
+  },
+  {
+    name: 'David Farrell',
+    role: 'Educator, AI Academy',
+    bio: 'Teaching the next generation how to work with AI tools...',
+    fullBio: 'Teaching the next generation how to work with AI tools. Former secondary school teacher turned edtech founder...',
+    interests: ['Education', 'AI Tools', 'EdTech'],
+    lastDinner: 'Q1 2026 — Holborn',
+    allDinners: ['Q1 2026 — Holborn'],
+    company: 'AI Academy',
+    socials: { linkedin: 'davidfarrell' },
+    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=800&fit=crop&crop=face',
+  },
+];
+
+function AttendeeLayoutDemo({ variant }: { variant: 'full' | 'compact' | 'mid' }) {
+  if (variant === 'full') return <AttendeeFull />;
+  if (variant === 'compact') return <AttendeeCompact />;
+  return <AttendeeMid />;
+}
+
+/* Option A: Full MemberCards — reuses the existing hover card at 420px */
+function AttendeeFull() {
+  return (
+    <div style={{ padding: '24px', backgroundColor: COLORS.surface }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+        gap: '20px',
+      }}>
+        {ATTENDEE_MEMBERS.map(member => (
+          <div key={member.name} style={{
+            position: 'relative',
+            height: '420px',
+            borderRadius: '4px',
+            overflow: 'hidden',
+            backgroundColor: '#1a1a1a',
+            cursor: 'pointer',
+          }}>
+            <img
+              src={member.photo}
+              alt={member.name}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center top',
+                filter: 'grayscale(100%) contrast(1.1)',
+                transform: 'scale(1.15)',
+                transition: 'transform 0.4s ease',
+              }}
+            />
+            {/* Name bar at bottom */}
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              padding: '16px',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)',
+            }}>
+              <div style={{
+                fontFamily: FONT,
+                fontWeight: TYPE.subheading.weight,
+                fontSize: TYPE.subheading.size,
+                lineHeight: TYPE.subheading.lineHeight,
+                color: '#ffffff',
+              }}>
+                {member.name}
+              </div>
+              <div style={{
+                fontFamily: FONT,
+                fontSize: TYPE.small.size,
+                fontWeight: TYPE.small.weight,
+                color: 'rgba(255,255,255,0.7)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+              }}>
+                {member.role}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* Option B: Compact horizontal — small photo + name + role inline */
+function AttendeeCompact() {
+  return (
+    <div style={{ padding: '24px', backgroundColor: COLORS.bg }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+        gap: '8px',
+      }}>
+        {ATTENDEE_MEMBERS.map(member => (
+          <div key={member.name} style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            padding: '8px 12px',
+            borderRadius: '4px',
+            border: `1px solid ${COLORS.borderLight}`,
+            cursor: 'pointer',
+            transition: 'background-color 0.15s',
+          }}>
+            <img
+              src={member.photo}
+              alt={member.name}
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '4px',
+                objectFit: 'cover',
+                filter: 'grayscale(100%) contrast(1.1)',
+                flexShrink: 0,
+              }}
+            />
+            <div style={{ minWidth: 0 }}>
+              <div style={{
+                fontFamily: FONT,
+                fontSize: TYPE.small.size,
+                fontWeight: TYPE.small.weight,
+                color: COLORS.text,
+                lineHeight: 1.3,
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}>
+                {member.name}
+              </div>
+              <div style={{
+                fontFamily: FONT,
+                fontSize: TYPE.caption.size,
+                fontWeight: TYPE.caption.weight,
+                color: COLORS.textMuted,
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}>
+                {member.role}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* Option C: Mid-size portrait — 280px cards, hover shows name/role overlay */
+function AttendeeMid() {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
+  return (
+    <div style={{ padding: '24px', backgroundColor: COLORS.surface }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+        gap: '16px',
+      }}>
+        {ATTENDEE_MEMBERS.map((member, i) => (
+          <div
+            key={member.name}
+            onMouseEnter={() => setHoveredIdx(i)}
+            onMouseLeave={() => setHoveredIdx(null)}
+            style={{
+              position: 'relative',
+              height: '280px',
+              borderRadius: '4px',
+              overflow: 'hidden',
+              backgroundColor: '#1a1a1a',
+              cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.10)',
+            }}
+          >
+            <img
+              src={member.photo}
+              alt={member.name}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center top',
+                filter: 'grayscale(100%) contrast(1.1)',
+                transform: hoveredIdx === i ? 'scale(1)' : 'scale(1.1)',
+                transition: 'transform 0.4s ease',
+              }}
+            />
+            {/* Always-visible name at bottom */}
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              padding: '10px 12px',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)',
+            }}>
+              <div style={{
+                fontFamily: FONT,
+                fontSize: TYPE.small.size,
+                fontWeight: TYPE.small.weight,
+                color: '#ffffff',
+                lineHeight: 1.3,
+              }}>
+                {member.name}
+              </div>
+              <div style={{
+                fontFamily: FONT,
+                fontSize: TYPE.caption.size,
+                fontWeight: TYPE.caption.weight,
+                color: 'rgba(255,255,255,0.6)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+              }}>
+                {member.role}
+              </div>
+            </div>
+            {/* Hover overlay — interests + bio teaser */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundColor: 'rgba(0,0,0,0.75)',
+              opacity: hoveredIdx === i ? 1 : 0,
+              transition: 'opacity 0.3s ease',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              padding: '16px',
+              gap: '8px',
+            }}>
+              <div style={{
+                fontFamily: FONT,
+                fontSize: TYPE.small.size,
+                fontWeight: TYPE.small.weight,
+                color: '#ffffff',
+              }}>
+                {member.name}
+              </div>
+              <div style={{
+                fontFamily: FONT,
+                fontSize: TYPE.caption.size,
+                fontWeight: TYPE.caption.weight,
+                color: 'rgba(255,255,255,0.6)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+              }}>
+                {member.role}
+              </div>
+              <p style={{
+                fontFamily: FONT,
+                fontSize: '0.75rem',
+                fontWeight: 400,
+                color: 'rgba(255,255,255,0.7)',
+                lineHeight: 1.4,
+                margin: '4px 0 0',
+              }}>
+                {member.bio}
+              </p>
+              <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '4px' }}>
+                {member.interests.map(tag => (
+                  <span key={tag} style={{
+                    fontFamily: FONT,
+                    fontSize: TYPE.caption.size,
+                    fontWeight: TYPE.caption.weight,
+                    color: 'rgba(255,255,255,0.5)',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    borderRadius: '3px',
+                    padding: '2px 6px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px',
+                  }}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
