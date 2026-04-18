@@ -61,12 +61,29 @@ const SOCIAL_LINKS: SocialLink[] = [
 
 interface Props {
   className?: string;
+  twitter?: string;
+  linkedin?: string;
+  discord?: string;
 }
 
-export function SocialIcons({ className }: Props) {
+export function SocialIcons({ className, twitter, linkedin, discord }: Props) {
+  const custom = twitter !== undefined || linkedin !== undefined || discord !== undefined;
+
+  const links = custom
+    ? (
+        [
+          twitter ? { href: twitter, label: 'X (Twitter)', icon: <XIcon /> } : null,
+          linkedin ? { href: linkedin, label: 'LinkedIn', icon: <LinkedInIcon /> } : null,
+          discord ? { href: discord, label: 'Discord', icon: <DiscordIcon /> } : null,
+        ] as (SocialLink | null)[]
+      ).filter((l): l is SocialLink => l !== null)
+    : SOCIAL_LINKS;
+
+  if (links.length === 0) return null;
+
   return (
     <div className={`${styles.social} ${className ?? ''}`}>
-      {SOCIAL_LINKS.map(({ href, label, icon }) => (
+      {links.map(({ href, label, icon }) => (
         <a
           key={label}
           href={href}
