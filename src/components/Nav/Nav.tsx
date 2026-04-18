@@ -13,6 +13,7 @@ export function Nav({ currentView, onViewChange }: Props) {
     <nav className={styles.nav}>
       <div className={styles.inner}>
         <button className={styles.logo} onClick={() => onViewChange('people')}>
+          <img src="/ai-mavericks-logo.avif" alt="AI Mavericks" className={styles.logoMark} />
           AI Mavericks
         </button>
         <div className={styles.links}>

@@ -26,6 +26,15 @@
   letter-spacing: var(--letter-spacing-wider);
   text-transform: uppercase;
   color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoMark {
+  height: 24px;
+  width: auto;
+  display: block;
 }
 
 .links {
