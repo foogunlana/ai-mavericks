@@ -1,15 +1,18 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-type SectionId = 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card';
+type SectionId = 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
-  { id: 'member-hover', label: 'MemberCard — Hover Overlay' },
-  { id: 'member-flip',  label: 'MemberCard — Click to Flip' },
+  { id: 'member-hover', label: 'MemberCard — Hover' },
+  { id: 'member-flip',  label: 'MemberCard — Flip' },
   { id: 'typography',   label: 'Typography' },
   { id: 'button',       label: 'Button' },
   { id: 'tag',          label: 'Tag' },
   { id: 'avatar',       label: 'Avatar' },
   { id: 'card',         label: 'Card' },
+  { id: 'icons',        label: 'Icons' },
+  { id: 'filter',       label: 'Filter' },
+  { id: 'logo',         label: 'Logo' },
 ];
 
 export function StyleGuide() {
@@ -291,24 +294,37 @@ export function StyleGuide() {
             {/* Elevated */}
             <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
               <OptionHeader label="Elevated — 0 4px 12px rgba(0,0,0,0.10) · for photo cards" />
-              <div style={{ padding: '24px', backgroundColor: COLORS.surface }}>
-                <div style={{
-                  backgroundColor: COLORS.bg,
-                  borderRadius: '4px',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.10)',
-                  overflow: 'hidden',
-                  maxWidth: '320px',
-                }}>
-                  <img
-                    src={SAMPLE_MEMBERS[1].photo}
-                    alt={SAMPLE_MEMBERS[1].name}
-                    style={{ width: '100%', height: '180px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', display: 'block' }}
-                  />
-                  <div style={{ padding: '16px' }}>
-                    <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.subheading.size, color: COLORS.text, marginBottom: '4px' }}>{SAMPLE_MEMBERS[1].name}</p>
-                    <p style={{ fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.small.size, color: COLORS.textSecondary, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{SAMPLE_MEMBERS[1].role}</p>
+              <div style={{ padding: '24px', backgroundColor: COLORS.surface, display: 'flex', gap: '16px' }}>
+                {SAMPLE_MEMBERS.slice(0, 3).map(member => (
+                  <div key={member.name} style={{
+                    borderRadius: '4px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.10)',
+                    overflow: 'hidden',
+                    flex: '1 1 200px',
+                    aspectRatio: '3/4',
+                    position: 'relative',
+                    backgroundColor: '#1a1a1a',
+                  }}>
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', display: 'block' }}
+                    />
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px', background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)' }}>
+                      <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.subheading.size, color: '#fff', lineHeight: TYPE.subheading.lineHeight }}>{member.name}</p>
+                      <p style={{ fontFamily: FONT, fontWeight: TYPE.small.weight, fontSize: TYPE.small.size, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>{member.role}</p>
+                      <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', marginTop: '8px' }}>
+                        {member.interests.map(tag => (
+                          <span key={tag} style={{
+                            fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight,
+                            color: 'rgba(255,255,255,0.8)', border: '1px solid rgba(255,255,255,0.3)',
+                            borderRadius: '3px', padding: '2px 6px', textTransform: 'uppercase', letterSpacing: '0.5px',
+                          }}>{tag}</span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -340,6 +356,173 @@ export function StyleGuide() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+      {activeSection === 'icons' && (
+        <Section title="Icons">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Lucide for UI icons. Outlined circle treatment for social brand icons.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {/* UI Icons — Lucide */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="UI Icons — Lucide, 2px stroke, 20px default" />
+              <div style={{ padding: '32px', display: 'flex', gap: '24px', alignItems: 'center', flexWrap: 'wrap' }}>
+                {UI_ICONS.map(icon => (
+                  <div key={icon.label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={COLORS.text} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d={icon.path} />
+                    </svg>
+                    <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{icon.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Social Icons — outlined circle */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Social Icons — outlined circle + brand SVG, 36px" />
+              <div style={{ padding: '32px', display: 'flex', gap: '16px', alignItems: 'center' }}>
+                {(['x', 'linkedin', 'discord'] as const).map(type => (
+                  <div key={type} style={{
+                    width: 36, height: 36, borderRadius: '50%', border: `1.5px solid ${COLORS.textMuted}`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    <SocialIcon type={type} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Social Icons — bare (card back usage) */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Social Icons — bare, 14px (used on card back)" />
+              <div style={{ padding: '32px', backgroundColor: DARK.bg, display: 'flex', gap: '12px', alignItems: 'center' }}>
+                {(['x', 'linkedin', 'discord'] as const).map(type => (
+                  <SocialIcon key={type} type={type} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'filter' && (
+        <Section title="Filter Dropdown">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Single filter icon in nav. Badge when active. Dropdown panel with category checklists.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {/* Filter icon states */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Filter icon states — inactive, active with badge" />
+              <div style={{ padding: '32px', display: 'flex', gap: '32px', alignItems: 'center' }}>
+                {/* Inactive */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={COLORS.textSecondary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
+                  </svg>
+                  <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>No filters</span>
+                </div>
+                {/* Active with badge */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ position: 'relative' }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={COLORS.text} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
+                    </svg>
+                    <div style={{
+                      position: 'absolute', top: -4, right: -6,
+                      width: 14, height: 14, borderRadius: '50%', backgroundColor: COLORS.text,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                      <span style={{ fontFamily: FONT, fontSize: '7px', fontWeight: 600, color: COLORS.bg }}>3</span>
+                    </div>
+                  </div>
+                  <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>3 active</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Dropdown panel */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Dropdown panel — 320px, category checklists" />
+              <div style={{ padding: '32px', backgroundColor: COLORS.surface }}>
+                <div style={{
+                  width: '320px', backgroundColor: COLORS.bg, borderRadius: '4px',
+                  border: `1px solid ${COLORS.border}`, boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+                  overflow: 'hidden',
+                }}>
+                  {/* Header */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', borderBottom: `1px solid ${COLORS.border}` }}>
+                    <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '1px' }}>Filters</span>
+                    <button style={{ ...BTN_BASE, ...BTN_VARIANTS.ghost, fontSize: TYPE.caption.size, padding: '4px 8px' }}>Clear all</button>
+                  </div>
+                  {/* Role section */}
+                  <div style={{ padding: '8px 0' }}>
+                    <p style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', padding: '4px 16px' }}>Role</p>
+                    {['Founder', 'Engineer', 'Data Scientist', 'Product Manager'].map((role, i) => (
+                      <div key={role} style={{
+                        padding: '8px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer',
+                        backgroundColor: i < 2 ? COLORS.borderLight : 'transparent',
+                      }}>
+                        <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: i < 2 ? 600 : 400, color: i < 2 ? COLORS.text : COLORS.textSecondary }}>{role}</span>
+                        {i < 2 && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={COLORS.text} strokeWidth="2.5"><path d="M20 6 9 17l-5-5" /></svg>}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Interest section */}
+                  <div style={{ padding: '8px 0', borderTop: `1px solid ${COLORS.border}` }}>
+                    <p style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', padding: '4px 16px' }}>Interest</p>
+                    {['AI Agents', 'LLMs', 'Fintech', 'Healthcare'].map((interest, i) => (
+                      <div key={interest} style={{
+                        padding: '8px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer',
+                        backgroundColor: i === 0 ? COLORS.borderLight : 'transparent',
+                      }}>
+                        <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: i === 0 ? 600 : 400, color: i === 0 ? COLORS.text : COLORS.textSecondary }}>{interest}</span>
+                        {i === 0 && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={COLORS.text} strokeWidth="2.5"><path d="M20 6 9 17l-5-5" /></svg>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'logo' && (
+        <Section title="Logo">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Logo mark + wordmark. Tracked uppercase Small type.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {/* Nav context */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="In nav context — logo mark + AI MAVERICKS" />
+              <div style={{ padding: '0', backgroundColor: COLORS.bg }}>
+                <div style={{
+                  height: '56px', display: 'flex', alignItems: 'center', padding: '0 24px',
+                  borderBottom: `1px solid ${COLORS.border}`, gap: '10px',
+                }}>
+                  <img src="/ai-mavericks-logo.avif" alt="AI Mavericks" style={{ width: 28, height: 28, borderRadius: '4px' }} />
+                  <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '2px' }}>
+                    AI Mavericks
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Standalone */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Standalone — larger, centered" />
+              <div style={{ padding: '48px', backgroundColor: COLORS.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+                <img src="/ai-mavericks-logo.avif" alt="AI Mavericks" style={{ width: 40, height: 40, borderRadius: '4px' }} />
+                <span style={{ fontFamily: FONT, fontSize: TYPE.subheading.size, fontWeight: TYPE.small.weight, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '3px' }}>
+                  AI Mavericks
+                </span>
               </div>
             </div>
           </div>
@@ -431,6 +614,16 @@ const AVATAR_SIZES: { label: string; size: number }[] = [
   { label: 'back', size: 36 },
   { label: 'md',   size: 48 },
   { label: 'lg',   size: 80 },
+];
+
+const UI_ICONS = [
+  { label: 'Filter', path: 'M22 3H2l8 9.46V19l4 2v-8.54L22 3z' },
+  { label: 'X / Close', path: 'M18 6 6 18M6 6l12 12' },
+  { label: 'Arrow Left', path: 'M19 12H5M12 19l-7-7 7-7' },
+  { label: 'External', path: 'M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3' },
+  { label: 'Check', path: 'M20 6 9 17l-5-5' },
+  { label: 'ChevronDown', path: 'M6 9l6 6 6-6' },
+  { label: 'Menu', path: 'M4 12h16M4 6h16M4 18h16' },
 ];
 
 const CONFETTI_COLORS = ['#7c3aed', '#a78bfa', '#c4b5fd', '#f472b6', '#818cf8', '#e879f9', '#fbbf24', '#34d399'];
