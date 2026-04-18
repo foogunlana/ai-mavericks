@@ -140,6 +140,32 @@
   --shadow-md: 0 2px 8px rgba(42, 42, 42, 0.08);
   --shadow-lg: 0 8px 24px rgba(42, 42, 42, 0.12);
 
+  /* ─── Spacing Scale ─── */
+  /* Anchored to nav: 56px height, 24px h-pad, 24px link gap */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;   /* nav h-pad, nav link gap */
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 56px;  /* nav height */
+  --space-11: 64px;
+  --space-12: 80px;
+  --space-13: 96px;
+  --space-14: 120px;
+  --space-15: 160px;
+
+  /* Named semantic stops */
+  --nav-height: 56px;
+  --nav-h-pad: 24px;
+  --nav-link-gap: 24px;
+  --section-gap: 80px;
+  --card-gap: 16px;
+  --content-max: 960px;
+
   /* ─── Breakpoints ─── */
   --breakpoint-sm: 480px;
   --breakpoint-md: 768px;

@@ -15,9 +15,11 @@
   --font-sans: 'Space Grotesk', sans-serif;
 
   --max-width: 960px;
-  --card-gap: 14px;
-  --section-padding: 40px;
-  --nav-height: 48px;
+  --card-gap: 16px;
+  --section-padding: 80px;
+  --nav-height: 56px;
+  --nav-h-pad: 24px;
+  --nav-link-gap: 24px;
 }
 
 * {
