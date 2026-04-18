@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
 import { FilterBar } from './components/FilterBar/FilterBar';
+import { FilterDropdown } from './components/FilterDropdown/FilterDropdown';
 import { MemberGrid } from './components/MemberGrid/MemberGrid';
 import { DinnersList } from './components/DinnersList/DinnersList';
 import { DinnerDetail } from './components/DinnerDetail/DinnerDetail';
@@ -44,7 +45,7 @@ function App() {
               <LandingHero latestDinner={dinners[0]} />
               <LandingIntro />
               <section className={styles.section}>
-                <FilterBar
+                <FilterDropdown
                   filters={filters}
                   toggleFilter={toggleFilter}
                   clearFilters={clearFilters}
