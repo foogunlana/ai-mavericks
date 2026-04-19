@@ -1,0 +1,45 @@
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(91, 33, 182, 0.25), 0 0 16px rgba(91, 33, 182, 0.1); }
+  50% { box-shadow: 0 0 14px rgba(91, 33, 182, 0.35), 0 0 28px rgba(91, 33, 182, 0.15); }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(120px) rotate(720deg) scale(0); opacity: 0; }
+}
+
+.flashyBtn {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: var(--line-height-snug);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: var(--space-2) var(--space-6);
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: linear-gradient(135deg, #5b21b6, #7c3aed, #a855f7, #7c3aed, #5b21b6);
+  background-size: 300% 300%;
+  animation: shimmer 3s linear infinite, glow-pulse 3s ease-in-out infinite;
+  color: #ffffff;
+  border: 1px solid rgba(91, 33, 182, 0.3);
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.flashyBtn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.confettiParticle {
+  position: absolute;
+  animation: confetti-fall 0.8s ease-out forwards;
+}

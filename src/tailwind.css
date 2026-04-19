@@ -24,7 +24,7 @@
   --font-sans: 'Space Grotesk', sans-serif;
 
   /* Font sizes - perfect fourth scale (1.333) */
-  --font-size-xs: 0.563rem;     /* ~9px  — caption */
+  --font-size-xs: 0.5rem;       /* 8px   — caption */
   --font-size-sm: 0.688rem;     /* ~11px — small */
   --font-size-base: 1rem;       /* 16px  — body */
   --font-size-md: 1.333rem;     /* ~21px — subheading */
