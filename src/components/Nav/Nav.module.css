@@ -12,6 +12,7 @@
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
+  margin-bottom: calc(-1 * var(--nav-height));
 }
 
 .inner {
