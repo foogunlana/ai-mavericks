@@ -3,49 +3,59 @@
   "slug": "2025-07-july",
   "date": "2025-07-31",
   "venue": "Ramen Space",
-  "groupPhoto": "/images/stock/dinners/dinner-stock-4.jpg",
+  "groupPhoto": "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1400&h=800&fit=crop",
   "isStockPhoto": true,
   "description": "Expansive discussion at Ramen Space covering vibe coding, Claude Code vs Cursor, AI eating software, legacy programming languages, evolving tech roles, and startup distribution strategy.",
   "topics": [
     {
-      "text": "Vibe coding and the future of development — Rachel demoed a language learning app built in hours using Lovable",
+      "text": "Vibe coding and the future of development \u2014 Rachel demoed a language learning app built in hours using Lovable",
       "attribution": "Rachel",
       "links": []
     },
     {
-      "text": "Claude Code vs Cursor debate — most attendees favoured Claude Code's new paradigm; multi-agent approach to building features",
+      "text": "Claude Code vs Cursor debate \u2014 most attendees favoured Claude Code's new paradigm; multi-agent approach to building features",
       "attribution": "Group",
-      "links": ["https://github.com/RooCodeInc/Roo-Code"]
+      "links": [
+        "https://github.com/RooCodeInc/Roo-Code"
+      ]
     },
     {
-      "text": "AI is eating software — personalised, custom, even throwaway software becomes possible, but distribution and marketing remain key",
+      "text": "AI is eating software \u2014 personalised, custom, even throwaway software becomes possible, but distribution and marketing remain key",
       "attribution": "Shingi",
       "links": []
     },
     {
-      "text": "Legacy programming languages and AI — opportunities to maintain or migrate COBOL, Fortran, q code using AI",
+      "text": "Legacy programming languages and AI \u2014 opportunities to maintain or migrate COBOL, Fortran, q code using AI",
       "attribution": "Gabi",
-      "links": ["https://en.wikipedia.org/wiki/APL_(programming_language)", "https://bloop.ai"]
+      "links": [
+        "https://en.wikipedia.org/wiki/APL_(programming_language)",
+        "https://bloop.ai"
+      ]
     },
     {
-      "text": "Evolving roles of tech professionals — coalescence of developer, PM, and designer roles giving generalists an advantage",
+      "text": "Evolving roles of tech professionals \u2014 coalescence of developer, PM, and designer roles giving generalists an advantage",
       "attribution": "Eddie",
       "links": []
     },
     {
-      "text": "AI in the enterprise — most valuable use cases are internal, augmenting employee workflows rather than customer-facing chatbots",
+      "text": "AI in the enterprise \u2014 most valuable use cases are internal, augmenting employee workflows rather than customer-facing chatbots",
       "attribution": "Dexter",
       "links": []
     },
     {
-      "text": "Startup insights — distribution obsession over product obsession; founder-led sales crucial in early stages",
+      "text": "Startup insights \u2014 distribution obsession over product obsession; founder-led sales crucial in early stages",
       "attribution": "Rachel",
-      "links": ["https://www.foundingsales.com/"]
+      "links": [
+        "https://www.foundingsales.com/"
+      ]
     },
     {
-      "text": "Recommended reading on AI's future — AI 2027 and Situational Awareness essays",
+      "text": "Recommended reading on AI's future \u2014 AI 2027 and Situational Awareness essays",
       "attribution": "Group",
-      "links": ["https://ai-2027.com/", "https://situational-awareness.ai/"]
+      "links": [
+        "https://ai-2027.com/",
+        "https://situational-awareness.ai/"
+      ]
     }
   ],
   "attendees": [

@@ -14,7 +14,10 @@ export function DinnerHero({ dinner, onSelectDinner }: Props) {
     year: 'numeric',
   });
 
-  const attendeeMembers = dinner.attendees.map(getMemberBySlug).filter(Boolean);
+  const attendeeMembers = dinner.attendees
+    .map(getMemberBySlug)
+    .filter(Boolean)
+    .sort((a, b) => a!.name.localeCompare(b!.name));
 
   return (
     <div

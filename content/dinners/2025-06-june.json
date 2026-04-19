@@ -3,47 +3,62 @@
   "slug": "2025-06-june",
   "date": "2025-06-30",
   "venue": "London",
-  "groupPhoto": "/images/stock/dinners/dinner-stock-3.jpg",
+  "groupPhoto": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1400&h=800&fit=crop",
   "isStockPhoto": true,
   "description": "Deep discussion on Mary Meeker's AI report, the UK job market, model routing, startup ARR reporting, and changing the tech interview process for the AI era.",
   "topics": [
     {
-      "text": "Mary Meeker's AI Report — AI use heavily subsidised by VC money; cost per model will decrease driving adoption",
+      "text": "Mary Meeker's AI Report \u2014 AI use heavily subsidised by VC money; cost per model will decrease driving adoption",
       "attribution": "Olivier",
-      "links": ["https://www.bondcap.com/report/pdf/Trends_Artificial_Intelligence.pdf"]
+      "links": [
+        "https://www.bondcap.com/report/pdf/Trends_Artificial_Intelligence.pdf"
+      ]
     },
     {
       "text": "UK job market is very tough for engineers, reminiscent of post-Lehman Brothers, but well-funded companies hiring top AI talent",
       "attribution": "Oliver",
-      "links": ["https://www.reuters.com/business/zuckerbergs-meta-superintelligence-labs-poaches-top-ai-talent-silicon-valley-2025-07-08/"]
+      "links": [
+        "https://www.reuters.com/business/zuckerbergs-meta-superintelligence-labs-poaches-top-ai-talent-silicon-valley-2025-07-08/"
+      ]
     },
     {
-      "text": "Challenges of model routing — balancing cost and quality when auto-selecting models for tasks",
+      "text": "Challenges of model routing \u2014 balancing cost and quality when auto-selecting models for tasks",
       "attribution": "Olivier",
-      "links": ["https://openrouter.ai/"]
+      "links": [
+        "https://openrouter.ai/"
+      ]
     },
     {
       "text": "Pipedream recommended to quickly connect to 1000s of API integrations",
       "attribution": "Olivier",
-      "links": ["https://pipedream.com/"]
+      "links": [
+        "https://pipedream.com/"
+      ]
     },
     {
       "text": "Google Labs as a place to experiment with latest Google AI products",
       "attribution": "Xavier",
-      "links": ["https://labs.google/"]
+      "links": [
+        "https://labs.google/"
+      ]
     },
     {
-      "text": "Toxicity of startup MRR/ARR reporting on social media — inflated figures, undisclosed churn and margins",
+      "text": "Toxicity of startup MRR/ARR reporting on social media \u2014 inflated figures, undisclosed churn and margins",
       "attribution": "Group",
-      "links": ["https://x.com/cisco_raio/status/1905594476032385074", "https://www.saastr.com/100mreplit/"]
+      "links": [
+        "https://x.com/cisco_raio/status/1905594476032385074",
+        "https://www.saastr.com/100mreplit/"
+      ]
     },
     {
       "text": "LangGraph recommended for building marketing agents",
       "attribution": "Greg",
-      "links": ["https://www.langchain.com/langgraph"]
+      "links": [
+        "https://www.langchain.com/langgraph"
+      ]
     },
     {
-      "text": "Changing the interview process for AI era — allowing candidates to use AI but requiring understanding",
+      "text": "Changing the interview process for AI era \u2014 allowing candidates to use AI but requiring understanding",
       "attribution": "Group",
       "links": []
     }

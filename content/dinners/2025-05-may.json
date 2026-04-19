@@ -3,29 +3,37 @@
   "slug": "2025-05-may",
   "date": "2025-05-19",
   "venue": "London",
-  "groupPhoto": "/images/stock/dinners/dinner-stock-2.jpg",
+  "groupPhoto": "https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=1400&h=800&fit=crop",
   "isStockPhoto": true,
   "description": "Wide-ranging conversation covering mobile gaming economics, sales in the AI era, European accelerators, and the continued importance of technical co-founders.",
   "topics": [
     {
-      "text": "Mobile games are money makers — David shared how games at his previous company generated multiple millions per day",
+      "text": "Mobile games are money makers \u2014 David shared how games at his previous company generated multiple millions per day",
       "attribution": "David",
-      "links": ["https://www.businessofapps.com/data/candy-crush-statistics/"]
+      "links": [
+        "https://www.businessofapps.com/data/candy-crush-statistics/"
+      ]
     },
     {
       "text": "In sales, the human connection remains important, especially for high-touch sales",
       "attribution": "Group",
-      "links": ["https://techcrunch.com/2024/12/17/salesforce-plans-to-hire-2000-people-to-sell-its-ai-products/"]
+      "links": [
+        "https://techcrunch.com/2024/12/17/salesforce-plans-to-hire-2000-people-to-sell-its-ai-products/"
+      ]
     },
     {
       "text": "EWOR accelerator praised as a potential YC of Europe",
       "attribution": "Rockman",
-      "links": ["https://www.ewor.com/"]
+      "links": [
+        "https://www.ewor.com/"
+      ]
     },
     {
-      "text": "Financial health for businesses — close attention to Customer Acquisition Cost (CAC)",
+      "text": "Financial health for businesses \u2014 close attention to Customer Acquisition Cost (CAC)",
       "attribution": "Peter",
-      "links": ["https://santiagopampillo.github.io/TechDisrupt/Articles/44-Growth-Marketing-90-why-every-start-up-needs-to-know-their-customer-acquisition-cost.html"]
+      "links": [
+        "https://santiagopampillo.github.io/TechDisrupt/Articles/44-Growth-Marketing-90-why-every-start-up-needs-to-know-their-customer-acquisition-cost.html"
+      ]
     },
     {
       "text": "Technical co-founders are still (maybe even more so) important in this new age of AI",
@@ -35,12 +43,16 @@
     {
       "text": "Why are founders who are ex-Palantir crushing it?",
       "attribution": "Group",
-      "links": ["https://www.partly.work/p/lessons-from-palantir-alums-about"]
+      "links": [
+        "https://www.partly.work/p/lessons-from-palantir-alums-about"
+      ]
     },
     {
       "text": "Using Pydantic AI to rewrite Sano's codebase is working very well",
       "attribution": "William",
-      "links": ["https://ai.pydantic.dev/"]
+      "links": [
+        "https://ai.pydantic.dev/"
+      ]
     }
   ],
   "attendees": [

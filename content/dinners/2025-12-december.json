@@ -3,49 +3,60 @@
   "slug": "2025-12-december",
   "date": "2025-12-08",
   "venue": "Pizza Express Live Holborn",
-  "groupPhoto": "/images/stock/dinners/dinner-stock-5.jpg",
+  "groupPhoto": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1400&h=800&fit=crop",
   "isStockPhoto": true,
   "description": "Year-end gathering covering AI consulting models, economic impact of AI, expert systems vs LLMs, medical transcription, deep research, and the ARC-AGI challenge.",
   "topics": [
     {
-      "text": "AI consulting — offer cloud or local deployment flexibility, apply 80/20 rule; projects getting bigger in 2026",
+      "text": "AI consulting \u2014 offer cloud or local deployment flexibility, apply 80/20 rule; projects getting bigger in 2026",
       "attribution": "Kitan",
       "links": []
     },
     {
-      "text": "Economic impact of AI — inequality increasing, philosophical discussion on capitalism and automation",
+      "text": "Economic impact of AI \u2014 inequality increasing, philosophical discussion on capitalism and automation",
       "attribution": "Group",
-      "links": ["https://ai-2027.com/", "https://situational-awareness.ai/", "https://www.lesswrong.com/posts/KFFaKu27FNugCHFmh/by-default-capital-will-matter-more-than-ever-after-agi"]
+      "links": [
+        "https://ai-2027.com/",
+        "https://situational-awareness.ai/",
+        "https://www.lesswrong.com/posts/KFFaKu27FNugCHFmh/by-default-capital-will-matter-more-than-ever-after-agi"
+      ]
     },
     {
-      "text": "Rise of robotics — clear benefits for elderly care and healthcare",
+      "text": "Rise of robotics \u2014 clear benefits for elderly care and healthcare",
       "attribution": "Kitan",
       "links": []
     },
     {
-      "text": "Expert systems still beat LLMs in certain domains — chess expert system at 3,500 Elo vs LLMs at 800",
+      "text": "Expert systems still beat LLMs in certain domains \u2014 chess expert system at 3,500 Elo vs LLMs at 800",
       "attribution": "Ian",
       "links": []
     },
     {
-      "text": "Challenges of AI-generated code — duplication, need for strong foundations, MCP and Figma for UI/UX",
+      "text": "Challenges of AI-generated code \u2014 duplication, need for strong foundations, MCP and Figma for UI/UX",
       "attribution": "Group",
-      "links": ["https://review.fast/"]
+      "links": [
+        "https://review.fast/"
+      ]
     },
     {
-      "text": "Medical transcription augmented by AI — identifying terminology misquotes and structural issues",
+      "text": "Medical transcription augmented by AI \u2014 identifying terminology misquotes and structural issues",
       "attribution": "Gaurav",
       "links": []
     },
     {
-      "text": "Deep research applications — parallel agents searching, synthesising, and presenting information; ESG signals for hedge funds",
+      "text": "Deep research applications \u2014 parallel agents searching, synthesising, and presenting information; ESG signals for hedge funds",
       "attribution": "Eddie",
       "links": []
     },
     {
-      "text": "Ian's Playgroup deep-dive events and ARC-AGI 2026 challenge — can LLMs solve spatial reasoning?",
+      "text": "Ian's Playgroup deep-dive events and ARC-AGI 2026 challenge \u2014 can LLMs solve spatial reasoning?",
       "attribution": "Ian",
-      "links": ["https://arcprize.org/arc-agi", "https://jeremyberman.substack.com/p/how-i-got-a-record-536-on-arc-agi", "https://jeremyberman.substack.com/p/how-i-got-the-highest-score-on-arc-agi-again", "https://ctpang.substack.com/p/e760eba7-c8b3-4fda-b631-61b89dd0d0fd"]
+      "links": [
+        "https://arcprize.org/arc-agi",
+        "https://jeremyberman.substack.com/p/how-i-got-a-record-536-on-arc-agi",
+        "https://jeremyberman.substack.com/p/how-i-got-the-highest-score-on-arc-agi-again",
+        "https://ctpang.substack.com/p/e760eba7-c8b3-4fda-b631-61b89dd0d0fd"
+      ]
     }
   ],
   "attendees": [

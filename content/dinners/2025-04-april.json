@@ -3,34 +3,44 @@
   "slug": "2025-04-april",
   "date": "2025-04-14",
   "venue": "London",
-  "groupPhoto": "/images/stock/dinners/dinner-stock-1.jpg",
+  "groupPhoto": "https://images.unsplash.com/photo-1529543544282-ea670407fca3?w=1400&h=800&fit=crop",
   "isStockPhoto": true,
-  "description": "Lively discussion on market selection, vibe coding and data labelling — the first Beehiiv-era dinner.",
+  "description": "Lively discussion on market selection, vibe coding and data labelling \u2014 the first Beehiiv-era dinner.",
   "topics": [
     {
       "text": "The importance of choosing a big enough (or rapidly growing) market for your company to operate in",
       "attribution": "Hugh",
-      "links": ["https://pmarchive.com/guide_to_startups_part4.html"]
+      "links": [
+        "https://pmarchive.com/guide_to_startups_part4.html"
+      ]
     },
     {
-      "text": "Vibe coding with Replit Agent — web games built end-to-end with prompts",
+      "text": "Vibe coding with Replit Agent \u2014 web games built end-to-end with prompts",
       "attribution": "Dominic",
-      "links": ["https://docs.replit.com/replitai/agent"]
+      "links": [
+        "https://docs.replit.com/replitai/agent"
+      ]
     },
     {
-      "text": "Professional social networks — Happenstance.ai mentioned",
+      "text": "Professional social networks \u2014 Happenstance.ai mentioned",
       "attribution": "Group",
-      "links": ["https://happenstance.ai/"]
+      "links": [
+        "https://happenstance.ai/"
+      ]
     },
     {
-      "text": "Data labelling for AI — Scale.ai as the leading company",
+      "text": "Data labelling for AI \u2014 Scale.ai as the leading company",
       "attribution": "Markus",
-      "links": ["https://scale.com/"]
+      "links": [
+        "https://scale.com/"
+      ]
     },
     {
       "text": "UI prototyping with magicpatterns.com",
       "attribution": "Dominic",
-      "links": ["https://www.magicpatterns.com/"]
+      "links": [
+        "https://www.magicpatterns.com/"
+      ]
     }
   ],
   "attendees": [
