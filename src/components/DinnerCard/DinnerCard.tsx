@@ -26,15 +26,17 @@ export function DinnerCard({ dinner, onClick }: Props) {
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
     >
-      <div className={styles.photoWrap}>
-        <img
-          src={dinner.groupPhoto}
-          alt={dinner.name}
-          className={styles.photo}
-          style={{ transform: hovered ? 'scale(1)' : 'scale(1.15)' }}
-          loading="lazy"
-        />
-      </div>
+      {dinner.groupPhoto && (
+        <div className={styles.photoWrap}>
+          <img
+            src={dinner.groupPhoto}
+            alt={dinner.name}
+            className={styles.photo}
+            style={{ transform: hovered ? 'scale(1)' : 'scale(1.15)' }}
+            loading="lazy"
+          />
+        </div>
+      )}
       <div className={styles.body}>
         <div className={styles.meta}>
           <span className={styles.date}>{formattedDate}</span>

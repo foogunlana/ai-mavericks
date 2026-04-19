@@ -24,7 +24,7 @@ export interface Dinner {
   slug: string;
   date: string;
   venue: string;
-  groupPhoto: string;
+  groupPhoto: string | null;
   description: string;
   topics: Topic[];
   attendees: string[];

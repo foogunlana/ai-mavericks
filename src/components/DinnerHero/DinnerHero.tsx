@@ -18,13 +18,15 @@ export function DinnerHero({ dinner }: Props) {
   return (
     <div className={styles.hero}>
       {/* Left: photo */}
-      <div className={styles.photoCol}>
-        <img
-          src={dinner.groupPhoto}
-          alt={dinner.name}
-          className={styles.photo}
-        />
-      </div>
+      {dinner.groupPhoto && (
+        <div className={styles.photoCol}>
+          <img
+            src={dinner.groupPhoto}
+            alt={dinner.name}
+            className={styles.photo}
+          />
+        </div>
+      )}
 
       {/* Right: details */}
       <div className={styles.details}>
