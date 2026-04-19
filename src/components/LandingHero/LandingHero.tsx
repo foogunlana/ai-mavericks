@@ -98,8 +98,10 @@ export function LandingHero({ latestDinner }: LandingHeroProps) {
       <div className={`${styles.blob} ${styles.blob3}`} />
       <div className={`${styles.blob} ${styles.blob4}`} />
 
+      <img src="/images/logo.avif" alt="AI Mavericks" className={styles.floatingLogo} />
+      <a className={styles.floatingNewsletter} href="#">Newsletter</a>
+
       <div className={styles.content}>
-        <img src="/images/logo.avif" alt="" className={styles.logoMark} />
         <span className={styles.dinnerMeta}>
           {formatDinnerMeta(latestDinner)}
         </span>

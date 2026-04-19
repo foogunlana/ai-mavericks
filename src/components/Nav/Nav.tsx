@@ -4,11 +4,12 @@ import type { View } from '../../App';
 interface Props {
   currentView: View;
   onViewChange: (view: View) => void;
+  hidden?: boolean;
 }
 
-export function Nav({ currentView, onViewChange }: Props) {
+export function Nav({ currentView, onViewChange, hidden = false }: Props) {
   return (
-    <nav className={styles.nav}>
+    <nav className={`${styles.nav}${hidden ? ` ${styles.hidden}` : ''}`}>
       <div className={styles.inner}>
         <button className={styles.logo} onClick={() => onViewChange('home')}>
           <img src="/ai-mavericks-logo.avif" alt="AI Mavericks" className={styles.logoMark} />

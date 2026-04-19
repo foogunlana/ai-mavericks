@@ -134,10 +134,34 @@
   gap: var(--space-3);
 }
 
-.logoMark {
-  width: 40px;
-  height: 40px;
+.floatingLogo {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-sm);
+  opacity: 0.4;
+  z-index: 2;
+}
+
+.floatingNewsletter {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-6);
+  z-index: 2;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.floatingNewsletter:hover {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .dinnerMeta {
@@ -152,7 +176,7 @@
 .heading {
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: 2.8rem;
+  font-size: 4.2rem;
   line-height: 1.1;
   color: #ffffff;
   margin: 0;
@@ -161,16 +185,16 @@
 .tagline {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: var(--font-size-base);
+  font-size: 1.15rem;
   line-height: var(--line-height-normal);
   color: rgba(255, 255, 255, 0.7);
-  max-width: 420px;
+  max-width: 480px;
   margin: 0;
 }
 
 .attendeeCount {
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
+  font-size: 1rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;

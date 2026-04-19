@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
 import { DinnersPage } from './components/DinnersPage/DinnersPage';
@@ -16,6 +16,23 @@ export type View = 'home' | 'people' | 'dinners' | 'dinner-detail' | 'styleguide
 function App() {
   const [view, setView] = useState<View>('home');
   const [selectedDinnerSlug, setSelectedDinnerSlug] = useState<string | null>(null);
+  const [heroVisible, setHeroVisible] = useState(true);
+  const heroSentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (view !== 'home') {
+      setHeroVisible(true);
+      return;
+    }
+    const sentinel = heroSentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroVisible(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [view]);
 
   const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers } =
     useFilterState();
@@ -32,14 +49,21 @@ function App() {
     setSelectedDinnerSlug(null);
   };
 
+  const navHidden = view === 'home' && heroVisible;
+
   return (
     <>
-      <Nav currentView={view} onViewChange={setView} />
+      <Nav currentView={view} onViewChange={setView} hidden={navHidden} />
+      {view === 'home' && (
+        <>
+          <LandingHero latestDinner={dinners[0]} />
+          <div ref={heroSentinelRef} style={{ height: 0 }} />
+        </>
+      )}
       <div className={styles.app}>
         <main>
           {view === 'home' && (
             <>
-              <LandingHero latestDinner={dinners[0]} />
               <section className={styles.section}>
                 <MemberList
                   members={filteredMembers}
