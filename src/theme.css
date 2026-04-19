@@ -25,6 +25,12 @@
   --max-width: var(--content-max);
   --section-padding: var(--section-gap);
 
+  /* Font size aliases — used by MemberList and MemberListView */
+  --text-subheading: var(--font-size-md);
+  --text-body: var(--font-size-base);
+  --text-small: var(--font-size-sm);
+  --text-caption: var(--font-size-xs);
+
   /* The following are identical in tailwind.css @theme — no alias needed:
      --font-serif, --font-sans, --nav-height, --nav-h-pad, --nav-link-gap,
      --card-gap, --shadow-sm */
