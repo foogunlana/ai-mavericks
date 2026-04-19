@@ -34,12 +34,14 @@ export function Nav({ currentView, onViewChange, hidden = false }: Props) {
           >
             Dinners
           </button>
-          <button
-            className={`${styles.link} ${currentView === 'styleguide' ? styles.active : ''}`}
-            onClick={() => onViewChange('styleguide')}
-          >
-            Style Guide
-          </button>
+          {import.meta.env.DEV && (
+            <button
+              className={`${styles.link} ${currentView === 'styleguide' ? styles.active : ''}`}
+              onClick={() => onViewChange('styleguide')}
+            >
+              Style Guide
+            </button>
+          )}
         </div>
       </div>
     </nav>
