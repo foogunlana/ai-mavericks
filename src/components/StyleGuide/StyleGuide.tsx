@@ -856,7 +856,7 @@ export function StyleGuide() {
                   }}>
                     {/* Logo */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: `${opt.logoGap}px`, cursor: 'pointer' }}>
-                      <img src="/ai-mavericks-logo.avif" alt="AI Mavericks" style={{ width: opt.logoSize, height: opt.logoSize, borderRadius: '4px' }} />
+                      <img src={`${import.meta.env.BASE_URL}ai-mavericks-logo.avif`} alt="AI Mavericks" style={{ width: opt.logoSize, height: opt.logoSize, borderRadius: '4px' }} />
                       <span style={{ fontFamily: FONT, fontSize: opt.fontSize, fontWeight: opt.fontWeight, color: COLORS.text, textTransform: 'uppercase', letterSpacing: opt.letterSpacing }}>
                         AI Mavericks
                       </span>
@@ -917,7 +917,7 @@ export function StyleGuide() {
                   height: '56px', display: 'flex', alignItems: 'center', padding: '0 24px',
                   borderBottom: `1px solid ${COLORS.border}`, gap: '10px',
                 }}>
-                  <img src="/ai-mavericks-logo.avif" alt="AI Mavericks" style={{ width: 28, height: 28, borderRadius: '4px' }} />
+                  <img src={`${import.meta.env.BASE_URL}ai-mavericks-logo.avif`} alt="AI Mavericks" style={{ width: 28, height: 28, borderRadius: '4px' }} />
                   <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '2px' }}>
                     AI Mavericks
                   </span>
@@ -929,7 +929,7 @@ export function StyleGuide() {
             <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
               <OptionHeader label="Standalone — larger, centered" />
               <div style={{ padding: '48px', backgroundColor: COLORS.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
-                <img src="/ai-mavericks-logo.avif" alt="AI Mavericks" style={{ width: 40, height: 40, borderRadius: '4px' }} />
+                <img src={`${import.meta.env.BASE_URL}ai-mavericks-logo.avif`} alt="AI Mavericks" style={{ width: 40, height: 40, borderRadius: '4px' }} />
                 <span style={{ fontFamily: FONT, fontSize: TYPE.subheading.size, fontWeight: TYPE.small.weight, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '3px' }}>
                   AI Mavericks
                 </span>
@@ -1770,7 +1770,7 @@ function HeroAurora() {
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         textAlign: 'center', padding: '24px', gap: '12px',
       }}>
-        <img src="/images/logo.avif" alt="" style={{ width: 44, height: 44, borderRadius: '4px' }} />
+        <img src={`${import.meta.env.BASE_URL}images/logo.avif`} alt="" style={{ width: 44, height: 44, borderRadius: '4px' }} />
         <span style={{
           fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight,
           color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' as const, letterSpacing: '3px',
@@ -1850,7 +1850,7 @@ function HeroMesh() {
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         textAlign: 'center', padding: '24px', gap: '12px',
       }}>
-        <img src="/images/logo.avif" alt="" style={{ width: 44, height: 44, borderRadius: '4px' }} />
+        <img src={`${import.meta.env.BASE_URL}images/logo.avif`} alt="" style={{ width: 44, height: 44, borderRadius: '4px' }} />
         <span style={{
           fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight,
           color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' as const, letterSpacing: '3px',
@@ -1948,7 +1948,7 @@ function HeroGrid() {
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         textAlign: 'center', padding: '24px', gap: '12px',
       }}>
-        <img src="/images/logo.avif" alt="" style={{ width: 44, height: 44, borderRadius: '4px' }} />
+        <img src={`${import.meta.env.BASE_URL}images/logo.avif`} alt="" style={{ width: 44, height: 44, borderRadius: '4px' }} />
         <span style={{
           fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight,
           color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' as const, letterSpacing: '3px',
