@@ -1,6 +1,6 @@
 import { getDinnerBySlug } from '../../data/dinners';
 import { getMemberBySlug } from '../../data/members';
-import { AttendeeCard } from '../AttendeeCard/AttendeeCard';
+import { MemberCard } from '../MemberCard/MemberCard';
 import styles from './DinnerDetail.module.css';
 
 interface Props {
@@ -34,10 +34,6 @@ export function DinnerDetail({ dinnerSlug, onBack }: Props) {
 
   return (
     <article className={styles.detail}>
-      <button className={styles.backBtn} onClick={onBack}>
-        ← All Dinners
-      </button>
-
       <div className={styles.hero}>
         {dinner.groupPhoto && (
           <img
@@ -47,60 +43,71 @@ export function DinnerDetail({ dinnerSlug, onBack }: Props) {
           />
         )}
         <div className={styles.heroOverlay}>
-          <span className={styles.date}>{formattedDate}</span>
+          <button className={styles.backBtn} onClick={onBack}>
+            ← All Dinners
+          </button>
+          <span className={styles.datevenue}>
+            {formattedDate}{dinner.venue ? ` · ${dinner.venue}` : ''}
+          </span>
           <h1 className={styles.title}>{dinner.name}</h1>
-          {dinner.venue && <span className={styles.venue}>{dinner.venue}</span>}
         </div>
       </div>
 
-      {dinner.topics.length > 0 && (
-        <div className={styles.topics}>
-          <ul>
-            {dinner.topics.map((topic, i) => (
-              <li key={i} className={styles.topic}>
-                <span>{topic.text}</span>
-                {topic.attribution && (
-                  <span className={styles.attribution}> — {topic.attribution}</span>
-                )}
-                {topic.links.map((link, j) => (
-                  <a
-                    key={j}
-                    href={link}
-                    className={styles.topicLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    link
-                  </a>
-                ))}
-              </li>
-            ))}
-          </ul>
+      <div className={styles.content}>
+        {dinner.description && (
+          <p className={styles.description}>{dinner.description}</p>
+        )}
+
+        {dinner.topics.length > 0 && (
+          <div className={styles.topics}>
+            <span className={styles.topicsLabel}>Topics Discussed</span>
+            <div className={styles.topicsList}>
+              {dinner.topics.map((topic, i) => (
+                <div key={i} className={styles.topic}>
+                  <span className={styles.topicText}>{topic.text}</span>
+                  {topic.attribution && (
+                    <span className={styles.attribution}> — {topic.attribution}</span>
+                  )}
+                  {topic.links.map((link, j) => (
+                    <a
+                      key={j}
+                      href={link}
+                      className={styles.topicLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      link
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className={styles.externalLinks}>
+          {dinner.beehiivUrl && (
+            <a href={dinner.beehiivUrl} target="_blank" rel="noopener noreferrer" className={styles.outlineBtn}>
+              Full Recap
+            </a>
+          )}
+          {dinner.discordUrl && (
+            <a href={dinner.discordUrl} target="_blank" rel="noopener noreferrer" className={styles.ghostBtn}>
+              Discord
+            </a>
+          )}
         </div>
-      )}
+      </div>
 
       <div className={styles.attendees}>
         <span className={styles.attendeesLabel}>
-          {attendeeMembers.length} attendees
+          {attendeeMembers.length} Attendees
         </span>
         <div className={styles.attendeesGrid}>
           {attendeeMembers.map((member) => (
-            <AttendeeCard key={member!.slug} member={member!} />
+            <MemberCard key={member!.slug} member={member!} />
           ))}
         </div>
-      </div>
-
-      <div className={styles.externalLinks}>
-        {dinner.beehiivUrl && (
-          <a href={dinner.beehiivUrl} target="_blank" rel="noopener noreferrer" className={styles.externalLink}>
-            Full recap
-          </a>
-        )}
-        {dinner.discordUrl && (
-          <a href={dinner.discordUrl} target="_blank" rel="noopener noreferrer" className={styles.externalLink}>
-            Discord
-          </a>
-        )}
       </div>
     </article>
   );
