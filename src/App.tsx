@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
-import { FilterBar } from './components/FilterBar/FilterBar';
-import { MemberGrid } from './components/MemberGrid/MemberGrid';
 import { DinnersList } from './components/DinnersList/DinnersList';
 import { DinnerDetail } from './components/DinnerDetail/DinnerDetail';
 import { Footer } from './components/Footer/Footer';
@@ -55,13 +53,13 @@ function App() {
           )}
           {view === 'people' && (
             <section className={styles.section}>
-              <FilterBar
+              <MemberList
+                members={filteredMembers}
                 filters={filters}
                 toggleFilter={toggleFilter}
                 clearFilters={clearFilters}
                 hasActiveFilters={hasActiveFilters}
               />
-              <MemberGrid members={filteredMembers} />
             </section>
           )}
           {view === 'dinners' && (
