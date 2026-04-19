@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-type SectionId = 'landing-hero' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list' | 'view-toggle' | 'member-views';
+type SectionId = 'landing-hero' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'landing-hero', label: 'Landing Hero' },
@@ -18,6 +18,9 @@ const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'member-list',  label: 'Member List' },
   { id: 'view-toggle',  label: 'View Toggle' },
   { id: 'member-views', label: 'Member Views' },
+  { id: 'dinner-card', label: 'Dinner Card' },
+  { id: 'dinner-list', label: 'Dinner List' },
+  { id: 'dinner-hero', label: 'Dinner Hero' },
 ];
 
 export function StyleGuide() {
@@ -57,7 +60,7 @@ export function StyleGuide() {
       {activeSection === 'landing-hero' && (
         <Section title="Landing Page — Hero">
           <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
-            First thing visitors see. Goal: inspire them to attend a dinner. Shows the most recent dinner as proof of what they're missing.
+            Fullscreen, no background image. Animated, colourful, alive. Three viewport options: 100vh, ~90vh with peek, and dynamic grid.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             {HERO_OPTIONS.map(opt => (
@@ -734,6 +737,97 @@ export function StyleGuide() {
         </Section>
       )}
 
+      {activeSection === 'dinner-card' && (
+        <Section title="Dinner Card & Dinner List Composite">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Dinner card atom (confirmed: elevated, full-colour 16:9 photo, hover zoom-out) and composite listing layout.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+
+            {/* ─── Confirmed dinner card spec ─── */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Dinner Card (confirmed) — elevated, full-colour 16:9, hover zoom-out, 4px radius" />
+              <div style={{ padding: '24px', backgroundColor: COLORS.surface, maxWidth: '380px' }}>
+                <DinnerCardDemo
+                  cardBg={COLORS.bg}
+                  textColor={COLORS.text}
+                  secondaryColor={COLORS.textSecondary}
+                  mutedColor={COLORS.textMuted}
+                  tagBorder={COLORS.border}
+                  shadow="0 4px 12px rgba(0,0,0,0.10)"
+                />
+              </div>
+            </div>
+
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'dinner-list' && (
+        <Section title="Dinner List Composite">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Full dinners page layout: intro with CTA, toolbar with count, 3-column grid of dinner cards.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Dinner List — intro + flashy CTA + toolbar + 3-col grid, 32px gap" />
+              <div style={{ padding: '32px', backgroundColor: COLORS.bg }}>
+                {/* Intro */}
+                <div style={{ maxWidth: '600px', marginBottom: '32px' }}>
+                  <h3 style={{
+                    fontFamily: FONT, fontWeight: TYPE.heading.weight, fontSize: TYPE.subheading.size,
+                    lineHeight: TYPE.subheading.lineHeight, color: COLORS.text, margin: '0 0 8px',
+                  }}>
+                    AI Mavericks Dinners
+                  </h3>
+                  <p style={{
+                    fontFamily: FONT, fontSize: TYPE.body.size, fontWeight: TYPE.body.weight,
+                    lineHeight: TYPE.body.lineHeight, color: COLORS.textSecondary, margin: '0 0 16px',
+                  }}>
+                    Intimate gatherings where AI builders share ideas, debate the future, and connect over good food. No panels, no pitches — just real conversation.
+                  </p>
+                  <FlashyBtn>Join the Next Dinner</FlashyBtn>
+                </div>
+                {/* Toolbar */}
+                <div style={{
+                  display: 'flex', justifyContent: 'flex-end', alignItems: 'center',
+                  padding: '12px 0', borderTop: `1px solid ${COLORS.border}`, borderBottom: `1px solid ${COLORS.border}`,
+                  marginBottom: '24px',
+                }}>
+                  <span style={{
+                    fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+                    color: COLORS.textMuted, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
+                  }}>
+                    6 Dinners
+                  </span>
+                </div>
+                {/* 3-col grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '32px' }}>
+                  {[
+                    { date: 'Mar 21, 2026', name: 'Q1 2026 Dinner', venue: 'Pizza Express Live', attendees: 8, desc: 'Builders debating whether junior devs should bother learning to code, AI in education, and LLMs in African fintech.', seed: 'mar2026' },
+                    { date: 'Dec 29, 2025', name: 'December 2025 Dinner', venue: 'Pizza Express Live', attendees: 7, desc: 'A festive gathering exploring multi-agent orchestration, voice AI, and the future of AI-native startups.', seed: 'dec2025' },
+                    { date: 'Oct 9, 2024', name: 'October 2024 Dinner', venue: 'London', attendees: 7, desc: 'The inaugural AI Mavericks dinner bringing together builders, founders and consultants working on AI.', seed: '2024-10-october' },
+                  ].map(d => (
+                    <DinnerCardMini key={d.seed} dinner={d} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'dinner-hero' && (
+        <Section title="Dinner Hero — Latest Dinner Showcase">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Split hero for the dinners page. Photo left, details right. Shows off the latest dinner — topics, attendees, venue.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+            <DinnerHeroB />
+          </div>
+        </Section>
+      )}
+
       {activeSection === 'nav' && (
         <Section title="Nav Bar">
           <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
@@ -968,6 +1062,41 @@ const KEYFRAMES = `
   32% { opacity: 1; }
   37% { transform: rotate(360deg); opacity: 0; }
   100% { transform: rotate(360deg); opacity: 0; }
+}
+@keyframes aurora-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+@keyframes aurora-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-40px, 30px) scale(1.15); }
+  66% { transform: translate(30px, -20px) scale(0.95); }
+}
+@keyframes aurora-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, 30px) scale(1.05); }
+  66% { transform: translate(-30px, -40px) scale(1.1); }
+}
+@keyframes text-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: -100% 50%; }
+}
+@keyframes mesh-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes scroll-hint {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+  50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+}
+@keyframes dot-glow {
+  0%, 100% { opacity: 0.2; box-shadow: none; }
+  50% { opacity: 1; box-shadow: 0 0 8px rgba(124, 58, 237, 0.6); }
+}
+@keyframes beam-sweep {
+  0% { left: -50%; }
+  100% { left: 150%; }
 }
 
 /* Hover & disabled states */
@@ -1582,99 +1711,82 @@ function ShimmerBorderBtn({ children, disabled }: { children: React.ReactNode; d
 
 /* ─── Landing Hero ─── */
 
-const HERO_PHOTO = 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&h=800&fit=crop&crop=center';
-
 const HERO_OPTIONS = [
-  { name: 'A — Full-bleed cinematic', variant: 'cinematic' as const },
-  { name: 'B — Split editorial', variant: 'split' as const },
-  { name: 'C — Stacked minimal', variant: 'stacked' as const },
+  { name: 'A — Aurora Fullscreen (100vh) — drifting purple blobs, shimmer text', variant: 'aurora' as const },
+  { name: 'B — Mesh Gradient (~90vh peek) — rotating conic gradient, scroll hint', variant: 'mesh' as const },
+  { name: 'C — Living Grid (dynamic) — dot field with glowing accents, sweep beam', variant: 'grid' as const },
 ];
 
-function LandingHeroDemo({ variant }: { variant: 'cinematic' | 'split' | 'stacked' }) {
-  if (variant === 'cinematic') return <HeroCinematic />;
-  if (variant === 'split') return <HeroSplit />;
-  return <HeroStacked />;
+function LandingHeroDemo({ variant }: { variant: 'aurora' | 'mesh' | 'grid' }) {
+  if (variant === 'aurora') return <HeroAurora />;
+  if (variant === 'mesh') return <HeroMesh />;
+  return <HeroGrid />;
 }
 
-/* Option A: Full-bleed photo, dark overlay, centered text, flashy CTA */
-function HeroCinematic() {
+/* Option A: Aurora — drifting blurred purple blobs, shimmer gradient text, 100vh */
+function HeroAurora() {
   return (
     <div style={{
-      position: 'relative',
-      height: '480px',
-      overflow: 'hidden',
-      backgroundColor: '#0a0a0a',
+      position: 'relative', height: '600px', overflow: 'hidden', backgroundColor: '#0a0a0a',
     }}>
-      <img
-        src={HERO_PHOTO}
-        alt=""
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          filter: 'grayscale(100%) contrast(1.1)',
-          opacity: 0.5,
-        }}
-      />
+      {/* Aurora blobs */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', filter: 'blur(80px)', opacity: 0.6 }}>
+        <div style={{
+          position: 'absolute', width: '50%', height: '50%', borderRadius: '50%',
+          background: 'radial-gradient(circle, #7c3aed 0%, transparent 70%)',
+          top: '10%', left: '15%', animation: 'aurora-1 8s ease-in-out infinite',
+        }} />
+        <div style={{
+          position: 'absolute', width: '40%', height: '45%', borderRadius: '50%',
+          background: 'radial-gradient(circle, #a855f7 0%, transparent 70%)',
+          top: '40%', right: '10%', animation: 'aurora-2 10s ease-in-out infinite',
+        }} />
+        <div style={{
+          position: 'absolute', width: '35%', height: '40%', borderRadius: '50%',
+          background: 'radial-gradient(circle, #6366f1 0%, transparent 70%)',
+          bottom: '5%', left: '35%', animation: 'aurora-3 12s ease-in-out infinite',
+        }} />
+        <div style={{
+          position: 'absolute', width: '30%', height: '35%', borderRadius: '50%',
+          background: 'radial-gradient(circle, #c4b5fd 0%, transparent 70%)',
+          top: '25%', left: '55%', animation: 'aurora-1 14s ease-in-out infinite reverse',
+        }} />
+      </div>
+      {/* Content */}
       <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%)',
-      }} />
-      <div style={{
-        position: 'relative',
-        zIndex: 1,
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        padding: '24px',
-        gap: '12px',
+        position: 'relative', zIndex: 1, height: '100%',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        textAlign: 'center', padding: '24px', gap: '12px',
       }}>
-        <img src="/images/logo.avif" alt="" style={{ width: 40, height: 40, borderRadius: '4px' }} />
+        <img src="/images/logo.avif" alt="" style={{ width: 44, height: 44, borderRadius: '4px' }} />
         <span style={{
-          fontFamily: FONT,
-          fontSize: TYPE.caption.size,
-          fontWeight: TYPE.caption.weight,
-          color: 'rgba(255,255,255,0.5)',
-          textTransform: 'uppercase',
-          letterSpacing: '3px',
+          fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight,
+          color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' as const, letterSpacing: '3px',
         }}>
           Q1 2026 · Pizza Express Live Holborn
         </span>
         <h1 style={{
-          fontFamily: FONT,
-          fontWeight: TYPE.heading.weight,
-          fontSize: '2.8rem',
-          lineHeight: 1.1,
-          color: '#ffffff',
-          margin: 0,
+          fontFamily: FONT, fontWeight: TYPE.heading.weight,
+          fontSize: '3.5rem', lineHeight: 1.1, margin: 0,
+          background: 'linear-gradient(90deg, #ffffff 0%, #c4b5fd 30%, #ffffff 50%, #a78bfa 70%, #ffffff 100%)',
+          backgroundSize: '200% 100%',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          animation: 'text-shimmer 4s linear infinite',
         }}>
           AI Mavericks
         </h1>
         <p style={{
-          fontFamily: FONT,
-          fontWeight: TYPE.body.weight,
-          fontSize: TYPE.body.size,
-          lineHeight: TYPE.body.lineHeight,
-          color: 'rgba(255,255,255,0.7)',
-          maxWidth: '420px',
-          margin: 0,
+          fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.body.size,
+          lineHeight: TYPE.body.lineHeight, color: 'rgba(255,255,255,0.7)',
+          maxWidth: '420px', margin: 0,
         }}>
           Where AI builders meet. Intimate dinners for founders, engineers, and operators shaping the future.
         </p>
         <p style={{
-          fontFamily: FONT,
-          fontSize: TYPE.small.size,
-          fontWeight: TYPE.small.weight,
-          color: 'rgba(255,255,255,0.4)',
-          textTransform: 'uppercase',
-          letterSpacing: '1px',
-          margin: '4px 0 8px',
+          fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+          color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' as const,
+          letterSpacing: '1px', margin: '4px 0 8px',
         }}>
           7 builders · One table · Real talk
         </p>
@@ -1684,220 +1796,365 @@ function HeroCinematic() {
   );
 }
 
-/* Option B: Left text / right photo, editorial feel */
-function HeroSplit() {
+/* Option B: Mesh — drifting purple clouds with slow rotation, ~90vh with scroll hint */
+function HeroMesh() {
   return (
     <div style={{
-      display: 'flex',
-      height: '480px',
-      overflow: 'hidden',
-      backgroundColor: COLORS.bg,
+      position: 'relative', height: '540px', overflow: 'hidden', backgroundColor: '#0a0a0a',
     }}>
-      {/* Left: text */}
+      {/* Slow-rotating conic base */}
       <div style={{
-        flex: '1 1 50%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: '48px 40px',
-        gap: '12px',
+        position: 'absolute', inset: '-50%',
+        background: 'conic-gradient(from 0deg at 50% 50%, #0a0a0a 0deg, #1e1b4b 60deg, #312e81 120deg, #4c1d95 180deg, #312e81 240deg, #1e1b4b 300deg, #0a0a0a 360deg)',
+        animation: 'mesh-rotate 28s linear infinite',
+        filter: 'blur(80px)', opacity: 0.5,
+      }} />
+      {/* Drifting cloud blobs */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', filter: 'blur(70px)' }}>
+        <div style={{
+          position: 'absolute', width: '55%', height: '55%', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(76, 29, 149, 0.5) 0%, transparent 70%)',
+          top: '5%', left: '10%', animation: 'aurora-1 11s ease-in-out infinite',
+        }} />
+        <div style={{
+          position: 'absolute', width: '45%', height: '50%', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, transparent 70%)',
+          top: '35%', right: '5%', animation: 'aurora-2 14s ease-in-out infinite',
+        }} />
+        <div style={{
+          position: 'absolute', width: '40%', height: '45%', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, transparent 70%)',
+          bottom: '0%', left: '30%', animation: 'aurora-3 17s ease-in-out infinite',
+        }} />
+        <div style={{
+          position: 'absolute', width: '35%', height: '40%', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%)',
+          top: '20%', left: '50%', animation: 'aurora-2 12s ease-in-out infinite reverse',
+        }} />
+      </div>
+      {/* Content */}
+      <div style={{
+        position: 'relative', zIndex: 1, height: '100%',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        textAlign: 'center', padding: '24px', gap: '12px',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
-          <img src="/images/logo.avif" alt="" style={{ width: 28, height: 28, borderRadius: '4px' }} />
-          <span style={{
-            fontFamily: FONT,
-            fontSize: TYPE.small.size,
-            fontWeight: TYPE.small.weight,
-            color: COLORS.textMuted,
-            textTransform: 'uppercase',
-            letterSpacing: '2px',
-          }}>
-            AI Mavericks
-          </span>
-        </div>
+        <img src="/images/logo.avif" alt="" style={{ width: 44, height: 44, borderRadius: '4px' }} />
         <span style={{
-          fontFamily: FONT,
-          fontSize: TYPE.caption.size,
-          fontWeight: TYPE.caption.weight,
-          color: COLORS.textMuted,
-          textTransform: 'uppercase',
-          letterSpacing: '3px',
+          fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight,
+          color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' as const, letterSpacing: '3px',
         }}>
-          Most recent dinner
+          Q1 2026 · Pizza Express Live Holborn
         </span>
         <h1 style={{
-          fontFamily: FONT,
-          fontWeight: TYPE.heading.weight,
-          fontSize: '2.369rem',
-          lineHeight: TYPE.heading.lineHeight,
-          color: COLORS.text,
-          margin: 0,
+          fontFamily: FONT, fontWeight: TYPE.heading.weight,
+          fontSize: '3.5rem', lineHeight: 1.1, color: '#ffffff', margin: 0,
         }}>
-          Q1 2026 Dinner
+          AI Mavericks
         </h1>
         <p style={{
-          fontFamily: FONT,
-          fontWeight: TYPE.subheading.weight,
-          fontSize: TYPE.subheading.size,
-          lineHeight: TYPE.subheading.lineHeight,
-          color: COLORS.text,
-          margin: 0,
+          fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.body.size,
+          lineHeight: TYPE.body.lineHeight, color: 'rgba(255,255,255,0.7)',
+          maxWidth: '420px', margin: 0,
         }}>
-          Pizza Express Live Holborn
+          Where AI builders meet. Intimate dinners for founders, engineers, and operators shaping the future.
         </p>
         <p style={{
-          fontFamily: FONT,
-          fontWeight: TYPE.body.weight,
-          fontSize: TYPE.body.size,
-          lineHeight: TYPE.body.lineHeight,
-          color: COLORS.textSecondary,
-          maxWidth: '380px',
-          margin: '4px 0',
+          fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+          color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' as const,
+          letterSpacing: '1px', margin: '4px 0 8px',
         }}>
-          7 builders debating whether junior devs should bother learning to code, AI in education, and LLMs in African fintech.
+          7 builders · One table · Real talk
         </p>
-        <div style={{ display: 'flex', gap: '12px', marginTop: '8px', alignItems: 'center' }}>
-          <FlashyBtn>Join the Next Dinner</FlashyBtn>
-          <button style={{
-            ...BTN_BASE,
-            ...BTN_VARIANTS.outline,
-          }}>
-            See All Dinners
-          </button>
-        </div>
+        <FlashyBtn>Join the Next Dinner</FlashyBtn>
       </div>
-      {/* Right: photo */}
+      {/* Scroll hint */}
       <div style={{
-        flex: '1 1 50%',
-        position: 'relative',
-        overflow: 'hidden',
+        position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)',
+        zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px',
+        animation: 'scroll-hint 2s ease-in-out infinite',
       }}>
+        <span style={{
+          fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight,
+          color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase' as const, letterSpacing: '2px',
+        }}>Scroll</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* Option C: Living Grid — dot field with glowing purple accents, sweeping beam */
+function HeroGrid() {
+  const glowDots = [
+    { top: '18%', left: '22%', delay: '0s' },
+    { top: '55%', left: '72%', delay: '1.5s' },
+    { top: '38%', left: '48%', delay: '3s' },
+    { top: '72%', left: '15%', delay: '2s' },
+    { top: '12%', left: '78%', delay: '0.8s' },
+    { top: '85%', left: '55%', delay: '4s' },
+    { top: '30%', left: '88%', delay: '2.5s' },
+    { top: '65%', left: '35%', delay: '1s' },
+  ];
+
+  return (
+    <div style={{
+      position: 'relative', height: '600px', overflow: 'hidden', backgroundColor: '#0a0a0a',
+    }}>
+      {/* Dot grid via CSS background */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)',
+        backgroundSize: '32px 32px', backgroundPosition: '16px 16px',
+      }} />
+      {/* Accent glow dots */}
+      {glowDots.map((d, i) => (
+        <div key={i} style={{
+          position: 'absolute', top: d.top, left: d.left,
+          width: '4px', height: '4px', borderRadius: '50%',
+          backgroundColor: '#7c3aed',
+          animation: `dot-glow 4s ease-in-out ${d.delay} infinite`,
+        }} />
+      ))}
+      {/* Sweeping beam */}
+      <div style={{
+        position: 'absolute', top: 0, left: '-50%',
+        width: '30%', height: '100%',
+        background: 'linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.04), rgba(124, 58, 237, 0.08), rgba(124, 58, 237, 0.04), transparent)',
+        animation: 'beam-sweep 8s ease-in-out infinite',
+      }} />
+      {/* Subtle radial glow behind content */}
+      <div style={{
+        position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+        width: '60%', height: '60%', borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(124, 58, 237, 0.06) 0%, transparent 70%)',
+      }} />
+      {/* Content */}
+      <div style={{
+        position: 'relative', zIndex: 1, height: '100%',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        textAlign: 'center', padding: '24px', gap: '12px',
+      }}>
+        <img src="/images/logo.avif" alt="" style={{ width: 44, height: 44, borderRadius: '4px' }} />
+        <span style={{
+          fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.caption.weight,
+          color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' as const, letterSpacing: '3px',
+        }}>
+          Q1 2026 · Pizza Express Live Holborn
+        </span>
+        <h1 style={{
+          fontFamily: FONT, fontWeight: TYPE.heading.weight,
+          fontSize: '3.5rem', lineHeight: 1.1, color: '#ffffff', margin: 0,
+          textShadow: '0 0 40px rgba(124, 58, 237, 0.3)',
+        }}>
+          AI Mavericks
+        </h1>
+        <p style={{
+          fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.body.size,
+          lineHeight: TYPE.body.lineHeight, color: 'rgba(255,255,255,0.7)',
+          maxWidth: '420px', margin: 0,
+        }}>
+          Where AI builders meet. Intimate dinners for founders, engineers, and operators shaping the future.
+        </p>
+        <p style={{
+          fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+          color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' as const,
+          letterSpacing: '1px', margin: '4px 0 8px',
+        }}>
+          7 builders · One table · Real talk
+        </p>
+        <FlashyBtn>Join the Next Dinner</FlashyBtn>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Dinner Card Mini (for composite preview) ─── */
+function DinnerCardMini({ dinner }: { dinner: { date: string; name: string; venue: string; attendees: number; desc: string; seed: string } }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      style={{ borderRadius: '4px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.10)', backgroundColor: COLORS.bg, cursor: 'pointer' }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div style={{ overflow: 'hidden', aspectRatio: '16 / 9' }}>
         <img
-          src={HERO_PHOTO}
+          src={`https://picsum.photos/seed/${dinner.seed}/1400/800`}
           alt=""
           style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            filter: 'grayscale(100%) contrast(1.1)',
+            width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+            transform: hovered ? 'scale(1)' : 'scale(1.15)',
+            transition: 'transform 0.4s ease',
           }}
         />
-        {/* Attendee count pill */}
-        <div style={{
-          position: 'absolute',
-          bottom: '16px',
-          right: '16px',
-          backgroundColor: 'rgba(0,0,0,0.7)',
-          borderRadius: '3px',
-          padding: '6px 12px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '6px',
-        }}>
-          <span style={{
-            fontFamily: FONT,
-            fontSize: TYPE.caption.size,
-            fontWeight: TYPE.caption.weight,
-            color: 'rgba(255,255,255,0.8)',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-          }}>
-            7 Attendees
-          </span>
+      </div>
+      <div style={{ padding: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+          <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>{dinner.date}</span>
+          <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>{dinner.attendees} attendees</span>
+        </div>
+        <h3 style={{ fontFamily: FONT, fontSize: TYPE.subheading.size, fontWeight: TYPE.subheading.weight, lineHeight: TYPE.subheading.lineHeight, color: COLORS.text, margin: '0 0 8px' }}>{dinner.name}</h3>
+        <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, fontWeight: TYPE.body.weight, lineHeight: TYPE.body.lineHeight, color: COLORS.textSecondary, margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as const, overflow: 'hidden' }}>{dinner.desc}</p>
+        <div style={{ marginTop: '12px' }}>
+          <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textSecondary, border: `1px solid ${COLORS.border}`, borderRadius: '3px', padding: '2px 6px', textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>{dinner.venue}</span>
         </div>
       </div>
     </div>
   );
 }
 
-/* Option C: Stacked — photo strip on top, text block below, compact */
-function HeroStacked() {
+/* ─── Dinner Card Demo ─── */
+/* ─── Dinner Hero Demos ─── */
+
+const DINNER_HERO_DATA = {
+  name: 'Q1 2026 Dinner',
+  date: 'Mar 4, 2026',
+  venue: 'Pizza Express Live Holborn',
+  description: 'The first AI Mavericks dinner of 2026, reflecting on AI tooling, education, and the road ahead.',
+  photo: 'https://picsum.photos/seed/2026-q1/1400/800',
+  topics: [
+    { text: 'Should junior developers bother learning traditional coding?', attribution: 'Group' },
+    { text: 'AI in education and teaching AI usage', attribution: 'David' },
+    { text: 'Building AI products for defence and creative media', attribution: 'Farhath' },
+    { text: 'LLMs in African fintech data intelligence', attribution: 'Bode' },
+  ],
+  attendees: [
+    { name: 'Bode Ogunlana', role: 'Engineering', photo: SAMPLE_MEMBERS[0]?.photo || '' },
+    { name: 'David Farrell', role: 'Education', photo: SAMPLE_MEMBERS[1]?.photo || '' },
+    { name: 'Farhath Razzaque', role: 'Product', photo: SAMPLE_MEMBERS[2]?.photo || '' },
+    { name: 'Neil Cameron', role: 'Consulting', photo: SAMPLE_MEMBERS[0]?.photo || '' },
+    { name: 'Rene Muhire', role: 'Founder', photo: SAMPLE_MEMBERS[1]?.photo || '' },
+    { name: 'Eddie Forson', role: 'Founder', photo: SAMPLE_MEMBERS[2]?.photo || '' },
+    { name: 'Liberatus', role: 'Engineering', photo: SAMPLE_MEMBERS[0]?.photo || '' },
+  ],
+};
+
+/* Dinner Hero (confirmed) — white split, photo left, wrapping attendee chips */
+function DinnerHeroB() {
+  const d = DINNER_HERO_DATA;
   return (
-    <div style={{
-      overflow: 'hidden',
-      backgroundColor: '#0a0a0a',
-    }}>
-      {/* Photo strip — short and wide */}
-      <div style={{
-        position: 'relative',
-        height: '200px',
-        overflow: 'hidden',
-      }}>
+    <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+      <OptionHeader label="Dinner Hero (confirmed) — white split, photo left 45%, details right, wrapping attendee chips" />
+      <div style={{ display: 'flex', height: '480px', overflow: 'hidden', backgroundColor: COLORS.bg }}>
+        {/* Left: photo */}
+        <div style={{ flex: '0 0 45%', overflow: 'hidden' }}>
+          <img src={d.photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+        {/* Right: details */}
+        <div style={{ flex: 1, padding: '32px', display: 'flex', flexDirection: 'column', gap: '16px', overflow: 'auto' }}>
+          <div>
+            <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase' as const, letterSpacing: '2px' }}>
+              Latest Dinner · {d.date}
+            </span>
+            <h2 style={{ fontFamily: FONT, fontWeight: TYPE.heading.weight, fontSize: TYPE.subheading.size, lineHeight: TYPE.subheading.lineHeight, color: COLORS.text, margin: '8px 0 0' }}>
+              {d.name}
+            </h2>
+          </div>
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, fontWeight: TYPE.body.weight, lineHeight: TYPE.body.lineHeight, color: COLORS.textSecondary, margin: 0 }}>
+            {d.description}
+          </p>
+          {/* Venue */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={COLORS.textMuted} strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+            <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.textSecondary }}>{d.venue}</span>
+          </div>
+          {/* Topics */}
+          <div>
+            <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase' as const, letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>Topics Discussed</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {d.topics.map(t => (
+                <div key={t.text} style={{ display: 'flex', gap: '8px', alignItems: 'baseline' }}>
+                  <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: COLORS.textMuted, flexShrink: 0, marginTop: '6px' }} />
+                  <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 400, color: COLORS.text, lineHeight: 1.4 }}>{t.text} <span style={{ color: COLORS.textMuted }}>— {t.attribution}</span></span>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Attendees — horizontal wrapping chips */}
+          <div>
+            <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase' as const, letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>{d.attendees.length} Attendees</span>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {d.attendees.map(a => (
+                <div key={a.name} style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px 4px 4px', border: `1px solid ${COLORS.border}`, borderRadius: '4px' }}>
+                  <img src={a.photo} alt="" style={{ width: 24, height: 24, borderRadius: '3px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)' }} />
+                  <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.text, whiteSpace: 'nowrap' as const }}>{a.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DinnerCardDemo({ cardBg, textColor, secondaryColor, mutedColor, tagBorder, shadow }: {
+  cardBg: string; textColor: string; secondaryColor: string; mutedColor: string; tagBorder: string; shadow: string;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      style={{ borderRadius: '4px', overflow: 'hidden', boxShadow: shadow, backgroundColor: cardBg, cursor: 'pointer' }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Photo — full colour, 16:9, hover zoom-out */}
+      <div style={{ overflow: 'hidden', aspectRatio: '16 / 9' }}>
         <img
-          src={HERO_PHOTO}
+          src="https://picsum.photos/seed/2024-10-october/1400/800"
           alt=""
           style={{
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center 40%',
-            filter: 'grayscale(100%) contrast(1.1)',
-            opacity: 0.7,
+            display: 'block',
+            transform: hovered ? 'scale(1)' : 'scale(1.15)',
+            transition: 'transform 0.4s ease',
           }}
         />
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(to bottom, transparent 40%, #0a0a0a 100%)',
-        }} />
       </div>
-      {/* Text content */}
-      <div style={{
-        padding: '0 40px 48px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
-          <img src="/images/logo.avif" alt="" style={{ width: 28, height: 28, borderRadius: '4px' }} />
+      {/* Card body */}
+      <div style={{ padding: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
           <span style={{
-            fontFamily: FONT,
-            fontSize: TYPE.small.size,
-            fontWeight: TYPE.small.weight,
-            color: 'rgba(255,255,255,0.5)',
-            textTransform: 'uppercase',
-            letterSpacing: '2px',
+            fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight,
+            color: mutedColor, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
           }}>
-            AI Mavericks
+            Oct 9, 2024
+          </span>
+          <span style={{
+            fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight,
+            color: mutedColor, textTransform: 'uppercase' as const, letterSpacing: '0.5px',
+          }}>
+            7 attendees
           </span>
         </div>
-        <h1 style={{
-          fontFamily: FONT,
-          fontWeight: TYPE.heading.weight,
-          fontSize: '2.369rem',
-          lineHeight: TYPE.heading.lineHeight,
-          color: '#ffffff',
-          margin: 0,
+        <h3 style={{
+          fontFamily: FONT, fontSize: TYPE.subheading.size, fontWeight: TYPE.subheading.weight,
+          lineHeight: TYPE.subheading.lineHeight, color: textColor, margin: '0 0 8px',
         }}>
-          The table where AI gets real
-        </h1>
+          October 2024 Dinner
+        </h3>
         <p style={{
-          fontFamily: FONT,
-          fontWeight: TYPE.body.weight,
-          fontSize: TYPE.body.size,
-          lineHeight: TYPE.body.lineHeight,
-          color: 'rgba(255,255,255,0.6)',
-          maxWidth: '500px',
-          margin: 0,
+          fontFamily: FONT, fontSize: TYPE.body.size, fontWeight: TYPE.body.weight,
+          lineHeight: TYPE.body.lineHeight, color: secondaryColor, margin: 0,
+          display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as const,
+          overflow: 'hidden',
         }}>
-          Intimate dinners for builders, founders, and operators. No panels. No pitches. Just honest conversation over good food.
+          The inaugural AI Mavericks dinner bringing together builders, founders and consultants working on AI.
         </p>
-        <div style={{
-          display: 'flex',
-          gap: '16px',
-          alignItems: 'center',
-          marginTop: '12px',
-        }}>
-          <FlashyBtn>Join the Next Dinner</FlashyBtn>
+        <div style={{ marginTop: '12px' }}>
           <span style={{
-            fontFamily: FONT,
-            fontSize: TYPE.small.size,
-            fontWeight: TYPE.small.weight,
-            color: 'rgba(255,255,255,0.35)',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
+            fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight,
+            color: secondaryColor, border: `1px solid ${tagBorder}`,
+            borderRadius: '3px', padding: '2px 6px',
+            textTransform: 'uppercase' as const, letterSpacing: '0.5px',
           }}>
-            Q1 2026 · 7 builders · Holborn
+            London
           </span>
         </div>
       </div>
