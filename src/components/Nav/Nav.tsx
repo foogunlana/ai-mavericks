@@ -12,7 +12,7 @@ export function Nav({ currentView, onViewChange, hidden = false }: Props) {
     <nav className={`${styles.nav}${hidden ? ` ${styles.hidden}` : ''}`}>
       <div className={styles.inner}>
         <button className={styles.logo} onClick={() => onViewChange('home')}>
-          <img src="/ai-mavericks-logo.avif" alt="AI Mavericks" className={styles.logoMark} />
+          <img src={`${import.meta.env.BASE_URL}ai-mavericks-logo.avif`} alt="AI Mavericks" className={styles.logoMark} />
           AI Mavericks
         </button>
         <div className={styles.links}>

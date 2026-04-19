@@ -102,7 +102,7 @@ export function LandingHero({ latestDinner, onViewChange }: LandingHeroProps) {
 
       <nav className={styles.landingNav}>
         <button className={styles.landingNavLogo} onClick={() => onViewChange('home')}>
-          <img src="/images/logo.avif" alt="AI Mavericks" className={styles.landingNavLogoMark} />
+          <img src={`${import.meta.env.BASE_URL}images/logo.avif`} alt="AI Mavericks" className={styles.landingNavLogoMark} />
           <span>AI Mavericks</span>
         </button>
         <div className={styles.landingNavLinks}>
