@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
-import { DinnersList } from './components/DinnersList/DinnersList';
+import { DinnersPage } from './components/DinnersPage/DinnersPage';
 import { DinnerDetail } from './components/DinnerDetail/DinnerDetail';
 import { Footer } from './components/Footer/Footer';
 import { StyleGuide } from './components/StyleGuide/StyleGuide';
@@ -64,7 +64,7 @@ function App() {
           )}
           {view === 'dinners' && (
             <section className={styles.section}>
-              <DinnersList onSelectDinner={handleSelectDinner} />
+              <DinnersPage onSelectDinner={handleSelectDinner} />
             </section>
           )}
           {view === 'dinner-detail' && selectedDinnerSlug && (
