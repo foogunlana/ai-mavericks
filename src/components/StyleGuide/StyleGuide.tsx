@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-type SectionId = 'landing-hero' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter';
+type SectionId = 'landing-hero' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'landing-hero', label: 'Landing Hero' },
@@ -14,6 +14,8 @@ const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'icons',        label: 'Icons' },
   { id: 'filter',       label: 'Filter' },
   { id: 'logo',         label: 'Logo' },
+  { id: 'nav',          label: 'Nav' },
+  { id: 'member-list',  label: 'Member List' },
 ];
 
 export function StyleGuide() {
@@ -510,6 +512,141 @@ export function StyleGuide() {
         </Section>
       )}
 
+      {activeSection === 'member-list' && (
+        <Section title="Member List — Filter + Grid Composite">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            How the filter and member grid relate visually. Filter should be obvious, clearly connected to the grid, and minimal.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+
+            {/* Confirmed: Socials below intro */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Socials below intro — icons sit under the description text, left-aligned" />
+              <div style={{ backgroundColor: COLORS.bg, padding: '32px' }}>
+                <div style={{ maxWidth: '600px', marginBottom: '32px' }}>
+                  <h3 style={{ fontFamily: FONT, fontWeight: TYPE.heading.weight, fontSize: TYPE.subheading.size, lineHeight: TYPE.subheading.lineHeight, color: COLORS.text, margin: '0 0 8px' }}>
+                    A community of AI builders
+                  </h3>
+                  <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, fontWeight: TYPE.body.weight, lineHeight: TYPE.body.lineHeight, color: COLORS.textSecondary, margin: '0 0 16px' }}>
+                    We bring together engineers, researchers, and founders who are building with AI — over intimate dinners designed for real conversation. Explore the people and the gatherings that make up Mavericks.
+                  </p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    {(['x', 'linkedin', 'discord'] as const).map(type => (
+                      <div key={type} style={{
+                        width: 36, height: 36, borderRadius: '50%', border: `1.5px solid ${COLORS.textMuted}`,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+                      }}>
+                        <SocialIcon type={type} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* Toolbar */}
+                <div style={{
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                  padding: '12px 0', borderTop: `1px solid ${COLORS.border}`, borderBottom: `1px solid ${COLORS.border}`,
+                  marginBottom: '24px',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '1px' }}>
+                      {SAMPLE_MEMBERS.length} Members
+                    </span>
+                    <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted }}>
+                      · Filter by role or interest
+                    </span>
+                  </div>
+                  <div style={{ position: 'relative', cursor: 'pointer' }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={COLORS.text} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
+                    </svg>
+                    <div style={{
+                      position: 'absolute', top: -4, right: -6,
+                      width: 14, height: 14, borderRadius: '50%', backgroundColor: COLORS.text,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                      <span style={{ fontFamily: FONT, fontSize: '7px', fontWeight: 600, color: COLORS.bg }}>2</span>
+                    </div>
+                  </div>
+                </div>
+                {/* Grid at confirmed 32px gap */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '32px' }}>
+                  {SAMPLE_MEMBERS.map(m => (
+                    <MiniCard key={m.name} member={m} />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* View toggle options */}
+            <MemberViewToggleDemo />
+
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'nav' && (
+        <Section title="Nav Bar">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Sticky top bar — logo left, links right, bottom border. Compare sizing, spacing, and typography across options.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {NAV_OPTIONS.map(opt => (
+              <div key={opt.name} style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+                <OptionHeader label={opt.name} />
+                <div style={{ backgroundColor: COLORS.bg }}>
+                  <div style={{
+                    height: `${opt.height}px`, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    padding: `0 ${opt.hPad}px`, borderBottom: `1px solid ${COLORS.border}`,
+                  }}>
+                    {/* Logo */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: `${opt.logoGap}px`, cursor: 'pointer' }}>
+                      <img src="/ai-mavericks-logo.avif" alt="AI Mavericks" style={{ width: opt.logoSize, height: opt.logoSize, borderRadius: '4px' }} />
+                      <span style={{ fontFamily: FONT, fontSize: opt.fontSize, fontWeight: opt.fontWeight, color: COLORS.text, textTransform: 'uppercase', letterSpacing: opt.letterSpacing }}>
+                        AI Mavericks
+                      </span>
+                    </div>
+                    {/* Links */}
+                    <div style={{ display: 'flex', gap: `${opt.linkGap}px` }}>
+                      {NAV_LINKS.map(link => (
+                        <span
+                          key={link.label}
+                          style={{
+                            fontFamily: FONT,
+                            fontSize: opt.fontSize,
+                            fontWeight: opt.fontWeight,
+                            color: link.active ? COLORS.text : COLORS.textMuted,
+                            textTransform: 'uppercase',
+                            letterSpacing: opt.letterSpacing,
+                            paddingBottom: '2px',
+                            borderBottom: link.active ? `1px solid ${COLORS.text}` : '1px solid transparent',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          {link.label}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {/* Inline specs */}
+                <div style={{ padding: '10px 16px', backgroundColor: COLORS.surface, display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                  {[
+                    `Height: ${opt.height}px`,
+                    `H-pad: ${opt.hPad}px`,
+                    `Link gap: ${opt.linkGap}px`,
+                    `Logo: ${opt.logoSize}px`,
+                    `Font: ${opt.fontSize}`,
+                    `Weight: ${opt.fontWeight}`,
+                  ].map(s => (
+                    <span key={s} style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{s}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
       {activeSection === 'logo' && (
         <Section title="Logo">
           <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
@@ -624,6 +761,18 @@ const TYPE_OPTIONS: {
   },
 ];
 
+
+const NAV_LINKS = [
+  { label: 'Home', active: false },
+  { label: 'People', active: true },
+  { label: 'Dinners', active: false },
+  { label: 'Style Guide', active: false },
+];
+
+const NAV_OPTIONS = [
+  { name: 'Airy — 64px height, 32px padding, 32px gaps, 32px logo', height: 64, hPad: 32, linkGap: 32, logoSize: 32, logoGap: 10, fontSize: TYPE.small.size, fontWeight: 500, letterSpacing: '2px' },
+];
+
 const SAMPLE_TAGS = ['AI Agents', 'Infra', 'LLMs', 'Fintech', 'Healthcare', 'Dev Tools', 'Series B'];
 
 const AVATAR_SIZES: { label: string; size: number }[] = [
@@ -718,6 +867,149 @@ function OptionHeader({ label }: { label: string }) {
   return (
     <div className="px-6 py-4" style={{ borderBottom: `1px solid ${COLORS.border}`, backgroundColor: COLORS.surface }}>
       <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.text }}>{label}</span>
+    </div>
+  );
+}
+
+function MiniCard({ member }: { member: typeof SAMPLE_MEMBERS[number] }) {
+  return (
+    <div style={{
+      borderRadius: '4px', overflow: 'hidden', aspectRatio: '3/4',
+      position: 'relative', backgroundColor: '#1a1a1a',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.10)',
+    }}>
+      <img
+        src={member.photo}
+        alt={member.name}
+        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', display: 'block' }}
+      />
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px',
+        background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)',
+      }}>
+        <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: '#fff', lineHeight: TYPE.small.lineHeight }}>{member.name}</p>
+        <p style={{ fontFamily: FONT, fontWeight: TYPE.small.weight, fontSize: TYPE.caption.size, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>{member.role}</p>
+      </div>
+    </div>
+  );
+}
+
+/* ─── View toggle icons ─── */
+const VIEW_ICON_GRID = 'M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z';
+const VIEW_ICON_SMALL = 'M3 3h7v5H3V3zm11 0h7v5h-7V3zM3 11h7v5H3v-5zm11 0h7v5h-7v-5zM3 19h7v2H3v-2zm11 0h7v2h-7v-2z';
+const VIEW_ICON_LIST = 'M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z';
+
+type ViewMode = 'photo' | 'small' | 'list';
+
+function MemberViewToggleDemo() {
+  const [mode, setMode] = useState<ViewMode>('photo');
+
+  return (
+    <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+      <OptionHeader label="View toggle — user switches between photo cards, small cards, and list rows" />
+      <div style={{ backgroundColor: COLORS.bg, padding: '32px' }}>
+        {/* Toggle controls */}
+        <div style={{ display: 'flex', gap: '4px', marginBottom: '24px' }}>
+          {([
+            { id: 'photo' as ViewMode, icon: VIEW_ICON_GRID, label: 'Photo cards' },
+            { id: 'small' as ViewMode, icon: VIEW_ICON_SMALL, label: 'Small cards' },
+            { id: 'list' as ViewMode, icon: VIEW_ICON_LIST, label: 'List' },
+          ]).map(v => (
+            <button
+              key={v.id}
+              onClick={() => setMode(v.id)}
+              title={v.label}
+              style={{
+                all: 'unset', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px',
+                padding: '6px 12px', borderRadius: '3px',
+                backgroundColor: mode === v.id ? COLORS.text : 'transparent',
+                color: mode === v.id ? COLORS.bg : COLORS.textMuted,
+                border: `1px solid ${mode === v.id ? COLORS.text : COLORS.border}`,
+                transition: 'all 0.15s',
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                <path d={v.icon} />
+              </svg>
+              <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                {v.label}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Photo cards view */}
+        {mode === 'photo' && (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '32px' }}>
+            {SAMPLE_MEMBERS.map(m => (
+              <MiniCard key={m.name} member={m} />
+            ))}
+          </div>
+        )}
+
+        {/* Small cards view */}
+        {mode === 'small' && (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            {SAMPLE_MEMBERS.map(m => (
+              <div key={m.name} style={{
+                display: 'flex', gap: '12px', padding: '12px',
+                borderRadius: '4px', border: `1px solid ${COLORS.border}`,
+                backgroundColor: COLORS.bg, cursor: 'pointer',
+              }}>
+                <img
+                  src={m.photo} alt={m.name}
+                  style={{ width: 64, height: 64, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }}
+                />
+                <div style={{ minWidth: 0 }}>
+                  <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, lineHeight: TYPE.small.lineHeight, margin: 0 }}>{m.name}</p>
+                  <p style={{ fontFamily: FONT, fontWeight: TYPE.small.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>{m.role}</p>
+                  <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', marginTop: '6px' }}>
+                    {m.interests.slice(0, 2).map(tag => (
+                      <span key={tag} style={{
+                        fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight,
+                        color: COLORS.textSecondary, border: `1px solid ${COLORS.border}`,
+                        borderRadius: '3px', padding: '1px 5px', textTransform: 'uppercase', letterSpacing: '0.5px',
+                      }}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* List view */}
+        {mode === 'list' && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            {SAMPLE_MEMBERS.map((m, i) => (
+              <div key={m.name} style={{
+                display: 'flex', alignItems: 'center', gap: '12px',
+                padding: '10px 0',
+                borderTop: i === 0 ? 'none' : `1px solid ${COLORS.borderLight}`,
+                cursor: 'pointer',
+              }}>
+                <img
+                  src={m.photo} alt={m.name}
+                  style={{ width: 36, height: 36, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }}
+                />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, lineHeight: TYPE.small.lineHeight, margin: 0 }}>{m.name}</p>
+                  <p style={{ fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '1px' }}>{m.role}</p>
+                </div>
+                <div style={{ display: 'flex', gap: '4px', flexShrink: 0 }}>
+                  {m.interests.slice(0, 2).map(tag => (
+                    <span key={tag} style={{
+                      fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight,
+                      color: COLORS.textSecondary, border: `1px solid ${COLORS.border}`,
+                      borderRadius: '3px', padding: '1px 5px', textTransform: 'uppercase', letterSpacing: '0.5px',
+                    }}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -2,14 +2,13 @@ import { useState } from 'react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
 import { FilterBar } from './components/FilterBar/FilterBar';
-import { FilterDropdown } from './components/FilterDropdown/FilterDropdown';
 import { MemberGrid } from './components/MemberGrid/MemberGrid';
 import { DinnersList } from './components/DinnersList/DinnersList';
 import { DinnerDetail } from './components/DinnerDetail/DinnerDetail';
 import { Footer } from './components/Footer/Footer';
 import { StyleGuide } from './components/StyleGuide/StyleGuide';
 import { LandingHero } from './components/LandingHero/LandingHero';
-import { LandingIntro } from './components/LandingIntro/LandingIntro';
+import { MemberList } from './components/MemberList/MemberList';
 import { useFilterState } from './hooks/useFilterState';
 import { members } from './data/members';
 import { dinners } from './data/dinners';
@@ -43,15 +42,14 @@ function App() {
           {view === 'home' && (
             <>
               <LandingHero latestDinner={dinners[0]} />
-              <LandingIntro />
               <section className={styles.section}>
-                <FilterDropdown
+                <MemberList
+                  members={filteredMembers}
                   filters={filters}
                   toggleFilter={toggleFilter}
                   clearFilters={clearFilters}
                   hasActiveFilters={hasActiveFilters}
                 />
-                <MemberGrid members={filteredMembers} />
               </section>
             </>
           )}
