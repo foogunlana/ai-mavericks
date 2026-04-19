@@ -108,7 +108,7 @@ export function LandingHero({ latestDinner, onViewChange }: LandingHeroProps) {
         <div className={styles.landingNavLinks}>
           <button className={styles.landingNavLink} onClick={() => onViewChange('people')}>People</button>
           <button className={styles.landingNavLink} onClick={() => onViewChange('dinners')}>Dinners</button>
-          <a className={styles.landingNavLink} href="#">Newsletter</a>
+          <a className={styles.landingNavLink} href="https://ai-mavericks-ldn.beehiiv.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
           <button className={styles.landingNavJoin}>Join Us</button>
         </div>
       </nav>
