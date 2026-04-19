@@ -4,7 +4,7 @@
   "title": "CTO & Co-founder",
   "company": "Sano Genetics",
   "bio": "CTO and co-founder of Sano Genetics. Background in Computer Science and Computational Biology. Using Pydantic AI to rewrite Sano's codebase.",
-  "photo": "/images/stock/members/headshot-01.jpg",
+  "photo": "https://images.unsplash.com/photo-1700937782824-e01ae6f2f76f?w=600&h=800&fit=crop&crop=face",
   "isStockPhoto": true,
   "linkedin": "https://www.linkedin.com/in/willgdjones/",
   "twitter": "",
