@@ -116,7 +116,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: calc(72px + var(--space-6)) var(--space-6) var(--space-6);
+  padding: var(--space-6);
   gap: var(--space-3);
 }
 
@@ -126,11 +126,10 @@
   left: 0;
   right: 0;
   z-index: 10;
-  height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--nav-h-pad);
+  padding: var(--space-4) var(--nav-h-pad);
 }
 
 .landingNavLogo {
@@ -138,69 +137,34 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.9);
-  transition: color 0.15s;
-}
-
-.landingNavLogo:hover {
-  color: #ffffff;
 }
 
 .landingNavLogoMark {
-  height: 36px;
-  width: 36px;
+  height: 32px;
+  width: 32px;
   border-radius: var(--radius-sm);
   display: block;
+  opacity: 0.5;
+  transition: opacity 0.15s;
 }
 
-.landingNavLinks {
-  display: flex;
-  align-items: center;
-  gap: var(--nav-link-gap);
+.landingNavLogo:hover .landingNavLogoMark {
+  opacity: 0.75;
 }
 
-.landingNavLink {
-  all: unset;
-  cursor: pointer;
+.landingNavNewsletter {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
   transition: color 0.15s;
 }
 
-.landingNavLink:hover {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.landingNavJoin {
-  all: unset;
-  cursor: pointer;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.landingNavNewsletter:hover {
   color: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 3px;
-  padding: 6px 16px;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
-}
-
-.landingNavJoin:hover {
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.08);
 }
 
 .dinnerMeta {

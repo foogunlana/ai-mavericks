@@ -26,18 +26,12 @@ export function LandingHero({ latestDinner, onViewChange }: LandingHeroProps) {
       <div className={`${styles.blob} ${styles.blob3}`} />
       <div className={`${styles.blob} ${styles.blob4}`} />
 
-      <nav className={styles.landingNav}>
+      <div className={styles.landingNav}>
         <button className={styles.landingNavLogo} onClick={() => onViewChange('home')}>
           <img src={`${import.meta.env.BASE_URL}images/logo.avif`} alt="AI Mavericks" className={styles.landingNavLogoMark} />
-          <span>AI Mavericks</span>
         </button>
-        <div className={styles.landingNavLinks}>
-          <button className={styles.landingNavLink} onClick={() => onViewChange('people')}>People</button>
-          <button className={styles.landingNavLink} onClick={() => onViewChange('dinners')}>Dinners</button>
-          <a className={styles.landingNavLink} href="https://ai-mavericks-ldn.beehiiv.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
-          <button className={styles.landingNavJoin}>Join Us</button>
-        </div>
-      </nav>
+        <a className={styles.landingNavNewsletter} href="https://ai-mavericks-ldn.beehiiv.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
+      </div>
 
       <div className={styles.content}>
         <span className={styles.dinnerMeta}>
