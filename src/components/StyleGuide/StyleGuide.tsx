@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-type SectionId = 'landing-hero' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero';
+ type SectionId = 'landing-hero' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'landing-hero', label: 'Landing Hero' },
@@ -21,6 +21,7 @@ const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'dinner-card', label: 'Dinner Card' },
   { id: 'dinner-list', label: 'Dinner List' },
   { id: 'dinner-hero', label: 'Dinner Hero' },
+  { id: 'dinner-detail-hero', label: 'Dinner Detail Hero' },
 ];
 
 export function StyleGuide() {
@@ -824,6 +825,17 @@ export function StyleGuide() {
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
             <DinnerHeroB />
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'dinner-detail-hero' && (
+        <Section title="Dinner Detail Hero">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Hero for the individual dinner page. Photo + dinner info (no attendee pills — those go below as full member cards).
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+            <DinnerDetailHeroD3 />
           </div>
         </Section>
       )}
@@ -2031,6 +2043,50 @@ const DINNER_HERO_DATA = {
     { name: 'Liberatus', role: 'Engineering', photo: SAMPLE_MEMBERS[0]?.photo || '' },
   ],
 };
+
+/* ─── Dinner Detail Hero Demos ─── */
+
+const DETAIL_HERO_DATA = {
+  ...DINNER_HERO_DATA,
+  links: { recap: 'https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-q1-2026-dinner-recap', discord: 'https://discord.gg/xTxksjUvnE' },
+};
+
+/* Dinner Detail Hero (confirmed) — cinematic 21:9, compact editorial topics */
+function DinnerDetailHeroD3() {
+  const d = DETAIL_HERO_DATA;
+  return (
+    <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+      <OptionHeader label="Dinner Detail Hero (confirmed) — cinematic 21:9, compact editorial topics (small-size, 8px rows, border-separated)" />
+      <div style={{ backgroundColor: COLORS.bg }}>
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '21 / 9', overflow: 'hidden', backgroundColor: '#0a0a0a' }}>
+          <img src={d.photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.7, display: 'block' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)' }} />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px' }}>
+            <button style={{ all: 'unset', cursor: 'pointer', fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' as const, letterSpacing: '1px', marginBottom: '12px', display: 'block' }}>← All Dinners</button>
+            <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' as const, letterSpacing: '2px' }}>{d.date} · {d.venue}</span>
+            <h2 style={{ fontFamily: FONT, fontWeight: TYPE.heading.weight, fontSize: '1.777rem', lineHeight: TYPE.heading.lineHeight, color: '#ffffff', margin: '8px 0 0' }}>{d.name}</h2>
+          </div>
+        </div>
+        <div style={{ padding: '32px' }}>
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, fontWeight: TYPE.body.weight, lineHeight: TYPE.body.lineHeight, color: COLORS.textSecondary, margin: '0 0 20px', maxWidth: '600px' }}>{d.description}</p>
+          <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase' as const, letterSpacing: '1px', display: 'block', marginBottom: '4px' }}>Topics Discussed</span>
+          <div style={{ display: 'flex', flexDirection: 'column', borderTop: `1px solid ${COLORS.borderLight}` }}>
+            {d.topics.map(t => (
+              <div key={t.text} style={{ padding: '8px 0', borderBottom: `1px solid ${COLORS.borderLight}` }}>
+                <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 400, color: COLORS.text, lineHeight: 1.4 }}>{t.text}</span>
+                <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: 400, color: COLORS.textMuted, fontStyle: 'italic', marginLeft: '6px' }}>— {t.attribution}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
+            <button style={{ ...BTN_BASE, ...BTN_VARIANTS.outline }}>Full Recap</button>
+            <button style={{ ...BTN_BASE, ...BTN_VARIANTS.ghost }}>Discord</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /* Dinner Hero (confirmed) — white split, photo left, wrapping attendee chips */
 function DinnerHeroB() {
