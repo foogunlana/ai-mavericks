@@ -40,9 +40,9 @@
   font-family: var(--font-sans);
   font-size: var(--text-small);
   font-weight: 500;
-  color: var(--color-secondary);
+  color: var(--color-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.5px;
 }
 
 .toolbarLeft {
@@ -53,7 +53,7 @@
 
 .viewToggle {
   display: flex;
-  gap: 12px;
+  gap: 16px;
 }
 
 .viewBtn {
