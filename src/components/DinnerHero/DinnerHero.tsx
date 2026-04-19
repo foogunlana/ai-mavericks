@@ -79,6 +79,7 @@ export function DinnerHero({ dinner, onSelectDinner }: Props) {
                     src={m!.photo}
                     alt={m!.name}
                     className={styles.chipAvatar}
+                    onError={(e) => { (e.target as HTMLImageElement).src = `/images/members/${m!.slug}.svg`; }}
                   />
                   <span className={styles.chipName}>{m!.name}</span>
                 </div>

@@ -44,6 +44,7 @@ export function MemberCard({ member }: Props) {
             alt={member.name}
             className={`${styles.photo} ${hovered ? styles.photoHovered : ''}`}
             loading="lazy"
+            onError={(e) => { (e.target as HTMLImageElement).src = `/images/members/${member.slug}.svg`; }}
           />
           {/* Default gradient overlay */}
           <div className={`${styles.gradientOverlay} ${hovered ? styles.hidden : ''}`}>
@@ -74,6 +75,7 @@ export function MemberCard({ member }: Props) {
               src={member.photo}
               alt={member.name}
               className={styles.backAvatar}
+              onError={(e) => { (e.target as HTMLImageElement).src = `/images/members/${member.slug}.svg`; }}
             />
             <div>
               <p className={styles.backName}>{member.name}</p>

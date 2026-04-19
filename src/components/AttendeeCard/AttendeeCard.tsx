@@ -18,6 +18,7 @@ export function AttendeeCard({ member }: Props) {
         alt={member.name}
         className={styles.photo}
         loading="lazy"
+        onError={(e) => { (e.target as HTMLImageElement).src = `/images/members/${member.slug}.svg`; }}
       />
       <div className={styles.info}>
         <span className={styles.name}>{member.name}</span>
