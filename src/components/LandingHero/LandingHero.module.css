@@ -152,28 +152,6 @@
   opacity: 0.75;
 }
 
-.landingNavLinks {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.landingNavLink {
-  all: unset;
-  cursor: pointer;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.landingNavLink:hover {
-  color: rgba(255, 255, 255, 0.85);
-}
 
 .dinnerMeta {
   font-family: var(--font-sans);

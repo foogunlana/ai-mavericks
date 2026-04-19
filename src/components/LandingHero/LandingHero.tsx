@@ -30,10 +30,10 @@ export function LandingHero({ latestDinner, onViewChange }: LandingHeroProps) {
         <button className={styles.landingNavLogo} onClick={() => onViewChange('home')}>
           <img src={`${import.meta.env.BASE_URL}images/logo.avif`} alt="AI Mavericks" className={styles.landingNavLogoMark} />
         </button>
-        <div className={styles.landingNavLinks}>
-          <button className={styles.landingNavLink} onClick={() => onViewChange('people')}>People</button>
-          <button className={styles.landingNavLink} onClick={() => onViewChange('dinners')}>Dinners</button>
-          <a className={styles.landingNavLink} href="https://ai-mavericks-ldn.beehiiv.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
+        <div className="flex items-center gap-6">
+          <button className="appearance-none bg-transparent border-none cursor-pointer font-[family-name:var(--font-sans)] text-[0.75rem] font-medium tracking-[2px] uppercase text-white/50 hover:text-white/85 transition-colors" onClick={() => onViewChange('people')}>People</button>
+          <button className="appearance-none bg-transparent border-none cursor-pointer font-[family-name:var(--font-sans)] text-[0.75rem] font-medium tracking-[2px] uppercase text-white/50 hover:text-white/85 transition-colors" onClick={() => onViewChange('dinners')}>Dinners</button>
+          <a className="font-[family-name:var(--font-sans)] text-[0.75rem] font-medium tracking-[2px] uppercase text-white/50 hover:text-white/85 transition-colors no-underline" href="https://ai-mavericks-ldn.beehiiv.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
         </div>
       </div>
 
