@@ -4,11 +4,15 @@
   "title": "Exited Founder",
   "company": "",
   "bio": "Exited founder from the wearable/hardware space, exploring new startup opportunities at the frontier of AI.",
-  "photo": "https://picsum.photos/seed/jordan-mcrae/600/800",
+  "photo": "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/jmcrae23/",
   "twitter": "",
   "website": "",
-  "tags": ["startups"],
+  "tags": [
+    "startups"
+  ],
   "roleType": "founder",
-  "dinners": ["2025-02-february"]
+  "dinners": [
+    "2025-02-february"
+  ]
 }

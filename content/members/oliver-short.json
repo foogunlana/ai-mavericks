@@ -4,11 +4,15 @@
   "title": "Founder",
   "company": "SEEKR",
   "bio": "Founder of SEEKR, a tech recruitment company connecting AI engineers with hiring companies.",
-  "photo": "https://picsum.photos/seed/oliver-short/600/800",
+  "photo": "https://images.unsplash.com/photo-1640951613773-54706e06851d?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/olivershort/",
   "twitter": "",
   "website": "",
-  "tags": ["startups"],
+  "tags": [
+    "startups"
+  ],
   "roleType": "founder",
-  "dinners": ["2025-06-june"]
+  "dinners": [
+    "2025-06-june"
+  ]
 }

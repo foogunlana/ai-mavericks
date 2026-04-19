@@ -4,11 +4,17 @@
   "title": "Data Scientist",
   "company": "",
   "bio": "Data scientist with experience across multiple industries including UK government, Shell Digital Ventures and AI-music side projects.",
-  "photo": "https://picsum.photos/seed/alex-glaser/600/800",
+  "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/alexglaser1/",
   "twitter": "",
   "website": "",
-  "tags": ["data-science"],
+  "tags": [
+    "data-science"
+  ],
   "roleType": "data-scientist",
-  "dinners": ["2024-11-november", "2025-01-january", "2025-06-june"]
+  "dinners": [
+    "2024-11-november",
+    "2025-01-january",
+    "2025-06-june"
+  ]
 }

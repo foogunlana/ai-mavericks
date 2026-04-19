@@ -4,11 +4,17 @@
   "title": "AI Contractor / Consultant / DevRel",
   "company": "",
   "bio": "Built biotech chatbots and created a LangGraph Agents course for DataCamp. Active in AI DevRel and agent tooling.",
-  "photo": "https://picsum.photos/seed/dilini-k-sumanapala/600/800",
+  "photo": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/dilini-k-sumanapala-phd/",
   "twitter": "",
   "website": "",
-  "tags": ["ai-agents", "llms", "consulting"],
+  "tags": [
+    "ai-agents",
+    "llms",
+    "consulting"
+  ],
   "roleType": "consultant",
-  "dinners": ["2025-12-december"]
+  "dinners": [
+    "2025-12-december"
+  ]
 }

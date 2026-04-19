@@ -4,11 +4,16 @@
   "title": "Founder",
   "company": "Resolve247",
   "bio": "Founder of Resolve247, an AI-powered customer service platform that automates resolution workflows.",
-  "photo": "https://picsum.photos/seed/sam-cox/600/800",
+  "photo": "https://images.unsplash.com/photo-1682695797873-aa4cb6edd613?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/sam-cox-b3a61919/",
   "twitter": "",
   "website": "",
-  "tags": ["ai-agents", "startups"],
+  "tags": [
+    "ai-agents",
+    "startups"
+  ],
   "roleType": "founder",
-  "dinners": ["2025-03-march"]
+  "dinners": [
+    "2025-03-march"
+  ]
 }

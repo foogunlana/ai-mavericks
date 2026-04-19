@@ -4,11 +4,17 @@
   "title": "Full-Stack Engineer & CTO",
   "company": "King Of the Hill",
   "bio": "Full-stack and AI engineer, CTO of King Of the Hill (extreme snow sports app). Previously freelance software and AI engineering; working on an AI media project.",
-  "photo": "https://picsum.photos/seed/farhath-razzaque/600/800",
+  "photo": "https://images.unsplash.com/photo-1554151228-14d9def656db?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/farhath-razzaque/",
   "twitter": "",
   "website": "",
-  "tags": ["creative-ai", "startups"],
+  "tags": [
+    "creative-ai",
+    "startups"
+  ],
   "roleType": "engineer",
-  "dinners": ["2025-05-may", "2026-q1"]
+  "dinners": [
+    "2025-05-may",
+    "2026-q1"
+  ]
 }

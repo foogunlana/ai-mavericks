@@ -14,7 +14,7 @@
   text-align: center;
   padding: 60px 20px;
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 300;
   color: var(--text-secondary);
 }

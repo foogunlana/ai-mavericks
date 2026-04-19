@@ -4,11 +4,16 @@
   "title": "Head of Engineering",
   "company": "",
   "bio": "Head of Engineering at a Climate Tech startup, vibe-coding enthusiast and LLM tooling explorer.",
-  "photo": "https://picsum.photos/seed/tiago-pina/600/800",
+  "photo": "https://images.unsplash.com/photo-1695635944830-6fcea58ee2ca?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/tpina/",
   "twitter": "",
   "website": "",
-  "tags": ["llms", "vibe-coding"],
+  "tags": [
+    "llms",
+    "vibe-coding"
+  ],
   "roleType": "engineer",
-  "dinners": ["2025-02-february"]
+  "dinners": [
+    "2025-02-february"
+  ]
 }

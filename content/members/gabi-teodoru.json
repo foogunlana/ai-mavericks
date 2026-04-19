@@ -4,11 +4,16 @@
   "title": "AI Engineer",
   "company": "",
   "bio": "AI Engineer with a quantitative trading background, teaching AI to write q (kdb+) language for time-series financial data.",
-  "photo": "https://picsum.photos/seed/gabi-teodoru/600/800",
+  "photo": "https://images.unsplash.com/photo-1562159278-1253a58da141?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/gabiteodoru/",
   "twitter": "",
   "website": "",
-  "tags": ["fintech", "llms"],
+  "tags": [
+    "fintech",
+    "llms"
+  ],
   "roleType": "engineer",
-  "dinners": ["2025-07-july"]
+  "dinners": [
+    "2025-07-july"
+  ]
 }

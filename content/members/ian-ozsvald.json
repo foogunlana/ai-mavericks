@@ -4,11 +4,16 @@
   "title": "AI & Robotics Expert / Author / Community Leader",
   "company": "",
   "bio": "25 years in AI. Author of \"High Performance Python\". Co-founded PyData London (16K+ members). Expert in AI strategy and ARC-AGI challenges.",
-  "photo": "https://picsum.photos/seed/ian-ozsvald/600/800",
+  "photo": "https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/ianozsvald/",
   "twitter": "",
   "website": "",
-  "tags": ["data-science", "consulting"],
+  "tags": [
+    "data-science",
+    "consulting"
+  ],
   "roleType": "consultant",
-  "dinners": ["2025-12-december"]
+  "dinners": [
+    "2025-12-december"
+  ]
 }

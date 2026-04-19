@@ -1,6 +1,6 @@
 /* ─── Card flip shell ─── */
 .card {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   perspective: 1000px;
   border-radius: var(--radius-sm);
   overflow: hidden;

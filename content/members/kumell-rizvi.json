@@ -4,11 +4,16 @@
   "title": "Optometrist & AI Tinkerer",
   "company": "",
   "bio": "Optometrist dabbling with LLMs to automate the triaging of patient calls and improve clinical workflows.",
-  "photo": "https://picsum.photos/seed/kumell-rizvi/600/800",
+  "photo": "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/kumell-rizvi-1522121a0/",
   "twitter": "",
   "website": "",
-  "tags": ["healthcare", "llms"],
+  "tags": [
+    "healthcare",
+    "llms"
+  ],
   "roleType": "consultant",
-  "dinners": ["2025-05-may"]
+  "dinners": [
+    "2025-05-may"
+  ]
 }

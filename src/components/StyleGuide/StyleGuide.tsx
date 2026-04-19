@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-type SectionId = 'landing-hero' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list';
+type SectionId = 'landing-hero' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list' | 'view-toggle' | 'member-views';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'landing-hero', label: 'Landing Hero' },
@@ -16,6 +16,8 @@ const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'logo',         label: 'Logo' },
   { id: 'nav',          label: 'Nav' },
   { id: 'member-list',  label: 'Member List' },
+  { id: 'view-toggle',  label: 'View Toggle' },
+  { id: 'member-views', label: 'Member Views' },
 ];
 
 export function StyleGuide() {
@@ -577,8 +579,179 @@ export function StyleGuide() {
               </div>
             </div>
 
-            {/* View toggle options */}
-            <MemberViewToggleDemo />
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'view-toggle' && (
+        <Section title="View Toggle">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Segmented control for switching between list layouts. Reusable atom — can apply to any list, not just members.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+
+            {/* Option A: Icon-only pills */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="A · Icon-only pills — minimal, no labels, border group" />
+              <div style={{ padding: '32px', backgroundColor: COLORS.bg }}>
+                <div style={{ display: 'inline-flex', border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+                  {VIEW_TOGGLE_MODES.map((v, i) => (
+                    <div key={v.label} style={{
+                      padding: '8px 14px', cursor: 'pointer',
+                      backgroundColor: i === 0 ? COLORS.text : COLORS.bg,
+                      borderLeft: i > 0 ? `1px solid ${COLORS.border}` : 'none',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill={i === 0 ? COLORS.bg : COLORS.textMuted} stroke="none">
+                        <path d={v.icon} />
+                      </svg>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Option B: Icon + label pills */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="B · Icon + label — each button has icon and text, border group" />
+              <div style={{ padding: '32px', backgroundColor: COLORS.bg }}>
+                <div style={{ display: 'inline-flex', border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+                  {VIEW_TOGGLE_MODES.map((v, i) => (
+                    <div key={v.label} style={{
+                      padding: '6px 14px', cursor: 'pointer',
+                      backgroundColor: i === 0 ? COLORS.text : COLORS.bg,
+                      borderLeft: i > 0 ? `1px solid ${COLORS.border}` : 'none',
+                      display: 'flex', alignItems: 'center', gap: '6px',
+                    }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill={i === 0 ? COLORS.bg : COLORS.textMuted} stroke="none">
+                        <path d={v.icon} />
+                      </svg>
+                      <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: i === 0 ? COLORS.bg : COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                        {v.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Option C: Separate ghost buttons */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="C · Ghost buttons — separate buttons with gap, active gets border" />
+              <div style={{ padding: '32px', backgroundColor: COLORS.bg }}>
+                <div style={{ display: 'flex', gap: '4px' }}>
+                  {VIEW_TOGGLE_MODES.map((v, i) => (
+                    <div key={v.label} style={{
+                      padding: '6px 12px', cursor: 'pointer', borderRadius: '3px',
+                      backgroundColor: i === 0 ? COLORS.borderLight : 'transparent',
+                      border: `1px solid ${i === 0 ? COLORS.border : 'transparent'}`,
+                      display: 'flex', alignItems: 'center', gap: '6px',
+                    }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill={i === 0 ? COLORS.text : COLORS.textMuted} stroke="none">
+                        <path d={v.icon} />
+                      </svg>
+                      <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: i === 0 ? COLORS.text : COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                        {v.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Option D: Icon-only with tooltip feel */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="D · Minimal icons — no border group, just icon buttons with active underline" />
+              <div style={{ padding: '32px', backgroundColor: COLORS.bg }}>
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                  {VIEW_TOGGLE_MODES.map((v, i) => (
+                    <div key={v.label} style={{
+                      cursor: 'pointer', paddingBottom: '4px',
+                      borderBottom: i === 0 ? `2px solid ${COLORS.text}` : '2px solid transparent',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill={i === 0 ? COLORS.text : COLORS.textMuted} stroke="none">
+                        <path d={v.icon} />
+                      </svg>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'member-views' && (
+        <Section title="Member Views">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Three ways to display members. Each is a standalone layout that the view toggle switches between.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+
+            {/* Photo cards */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Photo cards — 3-col grid, 3/4 portrait, name + role on gradient overlay" />
+              <div style={{ padding: '24px', backgroundColor: COLORS.bg }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '32px' }}>
+                  {SAMPLE_MEMBERS.map(m => (
+                    <MiniCard key={m.name} member={m} />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Small cards */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="Small cards — 2-col grid, thumbnail + name + role + tags" />
+              <div style={{ padding: '24px', backgroundColor: COLORS.bg }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  {SAMPLE_MEMBERS.map(m => (
+                    <div key={m.name} style={{
+                      display: 'flex', gap: '12px', padding: '12px',
+                      borderRadius: '4px', border: `1px solid ${COLORS.border}`, cursor: 'pointer',
+                    }}>
+                      <img src={m.photo} alt={m.name} style={{ width: 64, height: 64, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }} />
+                      <div style={{ minWidth: 0 }}>
+                        <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, lineHeight: TYPE.small.lineHeight, margin: 0 }}>{m.name}</p>
+                        <p style={{ fontFamily: FONT, fontWeight: TYPE.small.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>{m.role}</p>
+                        <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', marginTop: '6px' }}>
+                          {m.interests.slice(0, 2).map(tag => (
+                            <span key={tag} style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textSecondary, border: `1px solid ${COLORS.border}`, borderRadius: '3px', padding: '1px 5px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{tag}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* List rows */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="List rows — single column, avatar + name/role + tags, light dividers" />
+              <div style={{ padding: '24px', backgroundColor: COLORS.bg }}>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  {SAMPLE_MEMBERS.map((m, i) => (
+                    <div key={m.name} style={{
+                      display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', cursor: 'pointer',
+                      borderTop: i === 0 ? 'none' : `1px solid ${COLORS.borderLight}`,
+                    }}>
+                      <img src={m.photo} alt={m.name} style={{ width: 36, height: 36, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }} />
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, lineHeight: TYPE.small.lineHeight, margin: 0 }}>{m.name}</p>
+                        <p style={{ fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '1px' }}>{m.role}</p>
+                      </div>
+                      <div style={{ display: 'flex', gap: '4px', flexShrink: 0 }}>
+                        {m.interests.slice(0, 2).map(tag => (
+                          <span key={tag} style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textSecondary, border: `1px solid ${COLORS.border}`, borderRadius: '3px', padding: '1px 5px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
 
           </div>
         </Section>
@@ -894,125 +1067,11 @@ function MiniCard({ member }: { member: typeof SAMPLE_MEMBERS[number] }) {
   );
 }
 
-/* ─── View toggle icons ─── */
-const VIEW_ICON_GRID = 'M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z';
-const VIEW_ICON_SMALL = 'M3 3h7v5H3V3zm11 0h7v5h-7V3zM3 11h7v5H3v-5zm11 0h7v5h-7v-5zM3 19h7v2H3v-2zm11 0h7v2h-7v-2z';
-const VIEW_ICON_LIST = 'M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z';
-
-type ViewMode = 'photo' | 'small' | 'list';
-
-function MemberViewToggleDemo() {
-  const [mode, setMode] = useState<ViewMode>('photo');
-
-  return (
-    <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-      <OptionHeader label="View toggle — user switches between photo cards, small cards, and list rows" />
-      <div style={{ backgroundColor: COLORS.bg, padding: '32px' }}>
-        {/* Toggle controls */}
-        <div style={{ display: 'flex', gap: '4px', marginBottom: '24px' }}>
-          {([
-            { id: 'photo' as ViewMode, icon: VIEW_ICON_GRID, label: 'Photo cards' },
-            { id: 'small' as ViewMode, icon: VIEW_ICON_SMALL, label: 'Small cards' },
-            { id: 'list' as ViewMode, icon: VIEW_ICON_LIST, label: 'List' },
-          ]).map(v => (
-            <button
-              key={v.id}
-              onClick={() => setMode(v.id)}
-              title={v.label}
-              style={{
-                all: 'unset', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px',
-                padding: '6px 12px', borderRadius: '3px',
-                backgroundColor: mode === v.id ? COLORS.text : 'transparent',
-                color: mode === v.id ? COLORS.bg : COLORS.textMuted,
-                border: `1px solid ${mode === v.id ? COLORS.text : COLORS.border}`,
-                transition: 'all 0.15s',
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                <path d={v.icon} />
-              </svg>
-              <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                {v.label}
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Photo cards view */}
-        {mode === 'photo' && (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '32px' }}>
-            {SAMPLE_MEMBERS.map(m => (
-              <MiniCard key={m.name} member={m} />
-            ))}
-          </div>
-        )}
-
-        {/* Small cards view */}
-        {mode === 'small' && (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-            {SAMPLE_MEMBERS.map(m => (
-              <div key={m.name} style={{
-                display: 'flex', gap: '12px', padding: '12px',
-                borderRadius: '4px', border: `1px solid ${COLORS.border}`,
-                backgroundColor: COLORS.bg, cursor: 'pointer',
-              }}>
-                <img
-                  src={m.photo} alt={m.name}
-                  style={{ width: 64, height: 64, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }}
-                />
-                <div style={{ minWidth: 0 }}>
-                  <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, lineHeight: TYPE.small.lineHeight, margin: 0 }}>{m.name}</p>
-                  <p style={{ fontFamily: FONT, fontWeight: TYPE.small.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>{m.role}</p>
-                  <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', marginTop: '6px' }}>
-                    {m.interests.slice(0, 2).map(tag => (
-                      <span key={tag} style={{
-                        fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight,
-                        color: COLORS.textSecondary, border: `1px solid ${COLORS.border}`,
-                        borderRadius: '3px', padding: '1px 5px', textTransform: 'uppercase', letterSpacing: '0.5px',
-                      }}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* List view */}
-        {mode === 'list' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-            {SAMPLE_MEMBERS.map((m, i) => (
-              <div key={m.name} style={{
-                display: 'flex', alignItems: 'center', gap: '12px',
-                padding: '10px 0',
-                borderTop: i === 0 ? 'none' : `1px solid ${COLORS.borderLight}`,
-                cursor: 'pointer',
-              }}>
-                <img
-                  src={m.photo} alt={m.name}
-                  style={{ width: 36, height: 36, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }}
-                />
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, lineHeight: TYPE.small.lineHeight, margin: 0 }}>{m.name}</p>
-                  <p style={{ fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '1px' }}>{m.role}</p>
-                </div>
-                <div style={{ display: 'flex', gap: '4px', flexShrink: 0 }}>
-                  {m.interests.slice(0, 2).map(tag => (
-                    <span key={tag} style={{
-                      fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight,
-                      color: COLORS.textSecondary, border: `1px solid ${COLORS.border}`,
-                      borderRadius: '3px', padding: '1px 5px', textTransform: 'uppercase', letterSpacing: '0.5px',
-                    }}>{tag}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+const VIEW_TOGGLE_MODES = [
+  { label: 'Cards', icon: 'M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z' },
+  { label: 'Small', icon: 'M3 3h7v5H3V3zm11 0h7v5h-7V3zM3 11h7v5H3v-5zm11 0h7v5h-7v-5zM3 19h7v2H3v-2zm11 0h7v2h-7v-2z' },
+  { label: 'List', icon: 'M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z' },
+];
 
 const BTN_BASE: React.CSSProperties = {
   fontFamily: FONT,

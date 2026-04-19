@@ -4,11 +4,16 @@
   "title": "Former PM at Synthesia / ML Institute",
   "company": "",
   "bio": "Former Product Manager at Synthesia with deep experience at the intersection of machine learning and AI-generated video.",
-  "photo": "https://picsum.photos/seed/nicola-croce/600/800",
+  "photo": "https://images.unsplash.com/photo-1636041282783-e218bb0a217b?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/nicocroce/",
   "twitter": "",
   "website": "",
-  "tags": ["product", "llms"],
+  "tags": [
+    "product",
+    "llms"
+  ],
   "roleType": "product-manager",
-  "dinners": ["2025-03-march"]
+  "dinners": [
+    "2025-03-march"
+  ]
 }

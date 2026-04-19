@@ -4,11 +4,15 @@
   "title": "Engineering Manager",
   "company": "Meta",
   "bio": "Engineering Manager at Meta working at the intersection of ML and virtual reality.",
-  "photo": "https://picsum.photos/seed/elias-nema/600/800",
+  "photo": "https://images.unsplash.com/photo-1550525811-e5869dd03032?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/eliasnema/",
   "twitter": "",
   "website": "",
-  "tags": ["llms"],
+  "tags": [
+    "llms"
+  ],
   "roleType": "engineer",
-  "dinners": ["2025-02-february"]
+  "dinners": [
+    "2025-02-february"
+  ]
 }

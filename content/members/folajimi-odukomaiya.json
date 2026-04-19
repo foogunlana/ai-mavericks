@@ -4,11 +4,18 @@
   "title": "Senior Product Manager",
   "company": "",
   "bio": "Senior PM at a FinTech company and ex-Data Science EdTech founder, applying AI agents to financial products.",
-  "photo": "https://picsum.photos/seed/folajimi-odukomaiya/600/800",
+  "photo": "https://images.unsplash.com/photo-1556474835-b0e52be4d1e3?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/folajimi-odukomaiya/",
   "twitter": "",
   "website": "",
-  "tags": ["ai-agents", "llms", "fintech", "product"],
+  "tags": [
+    "ai-agents",
+    "llms",
+    "fintech",
+    "product"
+  ],
   "roleType": "product-manager",
-  "dinners": ["2025-02-february"]
+  "dinners": [
+    "2025-02-february"
+  ]
 }

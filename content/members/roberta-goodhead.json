@@ -4,11 +4,17 @@
   "title": "Senior Software Engineer",
   "company": "VodafoneThree",
   "bio": "Senior Software Engineer at VodafoneThree. Imperial alumna with experience in healthcare and telecoms and a keen interest in generative AI.",
-  "photo": "https://picsum.photos/seed/roberta-goodhead/600/800",
+  "photo": "https://images.unsplash.com/photo-1676733388218-1f2e5c29b8a7?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/robertagoodhead/",
   "twitter": "",
   "website": "",
-  "tags": ["llms", "vibe-coding"],
+  "tags": [
+    "llms",
+    "vibe-coding"
+  ],
   "roleType": "engineer",
-  "dinners": ["2025-06-june", "2025-07-july"]
+  "dinners": [
+    "2025-06-june",
+    "2025-07-july"
+  ]
 }

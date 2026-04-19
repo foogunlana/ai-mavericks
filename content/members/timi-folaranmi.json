@@ -4,11 +4,17 @@
   "title": "Data Scientist",
   "company": "",
   "bio": "Data Scientist at a private equity firm who builds RAG applications and explores LLM tooling in his spare time.",
-  "photo": "https://picsum.photos/seed/timi-folaranmi/600/800",
+  "photo": "https://images.unsplash.com/photo-1699033429-d6bc7f2b9b2b?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/timifolaranmi/",
   "twitter": "",
   "website": "",
-  "tags": ["rag", "llms", "data-science"],
+  "tags": [
+    "rag",
+    "llms",
+    "data-science"
+  ],
   "roleType": "data-scientist",
-  "dinners": ["2025-02-february"]
+  "dinners": [
+    "2025-02-february"
+  ]
 }

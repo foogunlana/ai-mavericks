@@ -4,11 +4,17 @@
   "title": "Software Engineer & AI Startup Founder",
   "company": "",
   "bio": "Software engineer and founder of an AI developer-tools startup, focused on accelerating the dev workflow with LLMs.",
-  "photo": "https://picsum.photos/seed/ezo-saleh/600/800",
+  "photo": "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/ezosaleh/",
   "twitter": "",
   "website": "",
-  "tags": ["ai-agents", "llms", "startups"],
+  "tags": [
+    "ai-agents",
+    "llms",
+    "startups"
+  ],
   "roleType": "founder",
-  "dinners": ["2024-11-november"]
+  "dinners": [
+    "2024-11-november"
+  ]
 }

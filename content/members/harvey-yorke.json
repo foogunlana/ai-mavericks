@@ -4,11 +4,17 @@
   "title": "Co-founder & CTO",
   "company": "Valyu",
   "bio": "Co-founder and CTO of Valyu, building multimodal search APIs for AI Agents. UCL graduate with AI research background.",
-  "photo": "https://picsum.photos/seed/harvey-yorke/600/800",
+  "photo": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/harveyyorke/",
   "twitter": "",
   "website": "",
-  "tags": ["rag", "ai-agents", "startups"],
+  "tags": [
+    "rag",
+    "ai-agents",
+    "startups"
+  ],
   "roleType": "founder",
-  "dinners": ["2025-07-july"]
+  "dinners": [
+    "2025-07-july"
+  ]
 }

@@ -4,11 +4,18 @@
   "title": "CEO / CTO / Director",
   "company": "Roboman / Intuicon / Inkarno",
   "bio": "Data Scientist splitting time across three companies as CEO of Roboman, CTO of Intuicon, and Director of Inkarno.",
-  "photo": "https://picsum.photos/seed/priyesh-sharad/600/800",
+  "photo": "https://images.unsplash.com/photo-1660551929718-4f12c7ee0ef7?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/priyesh-s-5650b672/",
   "twitter": "",
   "website": "",
-  "tags": ["ai-agents", "data-science", "startups"],
+  "tags": [
+    "ai-agents",
+    "data-science",
+    "startups"
+  ],
   "roleType": "founder",
-  "dinners": ["2025-01-january", "2025-05-may"]
+  "dinners": [
+    "2025-01-january",
+    "2025-05-may"
+  ]
 }

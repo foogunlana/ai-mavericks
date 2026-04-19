@@ -4,11 +4,19 @@
   "title": "AI Consultant",
   "company": "",
   "bio": "10+ years in startups and scaleups with extensive Open Banking experience. Now specialising in knowledge engineering, Graph RAG and enterprise AI strategy.",
-  "photo": "https://picsum.photos/seed/dexter-awoyemi/600/800",
+  "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/dexterawoyemi/",
   "twitter": "",
   "website": "",
-  "tags": ["rag", "consulting", "startups"],
+  "tags": [
+    "rag",
+    "consulting",
+    "startups"
+  ],
   "roleType": "consultant",
-  "dinners": ["2025-04-april", "2025-07-july", "2025-12-december"]
+  "dinners": [
+    "2025-04-april",
+    "2025-07-july",
+    "2025-12-december"
+  ]
 }

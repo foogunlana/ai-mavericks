@@ -78,12 +78,12 @@
   --space-15: 160px;
 
   /* Named semantic stops */
-  --nav-height: 56px;
-  --nav-h-pad: 24px;
-  --nav-link-gap: 24px;
+  --nav-height: 64px;
+  --nav-h-pad: 32px;
+  --nav-link-gap: 32px;
   --section-gap: 80px;
-  --card-gap: 16px;
-  --content-max: 960px;
+  --card-gap: 32px;
+  --content-max: 1280px;
 
   /* ─── Breakpoints ─── */
   --breakpoint-sm: 480px;

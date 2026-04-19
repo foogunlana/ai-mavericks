@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { SlidersHorizontal, X } from 'lucide-react';
+import { Filter } from 'lucide-react';
 import type { FilterState } from '../../hooks/useFilterState';
 import { getTagsByCategory } from '../../data/tags';
 import styles from './FilterDropdown.module.css';
@@ -17,6 +17,7 @@ export function FilterDropdown({ filters, toggleFilter, clearFilters, hasActiveF
 
   const roles = getTagsByCategory('role');
   const interests = getTagsByCategory('interest');
+  const activeCount = filters.roles.length + filters.interests.length;
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -35,48 +36,65 @@ export function FilterDropdown({ filters, toggleFilter, clearFilters, hasActiveF
         onClick={() => setOpen((o) => !o)}
         aria-label="Filter members"
       >
-        <SlidersHorizontal size={14} strokeWidth={2} />
-        {hasActiveFilters && <span className={styles.dot} />}
+        <Filter size={18} strokeWidth={2} />
+        {hasActiveFilters && (
+          <span className={styles.badge}>{activeCount}</span>
+        )}
       </button>
 
       {open && (
         <div className={styles.panel}>
-          <div className={styles.section}>
-            <span className={styles.label}>Role</span>
-            <div className={styles.pills}>
-              {roles.map((tag) => (
-                <button
-                  key={tag.id}
-                  className={`${styles.pill} ${filters.roles.includes(tag.id) ? styles.pillActive : ''}`}
-                  onClick={() => toggleFilter('roles', tag.id)}
-                >
-                  {tag.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.section}>
-            <span className={styles.label}>Interest</span>
-            <div className={styles.pills}>
-              {interests.map((tag) => (
-                <button
-                  key={tag.id}
-                  className={`${styles.pill} ${filters.interests.includes(tag.id) ? styles.pillActive : ''}`}
-                  onClick={() => toggleFilter('interests', tag.id)}
-                >
-                  {tag.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {hasActiveFilters && (
-            <button className={styles.clear} onClick={() => { clearFilters(); setOpen(false); }}>
-              <X size={12} strokeWidth={2} />
+          <div className={styles.header}>
+            <span className={styles.headerLabel}>Filters</span>
+            <button
+              className={styles.clearBtn}
+              onClick={() => { clearFilters(); setOpen(false); }}
+            >
               Clear all
             </button>
-          )}
+          </div>
+
+          <div className={styles.section}>
+            <p className={styles.categoryLabel}>Role</p>
+            {roles.map((tag) => {
+              const selected = filters.roles.includes(tag.id);
+              return (
+                <button
+                  key={tag.id}
+                  className={`${styles.option} ${selected ? styles.selected : ''}`}
+                  onClick={() => toggleFilter('roles', tag.id)}
+                >
+                  <span>{tag.label}</span>
+                  {selected && (
+                    <svg className={styles.checkmark} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className={styles.section}>
+            <p className={styles.categoryLabel}>Interest</p>
+            {interests.map((tag) => {
+              const selected = filters.interests.includes(tag.id);
+              return (
+                <button
+                  key={tag.id}
+                  className={`${styles.option} ${selected ? styles.selected : ''}`}
+                  onClick={() => toggleFilter('interests', tag.id)}
+                >
+                  <span>{tag.label}</span>
+                  {selected && (
+                    <svg className={styles.checkmark} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>

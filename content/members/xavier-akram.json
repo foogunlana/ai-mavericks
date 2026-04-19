@@ -4,11 +4,16 @@
   "title": "Founder",
   "company": "TokenHouse Capital",
   "bio": "Founder of TokenHouse Capital, an investment firm operating in the UK, China and Middle East, actively testing AI models for investment research.",
-  "photo": "https://picsum.photos/seed/xavier-akram/600/800",
+  "photo": "https://images.unsplash.com/photo-1702578659-bff9e0ad27e7?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/xavierakram/",
   "twitter": "",
   "website": "",
-  "tags": ["fintech", "startups"],
+  "tags": [
+    "fintech",
+    "startups"
+  ],
   "roleType": "investor",
-  "dinners": ["2025-06-june"]
+  "dinners": [
+    "2025-06-june"
+  ]
 }

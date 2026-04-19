@@ -4,11 +4,16 @@
   "title": "Engineering Manager",
   "company": "",
   "bio": "Software engineering manager at a hedge fund, leading AI/ML application development for financial markets.",
-  "photo": "https://picsum.photos/seed/remi-bernal/600/800",
+  "photo": "https://images.unsplash.com/photo-1670884441588-47bb554b5500?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/remi-bernal/",
   "twitter": "",
   "website": "",
-  "tags": ["fintech", "llms"],
+  "tags": [
+    "fintech",
+    "llms"
+  ],
   "roleType": "engineer",
-  "dinners": ["2024-12-december"]
+  "dinners": [
+    "2024-12-december"
+  ]
 }

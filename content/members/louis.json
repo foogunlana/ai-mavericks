@@ -4,11 +4,17 @@
   "title": "Product Manager",
   "company": "Gitpod",
   "bio": "PM at Gitpod building AI-native products, with a side project in AI for defence.",
-  "photo": "https://picsum.photos/seed/louis/600/800",
+  "photo": "https://images.unsplash.com/photo-1618835962148-cf177563c6c0?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/loujaybee/",
   "twitter": "",
   "website": "",
-  "tags": ["product", "vibe-coding", "startups"],
+  "tags": [
+    "product",
+    "vibe-coding",
+    "startups"
+  ],
   "roleType": "product-manager",
-  "dinners": ["2025-03-march"]
+  "dinners": [
+    "2025-03-march"
+  ]
 }

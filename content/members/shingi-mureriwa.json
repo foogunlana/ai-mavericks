@@ -4,11 +4,16 @@
   "title": "Former Director, Financial Risk Management",
   "company": "",
   "bio": "Former Financial Risk Management Director at Barclays, HSBC and Nordea. Now building a personal AI trading system.",
-  "photo": "https://picsum.photos/seed/shingi-mureriwa/600/800",
+  "photo": "https://images.unsplash.com/photo-1690127235-d71265c41ee9?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/shingi-mureriwa-2a602b31/",
   "twitter": "",
   "website": "",
-  "tags": ["fintech", "llms"],
+  "tags": [
+    "fintech",
+    "llms"
+  ],
   "roleType": "consultant",
-  "dinners": ["2025-07-july"]
+  "dinners": [
+    "2025-07-july"
+  ]
 }

@@ -4,11 +4,18 @@
   "title": "Senior Product Manager",
   "company": "Amazon / Reps app",
   "bio": "Senior PM at Amazon for ML-driven EU-wide logistics. PM at an AI-native agency building Reps. Vibe-coding enthusiast.",
-  "photo": "https://picsum.photos/seed/liberatus/600/800",
+  "photo": "https://images.unsplash.com/photo-1614644147798-f8f0bc1b5eb4?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/liberatus/",
   "twitter": "",
   "website": "",
-  "tags": ["product", "startups", "vibe-coding"],
+  "tags": [
+    "product",
+    "startups",
+    "vibe-coding"
+  ],
   "roleType": "product-manager",
-  "dinners": ["2025-06-june", "2026-q1"]
+  "dinners": [
+    "2025-06-june",
+    "2026-q1"
+  ]
 }

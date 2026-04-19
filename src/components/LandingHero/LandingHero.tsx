@@ -2,8 +2,6 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import type { Dinner } from '../../types';
 import styles from './LandingHero.module.css';
 
-const FONT = "'Space Grotesk', sans-serif";
-
 interface Particle {
   id: number;
   x: number;
@@ -81,9 +79,8 @@ function FlashyBtn({ children }: { children: React.ReactNode }) {
 function formatDinnerMeta(dinner: Dinner): string {
   const date = new Date(dinner.date);
   const quarter = `Q${Math.ceil((date.getMonth() + 1) / 3)} ${date.getFullYear()}`;
-  const count = dinner.attendees.length;
   const venue = dinner.venue;
-  return `${quarter} · ${count} builder${count !== 1 ? 's' : ''} · ${venue}`;
+  return `${quarter} · ${venue}`;
 }
 
 interface LandingHeroProps {
@@ -91,36 +88,32 @@ interface LandingHeroProps {
 }
 
 export function LandingHero({ latestDinner }: LandingHeroProps) {
+  const count = latestDinner.attendees.length;
+
   return (
     <div className={styles.hero}>
-      {/* Photo strip */}
-      <div className={styles.photoStrip}>
-        <img
-          src={latestDinner.groupPhoto}
-          alt=""
-          className={styles.photo}
-        />
-        <div className={styles.photoGradient} />
-      </div>
+      <img
+        src={latestDinner.groupPhoto}
+        alt=""
+        className={styles.photo}
+      />
+      <div className={styles.overlay} />
 
-      {/* Text content */}
       <div className={styles.content}>
-        <div className={styles.logoRow}>
-          <img src="/images/logo.avif" alt="" className={styles.logoMark} />
-          <span className={styles.brandName}>AI Mavericks</span>
-        </div>
-        <h1 className={styles.heading} style={{ fontFamily: FONT }}>
-          The table where AI gets real
+        <img src="/images/logo.avif" alt="" className={styles.logoMark} />
+        <span className={styles.dinnerMeta}>
+          {formatDinnerMeta(latestDinner)}
+        </span>
+        <h1 className={styles.heading}>
+          AI Mavericks
         </h1>
-        <p className={styles.tagline} style={{ fontFamily: FONT }}>
-          Intimate dinners for builders, founders, and operators. No panels. No pitches. Just honest conversation over good food.
+        <p className={styles.tagline}>
+          Where AI builders meet. Intimate dinners for founders, engineers, and operators shaping the future.
         </p>
-        <div className={styles.ctaRow}>
-          <FlashyBtn>Join the Next Dinner</FlashyBtn>
-          <span className={styles.dinnerMeta} style={{ fontFamily: FONT }}>
-            {formatDinnerMeta(latestDinner)}
-          </span>
-        </div>
+        <p className={styles.attendeeCount}>
+          {count} builder{count !== 1 ? 's' : ''} · One table · Real talk
+        </p>
+        <FlashyBtn>Join the Next Dinner</FlashyBtn>
       </div>
     </div>
   );

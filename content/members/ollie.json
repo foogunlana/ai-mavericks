@@ -4,11 +4,15 @@
   "title": "Software Engineer",
   "company": "",
   "bio": "Software engineer at a crypto/NFT company building on-chain products.",
-  "photo": "https://picsum.photos/seed/ollie/600/800",
+  "photo": "https://images.unsplash.com/photo-1649859398667-6b08e7300f91?w=600&h=800&fit=crop&crop=face",
   "linkedin": "",
   "twitter": "",
   "website": "",
-  "tags": ["startups"],
+  "tags": [
+    "startups"
+  ],
   "roleType": "engineer",
-  "dinners": ["2024-10-october"]
+  "dinners": [
+    "2024-10-october"
+  ]
 }

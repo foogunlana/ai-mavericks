@@ -4,11 +4,16 @@
   "title": "Co-founder",
   "company": "Talentspace",
   "bio": "Co-founder of Talentspace, now focused on data labelling services for AI companies. Based in Germany with events-tech background.",
-  "photo": "https://picsum.photos/seed/markus-duecker/600/800",
+  "photo": "https://images.unsplash.com/photo-1619533394727-51c3ca19d75a?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/markus-duecker/",
   "twitter": "",
   "website": "",
-  "tags": ["startups", "data-science"],
+  "tags": [
+    "startups",
+    "data-science"
+  ],
   "roleType": "founder",
-  "dinners": ["2025-04-april"]
+  "dinners": [
+    "2025-04-april"
+  ]
 }
