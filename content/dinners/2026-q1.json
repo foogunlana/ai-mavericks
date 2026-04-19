@@ -1,28 +1,53 @@
 {
   "name": "Q1 2026 Dinner",
   "slug": "2026-q1",
-  "date": "2026-03-04",
+  "date": "2026-03-21",
   "venue": "Pizza Express Live Holborn",
   "groupPhoto": "https://picsum.photos/seed/2026-q1/1400/800",
-  "description": "The first AI Mavericks dinner of 2026, reflecting on AI tooling, education, and the road ahead.",
+  "description": "Wide-ranging discussion on the future of software engineering, the identity crisis between craftspeople and builders, rapid prototyping, AI economics, multi-platform product strategy, and financial data intelligence.",
   "topics": [
     {
-      "text": "Should junior developers bother learning traditional coding?",
+      "text": "Should junior developers learn traditional coding? The hard part was never writing code — it's requirements gathering and navigating ambiguity",
       "attribution": "Group",
-      "links": []
+      "links": ["https://x.com/swyx/status/2028795270306079156"]
     },
     {
-      "text": "AI in education and teaching AI usage",
+      "text": "Identity crisis — craftsperson vs builder; AI threatens those who love coding for its own sake but empowers outcome-focused builders",
       "attribution": "David",
       "links": []
     },
     {
-      "text": "Building AI products for defence and creative media",
+      "text": "Rapid prototyping shifting consulting — two-week delivery cycles replacing months-long scoping; networking remains primary path to work",
+      "attribution": "David",
+      "links": []
+    },
+    {
+      "text": "AI economics and the SaaS paradox — unit economics get worse at scale with inference costs; subsidised era will end",
+      "attribution": "Neil",
+      "links": []
+    },
+    {
+      "text": "Multi-platform product strategy — Reps AI sports coach deployed across web, iOS, Claude Code skill, and MCP; interface is commoditised",
+      "attribution": "Liberatus",
+      "links": []
+    },
+    {
+      "text": "AI in education — Pearson's AI-first platform, university RAG project, generational split in AI adoption",
+      "attribution": "David",
+      "links": []
+    },
+    {
+      "text": "AI tool adoption in teams — Claude Code adoption experiences; hands-on training beats documentation",
+      "attribution": "Group",
+      "links": ["https://www.anthropic.com/features/81k-interviews"]
+    },
+    {
+      "text": "Image generation and creative AI — product photography using AI replacing expensive studio shoots",
       "attribution": "Farhath",
       "links": []
     },
     {
-      "text": "LLMs in African fintech data intelligence",
+      "text": "Financial data and market intelligence — making proprietary data conversational through LLMs; generative UI for dashboards",
       "attribution": "Bode",
       "links": []
     }

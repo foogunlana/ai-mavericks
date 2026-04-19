@@ -7,14 +7,14 @@
   "description": "Lively discussion on market selection, vibe coding and data labelling — the first Beehiiv-era dinner.",
   "topics": [
     {
-      "text": "Choosing a big enough market — Marc Andreessen's post on team vs product vs market",
+      "text": "The importance of choosing a big enough (or rapidly growing) market for your company to operate in",
       "attribution": "Hugh",
-      "links": []
+      "links": ["https://pmarchive.com/guide_to_startups_part4.html"]
     },
     {
       "text": "Vibe coding with Replit Agent — web games built end-to-end with prompts",
       "attribution": "Dominic",
-      "links": ["https://replit.com/"]
+      "links": ["https://docs.replit.com/replitai/agent"]
     },
     {
       "text": "Professional social networks — Happenstance.ai mentioned",

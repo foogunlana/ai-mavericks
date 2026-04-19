@@ -1,16 +1,16 @@
 {
   "name": "Joost de Jonge",
   "slug": "joost-de-jonge",
-  "title": "Non-technical Co-founder",
+  "title": "Co-founder",
   "company": "ExoBrain",
-  "bio": "Non-technical Co-founder of ExoBrain, specialising in AI for knowledge work and disrupting the consultancy model.",
+  "bio": "Non-technical co-founder at ExoBrain, started two years ago with Joel. ExoBrain is built on three core beliefs: AI will transform knowledge work, experimentation will become a superpower for organisations, and consultancy itself is ripe for AI disruption. Works with portfolio companies on AI implementation and builds agentic solutions.",
   "photo": "https://images.unsplash.com/photo-1590086782957-93c06ef21604?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/joostdejonge/",
   "twitter": "",
   "website": "",
   "tags": [
     "consulting",
-    "startups"
+    "ai-agents"
   ],
   "roleType": "founder",
   "dinners": [

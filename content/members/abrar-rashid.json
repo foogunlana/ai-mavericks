@@ -2,15 +2,14 @@
   "name": "Abrar Rashid",
   "slug": "abrar-rashid",
   "title": "MEng Computing Graduate",
-  "company": "Imperial College London",
-  "bio": "MEng Computing graduate from Imperial working on KidneyGrader, a deep learning system for kidney biopsy grading.",
+  "company": "",
+  "bio": "Recent MEng Computing graduate from Imperial College London, where he won a prize for his final year project KidneyGrader — an interpretable deep learning pipeline that automates kidney transplant biopsy grading. Passionate about applying AI to solve real-world problems by connecting domain experts with technical folks.",
   "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/abrar-rashid/",
   "twitter": "",
   "website": "",
   "tags": [
     "healthcare",
-    "startups",
     "data-science"
   ],
   "roleType": "engineer",

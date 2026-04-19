@@ -1,50 +1,50 @@
 {
   "name": "July 2025 Dinner",
   "slug": "2025-07-july",
-  "date": "2025-07-14",
+  "date": "2025-07-31",
   "venue": "Ramen Space",
   "groupPhoto": "https://picsum.photos/seed/2025-07-july/1400/800",
-  "description": "A packed evening at Ramen Space on vibe coding tools, evolving tech roles and AI eating software.",
+  "description": "Expansive discussion at Ramen Space covering vibe coding, Claude Code vs Cursor, AI eating software, legacy programming languages, evolving tech roles, and startup distribution strategy.",
   "topics": [
     {
-      "text": "Vibe Coding — Lovable demo; \"last mile problem\"; PRDs are critical",
-      "attribution": "Rachel, Roberta",
-      "links": ["https://lovable.dev/"]
-    },
-    {
-      "text": "AI Tools — Claude Code vs Cursor; multi-agent workflows; Roo Code, tldraw, Vercel v0",
-      "attribution": "Group",
-      "links": ["https://claude.ai/code"]
-    },
-    {
-      "text": "AI is Eating Software — throwaway software; distribution still key; junior engineers must go AI native",
-      "attribution": "Group",
+      "text": "Vibe coding and the future of development — Rachel demoed a language learning app built in hours using Lovable",
+      "attribution": "Rachel",
       "links": []
     },
     {
-      "text": "Legacy Languages and AI — q language (Gabi), MUMPS (Simon); COBOL/Fortran migration via bloop.ai",
-      "attribution": "Gabi, Simon",
+      "text": "Claude Code vs Cursor debate — most attendees favoured Claude Code's new paradigm; multi-agent approach to building features",
+      "attribution": "Group",
+      "links": ["https://github.com/RooCodeInc/Roo-Code"]
+    },
+    {
+      "text": "AI is eating software — personalised, custom, even throwaway software becomes possible, but distribution and marketing remain key",
+      "attribution": "Shingi",
       "links": []
     },
     {
-      "text": "Evolving Tech Roles — smaller teams; dev/PM/designer coalescence; \"vibe designing\" with MCP servers",
-      "attribution": "Group",
+      "text": "Legacy programming languages and AI — opportunities to maintain or migrate COBOL, Fortran, q code using AI",
+      "attribution": "Gabi",
+      "links": ["https://en.wikipedia.org/wiki/APL_(programming_language)", "https://bloop.ai"]
+    },
+    {
+      "text": "Evolving roles of tech professionals — coalescence of developer, PM, and designer roles giving generalists an advantage",
+      "attribution": "Eddie",
       "links": []
     },
     {
-      "text": "AI in the Enterprise — internal use cases beat customer-facing chatbots; expert systems still valuable",
-      "attribution": "Group",
+      "text": "AI in the enterprise — most valuable use cases are internal, augmenting employee workflows rather than customer-facing chatbots",
+      "attribution": "Dexter",
       "links": []
     },
     {
-      "text": "Startup/Founder Insights — distribution > product (Justin Kan); founder-led sales; domain expertise",
-      "attribution": "Group",
-      "links": []
+      "text": "Startup insights — distribution obsession over product obsession; founder-led sales crucial in early stages",
+      "attribution": "Rachel",
+      "links": ["https://www.foundingsales.com/"]
     },
     {
-      "text": "Recommended Reading — \"AI 2027\", \"Situational Awareness: The Decade Ahead\"",
+      "text": "Recommended reading on AI's future — AI 2027 and Situational Awareness essays",
       "attribution": "Group",
-      "links": []
+      "links": ["https://ai-2027.com/", "https://situational-awareness.ai/"]
     }
   ],
   "attendees": [
@@ -61,5 +61,5 @@
   ],
   "beehiivUrl": "https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-july-2025-dinner-recap",
   "discordUrl": "https://discord.gg/xTxksjUvnE",
-  "lumaUrl": ""
+  "lumaUrl": "https://lu.ma/7tgnyjwj"
 }

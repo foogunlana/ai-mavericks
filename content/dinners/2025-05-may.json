@@ -4,42 +4,42 @@
   "date": "2025-05-19",
   "venue": "London",
   "groupPhoto": "https://picsum.photos/seed/2025-05-may/1400/800",
-  "description": "Deep dive into mobile gaming economics, human connection in AI sales and technical co-founding.",
+  "description": "Wide-ranging conversation covering mobile gaming economics, sales in the AI era, European accelerators, and the continued importance of technical co-founders.",
   "topics": [
     {
-      "text": "Mobile games as money makers — Candy Crush financials",
+      "text": "Mobile games are money makers — David shared how games at his previous company generated multiple millions per day",
       "attribution": "David",
-      "links": []
+      "links": ["https://www.businessofapps.com/data/candy-crush-statistics/"]
     },
     {
-      "text": "Human connection in sales — Salesforce hiring 2K+ to sell AI",
+      "text": "In sales, the human connection remains important, especially for high-touch sales",
       "attribution": "Group",
-      "links": []
+      "links": ["https://techcrunch.com/2024/12/17/salesforce-plans-to-hire-2000-people-to-sell-its-ai-products/"]
     },
     {
-      "text": "EWOR accelerator — potential \"YC of Europe\"",
-      "attribution": "Rockman, Farhath",
-      "links": ["https://ewor.io/"]
+      "text": "EWOR accelerator praised as a potential YC of Europe",
+      "attribution": "Rockman",
+      "links": ["https://www.ewor.com/"]
     },
     {
-      "text": "Financial health and Customer Acquisition Cost",
+      "text": "Financial health for businesses — close attention to Customer Acquisition Cost (CAC)",
       "attribution": "Peter",
+      "links": ["https://santiagopampillo.github.io/TechDisrupt/Articles/44-Growth-Marketing-90-why-every-start-up-needs-to-know-their-customer-acquisition-cost.html"]
+    },
+    {
+      "text": "Technical co-founders are still (maybe even more so) important in this new age of AI",
+      "attribution": "Rockman",
       "links": []
     },
     {
-      "text": "Technical co-founders still critical",
-      "attribution": "Rockman, William",
-      "links": []
-    },
-    {
-      "text": "Ex-Palantir founders crushing it",
+      "text": "Why are founders who are ex-Palantir crushing it?",
       "attribution": "Group",
-      "links": []
+      "links": ["https://www.partly.work/p/lessons-from-palantir-alums-about"]
     },
     {
-      "text": "Pydantic AI for codebase rewriting",
-      "attribution": "William / Sano Genetics",
-      "links": ["https://docs.pydantic.dev/latest/concepts/pydantic_ai/"]
+      "text": "Using Pydantic AI to rewrite Sano's codebase is working very well",
+      "attribution": "William",
+      "links": ["https://ai.pydantic.dev/"]
     }
   ],
   "attendees": [

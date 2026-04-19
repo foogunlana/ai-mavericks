@@ -1,9 +1,9 @@
 {
   "name": "Greg Asquith",
   "slug": "greg-asquith",
-  "title": "Software Engineer & Paid Marketing Consultant",
+  "title": "Software Engineer & Tech Consultant",
   "company": "",
-  "bio": "Software engineer who has mastered paid marketing platforms, now using LLMs and AI Agents for client automation in advertising.",
+  "bio": "Software Engineer who mastered paid marketing platforms like Google Ads and Meta Ads. Since 2023, running a tech consultancy focused on the advertising industry, using LLMs and AI Agents to automate workflows for clients.",
   "photo": "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/gregasquith/",
   "twitter": "",
@@ -12,7 +12,7 @@
     "marketing",
     "ai-agents"
   ],
-  "roleType": "engineer",
+  "roleType": "consultant",
   "dinners": [
     "2025-01-january",
     "2025-06-june"

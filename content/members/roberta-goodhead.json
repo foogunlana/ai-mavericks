@@ -3,13 +3,12 @@
   "slug": "roberta-goodhead",
   "title": "Senior Software Engineer",
   "company": "VodafoneThree",
-  "bio": "Senior Software Engineer at VodafoneThree. Imperial alumna with experience in healthcare and telecoms and a keen interest in generative AI.",
+  "bio": "Senior Software Engineer at VodafoneThree and Imperial College alumna. Has worked in healthcare and telecoms. Experimenting with vibe coding tools and formed her own opinions on the trend.",
   "photo": "https://images.unsplash.com/photo-1676733388218-1f2e5c29b8a7?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/robertagoodhead/",
   "twitter": "",
   "website": "",
   "tags": [
-    "llms",
     "vibe-coding"
   ],
   "roleType": "engineer",

@@ -1,17 +1,16 @@
 {
   "name": "Liberatus",
   "slug": "liberatus",
-  "title": "Senior Product Manager",
-  "company": "Amazon / Reps app",
-  "bio": "Senior PM at Amazon for ML-driven EU-wide logistics. PM at an AI-native agency building Reps. Vibe-coding enthusiast.",
+  "title": "Product Manager & Agency Founder",
+  "company": "",
+  "bio": "Product management background, now running a two-person AI-native agency. Main project is Reps, an AI sports coach deployed across web, iOS, Claude Code skill, and MCP app. Previously Senior Product Manager at Amazon applying ML models to optimise EU-wide logistics.",
   "photo": "https://images.unsplash.com/photo-1614644147798-f8f0bc1b5eb4?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/liberatus/",
   "twitter": "",
   "website": "",
   "tags": [
     "product",
-    "startups",
-    "vibe-coding"
+    "ai-agents"
   ],
   "roleType": "product-manager",
   "dinners": [

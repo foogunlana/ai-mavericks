@@ -2,14 +2,15 @@
   "name": "Mawuli Agamah",
   "slug": "mawuli-agamah",
   "title": "Data Scientist",
-  "company": "UK Dept for Business and Trade",
-  "bio": "Data Scientist at the UK Department for Business and Trade with an Economics background, building a mobile app using multi-modal AI.",
+  "company": "UK Department for Business and Trade",
+  "bio": "Data Scientist with a background in Economics, currently working at the UK Department for Business and Trade. Building a mobile application that uses multi-modal AI.",
   "photo": "https://images.unsplash.com/photo-1629467057571-4dfb4e09de04?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/mawuliagamah/",
   "twitter": "",
   "website": "",
   "tags": [
-    "data-science"
+    "data-science",
+    "llms"
   ],
   "roleType": "data-scientist",
   "dinners": [

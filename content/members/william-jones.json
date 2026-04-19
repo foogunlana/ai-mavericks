@@ -3,15 +3,14 @@
   "slug": "william-jones",
   "title": "CTO & Co-founder",
   "company": "Sano Genetics",
-  "bio": "CTO and Co-founder of Sano Genetics with a Computer Science and Computational Biology background, applying AI to genomics.",
+  "bio": "CTO and co-founder of Sano Genetics. Background in Computer Science and Computational Biology. Using Pydantic AI to rewrite Sano's codebase.",
   "photo": "https://images.unsplash.com/photo-1700937782824-e01ae6f2f76f?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/willgdjones/",
   "twitter": "",
   "website": "",
   "tags": [
-    "ai-agents",
-    "startups",
-    "data-science"
+    "healthcare",
+    "startups"
   ],
   "roleType": "founder",
   "dinners": [

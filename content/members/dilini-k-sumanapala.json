@@ -1,16 +1,15 @@
 {
   "name": "Dilini K Sumanapala",
   "slug": "dilini-k-sumanapala",
-  "title": "AI Contractor / Consultant / DevRel",
+  "title": "AI Contractor & Consultant",
   "company": "",
-  "bio": "Built biotech chatbots and created a LangGraph Agents course for DataCamp. Active in AI DevRel and agent tooling.",
+  "bio": "AI contractor since 2023, spanning applied AI engineering. Built chatbots for biotech companies and created the LangGraph Agents course for DataCamp. Spreads across consulting, DevRel, and various projects mixing AI across different industries.",
   "photo": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&h=800&fit=crop&crop=face",
   "linkedin": "https://www.linkedin.com/in/dilini-k-sumanapala-phd/",
   "twitter": "",
   "website": "",
   "tags": [
     "ai-agents",
-    "llms",
     "consulting"
   ],
   "roleType": "consultant",

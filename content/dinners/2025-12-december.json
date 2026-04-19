@@ -1,50 +1,50 @@
 {
   "name": "December 2025 Dinner",
   "slug": "2025-12-december",
-  "date": "2025-12-15",
+  "date": "2025-12-08",
   "venue": "Pizza Express Live Holborn",
   "groupPhoto": "https://picsum.photos/seed/2025-12-december/1400/800",
-  "description": "Year-end reflections on AI consulting models, economic impact of AI and the rise of robotics.",
+  "description": "Year-end gathering covering AI consulting models, economic impact of AI, expert systems vs LLMs, medical transcription, deep research, and the ARC-AGI challenge.",
   "topics": [
     {
-      "text": "AI Consulting models — 80/20 rule, cloud vs local deployment; bigger projects in 2026",
-      "attribution": "Kitan, Joel",
-      "links": []
-    },
-    {
-      "text": "Economic Impact of AI — capitalism, inequality, automation; \"AI 2027\" reading",
-      "attribution": "Group",
-      "links": []
-    },
-    {
-      "text": "Rise of Robotics — elderly care, healthcare, manufacturing pressures",
+      "text": "AI consulting — offer cloud or local deployment flexibility, apply 80/20 rule; projects getting bigger in 2026",
       "attribution": "Kitan",
       "links": []
     },
     {
-      "text": "Expert Systems vs LLMs — chess at 3,500 Elo vs LLMs at 800; right tool for the job",
+      "text": "Economic impact of AI — inequality increasing, philosophical discussion on capitalism and automation",
+      "attribution": "Group",
+      "links": ["https://ai-2027.com/", "https://situational-awareness.ai/", "https://www.lesswrong.com/posts/KFFaKu27FNugCHFmh/by-default-capital-will-matter-more-than-ever-after-agi"]
+    },
+    {
+      "text": "Rise of robotics — clear benefits for elderly care and healthcare",
+      "attribution": "Kitan",
+      "links": []
+    },
+    {
+      "text": "Expert systems still beat LLMs in certain domains — chess expert system at 3,500 Elo vs LLMs at 800",
       "attribution": "Ian",
       "links": []
     },
     {
-      "text": "AI-Generated Code challenges — duplication; need strong foundations; MCP + Figma",
-      "attribution": "Gaurav, David",
-      "links": []
+      "text": "Challenges of AI-generated code — duplication, need for strong foundations, MCP and Figma for UI/UX",
+      "attribution": "Group",
+      "links": ["https://review.fast/"]
     },
     {
-      "text": "Medical Transcription — human review augmentation and terminology errors",
+      "text": "Medical transcription augmented by AI — identifying terminology misquotes and structural issues",
       "attribution": "Gaurav",
       "links": []
     },
     {
-      "text": "Deep Research and News — parallel agents for synthesis; ESG signals 300% gain",
-      "attribution": "Eddie, David",
+      "text": "Deep research applications — parallel agents searching, synthesising, and presenting information; ESG signals for hedge funds",
+      "attribution": "Eddie",
       "links": []
     },
     {
-      "text": "ARC-AGI and Playgroup — Ian's deep-dive events; ARC-AGI 2026 spatial reasoning challenge",
+      "text": "Ian's Playgroup deep-dive events and ARC-AGI 2026 challenge — can LLMs solve spatial reasoning?",
       "attribution": "Ian",
-      "links": []
+      "links": ["https://arcprize.org/arc-agi", "https://jeremyberman.substack.com/p/how-i-got-a-record-536-on-arc-agi", "https://jeremyberman.substack.com/p/how-i-got-the-highest-score-on-arc-agi-again", "https://ctpang.substack.com/p/e760eba7-c8b3-4fda-b631-61b89dd0d0fd"]
     }
   ],
   "attendees": [
