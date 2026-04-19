@@ -49,7 +49,7 @@
   font-family: var(--font-sans);
   font-size: var(--font-size-sm);
   font-weight: 500;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--color-muted);
   padding-bottom: 2px;
