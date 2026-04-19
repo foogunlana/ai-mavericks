@@ -56,7 +56,7 @@ function App() {
       <Nav currentView={view} onViewChange={setView} hidden={navHidden} />
       {view === 'home' && (
         <>
-          <LandingHero latestDinner={dinners[0]} />
+          <LandingHero latestDinner={dinners[0]} onViewChange={setView} />
           <div ref={heroSentinelRef} style={{ height: 0 }} />
         </>
       )}

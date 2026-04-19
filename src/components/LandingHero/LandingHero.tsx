@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import type { Dinner } from '../../types';
+import type { View } from '../../App';
 import styles from './LandingHero.module.css';
 
 interface Particle {
@@ -85,9 +86,10 @@ function formatDinnerMeta(dinner: Dinner): string {
 
 interface LandingHeroProps {
   latestDinner: Dinner;
+  onViewChange: (view: View) => void;
 }
 
-export function LandingHero({ latestDinner }: LandingHeroProps) {
+export function LandingHero({ latestDinner, onViewChange }: LandingHeroProps) {
   const count = latestDinner.attendees.length;
 
   return (
@@ -98,8 +100,18 @@ export function LandingHero({ latestDinner }: LandingHeroProps) {
       <div className={`${styles.blob} ${styles.blob3}`} />
       <div className={`${styles.blob} ${styles.blob4}`} />
 
-      <img src="/images/logo.avif" alt="AI Mavericks" className={styles.floatingLogo} />
-      <a className={styles.floatingNewsletter} href="#">Newsletter</a>
+      <nav className={styles.landingNav}>
+        <button className={styles.landingNavLogo} onClick={() => onViewChange('home')}>
+          <img src="/images/logo.avif" alt="AI Mavericks" className={styles.landingNavLogoMark} />
+          <span>AI Mavericks</span>
+        </button>
+        <div className={styles.landingNavLinks}>
+          <button className={styles.landingNavLink} onClick={() => onViewChange('people')}>People</button>
+          <button className={styles.landingNavLink} onClick={() => onViewChange('dinners')}>Dinners</button>
+          <a className={styles.landingNavLink} href="#">Newsletter</a>
+          <button className={styles.landingNavJoin}>Join Us</button>
+        </div>
+      </nav>
 
       <div className={styles.content}>
         <span className={styles.dinnerMeta}>

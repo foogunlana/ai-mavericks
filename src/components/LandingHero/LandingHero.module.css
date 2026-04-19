@@ -130,38 +130,91 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--space-6);
+  padding: calc(72px + var(--space-6)) var(--space-6) var(--space-6);
   gap: var(--space-3);
 }
 
-.floatingLogo {
+.landingNav {
   position: absolute;
-  top: var(--space-4);
-  left: var(--space-6);
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  opacity: 0.4;
-  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--nav-h-pad);
 }
 
-.floatingNewsletter {
-  position: absolute;
-  top: var(--space-4);
-  right: var(--space-6);
-  z-index: 2;
+.landingNavLogo {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-sans);
-  font-size: var(--font-size-xs);
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.15s;
+}
+
+.landingNavLogo:hover {
+  color: #ffffff;
+}
+
+.landingNavLogoMark {
+  height: 36px;
+  width: 36px;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.landingNavLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--nav-link-gap);
+}
+
+.landingNavLink {
+  all: unset;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
   letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   transition: color 0.15s;
 }
 
-.floatingNewsletter:hover {
+.landingNavLink:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.landingNavJoin {
+  all: unset;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 3px;
+  padding: 6px 16px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.landingNavJoin:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .dinnerMeta {
