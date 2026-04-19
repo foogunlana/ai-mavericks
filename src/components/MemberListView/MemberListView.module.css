@@ -36,7 +36,7 @@
 
 .alphaActive {
   background: var(--color-text) !important;
-  color: var(--color-bg) !important;
+  color: var(--color-background) !important;
   font-weight: 600;
 }
 
