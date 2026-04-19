@@ -45,7 +45,7 @@
   letter-spacing: 0.04em;
 }
 
-.toolbarRight {
+.toolbarLeft {
   display: flex;
   align-items: center;
   gap: var(--space-3);
@@ -53,7 +53,7 @@
 
 .viewToggle {
   display: flex;
-  gap: 0;
+  gap: 12px;
 }
 
 .viewBtn {
@@ -61,20 +61,23 @@
   border: none;
   cursor: pointer;
   padding: 4px;
-  color: var(--color-muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: color 0.1s, border-color 0.1s;
+  transition: opacity 0.1s;
 }
 
-.viewBtn:hover {
-  color: var(--color-text);
+.viewBtn svg {
+  fill: none;
+  stroke: var(--color-muted);
+  stroke-width: 1.5;
 }
 
-.viewBtnActive {
-  color: var(--color-text);
-  border-bottom-color: var(--color-text);
+.viewBtn:hover svg {
+  stroke: var(--color-text);
+}
+
+.viewBtnActive svg {
+  fill: var(--color-text);
+  stroke: none;
 }

@@ -34,8 +34,13 @@ export function MemberList({ members, filters, toggleFilter, clearFilters, hasAc
       </div>
 
       <div className={styles.toolbar}>
-        <span className={styles.count}>{members.length} Members · Filter by role or interest</span>
-        <div className={styles.toolbarRight}>
+        <div className={styles.toolbarLeft}>
+          <FilterDropdown
+            filters={filters}
+            toggleFilter={toggleFilter}
+            clearFilters={clearFilters}
+            hasActiveFilters={hasActiveFilters}
+          />
           <div className={styles.viewToggle}>
             {([
               { key: 'cards', icon: GRID_ICON, label: 'Cards view' },
@@ -47,19 +52,14 @@ export function MemberList({ members, filters, toggleFilter, clearFilters, hasAc
                 onClick={() => setView(key)}
                 aria-label={label}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                <svg width="18" height="18" viewBox="0 0 24 24">
                   <path d={icon} />
                 </svg>
               </button>
             ))}
           </div>
-          <FilterDropdown
-            filters={filters}
-            toggleFilter={toggleFilter}
-            clearFilters={clearFilters}
-            hasActiveFilters={hasActiveFilters}
-          />
         </div>
+        <span className={styles.count}>{members.length} Members · Filter by role or interest</span>
       </div>
 
       {view === 'cards' ? (
