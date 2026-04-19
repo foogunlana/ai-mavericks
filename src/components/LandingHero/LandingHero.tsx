@@ -30,7 +30,11 @@ export function LandingHero({ latestDinner, onViewChange }: LandingHeroProps) {
         <button className={styles.landingNavLogo} onClick={() => onViewChange('home')}>
           <img src={`${import.meta.env.BASE_URL}images/logo.avif`} alt="AI Mavericks" className={styles.landingNavLogoMark} />
         </button>
-        <a className={styles.landingNavNewsletter} href="https://ai-mavericks-ldn.beehiiv.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
+        <div className={styles.landingNavLinks}>
+          <button className={styles.landingNavLink} onClick={() => onViewChange('people')}>People</button>
+          <button className={styles.landingNavLink} onClick={() => onViewChange('dinners')}>Dinners</button>
+          <a className={styles.landingNavLink} href="https://ai-mavericks-ldn.beehiiv.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
+        </div>
       </div>
 
       <div className={styles.content}>

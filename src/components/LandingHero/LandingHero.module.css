@@ -152,7 +152,15 @@
   opacity: 0.75;
 }
 
-.landingNavNewsletter {
+.landingNavLinks {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.landingNavLink {
+  all: unset;
+  cursor: pointer;
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
@@ -163,7 +171,7 @@
   transition: color 0.15s;
 }
 
-.landingNavNewsletter:hover {
+.landingNavLink:hover {
   color: rgba(255, 255, 255, 0.85);
 }
 
