@@ -3,7 +3,8 @@
   "slug": "2026-q1",
   "date": "2026-03-21",
   "venue": "Pizza Express Live Holborn",
-  "groupPhoto": null,
+  "groupPhoto": "/images/stock/dinners/dinner-stock-6.jpg",
+  "isStockPhoto": true,
   "description": "Wide-ranging discussion on the future of software engineering, the identity crisis between craftspeople and builders, rapid prototyping, AI economics, multi-platform product strategy, and financial data intelligence.",
   "topics": [
     {

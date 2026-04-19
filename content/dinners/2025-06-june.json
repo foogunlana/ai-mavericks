@@ -3,7 +3,8 @@
   "slug": "2025-06-june",
   "date": "2025-06-30",
   "venue": "London",
-  "groupPhoto": null,
+  "groupPhoto": "/images/stock/dinners/dinner-stock-3.jpg",
+  "isStockPhoto": true,
   "description": "Deep discussion on Mary Meeker's AI report, the UK job market, model routing, startup ARR reporting, and changing the tech interview process for the AI era.",
   "topics": [
     {

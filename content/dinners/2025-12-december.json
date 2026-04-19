@@ -3,7 +3,8 @@
   "slug": "2025-12-december",
   "date": "2025-12-08",
   "venue": "Pizza Express Live Holborn",
-  "groupPhoto": null,
+  "groupPhoto": "/images/stock/dinners/dinner-stock-5.jpg",
+  "isStockPhoto": true,
   "description": "Year-end gathering covering AI consulting models, economic impact of AI, expert systems vs LLMs, medical transcription, deep research, and the ARC-AGI challenge.",
   "topics": [
     {

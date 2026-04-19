@@ -3,7 +3,8 @@
   "slug": "2025-04-april",
   "date": "2025-04-14",
   "venue": "London",
-  "groupPhoto": null,
+  "groupPhoto": "/images/stock/dinners/dinner-stock-1.jpg",
+  "isStockPhoto": true,
   "description": "Lively discussion on market selection, vibe coding and data labelling — the first Beehiiv-era dinner.",
   "topics": [
     {

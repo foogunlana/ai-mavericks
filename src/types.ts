@@ -5,6 +5,7 @@ export interface Member {
   company: string;
   bio: string;
   photo: string;
+  isStockPhoto?: boolean;
   linkedin: string;
   twitter: string;
   website: string;
@@ -25,6 +26,7 @@ export interface Dinner {
   date: string;
   venue: string;
   groupPhoto: string | null;
+  isStockPhoto?: boolean;
   description: string;
   topics: Topic[];
   attendees: string[];
