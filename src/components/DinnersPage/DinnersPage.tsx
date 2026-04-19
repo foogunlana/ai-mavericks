@@ -17,7 +17,7 @@ export function DinnersPage({ onSelectDinner }: Props) {
       {/* Hero — latest dinner */}
       {latestDinner && (
         <div className={styles.heroWrap}>
-          <DinnerHero dinner={latestDinner} />
+          <DinnerHero dinner={latestDinner} onSelectDinner={onSelectDinner} />
         </div>
       )}
 

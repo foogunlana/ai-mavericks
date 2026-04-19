@@ -4,6 +4,11 @@
   overflow: hidden;
   background-color: var(--color-background);
   border-radius: 4px;
+  transition: opacity 0.15s ease;
+}
+
+.hero:hover {
+  opacity: 0.92;
 }
 
 .photoCol {

@@ -4,9 +4,10 @@ import styles from './DinnerHero.module.css';
 
 interface Props {
   dinner: Dinner;
+  onSelectDinner?: (slug: string) => void;
 }
 
-export function DinnerHero({ dinner }: Props) {
+export function DinnerHero({ dinner, onSelectDinner }: Props) {
   const formattedDate = new Date(dinner.date).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -16,7 +17,11 @@ export function DinnerHero({ dinner }: Props) {
   const attendeeMembers = dinner.attendees.map(getMemberBySlug).filter(Boolean);
 
   return (
-    <div className={styles.hero}>
+    <div
+      className={styles.hero}
+      onClick={onSelectDinner ? () => onSelectDinner(dinner.slug) : undefined}
+      style={onSelectDinner ? { cursor: 'pointer' } : undefined}
+    >
       {/* Left: photo */}
       {dinner.groupPhoto && (
         <div className={styles.photoCol}>
