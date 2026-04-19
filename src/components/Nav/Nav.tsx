@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './Nav.module.css';
 import type { View } from '../../App';
 
@@ -8,36 +9,53 @@ interface Props {
 }
 
 export function Nav({ currentView, onViewChange, hidden = false }: Props) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  function navigate(view: View) {
+    onViewChange(view);
+    setMenuOpen(false);
+  }
+
   return (
     <nav className={`${styles.nav}${hidden ? ` ${styles.hidden}` : ''}`}>
       <div className={styles.inner}>
-        <button className={styles.logo} onClick={() => onViewChange('home')}>
+        <button className={styles.logo} onClick={() => navigate('home')}>
           <img src={`${import.meta.env.BASE_URL}ai-mavericks-logo.avif`} alt="AI Mavericks" className={styles.logoMark} />
           AI Mavericks
         </button>
-        <div className={styles.links}>
+        <button
+          className={styles.hamburger}
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+        >
+          <span className={`${styles.bar} ${menuOpen ? styles.barTop : ''}`} />
+          <span className={`${styles.bar} ${menuOpen ? styles.barMid : ''}`} />
+          <span className={`${styles.bar} ${menuOpen ? styles.barBot : ''}`} />
+        </button>
+        <div className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
           <button
             className={`${styles.link} ${currentView === 'home' ? styles.active : ''}`}
-            onClick={() => onViewChange('home')}
+            onClick={() => navigate('home')}
           >
             Home
           </button>
           <button
             className={`${styles.link} ${currentView === 'people' ? styles.active : ''}`}
-            onClick={() => onViewChange('people')}
+            onClick={() => navigate('people')}
           >
             People
           </button>
           <button
             className={`${styles.link} ${currentView === 'dinners' || currentView === 'dinner-detail' ? styles.active : ''}`}
-            onClick={() => onViewChange('dinners')}
+            onClick={() => navigate('dinners')}
           >
             Dinners
           </button>
           {import.meta.env.DEV && (
             <button
               className={`${styles.link} ${currentView === 'styleguide' ? styles.active : ''}`}
-              onClick={() => onViewChange('styleguide')}
+              onClick={() => navigate('styleguide')}
             >
               Style Guide
             </button>

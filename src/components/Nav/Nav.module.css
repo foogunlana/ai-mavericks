@@ -22,6 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .logo {
@@ -45,6 +46,36 @@
   border-radius: var(--radius-sm);
 }
 
+/* Hamburger button — hidden on desktop */
+.hamburger {
+  all: unset;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+
+.bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Animate to X when open */
+.barTop {
+  transform: translateY(7px) rotate(45deg);
+}
+.barMid {
+  opacity: 0;
+}
+.barBot {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 .links {
   display: flex;
   gap: var(--nav-link-gap);
@@ -65,4 +96,43 @@
 .link.active {
   color: var(--color-text);
   border-bottom: 1px solid var(--color-text);
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .nav {
+    height: var(--nav-height);
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .links {
+    display: none;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0;
+  }
+
+  .links.open {
+    display: flex;
+  }
+
+  .link {
+    padding: 14px var(--nav-h-pad);
+    letter-spacing: 1px;
+  }
+
+  .link.active {
+    border-bottom: none;
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
 }
