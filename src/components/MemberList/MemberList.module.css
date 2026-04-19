@@ -44,3 +44,37 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.viewToggle {
+  display: flex;
+  gap: 0;
+}
+
+.viewBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--color-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.1s, border-color 0.1s;
+}
+
+.viewBtn:hover {
+  color: var(--color-text);
+}
+
+.viewBtnActive {
+  color: var(--color-text);
+  border-bottom-color: var(--color-text);
+}

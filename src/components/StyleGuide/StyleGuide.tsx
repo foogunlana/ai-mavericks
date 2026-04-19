@@ -543,34 +543,39 @@ export function StyleGuide() {
                     ))}
                   </div>
                 </div>
-                {/* Toolbar */}
+                {/* Toolbar — icons left, count right */}
                 <div style={{
                   display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                   padding: '12px 0', borderTop: `1px solid ${COLORS.border}`, borderBottom: `1px solid ${COLORS.border}`,
                   marginBottom: '24px',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '1px' }}>
-                      {SAMPLE_MEMBERS.length} Members
-                    </span>
-                    <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted }}>
-                      · Filter by role or interest
-                    </span>
-                  </div>
-                  <div style={{ position: 'relative', cursor: 'pointer' }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={COLORS.text} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
-                    </svg>
-                    <div style={{
-                      position: 'absolute', top: -4, right: -6,
-                      width: 14, height: 14, borderRadius: '50%', backgroundColor: COLORS.text,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                      <span style={{ fontFamily: FONT, fontSize: '7px', fontWeight: 600, color: COLORS.bg }}>2</span>
+                    {/* Filter icon */}
+                    <div style={{ position: 'relative', cursor: 'pointer' }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={COLORS.textSecondary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
+                      </svg>
+                      <div style={{
+                        position: 'absolute', top: -4, right: -6,
+                        width: 14, height: 14, borderRadius: '50%', backgroundColor: COLORS.text,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      }}>
+                        <span style={{ fontFamily: FONT, fontSize: '7px', fontWeight: 600, color: COLORS.bg }}>2</span>
+                      </div>
                     </div>
+                    {/* View toggle — active filled, inactive stroke */}
+                    {VIEW_TOGGLE_MODES.map((v, i) => (
+                      <div key={v.label} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill={i === 0 ? COLORS.text : 'none'} stroke={i === 0 ? 'none' : COLORS.textMuted} strokeWidth="1.5">
+                          <path d={v.icon} />
+                        </svg>
+                      </div>
+                    ))}
                   </div>
+                  <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    {SAMPLE_MEMBERS.length} Members · Filter by role or interest
+                  </span>
                 </div>
-                {/* Grid at confirmed 32px gap */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '32px' }}>
                   {SAMPLE_MEMBERS.map(m => (
                     <MiniCard key={m.name} member={m} />
@@ -578,6 +583,7 @@ export function StyleGuide() {
                 </div>
               </div>
             </div>
+
 
           </div>
         </Section>
@@ -589,88 +595,17 @@ export function StyleGuide() {
             Segmented control for switching between list layouts. Reusable atom — can apply to any list, not just members.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
-
-            {/* Option A: Icon-only pills */}
+            {/* Confirmed: Minimal icons — active filled, inactive stroke, no underline */}
             <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-              <OptionHeader label="A · Icon-only pills — minimal, no labels, border group" />
-              <div style={{ padding: '32px', backgroundColor: COLORS.bg }}>
-                <div style={{ display: 'inline-flex', border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-                  {VIEW_TOGGLE_MODES.map((v, i) => (
-                    <div key={v.label} style={{
-                      padding: '8px 14px', cursor: 'pointer',
-                      backgroundColor: i === 0 ? COLORS.text : COLORS.bg,
-                      borderLeft: i > 0 ? `1px solid ${COLORS.border}` : 'none',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill={i === 0 ? COLORS.bg : COLORS.textMuted} stroke="none">
-                        <path d={v.icon} />
-                      </svg>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Option B: Icon + label pills */}
-            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-              <OptionHeader label="B · Icon + label — each button has icon and text, border group" />
-              <div style={{ padding: '32px', backgroundColor: COLORS.bg }}>
-                <div style={{ display: 'inline-flex', border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-                  {VIEW_TOGGLE_MODES.map((v, i) => (
-                    <div key={v.label} style={{
-                      padding: '6px 14px', cursor: 'pointer',
-                      backgroundColor: i === 0 ? COLORS.text : COLORS.bg,
-                      borderLeft: i > 0 ? `1px solid ${COLORS.border}` : 'none',
-                      display: 'flex', alignItems: 'center', gap: '6px',
-                    }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill={i === 0 ? COLORS.bg : COLORS.textMuted} stroke="none">
-                        <path d={v.icon} />
-                      </svg>
-                      <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: i === 0 ? COLORS.bg : COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                        {v.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Option C: Separate ghost buttons */}
-            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-              <OptionHeader label="C · Ghost buttons — separate buttons with gap, active gets border" />
-              <div style={{ padding: '32px', backgroundColor: COLORS.bg }}>
-                <div style={{ display: 'flex', gap: '4px' }}>
-                  {VIEW_TOGGLE_MODES.map((v, i) => (
-                    <div key={v.label} style={{
-                      padding: '6px 12px', cursor: 'pointer', borderRadius: '3px',
-                      backgroundColor: i === 0 ? COLORS.borderLight : 'transparent',
-                      border: `1px solid ${i === 0 ? COLORS.border : 'transparent'}`,
-                      display: 'flex', alignItems: 'center', gap: '6px',
-                    }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill={i === 0 ? COLORS.text : COLORS.textMuted} stroke="none">
-                        <path d={v.icon} />
-                      </svg>
-                      <span style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: i === 0 ? COLORS.text : COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                        {v.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Option D: Icon-only with tooltip feel */}
-            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-              <OptionHeader label="D · Minimal icons — no border group, just icon buttons with active underline" />
+              <OptionHeader label="Minimal icons (confirmed) — active filled dark, inactive stroke muted, no underline" />
               <div style={{ padding: '32px', backgroundColor: COLORS.bg }}>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                   {VIEW_TOGGLE_MODES.map((v, i) => (
                     <div key={v.label} style={{
-                      cursor: 'pointer', paddingBottom: '4px',
-                      borderBottom: i === 0 ? `2px solid ${COLORS.text}` : '2px solid transparent',
+                      cursor: 'pointer',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill={i === 0 ? COLORS.text : COLORS.textMuted} stroke="none">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill={i === 0 ? COLORS.text : 'none'} stroke={i === 0 ? 'none' : COLORS.textMuted} strokeWidth="1.5">
                         <path d={v.icon} />
                       </svg>
                     </div>
@@ -685,13 +620,13 @@ export function StyleGuide() {
       {activeSection === 'member-views' && (
         <Section title="Member Views">
           <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
-            Three ways to display members. Each is a standalone layout that the view toggle switches between.
+            Two view modes: photo cards and detailed list. Both confirmed.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
 
-            {/* Photo cards */}
+            {/* Photo cards — confirmed */}
             <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-              <OptionHeader label="Photo cards — 3-col grid, 3/4 portrait, name + role on gradient overlay" />
+              <OptionHeader label="Photo cards (confirmed) — 3-col grid, 3/4 portrait, 32px gap" />
               <div style={{ padding: '24px', backgroundColor: COLORS.bg }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '32px' }}>
                   {SAMPLE_MEMBERS.map(m => (
@@ -701,22 +636,27 @@ export function StyleGuide() {
               </div>
             </div>
 
-            {/* Small cards */}
+            {/* ─── LIST VIEW (confirmed: B · Detailed) ─── */}
+
+            {/* List B: Detailed — confirmed */}
             <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-              <OptionHeader label="Small cards — 2-col grid, thumbnail + name + role + tags" />
+              <OptionHeader label="List B · Detailed (confirmed) — 48px avatar, bio snippet, name + role inline, tags" />
               <div style={{ padding: '24px', backgroundColor: COLORS.bg }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  {SAMPLE_MEMBERS.map(m => (
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  {SAMPLE_MEMBERS.map((m, i) => (
                     <div key={m.name} style={{
-                      display: 'flex', gap: '12px', padding: '12px',
-                      borderRadius: '4px', border: `1px solid ${COLORS.border}`, cursor: 'pointer',
+                      display: 'flex', gap: '12px', padding: '14px 0', cursor: 'pointer',
+                      borderTop: i === 0 ? 'none' : `1px solid ${COLORS.borderLight}`,
                     }}>
-                      <img src={m.photo} alt={m.name} style={{ width: 64, height: 64, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }} />
-                      <div style={{ minWidth: 0 }}>
-                        <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, lineHeight: TYPE.small.lineHeight, margin: 0 }}>{m.name}</p>
-                        <p style={{ fontFamily: FONT, fontWeight: TYPE.small.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '2px' }}>{m.role}</p>
+                      <img src={m.photo} alt={m.name} style={{ width: 48, height: 48, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }} />
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+                          <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, lineHeight: TYPE.small.lineHeight, margin: 0 }}>{m.name}</p>
+                          <p style={{ fontFamily: FONT, fontWeight: TYPE.small.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{m.role}</p>
+                        </div>
+                        <p style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.body.weight, color: COLORS.textSecondary, lineHeight: 1.4, marginTop: '4px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>{m.bio}</p>
                         <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', marginTop: '6px' }}>
-                          {m.interests.slice(0, 2).map(tag => (
+                          {m.interests.map(tag => (
                             <span key={tag} style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textSecondary, border: `1px solid ${COLORS.border}`, borderRadius: '3px', padding: '1px 5px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{tag}</span>
                           ))}
                         </div>
@@ -727,25 +667,62 @@ export function StyleGuide() {
               </div>
             </div>
 
-            {/* List rows */}
+            {/* ─── ALPHA JUMP ─── */}
+            <div style={{ borderBottom: `1px solid ${COLORS.border}`, paddingBottom: '8px', marginBottom: '-24px' }}>
+              <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '1px' }}>Alphabetical Quick-Jump</span>
+            </div>
+
+            {/* Alpha jump demo */}
             <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-              <OptionHeader label="List rows — single column, avatar + name/role + tags, light dividers" />
+              <OptionHeader label="Sticky letter bar — A–Z strip, click to scroll, active letter highlighted" />
               <div style={{ padding: '24px', backgroundColor: COLORS.bg }}>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  {SAMPLE_MEMBERS.map((m, i) => (
-                    <div key={m.name} style={{
-                      display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0', cursor: 'pointer',
-                      borderTop: i === 0 ? 'none' : `1px solid ${COLORS.borderLight}`,
-                    }}>
-                      <img src={m.photo} alt={m.name} style={{ width: 36, height: 36, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }} />
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, lineHeight: TYPE.small.lineHeight, margin: 0 }}>{m.name}</p>
-                        <p style={{ fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '1px' }}>{m.role}</p>
+                {/* Letter bar */}
+                <div style={{ display: 'flex', gap: '2px', flexWrap: 'wrap', marginBottom: '20px', padding: '8px 0', borderBottom: `1px solid ${COLORS.border}` }}>
+                  {'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((letter) => {
+                    const hasMembers = ['A', 'J', 'S'].includes(letter);
+                    const isActive = letter === 'A';
+                    return (
+                      <span key={letter} style={{
+                        fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: isActive ? 600 : TYPE.small.weight,
+                        color: isActive ? COLORS.bg : hasMembers ? COLORS.text : COLORS.textMuted,
+                        backgroundColor: isActive ? COLORS.text : 'transparent',
+                        width: '22px', height: '22px', borderRadius: '3px',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        cursor: hasMembers ? 'pointer' : 'default',
+                        opacity: hasMembers || isActive ? 1 : 0.4,
+                      }}>{letter}</span>
+                    );
+                  })}
+                </div>
+                {/* Example grouped list */}
+                <div>
+                  <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 600, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '1px', margin: '0 0 8px', padding: '4px 0', borderBottom: `1px solid ${COLORS.borderLight}` }}>A</p>
+                  {SAMPLE_MEMBERS.slice(0, 1).map(m => (
+                    <div key={m.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0' }}>
+                      <img src={m.photo} alt={m.name} style={{ width: 48, height: 48, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }} />
+                      <div>
+                        <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, margin: 0 }}>{m.name}</p>
+                        <p style={{ fontFamily: FONT, fontWeight: TYPE.small.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '1px' }}>{m.role}</p>
                       </div>
-                      <div style={{ display: 'flex', gap: '4px', flexShrink: 0 }}>
-                        {m.interests.slice(0, 2).map(tag => (
-                          <span key={tag} style={{ fontFamily: FONT, fontSize: TYPE.caption.size, fontWeight: TYPE.small.weight, color: COLORS.textSecondary, border: `1px solid ${COLORS.border}`, borderRadius: '3px', padding: '1px 5px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{tag}</span>
-                        ))}
+                    </div>
+                  ))}
+                  <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 600, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '1px', margin: '16px 0 8px', padding: '4px 0', borderBottom: `1px solid ${COLORS.borderLight}` }}>J</p>
+                  {SAMPLE_MEMBERS.slice(1, 2).map(m => (
+                    <div key={m.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0' }}>
+                      <img src={m.photo} alt={m.name} style={{ width: 48, height: 48, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }} />
+                      <div>
+                        <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, margin: 0 }}>{m.name}</p>
+                        <p style={{ fontFamily: FONT, fontWeight: TYPE.small.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '1px' }}>{m.role}</p>
+                      </div>
+                    </div>
+                  ))}
+                  <p style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 600, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '1px', margin: '16px 0 8px', padding: '4px 0', borderBottom: `1px solid ${COLORS.borderLight}` }}>S</p>
+                  {SAMPLE_MEMBERS.slice(2, 3).map(m => (
+                    <div key={m.name} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 0' }}>
+                      <img src={m.photo} alt={m.name} style={{ width: 48, height: 48, borderRadius: '4px', objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.1)', flexShrink: 0 }} />
+                      <div>
+                        <p style={{ fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.small.size, color: COLORS.text, margin: 0 }}>{m.name}</p>
+                        <p style={{ fontFamily: FONT, fontWeight: TYPE.small.weight, fontSize: TYPE.caption.size, color: COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '1px' }}>{m.role}</p>
                       </div>
                     </div>
                   ))}
@@ -1069,7 +1046,6 @@ function MiniCard({ member }: { member: typeof SAMPLE_MEMBERS[number] }) {
 
 const VIEW_TOGGLE_MODES = [
   { label: 'Cards', icon: 'M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z' },
-  { label: 'Small', icon: 'M3 3h7v5H3V3zm11 0h7v5h-7V3zM3 11h7v5H3v-5zm11 0h7v5h-7v-5zM3 19h7v2H3v-2zm11 0h7v2h-7v-2z' },
   { label: 'List', icon: 'M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z' },
 ];
 
