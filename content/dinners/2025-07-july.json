@@ -3,8 +3,7 @@
   "slug": "2025-07-july",
   "date": "2025-07-31",
   "venue": "Ramen Space",
-  "groupPhoto": "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1400&h=800&fit=crop",
-  "isStockPhoto": true,
+  "groupPhoto": "/images/dinners/july-dinner-2025.webp",
   "description": "Expansive discussion at Ramen Space covering vibe coding, Claude Code vs Cursor, AI eating software, legacy programming languages, evolving tech roles, and startup distribution strategy.",
   "topics": [
     {
