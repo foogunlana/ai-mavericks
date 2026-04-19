@@ -92,12 +92,11 @@ export function LandingHero({ latestDinner }: LandingHeroProps) {
 
   return (
     <div className={styles.hero}>
-      <img
-        src={latestDinner.groupPhoto}
-        alt=""
-        className={styles.photo}
-      />
-      <div className={styles.overlay} />
+      <div className={styles.meshBg} />
+      <div className={`${styles.blob} ${styles.blob1}`} />
+      <div className={`${styles.blob} ${styles.blob2}`} />
+      <div className={`${styles.blob} ${styles.blob3}`} />
+      <div className={`${styles.blob} ${styles.blob4}`} />
 
       <div className={styles.content}>
         <img src="/images/logo.avif" alt="" className={styles.logoMark} />
@@ -114,6 +113,11 @@ export function LandingHero({ latestDinner }: LandingHeroProps) {
           {count} builder{count !== 1 ? 's' : ''} · One table · Real talk
         </p>
         <FlashyBtn>Join the Next Dinner</FlashyBtn>
+      </div>
+
+      <div className={styles.scrollHint}>
+        <div className={styles.scrollLine} />
+        <span className={styles.scrollLabel}>Scroll</span>
       </div>
     </div>
   );

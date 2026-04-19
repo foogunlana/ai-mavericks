@@ -13,27 +13,112 @@
   100% { transform: translateY(120px) rotate(720deg) scale(0); opacity: 0; }
 }
 
+@keyframes conic-rotate {
+  from { --conic-angle: 0deg; }
+  to { --conic-angle: 360deg; }
+}
+
+@keyframes blob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.97); }
+}
+
+@keyframes blob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-50px, 25px) scale(1.08); }
+  70% { transform: translate(30px, -15px) scale(0.95); }
+}
+
+@keyframes blob3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, 40px) scale(1.04); }
+  60% { transform: translate(-35px, -20px) scale(1.02); }
+}
+
+@keyframes blob4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  45% { transform: translate(-25px, -40px) scale(1.06); }
+  80% { transform: translate(45px, 15px) scale(0.96); }
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(6px); opacity: 0.8; }
+}
+
+@property --conic-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .hero {
   position: relative;
-  height: 480px;
+  height: 90vh;
+  min-height: 560px;
   overflow: hidden;
   background-color: #0a0a0a;
 }
 
-.photo {
+.meshBg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(100%) contrast(1.1);
-  opacity: 0.5;
+  background: conic-gradient(
+    from var(--conic-angle) at 50% 50%,
+    #0a0a0a 0deg,
+    #150d2a 60deg,
+    #0a0a0a 120deg,
+    #1a0a2e 180deg,
+    #0a0a0a 240deg,
+    #120820 300deg,
+    #0a0a0a 360deg
+  );
+  animation: conic-rotate 28s linear infinite;
 }
 
-.overlay {
+.blob {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.blob1 {
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  left: -80px;
+  background: radial-gradient(circle, #5b21b6 0%, transparent 70%);
+  animation: blob1 11s ease-in-out infinite;
+}
+
+.blob2 {
+  width: 420px;
+  height: 420px;
+  top: 30%;
+  right: -60px;
+  background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+  animation: blob2 14s ease-in-out infinite;
+}
+
+.blob3 {
+  width: 380px;
+  height: 380px;
+  bottom: -60px;
+  left: 30%;
+  background: radial-gradient(circle, #4c1d95 0%, transparent 70%);
+  animation: blob3 17s ease-in-out infinite;
+}
+
+.blob4 {
+  width: 300px;
+  height: 300px;
+  top: 20%;
+  left: 55%;
+  background: radial-gradient(circle, #6d28d9 0%, transparent 70%);
+  animation: blob4 12s ease-in-out infinite;
 }
 
 .content {
@@ -122,4 +207,32 @@
 .confettiParticle {
   position: absolute;
   animation: confetti-fall 0.8s ease-out forwards;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.scrollLine {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+.scrollLabel {
+  font-family: var(--font-sans);
+  font-size: 0.5rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
