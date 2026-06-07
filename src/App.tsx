@@ -24,14 +24,22 @@ function App() {
       setHeroVisible(true);
       return;
     }
-    const sentinel = heroSentinelRef.current;
-    if (!sentinel) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setHeroVisible(entry.isIntersecting),
-      { threshold: 0 }
-    );
-    observer.observe(sentinel);
-    return () => observer.disconnect();
+    // The hero carries its own nav, so the global sticky Nav stays hidden until
+    // the hero scrolls out of view. A scroll check (rather than an
+    // IntersectionObserver on the post-hero sentinel) keeps this correct even
+    // when the hero is taller than the viewport.
+    const update = () => {
+      const sentinel = heroSentinelRef.current;
+      if (!sentinel) return;
+      setHeroVisible(sentinel.getBoundingClientRect().top > 64);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
   }, [view]);
 
   const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers } =
@@ -54,16 +62,12 @@ function App() {
   return (
     <>
       <Nav currentView={view} onViewChange={setView} hidden={navHidden} />
-      {view === 'home' && (
-        <>
-          <LandingHero latestDinner={dinners[0]} onViewChange={setView} />
-          <div ref={heroSentinelRef} style={{ height: 0 }} />
-        </>
-      )}
       <div className={styles.app}>
         <main>
           {view === 'home' && (
             <>
+              <LandingHero latestDinner={dinners[0]} onViewChange={setView} />
+              <div ref={heroSentinelRef} style={{ height: 0 }} />
               <section className={styles.section}>
                 <MemberList
                   members={filteredMembers}

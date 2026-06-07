@@ -4,13 +4,8 @@
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(91, 33, 182, 0.25), 0 0 16px rgba(91, 33, 182, 0.1); }
-  50% { box-shadow: 0 0 14px rgba(91, 33, 182, 0.35), 0 0 28px rgba(91, 33, 182, 0.15); }
-}
-
-@keyframes confetti-fall {
-  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
-  100% { transform: translateY(120px) rotate(720deg) scale(0); opacity: 0; }
+  0%, 100% { box-shadow: 0 0 8px rgba(32, 71, 103, 0.25), 0 0 16px rgba(32, 71, 103, 0.1); }
+  50% { box-shadow: 0 0 14px rgba(32, 71, 103, 0.35), 0 0 28px rgba(32, 71, 103, 0.15); }
 }
 
 .flashyBtn {
@@ -26,20 +21,15 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  background: linear-gradient(135deg, #5b21b6, #7c3aed, #a855f7, #7c3aed, #5b21b6);
+  background: linear-gradient(135deg, #1b3a52, #2d5d82, #3f7aa6, #2d5d82, #1b3a52);
   background-size: 300% 300%;
   animation: shimmer 3s linear infinite, glow-pulse 3s ease-in-out infinite;
   color: #ffffff;
-  border: 1px solid rgba(91, 33, 182, 0.3);
+  border: 1px solid rgba(32, 71, 103, 0.35);
   transition: filter 0.15s, transform 0.15s;
 }
 
 .flashyBtn:hover {
   filter: brightness(1.15);
   transform: translateY(-1px);
-}
-
-.confettiParticle {
-  position: absolute;
-  animation: confetti-fall 0.8s ease-out forwards;
 }

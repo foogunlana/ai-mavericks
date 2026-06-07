@@ -1,9 +1,10 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState } from 'react';
 
- type SectionId = 'landing-hero' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
+ type SectionId = 'landing-hero' | 'hero-redesign' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'landing-hero', label: 'Landing Hero' },
+  { id: 'hero-redesign', label: 'Hero — Redesign' },
   { id: 'member-hover', label: 'MemberCard — Hover' },
   { id: 'member-flip',  label: 'MemberCard — Flip' },
   { id: 'typography',   label: 'Typography' },
@@ -68,6 +69,24 @@ export function StyleGuide() {
               <div key={opt.name} style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
                 <OptionHeader label={opt.name} />
                 <LandingHeroDemo variant={opt.variant} />
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'hero-redesign' && (
+        <Section title="Landing Page — Hero Redesign (mavericks-bah)">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Two-column, white background. Text left (title, mission, CTA, social proof), dinner photo right,
+            company logo marquee below. Both variants share the same left column and marquee — only the
+            right-column photo treatment differs. Stacked vertically so you can compare full-width.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {HERO_REDESIGN_OPTIONS.map(opt => (
+              <div key={opt.name} style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+                <OptionHeader label={opt.name} />
+                <HeroRedesignDemo variant={opt.variant} />
               </div>
             ))}
           </div>
@@ -164,7 +183,7 @@ export function StyleGuide() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             {/* Flashy */}
             <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
-              <OptionHeader label="Flashy — animated gradient, confetti on click" />
+              <OptionHeader label="Flashy — animated logo-blue gradient with glow" />
               <div style={{ padding: '24px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
                 <FlashyBtn>Join the Table</FlashyBtn>
                 <FlashyBtn disabled>Join the Table</FlashyBtn>
@@ -1048,24 +1067,14 @@ const UI_ICONS = [
   { label: 'Menu', path: 'M4 12h16M4 6h16M4 18h16' },
 ];
 
-const CONFETTI_COLORS = ['#7c3aed', '#a78bfa', '#c4b5fd', '#f472b6', '#818cf8', '#e879f9', '#fbbf24', '#34d399'];
-
 const KEYFRAMES = `
 @keyframes shimmer {
   0% { background-position: 0% 50%; }
   100% { background-position: 300% 50%; }
 }
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(91, 33, 182, 0.25), 0 0 16px rgba(91, 33, 182, 0.1); }
-  50% { box-shadow: 0 0 14px rgba(91, 33, 182, 0.35), 0 0 28px rgba(91, 33, 182, 0.15); }
-}
-@keyframes confetti-fall {
-  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
-  100% { transform: translateY(120px) rotate(720deg) scale(0); opacity: 0; }
-}
-@keyframes confetti-spread {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  100% { transform: translate(var(--cx), var(--cy)) rotate(var(--cr)); opacity: 0; }
+  0%, 100% { box-shadow: 0 0 8px rgba(32, 71, 103, 0.25), 0 0 16px rgba(32, 71, 103, 0.1); }
+  50% { box-shadow: 0 0 14px rgba(32, 71, 103, 0.35), 0 0 28px rgba(32, 71, 103, 0.15); }
 }
 @keyframes border-sweep {
   0% { transform: rotate(0deg); opacity: 0; }
@@ -1109,6 +1118,10 @@ const KEYFRAMES = `
 @keyframes beam-sweep {
   0% { left: -50%; }
   100% { left: 150%; }
+}
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* Hover & disabled states */
@@ -1231,93 +1244,25 @@ function Btn({ variant = 'ghost', disabled, children }: { variant?: 'ghost' | 'o
   );
 }
 
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  color: string;
-  rotation: number;
-  shape: 'circle' | 'square' | 'strip';
-}
-
 function FlashyBtn({ children, disabled }: { children: React.ReactNode; disabled?: boolean }) {
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const nextId = useRef(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const boom = useCallback((e: React.MouseEvent) => {
-    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-    const cx = e.clientX - rect.left;
-    const cy = e.clientY - rect.top;
-    const shapes: Particle['shape'][] = ['circle', 'square', 'strip'];
-
-    const newParticles: Particle[] = Array.from({ length: 24 }, () => {
-      const angle = Math.random() * Math.PI * 2;
-      const distance = 40 + Math.random() * 80;
-      return {
-        id: nextId.current++,
-        x: cx + Math.cos(angle) * distance,
-        y: cy + Math.sin(angle) * distance,
-        color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
-        rotation: Math.random() * 720 - 360,
-        shape: shapes[Math.floor(Math.random() * shapes.length)],
-      };
-    });
-
-    setParticles(prev => [...prev, ...newParticles]);
-  }, []);
-
-  useEffect(() => {
-    if (particles.length === 0) return;
-    const timer = setTimeout(() => setParticles([]), 800);
-    return () => clearTimeout(timer);
-  }, [particles]);
-
   return (
-    <div ref={containerRef} style={{ position: 'relative', display: 'inline-flex' }}>
-      <button
-        className="btn-flashy"
-        onClick={disabled ? undefined : boom}
-        disabled={disabled}
-        style={{
-          ...BTN_BASE,
-          background: 'linear-gradient(135deg, #5b21b6, #7c3aed, #a855f7, #7c3aed, #5b21b6)',
-          backgroundSize: '300% 300%',
-          animation: disabled ? 'none' : 'shimmer 3s linear infinite, glow-pulse 3s ease-in-out infinite',
-          color: '#ffffff',
-          border: '1px solid rgba(91, 33, 182, 0.3)',
-          padding: '10px 24px',
-          fontWeight: 600,
-          letterSpacing: '1.5px',
-        }}
-      >
-        {children}
-      </button>
-
-      {/* Confetti layer */}
-      {particles.length > 0 && (
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'visible', zIndex: 10 }}>
-          {particles.map(p => {
-            const size = p.shape === 'strip' ? { width: 3, height: 10 } : { width: 6, height: 6 };
-            return (
-              <div
-                key={p.id}
-                style={{
-                  position: 'absolute',
-                  left: p.x,
-                  top: p.y,
-                  ...size,
-                  backgroundColor: p.color,
-                  borderRadius: p.shape === 'circle' ? '50%' : '1px',
-                  animation: 'confetti-fall 0.8s ease-out forwards',
-                  transform: `rotate(${p.rotation}deg)`,
-                }}
-              />
-            );
-          })}
-        </div>
-      )}
-    </div>
+    <button
+      className="btn-flashy"
+      disabled={disabled}
+      style={{
+        ...BTN_BASE,
+        background: 'linear-gradient(135deg, #1b3a52, #2d5d82, #3f7aa6, #2d5d82, #1b3a52)',
+        backgroundSize: '300% 300%',
+        animation: disabled ? 'none' : 'shimmer 3s linear infinite, glow-pulse 3s ease-in-out infinite',
+        color: '#ffffff',
+        border: '1px solid rgba(32, 71, 103, 0.35)',
+        padding: '10px 24px',
+        fontWeight: 600,
+        letterSpacing: '1.5px',
+      }}
+    >
+      {children}
+    </button>
   );
 }
 
@@ -1693,7 +1638,7 @@ function ShimmerBorderBtn({ children, disabled }: { children: React.ReactNode; d
           width: Math.max(200, 300) + '%',
           height: Math.max(200, 300) + '%',
           borderRadius: '50%',
-          background: 'conic-gradient(from 0deg, transparent 0%, transparent 75%, #7c3aed 83%, #a855f7 89%, #c4b5fd 94%, #a855f7 97%, transparent 100%)',
+          background: 'conic-gradient(from 0deg, transparent 0%, transparent 75%, #2d5d82 83%, #3f7aa6 89%, #7fb0d4 94%, #3f7aa6 97%, transparent 100%)',
         }} />
       </div>
 
@@ -1977,6 +1922,218 @@ function HeroGrid() {
           7 builders · One table · Real talk
         </p>
         <FlashyBtn>Join the Next Dinner</FlashyBtn>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Hero Redesign (mavericks-bah) ─── */
+
+const HERO_REDESIGN_OPTIONS = [
+  { name: 'A — Single static photo (clean, subtle rounded corners)', variant: 'simple' as const },
+  { name: 'B — Photo + accent frame (offset frame, floating date/venue tag)', variant: 'framed' as const },
+  { name: 'C — Stacked photo collage (3 overlapping dinner photos)', variant: 'collage' as const },
+];
+
+const HERO_IMG = (file: string) => `${import.meta.env.BASE_URL}images/dinners/${file}`;
+
+// Mission paragraphs + social proof — real content, not lorem.
+const HERO_MISSION = [
+  'AI Mavericks brings together the people actually building with AI in London — founders, engineers, and operators — for intimate dinners where the conversation goes deeper than the demo.',
+  'No panels, no pitches. Just one table and the people shaping what comes next.',
+];
+const HERO_MEMBER_COUNT = 65;
+
+// Real companies pulled from member data — greyscale wordmarks stand in for logos.
+const HERO_COMPANIES = [
+  'Meta', 'Stears', 'Gitpod', 'Channel 4', 'VodafoneThree', 'Sano Genetics',
+  'Superthread', 'StackOne', 'Valyu', 'Merantix Capital', 'Kiseki Labs', 'SEEKR',
+  'TokenHouse Capital', 'Tensor Valley', 'ExoBrain', 'Talentspace',
+];
+
+function HeroRedesignDemo({ variant }: { variant: 'simple' | 'framed' | 'collage' }) {
+  return (
+    <div style={{ backgroundColor: COLORS.bg }}>
+      <HeroRedesignNav />
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '48px',
+          alignItems: 'center',
+          padding: '56px 48px 64px',
+        }}
+      >
+        <HeroRedesignLeft />
+        {variant === 'simple' && <HeroPhotoSimple />}
+        {variant === 'framed' && <HeroPhotoFramed />}
+        {variant === 'collage' && <HeroPhotoCollage />}
+      </div>
+      <HeroMarquee />
+    </div>
+  );
+}
+
+function HeroRedesignNav() {
+  const linkStyle: React.CSSProperties = {
+    fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+    letterSpacing: '2px', textTransform: 'uppercase', color: COLORS.textSecondary,
+    background: 'transparent', border: 'none', cursor: 'pointer', textDecoration: 'none',
+  };
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      height: '56px', padding: '0 48px', borderBottom: `1px solid ${COLORS.borderLight}`,
+    }}>
+      <img src={`${import.meta.env.BASE_URL}images/logo.avif`} alt="AI Mavericks" style={{ width: 36, height: 36, borderRadius: '4px' }} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+        <span style={linkStyle}>People</span>
+        <span style={linkStyle}>Dinners</span>
+        <span style={linkStyle}>Newsletter</span>
+      </div>
+    </div>
+  );
+}
+
+function HeroRedesignLeft() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '20px' }}>
+      <span style={{
+        fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+        letterSpacing: '2px', textTransform: 'uppercase', color: COLORS.textMuted,
+      }}>
+        London · Quarterly dinners
+      </span>
+      <h1 style={{ fontFamily: FONT, fontWeight: TYPE.heading.weight, fontSize: '3.25rem', lineHeight: 1.1, color: COLORS.text, margin: 0 }}>
+        AI Mavericks
+      </h1>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '460px' }}>
+        {HERO_MISSION.map((para, i) => (
+          <p key={i} style={{ fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: '1.0625rem', lineHeight: 1.55, color: COLORS.textSecondary, margin: 0 }}>
+            {para}
+          </p>
+        ))}
+      </div>
+      <div style={{ marginTop: '4px' }}>
+        <FlashyBtn>Apply to Join</FlashyBtn>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '4px' }}>
+        <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: '1.333rem', color: COLORS.text }}>{HERO_MEMBER_COUNT}+</span>
+        <span style={{ fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.body.size, color: COLORS.textSecondary }}>builders and counting</span>
+      </div>
+    </div>
+  );
+}
+
+/* Variant A — single static photo, subtle rounded corners */
+function HeroPhotoSimple() {
+  return (
+    <img
+      src={HERO_IMG('q1-dinner-2026.webp')}
+      alt="AI Mavericks dinner, Q1 2026"
+      style={{
+        width: '100%', aspectRatio: '4/3', objectFit: 'cover',
+        borderRadius: '4px', display: 'block', boxShadow: '0 4px 12px rgba(0,0,0,0.10)',
+      }}
+    />
+  );
+}
+
+/* Variant B — single photo with an offset monochrome frame + floating meta tag */
+function HeroPhotoFramed() {
+  return (
+    <div style={{ position: 'relative', paddingRight: '14px', paddingBottom: '14px' }}>
+      {/* Offset frame behind */}
+      <div style={{
+        position: 'absolute', top: '14px', right: 0, bottom: 0, left: '14px',
+        border: `1px solid ${COLORS.border}`, borderRadius: '4px',
+      }} />
+      <img
+        src={HERO_IMG('q1-dinner-2026.webp')}
+        alt="AI Mavericks dinner, Q1 2026"
+        style={{
+          position: 'relative', width: '100%', aspectRatio: '4/3', objectFit: 'cover',
+          borderRadius: '4px', display: 'block', boxShadow: '0 4px 12px rgba(0,0,0,0.10)',
+        }}
+      />
+      {/* Floating date/venue tag */}
+      <div style={{
+        position: 'absolute', left: '24px', bottom: '2px', zIndex: 1,
+        backgroundColor: COLORS.bg, border: `1px solid ${COLORS.border}`, borderRadius: '3px',
+        padding: '8px 12px', boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+      }}>
+        <span style={{
+          fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+          letterSpacing: '1px', textTransform: 'uppercase', color: COLORS.text,
+        }}>
+          Q1 2026 · Pizza Express Live, Holborn
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* Variant C — three overlapping dinner photos */
+function HeroPhotoCollage() {
+  const shadow = '0 4px 12px rgba(0,0,0,0.10)';
+  return (
+    <div style={{ position: 'relative', height: '360px' }}>
+      {/* Back-left */}
+      <img
+        src={HERO_IMG('july-dinner-2025.webp')}
+        alt="AI Mavericks dinner"
+        style={{
+          position: 'absolute', top: 0, left: 0, width: '52%', aspectRatio: '4/3',
+          objectFit: 'cover', borderRadius: '4px', border: `3px solid ${COLORS.bg}`,
+          boxShadow: shadow, transform: 'rotate(-3deg)',
+        }}
+      />
+      {/* Bottom-left small */}
+      <img
+        src={HERO_IMG('may-dinner-2025.avif')}
+        alt="AI Mavericks dinner"
+        style={{
+          position: 'absolute', bottom: 0, left: '8%', width: '44%', aspectRatio: '1/1',
+          objectFit: 'cover', borderRadius: '4px', border: `3px solid ${COLORS.bg}`,
+          boxShadow: shadow, transform: 'rotate(2deg)',
+        }}
+      />
+      {/* Front-right large */}
+      <img
+        src={HERO_IMG('q1-dinner-2026.webp')}
+        alt="AI Mavericks dinner, Q1 2026"
+        style={{
+          position: 'absolute', top: '32px', right: 0, width: '56%', aspectRatio: '3/4',
+          objectFit: 'cover', borderRadius: '4px', border: `3px solid ${COLORS.bg}`,
+          boxShadow: '0 8px 20px rgba(0,0,0,0.14)', transform: 'rotate(2deg)',
+        }}
+      />
+    </div>
+  );
+}
+
+function HeroMarquee() {
+  const items = [...HERO_COMPANIES, ...HERO_COMPANIES];
+  return (
+    <div style={{ borderTop: `1px solid ${COLORS.borderLight}`, padding: '28px 0', overflow: 'hidden' }}>
+      <p style={{
+        fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+        letterSpacing: '2px', textTransform: 'uppercase', color: COLORS.textMuted,
+        textAlign: 'left', marginBottom: '20px',
+      }}>
+        Our {HERO_MEMBER_COUNT}+ members work at
+      </p>
+      <div style={{ position: 'relative', maskImage: 'linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)' }}>
+        <div style={{ display: 'flex', width: 'max-content', gap: '56px', animation: 'marquee-scroll 60s linear infinite' }}>
+          {items.map((company, i) => (
+            <span key={i} style={{
+              fontFamily: FONT, fontSize: '1.125rem', fontWeight: 500, whiteSpace: 'nowrap',
+              color: COLORS.textMuted, letterSpacing: '0.5px', filter: 'grayscale(100%)',
+            }}>
+              {company}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
