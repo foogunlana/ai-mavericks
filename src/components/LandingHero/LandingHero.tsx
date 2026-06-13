@@ -66,7 +66,10 @@ interface LandingHeroProps {
 
 export function LandingHero({ latestDinner, memberCount = COMPANIES.length, onViewChange }: LandingHeroProps) {
   const marqueeItems = [...COMPANIES, ...COMPANIES];
-  const photo = latestDinner?.groupPhoto ?? `${import.meta.env.BASE_URL}images/logo.avif`;
+  // Signed-in users get the latest dinner from Neon; signed-out visitors can't
+  // (it's gated), so fall back to the latest dinner photo (public). Update this
+  // filename when a newer dinner is added.
+  const photo = latestDinner?.groupPhoto ?? `${import.meta.env.BASE_URL}images/dinners/q1-dinner-2026.webp`;
 
   return (
     <div className="bg-background pt-12 min-h-screen flex flex-col">
@@ -127,7 +130,7 @@ export function LandingHero({ latestDinner, memberCount = COMPANIES.length, onVi
           <div className="flex">
             <img
               src={photo}
-              alt={latestDinner ? `AI Mavericks dinner — ${latestDinner.name}` : 'AI Mavericks'}
+              alt={latestDinner ? `AI Mavericks dinner — ${latestDinner.name}` : 'AI Mavericks dinner'}
               className="w-full aspect-[4/3] object-cover rounded-sm block shadow-[0_4px_12px_rgba(0,0,0,0.10)]"
             />
           </div>
