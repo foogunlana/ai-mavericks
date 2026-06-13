@@ -53,6 +53,9 @@ FROM members m
 LEFT JOIN member_tags mt ON mt.member_id = m.id
 LEFT JOIN dinner_attendees da ON da.member_id = m.id
 LEFT JOIN dinners d ON d.id = da.dinner_id
+-- Exclude auth placeholder rows (created by claim_member_by_email when a
+-- sign-in email matches no seeded member). Real/seeded members always have a slug.
+WHERE m.slug IS NOT NULL
 GROUP BY m.id;
 
 GRANT SELECT ON dinners_view TO authenticated;

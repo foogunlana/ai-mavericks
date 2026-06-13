@@ -15,6 +15,17 @@ function deriveName(slug: string, date: string): string {
   return d.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }) + ' Dinner';
 }
 
+// Photo paths are stored as site-root paths (e.g. /images/...); prefix BASE_URL
+// so they resolve under the app's base path (e.g. /ai-mavericks/), matching
+// how the static data layer (src/data/dinners.ts) resolves them.
+const BASE = import.meta.env.BASE_URL;
+function resolvePhoto(path: string | null | undefined): string | null {
+  if (!path) return null;
+  if (path.startsWith('http')) return path;
+  const clean = path.startsWith('/') ? path.slice(1) : path;
+  return `${BASE}${clean}`;
+}
+
 function mapRowToDinner(row: Record<string, unknown>): Dinner {
   const slug = (row.slug as string) ?? '';
   const date = (row.date as string) ?? '';
@@ -23,7 +34,7 @@ function mapRowToDinner(row: Record<string, unknown>): Dinner {
     slug,
     date,
     venue: (row.venue as string) ?? '',
-    groupPhoto: (row.group_photo_url as string | null) ?? null,
+    groupPhoto: resolvePhoto(row.group_photo_url as string | null),
     description: (row.description as string) ?? '',
     topics: (row.topics as Topic[] | null) ?? [],
     attendees: (row.attendee_slugs as string[] | null) ?? [],

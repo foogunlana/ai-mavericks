@@ -8,6 +8,16 @@ interface UseMembersResult {
   error: Error | null;
 }
 
+// Photo paths are stored as site-root paths (e.g. /images/...); prefix BASE_URL
+// so they resolve under the app's base path, matching src/data/members.ts.
+const BASE = import.meta.env.BASE_URL;
+function resolvePhoto(path: string | null | undefined): string {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+  const clean = path.startsWith('/') ? path.slice(1) : path;
+  return `${BASE}${clean}`;
+}
+
 function mapRowToMember(row: Record<string, unknown>): Member {
   return {
     name: (row.name as string) ?? '',
@@ -15,7 +25,7 @@ function mapRowToMember(row: Record<string, unknown>): Member {
     title: (row.title as string) ?? '',
     company: (row.company as string) ?? '',
     bio: (row.bio as string) ?? '',
-    photo: (row.photo_url as string) ?? '',
+    photo: resolvePhoto(row.photo_url as string | null),
     linkedin: (row.linkedin as string) ?? '',
     twitter: (row.twitter as string) ?? '',
     website: (row.website as string) ?? '',

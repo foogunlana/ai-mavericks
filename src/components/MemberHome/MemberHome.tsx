@@ -45,7 +45,8 @@ export function MemberHome({
     ? `${newsletterDinner.name} recap`
     : 'Latest from AI Mavericks';
 
-  const greetingName = firstName?.trim() || 'there';
+  const greetingName = firstName?.trim();
+  const greeting = greetingName ? `Welcome back, ${greetingName}` : 'Welcome back';
 
   const ctaClass =
     'inline-flex items-center gap-2 font-sans text-[length:var(--font-size-sm)] font-medium tracking-[1px] uppercase no-underline appearance-none px-[18px] py-2 rounded-[3px] bg-surface border border-border text-text hover:border-text transition-colors cursor-pointer';
@@ -56,7 +57,7 @@ export function MemberHome({
       <div className="mb-9">
         <span className={eyebrow}>AI Mavericks · Member home</span>
         <h1 className="font-sans font-light text-[2rem] md:text-[2.369rem] leading-[1.15] text-text mt-3 m-0">
-          Welcome back, {greetingName}
+          {greeting}
         </h1>
       </div>
 
