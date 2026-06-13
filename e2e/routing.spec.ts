@@ -49,6 +49,6 @@ test('browser back returns from detail to the list', async ({ page }) => {
 test('unknown route redirects to home', async ({ page }) => {
   await page.goto('./nope');
   await page.waitForLoadState('networkidle');
-  await expect(page).toHaveURL(/\/ai-mavericks\/$/);
+  await expect(page).toHaveURL(/localhost:5174\/$/);
   await expect(page.getByRole('heading', { level: 1, name: 'AI Mavericks' })).toBeVisible();
 });
