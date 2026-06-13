@@ -1,13 +1,17 @@
 import { useState } from 'react';
+import { ColorSwatch, TypographySample, SpacingGrid } from './components';
 
- type SectionId = 'landing-hero' | 'hero-redesign' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
+type SectionId = 'color-palette' | 'typography' | 'spacing' | 'landing-hero' | 'hero-redesign' | 'member-hover' | 'member-flip' | 'typography-styles' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
+  { id: 'color-palette', label: '🎨 Colors' },
+  { id: 'typography', label: '✍️ Typography' },
+  { id: 'spacing', label: '📐 Spacing' },
   { id: 'landing-hero', label: 'Landing Hero' },
   { id: 'hero-redesign', label: 'Hero — Redesign' },
   { id: 'member-hover', label: 'MemberCard — Hover' },
   { id: 'member-flip',  label: 'MemberCard — Flip' },
-  { id: 'typography',   label: 'Typography' },
+  { id: 'typography-styles', label: 'Typography' },
   { id: 'button',       label: 'Button' },
   { id: 'tag',          label: 'Tag' },
   { id: 'avatar',       label: 'Avatar' },
@@ -124,7 +128,7 @@ export function StyleGuide() {
         </Section>
       )}
 
-      {activeSection === 'typography' && (
+      {activeSection === 'typography-styles' && (
         <Section title="Typography">
           <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
             Six type treatments — heading weight, subheading tracking, and body colour. All use Space Grotesk.
@@ -919,6 +923,113 @@ export function StyleGuide() {
               </div>
             ))}
           </div>
+        </Section>
+      )}
+
+      {activeSection === 'color-palette' && (
+        <Section title="Color Palette">
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Monochrome — Core</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <ColorSwatch name="Background" value="#ffffff" hex="#ffffff" />
+                <ColorSwatch name="Text" value="#1a1a1a" hex="#1a1a1a" />
+                <ColorSwatch name="Secondary Text" value="#6b7280" hex="#6b7280" />
+                <ColorSwatch name="Muted" value="#9ca3af" hex="#9ca3af" />
+                <ColorSwatch name="Border" value="#e5e7eb" hex="#e5e7eb" />
+                <ColorSwatch name="Border Light" value="#f3f4f6" hex="#f3f4f6" />
+                <ColorSwatch name="Surface" value="#f9fafb" hex="#f9fafb" />
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Semantic Colors</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <ColorSwatch name="Success" value="#10b981" hex="#10b981" />
+                <ColorSwatch name="Success Light" value="#d1fae5" hex="#d1fae5" />
+                <ColorSwatch name="Error" value="#ef4444" hex="#ef4444" />
+                <ColorSwatch name="Error Light" value="#fee2e2" hex="#fee2e2" />
+                <ColorSwatch name="Warning" value="#f97316" hex="#f97316" />
+                <ColorSwatch name="Warning Light" value="#ffedd5" hex="#ffedd5" />
+                <ColorSwatch name="Info" value="#3b82f6" hex="#3b82f6" />
+                <ColorSwatch name="Info Light" value="#dbeafe" hex="#dbeafe" />
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'typography' && (
+        <Section title="Typography Styles">
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Serif (EB Garamond)</h3>
+              <div className="grid gap-6">
+                <TypographySample
+                  name="Display XL"
+                  fontSize="7.478rem"
+                  fontWeight={400}
+                  lineHeight={1.15}
+                  family="serif"
+                  sample="The quick brown fox"
+                />
+                <TypographySample
+                  name="Heading (H1)"
+                  fontSize="2.369rem"
+                  fontWeight={400}
+                  lineHeight={1.15}
+                  family="serif"
+                  sample="Main heading example"
+                />
+                <TypographySample
+                  name="Subheading"
+                  fontSize="1.333rem"
+                  fontWeight={500}
+                  lineHeight={1.25}
+                  family="serif"
+                  sample="Secondary heading"
+                />
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Sans (Helvetica Neue)</h3>
+              <div className="grid gap-6">
+                <TypographySample
+                  name="Body"
+                  fontSize="1rem"
+                  fontWeight={400}
+                  lineHeight={1.45}
+                  family="sans"
+                  sample="Body text flows like this, readable and comfortable for longer passages."
+                />
+                <TypographySample
+                  name="Small"
+                  fontSize="0.688rem"
+                  fontWeight={500}
+                  lineHeight={1.2}
+                  family="sans"
+                  sample="Small text for labels and captions"
+                />
+                <TypographySample
+                  name="Caption"
+                  fontSize="0.5rem"
+                  fontWeight={500}
+                  lineHeight={1.1}
+                  family="sans"
+                  sample="TINY CAPTION TEXT"
+                />
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'spacing' && (
+        <Section title="Spacing Scale">
+          <p className="text-gray-600 mb-8">
+            Based on an 8px grid. Each spacing level builds on the previous (4, 8, 12, 16, ..., 160px).
+            Use for margins, padding, and gaps throughout the design.
+          </p>
+          <SpacingGrid />
         </Section>
       )}
 
