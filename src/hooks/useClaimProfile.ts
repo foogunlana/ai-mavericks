@@ -18,7 +18,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react'
-import { useAuth, useUser } from '@clerk/clerk-react'
+import { useAuth, useUser } from '@clerk/react'
 import { useNeon } from '../lib/neon'
 
 export interface ClaimProfileState {

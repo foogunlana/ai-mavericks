@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { SignedIn, SignedOut } from '@clerk/clerk-react';
+import { Show } from '@clerk/react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
 import { DinnersPage } from './components/DinnersPage/DinnersPage';
@@ -109,12 +109,12 @@ function AppViews({
       {view === 'people' && (
         gated ? (
           <>
-            <SignedIn>
+            <Show when="signed-in">
               <section className={styles.section}>
                 <MemberList members={filteredMembers} filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters} hasActiveFilters={hasActiveFilters} />
               </section>
-            </SignedIn>
-            <SignedOut><GatePrompt /></SignedOut>
+            </Show>
+            <Show when="signed-out"><GatePrompt /></Show>
           </>
         ) : (
           <section className={styles.section}>
@@ -126,12 +126,12 @@ function AppViews({
       {view === 'dinners' && (
         gated ? (
           <>
-            <SignedIn>
+            <Show when="signed-in">
               <section className={styles.section}>
                 <DinnersPage dinners={dinnersLoading ? [] : dinners} onSelectDinner={handleSelectDinner} />
               </section>
-            </SignedIn>
-            <SignedOut><GatePrompt /></SignedOut>
+            </Show>
+            <Show when="signed-out"><GatePrompt /></Show>
           </>
         ) : (
           <section className={styles.section}>
@@ -143,12 +143,12 @@ function AppViews({
       {view === 'dinner-detail' && selectedDinnerSlug && (
         gated ? (
           <>
-            <SignedIn>
+            <Show when="signed-in">
               <section className={styles.section}>
                 <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
               </section>
-            </SignedIn>
-            <SignedOut><GatePrompt /></SignedOut>
+            </Show>
+            <Show when="signed-out"><GatePrompt /></Show>
           </>
         ) : (
           <section className={styles.section}>

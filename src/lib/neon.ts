@@ -1,4 +1,4 @@
-import { useAuth } from '@clerk/clerk-react'
+import { useAuth } from '@clerk/react'
 
 const apiUrl = import.meta.env.VITE_NEON_API_URL as string | undefined
 const apiKey = import.meta.env.VITE_NEON_API_KEY as string | undefined

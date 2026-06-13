@@ -1,4 +1,4 @@
-import { ClerkProvider as ClerkReactProvider } from '@clerk/clerk-react'
+import { ClerkProvider as ClerkReactProvider } from '@clerk/react'
 import type { ReactNode } from 'react'
 import { clerkPublishableKey } from '../lib/authConfig'
 

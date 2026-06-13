@@ -1,10 +1,10 @@
-import { SignedIn, UserButton as ClerkUserButton } from '@clerk/clerk-react';
+import { Show, UserButton as ClerkUserButton } from '@clerk/react';
 import { clerkEnabled } from '../../lib/authConfig';
 
 export function UserButton() {
   if (!clerkEnabled) return null;
   return (
-    <SignedIn>
+    <Show when="signed-in">
       <div className="flex items-center">
         <ClerkUserButton
           appearance={{
@@ -18,6 +18,6 @@ export function UserButton() {
           }}
         />
       </div>
-    </SignedIn>
+    </Show>
   );
 }
