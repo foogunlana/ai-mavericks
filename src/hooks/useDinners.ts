@@ -33,28 +33,8 @@ function mapRowToDinner(row: Record<string, unknown>): Dinner {
   };
 }
 
-const DINNERS_QUERY = `
-  SELECT
-    d.id,
-    d.slug,
-    d.date,
-    d.venue,
-    d.group_photo_url,
-    d.description,
-    d.topics,
-    d.beehiiv_url,
-    d.discord_url,
-    d.luma_url,
-    array_agg(DISTINCT m.slug) FILTER (WHERE m.slug IS NOT NULL) AS attendee_slugs
-  FROM dinners d
-  LEFT JOIN dinner_attendees da ON da.dinner_id = d.id
-  LEFT JOIN members m ON m.id = da.member_id
-  GROUP BY d.id
-  ORDER BY d.date DESC
-`;
-
 export function useDinners(): UseDinnersResult {
-  const { query } = useNeon();
+  const { select } = useNeon();
   const [dinners, setDinners] = useState<Dinner[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -66,9 +46,8 @@ export function useDinners(): UseDinnersResult {
       setLoading(true);
       setError(null);
       try {
-        const results = await query(DINNERS_QUERY);
+        const rows = await select<Record<string, unknown>>('dinners_view', 'select=*&order=date.desc');
         if (cancelled) return;
-        const rows: Record<string, unknown>[] = results[0]?.rows ?? [];
         setDinners(rows.map(mapRowToDinner));
       } catch (err) {
         if (cancelled) return;

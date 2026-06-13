@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-type SectionId = 'landing-hero' | 'hero-redesign' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'nav-signin' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
+type SectionId = 'landing-hero' | 'member-home' | 'hero-redesign' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'nav-signin' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'landing-hero', label: 'Landing Hero' },
+  { id: 'member-home',  label: 'Member Home' },
   { id: 'hero-redesign', label: 'Hero — Redesign' },
   { id: 'member-hover', label: 'MemberCard — Hover' },
   { id: 'member-flip',  label: 'MemberCard — Flip' },
@@ -27,7 +28,7 @@ const SECTION_LABELS: { id: SectionId; label: string }[] = [
 ];
 
 export function StyleGuide() {
-  const [activeSection, setActiveSection] = useState<SectionId>('landing-hero');
+  const [activeSection, setActiveSection] = useState<SectionId>('member-home');
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
@@ -72,6 +73,340 @@ export function StyleGuide() {
                 <LandingHeroDemo variant={opt.variant} />
               </div>
             ))}
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'member-home' && (
+        <Section title="Member Home — signed-in dashboard (mavericks-srz)">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textMuted, marginBottom: '24px' }}>
+            Three layout options for the signed-in member dashboard. Shows the latest dinner (fallback state — no upcoming dinner). Greeting: Foluso · Sat 13 June 2026.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+
+            {/* ── Option A — Editorial stack ── */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="A — Editorial stack" />
+              <div style={{ padding: '40px 32px', background: COLORS.bg }}>
+                {/* Greeting */}
+                <div style={{ marginBottom: '40px' }}>
+                  <p style={{
+                    fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+                    letterSpacing: '2px', textTransform: 'uppercase', color: COLORS.textMuted,
+                    marginBottom: '8px',
+                  }}>
+                    AI Mavericks · Member home
+                  </p>
+                  <h2 style={{
+                    fontFamily: FONT, fontWeight: TYPE.heading.weight, fontSize: TYPE.heading.size,
+                    lineHeight: TYPE.heading.lineHeight, color: COLORS.text, margin: 0,
+                  }}>
+                    Welcome back, Foluso
+                  </h2>
+                </div>
+
+                {/* Latest-dinner horizontal card */}
+                <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden', display: 'flex', gap: 0 }}>
+                  <img
+                    src={HERO_IMG('q1-dinner-2026.webp')}
+                    alt="Q1 2026 Dinner"
+                    style={{ width: '280px', flexShrink: 0, objectFit: 'cover', aspectRatio: '4/3', display: 'block' }}
+                  />
+                  <div style={{ flex: 1, padding: '24px' }}>
+                    <p style={{
+                      fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+                      letterSpacing: '2px', textTransform: 'uppercase', color: COLORS.textMuted,
+                      marginBottom: '8px',
+                    }}>
+                      Latest dinner
+                    </p>
+                    <p style={{
+                      fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.subheading.size,
+                      lineHeight: TYPE.subheading.lineHeight, color: COLORS.text, marginBottom: '8px',
+                    }}>
+                      Q1 2026 Dinner
+                    </p>
+                    <p style={{
+                      fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.body.size,
+                      lineHeight: TYPE.body.lineHeight, color: COLORS.textSecondary, marginBottom: '20px',
+                    }}>
+                      21 March 2026 · Pizza Express Live Holborn
+                    </p>
+                    <a
+                      href="https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-q1-2026-dinner-recap"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ ...BTN_BASE, ...BTN_VARIANTS.outline, textDecoration: 'none' }}
+                    >
+                      See details
+                    </a>
+                  </div>
+                </div>
+
+                {/* 3-up grid of link cards */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: '32px' }}>
+                  {[
+                    { eyebrow: 'Latest newsletter', title: 'Q1 2026 Dinner recap', sub: '', href: 'https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-q1-2026-dinner-recap', external: true },
+                    { eyebrow: 'All dinners', title: 'Browse every dinner', sub: '', href: '#', external: false },
+                    { eyebrow: 'Meet the members', title: '65 builders', sub: '', href: '#', external: false },
+                  ].map(card => (
+                    <a
+                      key={card.eyebrow}
+                      href={card.href}
+                      target={card.external ? '_blank' : undefined}
+                      rel={card.external ? 'noopener noreferrer' : undefined}
+                      style={{
+                        display: 'block', border: `1px solid ${COLORS.border}`, borderRadius: '4px',
+                        padding: '20px', backgroundColor: COLORS.surface, textDecoration: 'none',
+                        position: 'relative',
+                      }}
+                    >
+                      <p style={{
+                        fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+                        letterSpacing: '2px', textTransform: 'uppercase', color: COLORS.textMuted,
+                        marginBottom: '6px',
+                      }}>
+                        {card.eyebrow}
+                      </p>
+                      <p style={{
+                        fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: '1rem',
+                        lineHeight: TYPE.subheading.lineHeight, color: COLORS.text,
+                      }}>
+                        {card.title}
+                      </p>
+                      <span style={{
+                        position: 'absolute', top: '20px', right: '20px',
+                        fontFamily: FONT, fontSize: '1rem', color: COLORS.textMuted,
+                      }}>→</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* ── Option B — Hero + grid ── */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="B — Hero + grid" />
+              <div style={{ padding: '40px 32px', background: COLORS.bg }}>
+                {/* Inline greeting */}
+                <div style={{ marginBottom: '24px' }}>
+                  <p style={{
+                    fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+                    letterSpacing: '2px', textTransform: 'uppercase', color: COLORS.textMuted,
+                    marginBottom: '4px',
+                  }}>
+                    AI Mavericks · Member home
+                  </p>
+                  <p style={{
+                    fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.subheading.size,
+                    lineHeight: TYPE.subheading.lineHeight, color: COLORS.text, margin: 0,
+                  }}>
+                    Welcome back, Foluso
+                  </p>
+                </div>
+
+                {/* Full-width dinner hero banner */}
+                <div style={{ position: 'relative', height: '360px', borderRadius: '4px', overflow: 'hidden' }}>
+                  <img
+                    src={HERO_IMG('q1-dinner-2026.webp')}
+                    alt="Q1 2026 Dinner"
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                  {/* Dark gradient overlay */}
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 100%)',
+                  }} />
+                  {/* Overlaid content */}
+                  <div style={{ position: 'absolute', bottom: 0, left: 0, padding: '32px' }}>
+                    <p style={{
+                      fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+                      letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)',
+                      marginBottom: '8px',
+                    }}>
+                      Latest dinner
+                    </p>
+                    <h2 style={{
+                      fontFamily: FONT, fontWeight: TYPE.heading.weight, fontSize: TYPE.heading.size,
+                      lineHeight: TYPE.heading.lineHeight, color: '#ffffff', margin: '0 0 8px',
+                    }}>
+                      Q1 2026 Dinner
+                    </h2>
+                    <p style={{
+                      fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.body.size,
+                      color: 'rgba(255,255,255,0.8)', marginBottom: '20px',
+                    }}>
+                      21 March 2026 · Pizza Express Live Holborn
+                    </p>
+                    <a
+                      href="https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-q1-2026-dinner-recap"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ ...BTN_BASE, backgroundColor: '#fff', color: COLORS.text, border: 'none', textDecoration: 'none' }}
+                    >
+                      See details
+                    </a>
+                  </div>
+                </div>
+
+                {/* 3 compact tiles */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: '24px' }}>
+                  {[
+                    { title: 'Dinners', sub: 'Browse every dinner', href: '#', external: false },
+                    { title: 'People', sub: '65 builders', href: '#', external: false },
+                    { title: 'Newsletter', sub: 'Q1 2026 Dinner recap', href: 'https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-q1-2026-dinner-recap', external: true },
+                  ].map(tile => (
+                    <a
+                      key={tile.title}
+                      href={tile.href}
+                      target={tile.external ? '_blank' : undefined}
+                      rel={tile.external ? 'noopener noreferrer' : undefined}
+                      style={{
+                        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                        border: `1px solid ${COLORS.border}`, borderRadius: '4px', padding: '24px',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      <div>
+                        <p style={{
+                          fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.subheading.size,
+                          lineHeight: TYPE.subheading.lineHeight, color: COLORS.text, marginBottom: '4px',
+                        }}>
+                          {tile.title}
+                        </p>
+                        <p style={{
+                          fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.body.size,
+                          color: COLORS.textMuted, margin: 0,
+                        }}>
+                          {tile.sub}
+                        </p>
+                      </div>
+                      <span style={{ fontFamily: FONT, fontSize: '1rem', color: COLORS.textMuted }}>→</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* ── Option C — Sidebar dashboard ── */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="C — Sidebar dashboard" />
+              <div style={{ padding: '40px 32px', background: COLORS.bg }}>
+                {/* Greeting */}
+                <div style={{ marginBottom: '32px' }}>
+                  <p style={{
+                    fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+                    letterSpacing: '2px', textTransform: 'uppercase', color: COLORS.textMuted,
+                    marginBottom: '8px',
+                  }}>
+                    AI Mavericks · Member home
+                  </p>
+                  <h2 style={{
+                    fontFamily: FONT, fontWeight: TYPE.heading.weight, fontSize: TYPE.heading.size,
+                    lineHeight: TYPE.heading.lineHeight, color: COLORS.text, margin: 0,
+                  }}>
+                    Welcome back, Foluso
+                  </h2>
+                </div>
+
+                {/* Two-column layout */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '32px' }}>
+                  {/* Main — latest dinner card */}
+                  <div>
+                    <img
+                      src={HERO_IMG('q1-dinner-2026.webp')}
+                      alt="Q1 2026 Dinner"
+                      style={{
+                        width: '100%', aspectRatio: '16/9', objectFit: 'cover',
+                        display: 'block', borderRadius: '4px 4px 0 0',
+                      }}
+                    />
+                    <div style={{
+                      border: `1px solid ${COLORS.border}`, borderTop: 'none',
+                      padding: '24px', borderRadius: '0 0 4px 4px',
+                    }}>
+                      <p style={{
+                        fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+                        letterSpacing: '2px', textTransform: 'uppercase', color: COLORS.textMuted,
+                        marginBottom: '8px',
+                      }}>
+                        Latest dinner
+                      </p>
+                      <p style={{
+                        fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: TYPE.subheading.size,
+                        lineHeight: TYPE.subheading.lineHeight, color: COLORS.text, marginBottom: '8px',
+                      }}>
+                        Q1 2026 Dinner
+                      </p>
+                      <p style={{
+                        fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.body.size,
+                        color: COLORS.textSecondary, marginBottom: '20px',
+                      }}>
+                        21 March 2026 · Pizza Express Live Holborn
+                      </p>
+                      <a
+                        href="https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-q1-2026-dinner-recap"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ ...BTN_BASE, ...BTN_VARIANTS.outline, textDecoration: 'none' }}
+                      >
+                        See details
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right rail — quick links */}
+                  <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden', alignSelf: 'start' }}>
+                    <div style={{
+                      padding: '12px 20px', borderBottom: `1px solid ${COLORS.borderLight}`,
+                      backgroundColor: COLORS.surface,
+                    }}>
+                      <p style={{
+                        fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: TYPE.small.weight,
+                        letterSpacing: '2px', textTransform: 'uppercase', color: COLORS.textMuted, margin: 0,
+                      }}>
+                        Quick links
+                      </p>
+                    </div>
+                    {[
+                      { title: 'Latest newsletter', sub: 'Q1 2026 recap', href: 'https://ai-mavericks-ldn.beehiiv.com/p/ai-mavericks-q1-2026-dinner-recap', external: true },
+                      { title: 'All dinners', sub: 'Browse every dinner', href: '#', external: false },
+                      { title: 'All members', sub: '65 builders', href: '#', external: false },
+                    ].map((row, i, arr) => (
+                      <a
+                        key={row.title}
+                        href={row.href}
+                        target={row.external ? '_blank' : undefined}
+                        rel={row.external ? 'noopener noreferrer' : undefined}
+                        style={{
+                          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                          padding: '16px 20px',
+                          borderBottom: i < arr.length - 1 ? `1px solid ${COLORS.borderLight}` : 'none',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        <div>
+                          <p style={{
+                            fontFamily: FONT, fontWeight: TYPE.subheading.weight, fontSize: '0.9rem',
+                            color: COLORS.text, marginBottom: '2px',
+                          }}>
+                            {row.title}
+                          </p>
+                          <p style={{
+                            fontFamily: FONT, fontWeight: TYPE.body.weight, fontSize: TYPE.body.size,
+                            color: COLORS.textMuted, margin: 0,
+                          }}>
+                            {row.sub}
+                          </p>
+                        </div>
+                        <span style={{ fontFamily: FONT, fontSize: '1rem', color: COLORS.textMuted }}>→</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </Section>
       )}

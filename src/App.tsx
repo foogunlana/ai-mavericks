@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Show } from '@clerk/react';
+import { Show, useAuth, useUser } from '@clerk/react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
 import { DinnersPage } from './components/DinnersPage/DinnersPage';
@@ -8,6 +8,7 @@ import { Footer } from './components/Footer/Footer';
 import { StyleGuide } from './components/StyleGuide/StyleGuide';
 import { LandingHero } from './components/LandingHero/LandingHero';
 import { LandingIntro } from './components/LandingIntro/LandingIntro';
+import { MemberHome } from './components/MemberHome/MemberHome';
 import { MemberList } from './components/MemberList/MemberList';
 import { GatePrompt } from './components/Auth/GatePrompt';
 import { useFilterState } from './hooks/useFilterState';
@@ -32,18 +33,25 @@ interface ContentProps {
   selectedDinnerSlug: string | null;
   setSelectedDinnerSlug: (s: string | null) => void;
   heroSentinelRef: React.RefObject<HTMLDivElement | null>;
+  onSignedInChange?: (signedIn: boolean) => void;
 }
 
-function AuthContent({ view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef }: ContentProps) {
+function AuthContent({ view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef, onSignedInChange }: ContentProps) {
   useClaimProfile();
+  const { isSignedIn } = useAuth();
+  const { user } = useUser();
   const { members, loading: membersLoading } = useMembers();
   const { dinners, loading: dinnersLoading } = useDinners();
+  useEffect(() => {
+    onSignedInChange?.(Boolean(isSignedIn));
+  }, [isSignedIn, onSignedInChange]);
   return <AppViews
     view={view} setView={setView}
     selectedDinnerSlug={selectedDinnerSlug} setSelectedDinnerSlug={setSelectedDinnerSlug}
     heroSentinelRef={heroSentinelRef}
     members={members} dinners={dinners}
     membersLoading={membersLoading} dinnersLoading={dinnersLoading}
+    firstName={user?.firstName ?? undefined}
     gated
   />;
 }
@@ -69,6 +77,7 @@ interface ViewsProps extends ContentProps {
   membersLoading: boolean;
   dinnersLoading: boolean;
   gated: boolean;
+  firstName?: string;
 }
 
 function AppViews({
@@ -78,6 +87,7 @@ function AppViews({
   members, dinners,
   membersLoading, dinnersLoading,
   gated,
+  firstName,
 }: ViewsProps) {
   const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers } = useFilterState();
   const filteredMembers = filterMembers(members);
@@ -95,15 +105,40 @@ function AppViews({
   return (
     <>
       {view === 'home' && (
-        <>
-          <LandingHero
-            latestDinner={dinners[0]}
-            memberCount={membersLoading ? undefined : members.length}
-            onViewChange={setView}
-          />
-          <div ref={heroSentinelRef} style={{ height: 0 }} />
-          <LandingIntro />
-        </>
+        gated ? (
+          <>
+            <Show when="signed-in">
+              <section className={styles.section}>
+                <MemberHome
+                  dinners={dinnersLoading ? [] : dinners}
+                  memberCount={membersLoading ? undefined : members.length}
+                  firstName={firstName}
+                  onViewChange={setView}
+                  onSelectDinner={handleSelectDinner}
+                />
+              </section>
+            </Show>
+            <Show when="signed-out">
+              <LandingHero
+                latestDinner={dinners[0]}
+                memberCount={membersLoading ? undefined : members.length}
+                onViewChange={setView}
+              />
+              <div ref={heroSentinelRef} style={{ height: 0 }} />
+              <LandingIntro />
+            </Show>
+          </>
+        ) : (
+          <>
+            <LandingHero
+              latestDinner={dinners[0]}
+              memberCount={membersLoading ? undefined : members.length}
+              onViewChange={setView}
+            />
+            <div ref={heroSentinelRef} style={{ height: 0 }} />
+            <LandingIntro />
+          </>
+        )
       )}
 
       {view === 'people' && (
@@ -168,6 +203,7 @@ function App() {
   const [view, setView] = useState<View>('home');
   const [selectedDinnerSlug, setSelectedDinnerSlug] = useState<string | null>(null);
   const [heroVisible, setHeroVisible] = useState(true);
+  const [signedIn, setSignedIn] = useState(false);
   const heroSentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -189,8 +225,8 @@ function App() {
     };
   }, [view]);
 
-  const navHidden = view === 'home' && heroVisible;
-  const contentProps: ContentProps = { view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef };
+  const navHidden = view === 'home' && heroVisible && !signedIn;
+  const contentProps: ContentProps = { view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef, onSignedInChange: setSignedIn };
 
   return (
     <>

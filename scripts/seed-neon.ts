@@ -113,7 +113,7 @@ async function seedTags(tags: TagEntry[]): Promise<void> {
   for (const tag of tags) {
     await sql`
       INSERT INTO tags (id, label, category)
-      VALUES (${tag.id}::uuid, ${tag.label}, ${tag.category})
+      VALUES (${tag.id}, ${tag.label}, ${tag.category})
       ON CONFLICT (id) DO UPDATE
         SET label    = EXCLUDED.label,
             category = EXCLUDED.category
@@ -227,7 +227,7 @@ async function seedMemberTags(members: MemberFile[]): Promise<void> {
 
       await sql`
         INSERT INTO member_tags (member_id, tag_id)
-        VALUES (${memberId}::uuid, ${tagId}::uuid)
+        VALUES (${memberId}::uuid, ${tagId})
         ON CONFLICT DO NOTHING
       `;
       linkCount++;

@@ -31,7 +31,7 @@ export interface ClaimProfileState {
 export function useClaimProfile(): ClaimProfileState {
   const { isSignedIn } = useAuth()
   const { user } = useUser()
-  const { query } = useNeon()
+  const { rpc } = useNeon()
 
   const [memberId, setMemberId] = useState<string | null>(null)
   const [claimed, setClaimed] = useState(false)
@@ -51,11 +51,9 @@ export function useClaimProfile(): ClaimProfileState {
     hasRun.current = true
     setLoading(true)
 
-    query(`SELECT claim_member_by_email('${email.replace(/'/g, "''")}') AS member_id`)
-      .then((results) => {
-        const row = results[0]?.rows[0]
-        const id: string | null = row?.member_id ?? null
-        setMemberId(id)
+    rpc<string | null>('claim_member_by_email', { p_email: email })
+      .then((id) => {
+        setMemberId(id ?? null)
         setClaimed(true)
         setLoading(false)
       })
@@ -65,7 +63,7 @@ export function useClaimProfile(): ClaimProfileState {
         // Allow retry on next render if claim failed
         hasRun.current = false
       })
-  }, [isSignedIn, user, query])
+  }, [isSignedIn, user, rpc])
 
   return { memberId, claimed, loading, error }
 }
