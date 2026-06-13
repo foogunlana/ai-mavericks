@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-type SectionId = 'landing-hero' | 'hero-redesign' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
+type SectionId = 'landing-hero' | 'hero-redesign' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'nav-signin' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'landing-hero', label: 'Landing Hero' },
@@ -16,6 +16,7 @@ const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'filter',       label: 'Filter' },
   { id: 'logo',         label: 'Logo' },
   { id: 'nav',          label: 'Nav' },
+  { id: 'nav-signin',   label: 'Nav — Sign in' },
   { id: 'member-list',  label: 'Member List' },
   { id: 'view-toggle',  label: 'View Toggle' },
   { id: 'member-views', label: 'Member Views' },
@@ -918,6 +919,54 @@ export function StyleGuide() {
                 </div>
               </div>
             ))}
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'nav-signin' && (
+        <Section title="Nav — Sign in button + alignment">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Solid-dark Sign in button (monochrome — keeps purple reserved for the primary CTA). Logo left in both; the difference is whether the links sit beside the button or stay left with the button pinned to the far edge.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            {/* Option A — links + Sign in grouped on the right */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="A — links + Sign in grouped on the right" />
+              <div style={{ backgroundColor: COLORS.bg }}>
+                <div style={{ height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 32px', borderBottom: `1px solid ${COLORS.border}` }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                    <img src={`${import.meta.env.BASE_URL}ai-mavericks-logo.avif`} alt="AI Mavericks" style={{ width: 32, height: 32, borderRadius: '4px' }} />
+                    <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 500, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '2px' }}>AI Mavericks</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+                    <div style={{ display: 'flex', gap: '32px' }}>
+                      {[{ label: 'Home', active: false }, { label: 'People', active: false }, { label: 'Dinners', active: true }, { label: 'Style Guide', active: false }].map(link => (
+                        <span key={link.label} style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 500, color: link.active ? COLORS.text : COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '2px', paddingBottom: '2px', borderBottom: link.active ? `1px solid ${COLORS.text}` : '1px solid transparent', cursor: 'pointer' }}>{link.label}</span>
+                      ))}
+                    </div>
+                    <button style={{ backgroundColor: COLORS.text, color: COLORS.bg, fontFamily: FONT, fontSize: '0.8125rem', fontWeight: 500, padding: '8px 16px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>Sign in</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Option B — logo + links left, Sign in pinned far right */}
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="B — logo + links left, Sign in pinned far right" />
+              <div style={{ backgroundColor: COLORS.bg }}>
+                <div style={{ height: '64px', display: 'flex', alignItems: 'center', gap: '32px', padding: '0 32px', borderBottom: `1px solid ${COLORS.border}` }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                    <img src={`${import.meta.env.BASE_URL}ai-mavericks-logo.avif`} alt="AI Mavericks" style={{ width: 32, height: 32, borderRadius: '4px' }} />
+                    <span style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 500, color: COLORS.text, textTransform: 'uppercase', letterSpacing: '2px' }}>AI Mavericks</span>
+                  </div>
+                  <div style={{ display: 'flex', gap: '32px' }}>
+                    {[{ label: 'Home', active: false }, { label: 'People', active: false }, { label: 'Dinners', active: true }, { label: 'Style Guide', active: false }].map(link => (
+                      <span key={link.label} style={{ fontFamily: FONT, fontSize: TYPE.small.size, fontWeight: 500, color: link.active ? COLORS.text : COLORS.textMuted, textTransform: 'uppercase', letterSpacing: '2px', paddingBottom: '2px', borderBottom: link.active ? `1px solid ${COLORS.text}` : '1px solid transparent', cursor: 'pointer' }}>{link.label}</span>
+                    ))}
+                  </div>
+                  <button style={{ marginLeft: 'auto', backgroundColor: COLORS.text, color: COLORS.bg, fontFamily: FONT, fontSize: '0.8125rem', fontWeight: 500, padding: '8px 16px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>Sign in</button>
+                </div>
+              </div>
+            </div>
           </div>
         </Section>
       )}
