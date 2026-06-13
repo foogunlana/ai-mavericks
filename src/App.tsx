@@ -13,6 +13,7 @@ import { GatePrompt } from './components/Auth/GatePrompt';
 import { useFilterState } from './hooks/useFilterState';
 import { useMembers } from './hooks/useMembers';
 import { useDinners } from './hooks/useDinners';
+import { useClaimProfile } from './hooks/useClaimProfile';
 
 export type View = 'home' | 'people' | 'dinners' | 'dinner-detail' | 'styleguide';
 
@@ -21,6 +22,9 @@ function App() {
   const [selectedDinnerSlug, setSelectedDinnerSlug] = useState<string | null>(null);
   const [heroVisible, setHeroVisible] = useState(true);
   const heroSentinelRef = useRef<HTMLDivElement>(null);
+
+  // Link Clerk user to their member row by email on first sign-in (runs silently)
+  useClaimProfile();
 
   const { members, loading: membersLoading } = useMembers();
   const { dinners, loading: dinnersLoading } = useDinners();
