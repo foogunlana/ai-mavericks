@@ -51,3 +51,6 @@ dist/
 .env.local
 # Claude worktrees
 .claude/worktrees/
+
+# Ralph loop state (never commit — causes self-referential loops)
+.claude/ralph-loop.local.md
