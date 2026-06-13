@@ -82,7 +82,11 @@ export function DinnerHero({ dinner, onSelectDinner }: Props) {
                     src={m!.photo}
                     alt={m!.name}
                     className={styles.chipAvatar}
-                    onError={(e) => { (e.target as HTMLImageElement).src = `/images/members/${m!.slug}.svg`; }}
+                    onError={(e) => {
+                      const img = e.target as HTMLImageElement;
+                      img.onerror = null; // prevent infinite error loop
+                      img.src = `${import.meta.env.BASE_URL}images/members/${m!.slug}.svg`;
+                    }}
                   />
                   <span className={styles.chipName}>{m!.name}</span>
                 </div>

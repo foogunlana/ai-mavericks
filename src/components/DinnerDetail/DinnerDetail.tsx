@@ -1,15 +1,16 @@
-import { getDinnerBySlug } from '../../data/dinners';
-import { getMemberBySlug } from '../../data/members';
+import type { Dinner, Member } from '../../types';
 import { MemberCard } from '../MemberCard/MemberCard';
 import styles from './DinnerDetail.module.css';
 
 interface Props {
   dinnerSlug: string;
+  dinners: Dinner[];
+  members: Member[];
   onBack: () => void;
 }
 
-export function DinnerDetail({ dinnerSlug, onBack }: Props) {
-  const dinner = getDinnerBySlug(dinnerSlug);
+export function DinnerDetail({ dinnerSlug, dinners, members, onBack }: Props) {
+  const dinner = dinners.find((d) => d.slug === dinnerSlug);
 
   if (!dinner) {
     return (
@@ -23,7 +24,7 @@ export function DinnerDetail({ dinnerSlug, onBack }: Props) {
   }
 
   const attendeeMembers = dinner.attendees
-    .map(getMemberBySlug)
+    .map((slug) => members.find((m) => m.slug === slug))
     .filter(Boolean);
 
   const formattedDate = new Date(dinner.date).toLocaleDateString('en-GB', {

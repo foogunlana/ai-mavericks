@@ -8,7 +8,7 @@ export default defineConfig({
   reporter: 'html',
 
   use: {
-    baseURL: 'http://localhost:5173/ai-mavericks/',
+    baseURL: 'http://localhost:5173/',
     trace: 'on-first-retry',
   },
 
@@ -16,12 +16,29 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      testIgnore: /routing\.spec\.ts/,
+    },
+    {
+      name: 'routing',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: 'http://localhost:5174/',
+      },
+      testMatch: /routing\.spec\.ts/,
     },
   ],
 
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:5173/ai-mavericks/',
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: [
+    {
+      command: 'npm run dev',
+      url: 'http://localhost:5173/',
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      // --mode test loads .env.test (blank auth keys) -> ungated static path.
+      command: 'npm run dev -- --mode test --port 5174',
+      url: 'http://localhost:5174/',
+      reuseExistingServer: !process.env.CI,
+    },
+  ],
 });

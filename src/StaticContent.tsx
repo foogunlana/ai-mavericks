@@ -9,13 +9,9 @@ import { dinners as staticDinners } from './data/dinners';
 import { AppViews } from './components/AppViews';
 import type { ContentProps } from './components/AppViews';
 
-export default function StaticContent({
-  view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef,
-}: ContentProps) {
+export default function StaticContent({ heroSentinelRef }: ContentProps) {
   return (
     <AppViews
-      view={view} setView={setView}
-      selectedDinnerSlug={selectedDinnerSlug} setSelectedDinnerSlug={setSelectedDinnerSlug}
       heroSentinelRef={heroSentinelRef}
       members={staticMembers} dinners={staticDinners}
       membersLoading={false} dinnersLoading={false}

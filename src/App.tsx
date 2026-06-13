@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect, lazy, Suspense } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth, useUser } from '@clerk/react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
 import { Footer } from './components/Footer/Footer';
 import { AppViews } from './components/AppViews';
+import { viewToPath, pathToView } from './lib/routes';
 import { useClaimProfile } from './hooks/useClaimProfile';
 import { useMembers } from './hooks/useMembers';
 import { useDinners } from './hooks/useDinners';
@@ -24,14 +26,12 @@ const StaticContent = import.meta.env.DEV
 // Only rendered when authEnabled=true, so useAuth() calls are always inside
 // a real ClerkProvider context.
 
-function AuthContent({ view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef }: ContentProps) {
+function AuthContent({ heroSentinelRef }: ContentProps) {
   useClaimProfile();
   const { user } = useUser();
   const { members, loading: membersLoading } = useMembers();
   const { dinners, loading: dinnersLoading } = useDinners();
   return <AppViews
-    view={view} setView={setView}
-    selectedDinnerSlug={selectedDinnerSlug} setSelectedDinnerSlug={setSelectedDinnerSlug}
     heroSentinelRef={heroSentinelRef}
     members={members} dinners={dinners}
     membersLoading={membersLoading} dinnersLoading={dinnersLoading}
@@ -54,8 +54,9 @@ function SignedInReporter({ onChange }: { onChange: (v: boolean) => void }) {
 // ── App shell (routing, scroll tracking) ─────────────────────────────────────
 
 function App() {
-  const [view, setView] = useState<View>('home');
-  const [selectedDinnerSlug, setSelectedDinnerSlug] = useState<string | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const view: View = pathToView(location.pathname);
   const [heroVisible, setHeroVisible] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
   const heroSentinelRef = useRef<HTMLDivElement>(null);
@@ -82,12 +83,17 @@ function App() {
   const navHidden = view === 'home' && heroVisible && !signedIn;
   // Gated views (People/Dinners) are unreachable when auth is on but signed-out.
   const navLocked = authEnabled && !signedIn;
-  const contentProps: ContentProps = { view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef };
+  const contentProps: ContentProps = { heroSentinelRef };
 
   return (
     <>
       {authEnabled && <SignedInReporter onChange={setSignedIn} />}
-      <Nav currentView={view} onViewChange={setView} hidden={navHidden} locked={navLocked} />
+      <Nav
+        currentView={view}
+        onViewChange={(v: View) => navigate(viewToPath(v))}
+        hidden={navHidden}
+        locked={navLocked}
+      />
       <div className={styles.app}>
         <main>
           {authEnabled
