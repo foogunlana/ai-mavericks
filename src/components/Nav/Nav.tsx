@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styles from './Nav.module.css';
 import type { View } from '../../App';
+import { SignInButton } from '../Auth/SignInButton';
+import { UserButton } from '../Auth/UserButton';
 
 interface Props {
   currentView: View;
@@ -60,6 +62,10 @@ export function Nav({ currentView, onViewChange, hidden = false }: Props) {
               Style Guide
             </button>
           )}
+        </div>
+        <div className="flex items-center gap-3 ml-6">
+          <SignInButton />
+          <UserButton />
         </div>
       </div>
     </nav>

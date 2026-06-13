@@ -1,9 +1,32 @@
 import type { Dinner } from '../../types';
 import type { View } from '../../App';
 import { FlashyBtn } from '../FlashyBtn/FlashyBtn';
-import { members } from '../../data/members';
 
-const COMPANIES = Array.from(new Set(members.map((m) => m.company).filter(Boolean)));
+// Static list of featured companies shown in the marquee.
+// Update this list when notable new members join rather than deriving from the
+// member database (which would pull gated data into the public bundle).
+const COMPANIES = [
+  'Always Create',
+  'British Airways / Aer Lingus',
+  'Channel 4',
+  'Delegate (acquired)',
+  'ExoBrain',
+  'Gitpod',
+  'Kiseki Labs',
+  'Merantix Capital',
+  'Meta',
+  'Mindguard',
+  'MixedRealityRooms',
+  'Response Hub',
+  'Roboman',
+  'SEEKR',
+  'Sano Genetics',
+  'StackOne',
+  'Stears',
+  'Superthread',
+  'Talentspace',
+  'VodafoneThree',
+];
 
 // Company → logo asset in public/images/logos/. `invert` flips white logos so
 // they're visible on the white marquee. Companies absent here fall back to text.
@@ -34,14 +57,14 @@ const navLinkClass =
   'appearance-none bg-transparent border-none cursor-pointer no-underline font-sans text-[length:var(--font-size-sm)] font-medium tracking-[2px] uppercase text-secondary hover:text-text transition-colors';
 
 interface LandingHeroProps {
-  latestDinner: Dinner;
+  latestDinner: Dinner | undefined;
+  memberCount?: number;
   onViewChange: (view: View) => void;
 }
 
-export function LandingHero({ latestDinner, onViewChange }: LandingHeroProps) {
-  const memberCount = members.length;
+export function LandingHero({ latestDinner, memberCount = COMPANIES.length, onViewChange }: LandingHeroProps) {
   const marqueeItems = [...COMPANIES, ...COMPANIES];
-  const photo = latestDinner.groupPhoto ?? `${import.meta.env.BASE_URL}images/logo.avif`;
+  const photo = latestDinner?.groupPhoto ?? `${import.meta.env.BASE_URL}images/logo.avif`;
 
   return (
     <div className="bg-background pt-12 min-h-screen flex flex-col">
@@ -100,7 +123,7 @@ export function LandingHero({ latestDinner, onViewChange }: LandingHeroProps) {
           <div className="flex">
             <img
               src={photo}
-              alt={`AI Mavericks dinner — ${latestDinner.name}`}
+              alt={latestDinner ? `AI Mavericks dinner — ${latestDinner.name}` : 'AI Mavericks'}
               className="w-full aspect-[4/3] object-cover rounded-sm block shadow-[0_4px_12px_rgba(0,0,0,0.10)]"
             />
           </div>

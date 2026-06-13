@@ -8,10 +8,12 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "keystatic": "keystatic dev"
+    "keystatic": "keystatic dev",
+    "seed": "tsx scripts/seed-neon.ts"
   },
   "dependencies": {
     "@keystatic/core": "^0.5.50",
+    "@neondatabase/serverless": "^0.10.4",
     "@tailwindcss/vite": "^4.2.2",
     "lucide-react": "^1.8.0",
     "react": "^19.2.4",

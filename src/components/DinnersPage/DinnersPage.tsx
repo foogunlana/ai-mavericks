@@ -1,14 +1,15 @@
-import { dinners } from '../../data/dinners';
+import type { Dinner } from '../../types';
 import { DinnerHero } from '../DinnerHero/DinnerHero';
 import { DinnerCard } from '../DinnerCard/DinnerCard';
 import { FlashyBtn } from '../FlashyBtn/FlashyBtn';
 import styles from './DinnersPage.module.css';
 
 interface Props {
+  dinners: Dinner[];
   onSelectDinner: (slug: string) => void;
 }
 
-export function DinnersPage({ onSelectDinner }: Props) {
+export function DinnersPage({ dinners, onSelectDinner }: Props) {
   const latestDinner = dinners[0];
   const remainingDinners = dinners.slice(1);
 
