@@ -1,11 +1,7 @@
 import { useAuth } from '@clerk/clerk-react'
 
-const apiUrl = import.meta.env.VITE_NEON_API_URL
-const apiKey = import.meta.env.VITE_NEON_API_KEY
-
-if (!apiUrl) {
-  throw new Error('Missing VITE_NEON_API_URL environment variable')
-}
+const apiUrl = import.meta.env.VITE_NEON_API_URL as string | undefined
+const apiKey = import.meta.env.VITE_NEON_API_KEY as string | undefined
 
 export interface NeonQueryOptions {
   arrayMode?: boolean
@@ -21,8 +17,8 @@ async function queryWithApiKey(
   statement: string,
   options?: NeonQueryOptions
 ): Promise<NeonResult[]> {
-  if (!apiKey) {
-    throw new Error('Neon API key not configured')
+  if (!apiKey || !apiUrl) {
+    throw new Error('Neon API not configured')
   }
 
   const response = await fetch(apiUrl, {
@@ -51,6 +47,7 @@ export async function queryWithJWT(
   jwtToken: string,
   options?: NeonQueryOptions
 ): Promise<NeonResult[]> {
+  if (!apiUrl) throw new Error('Neon API URL not configured')
   const response = await fetch(apiUrl, {
     method: 'POST',
     headers: {
@@ -73,13 +70,12 @@ export async function queryWithJWT(
 }
 
 export function useNeon() {
-  const { getToken } = useAuth()
+  const auth = useAuth()
 
   const query = async (statement: string, options?: NeonQueryOptions) => {
-    const token = await getToken({ template: 'neon' })
-    if (!token) {
-      throw new Error('Not authenticated - cannot get Clerk JWT')
-    }
+    if (!apiUrl) throw new Error('Neon API URL not configured')
+    const token = await auth.getToken({ template: 'neon' })
+    if (!token) throw new Error('Not authenticated')
     return queryWithJWT(statement, token, options)
   }
 

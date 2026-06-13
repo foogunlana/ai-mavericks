@@ -14,8 +14,160 @@ import { useFilterState } from './hooks/useFilterState';
 import { useMembers } from './hooks/useMembers';
 import { useDinners } from './hooks/useDinners';
 import { useClaimProfile } from './hooks/useClaimProfile';
+import { members as staticMembers } from './data/members';
+import { dinners as staticDinners } from './data/dinners';
+import type { Member } from './types';
+import type { Dinner } from './types';
 
 export type View = 'home' | 'people' | 'dinners' | 'dinner-detail' | 'styleguide';
+
+// True only when both Clerk and Neon are wired up
+const authEnabled = !!(
+  import.meta.env.VITE_CLERK_PUBLISHABLE_KEY &&
+  import.meta.env.VITE_NEON_API_URL
+);
+
+// ── Authenticated inner app (Clerk + Neon hooks) ─────────────────────────────
+// Only rendered when authEnabled=true, so useAuth() calls are always inside
+// a real ClerkProvider context.
+
+interface ContentProps {
+  view: View;
+  setView: (v: View) => void;
+  selectedDinnerSlug: string | null;
+  setSelectedDinnerSlug: (s: string | null) => void;
+  heroSentinelRef: React.RefObject<HTMLDivElement | null>;
+}
+
+function AuthContent({ view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef }: ContentProps) {
+  useClaimProfile();
+  const { members, loading: membersLoading } = useMembers();
+  const { dinners, loading: dinnersLoading } = useDinners();
+  return <AppViews
+    view={view} setView={setView}
+    selectedDinnerSlug={selectedDinnerSlug} setSelectedDinnerSlug={setSelectedDinnerSlug}
+    heroSentinelRef={heroSentinelRef}
+    members={members} dinners={dinners}
+    membersLoading={membersLoading} dinnersLoading={dinnersLoading}
+    gated
+  />;
+}
+
+// ── Static fallback (no credentials configured) ───────────────────────────────
+
+function StaticContent({ view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef }: ContentProps) {
+  return <AppViews
+    view={view} setView={setView}
+    selectedDinnerSlug={selectedDinnerSlug} setSelectedDinnerSlug={setSelectedDinnerSlug}
+    heroSentinelRef={heroSentinelRef}
+    members={staticMembers} dinners={staticDinners}
+    membersLoading={false} dinnersLoading={false}
+    gated={false}
+  />;
+}
+
+// ── Shared view rendering ─────────────────────────────────────────────────────
+
+interface ViewsProps extends ContentProps {
+  members: Member[];
+  dinners: Dinner[];
+  membersLoading: boolean;
+  dinnersLoading: boolean;
+  gated: boolean;
+}
+
+function AppViews({
+  view, setView,
+  selectedDinnerSlug, setSelectedDinnerSlug,
+  heroSentinelRef,
+  members, dinners,
+  membersLoading, dinnersLoading,
+  gated,
+}: ViewsProps) {
+  const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers } = useFilterState();
+  const filteredMembers = filterMembers(members);
+
+  const handleSelectDinner = (slug: string) => {
+    setSelectedDinnerSlug(slug);
+    setView('dinner-detail');
+  };
+
+  const handleBackToDinners = () => {
+    setView('dinners');
+    setSelectedDinnerSlug(null);
+  };
+
+  return (
+    <>
+      {view === 'home' && (
+        <>
+          <LandingHero
+            latestDinner={dinners[0]}
+            memberCount={membersLoading ? undefined : members.length}
+            onViewChange={setView}
+          />
+          <div ref={heroSentinelRef} style={{ height: 0 }} />
+          <LandingIntro />
+        </>
+      )}
+
+      {view === 'people' && (
+        gated ? (
+          <>
+            <SignedIn>
+              <section className={styles.section}>
+                <MemberList members={filteredMembers} filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters} hasActiveFilters={hasActiveFilters} />
+              </section>
+            </SignedIn>
+            <SignedOut><GatePrompt /></SignedOut>
+          </>
+        ) : (
+          <section className={styles.section}>
+            <MemberList members={filteredMembers} filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters} hasActiveFilters={hasActiveFilters} />
+          </section>
+        )
+      )}
+
+      {view === 'dinners' && (
+        gated ? (
+          <>
+            <SignedIn>
+              <section className={styles.section}>
+                <DinnersPage dinners={dinnersLoading ? [] : dinners} onSelectDinner={handleSelectDinner} />
+              </section>
+            </SignedIn>
+            <SignedOut><GatePrompt /></SignedOut>
+          </>
+        ) : (
+          <section className={styles.section}>
+            <DinnersPage dinners={dinners} onSelectDinner={handleSelectDinner} />
+          </section>
+        )
+      )}
+
+      {view === 'dinner-detail' && selectedDinnerSlug && (
+        gated ? (
+          <>
+            <SignedIn>
+              <section className={styles.section}>
+                <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
+              </section>
+            </SignedIn>
+            <SignedOut><GatePrompt /></SignedOut>
+          </>
+        ) : (
+          <section className={styles.section}>
+            <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
+          </section>
+        )
+      )}
+
+      {view === 'styleguide' && <StyleGuide />}
+    </>
+  );
+}
+
+// ── App shell (routing, scroll tracking) ─────────────────────────────────────
 
 function App() {
   const [view, setView] = useState<View>('home');
@@ -23,21 +175,11 @@ function App() {
   const [heroVisible, setHeroVisible] = useState(true);
   const heroSentinelRef = useRef<HTMLDivElement>(null);
 
-  // Link Clerk user to their member row by email on first sign-in (runs silently)
-  useClaimProfile();
-
-  const { members, loading: membersLoading } = useMembers();
-  const { dinners, loading: dinnersLoading } = useDinners();
-
   useEffect(() => {
     if (view !== 'home') {
       setHeroVisible(true);
       return;
     }
-    // The hero carries its own nav, so the global sticky Nav stays hidden until
-    // the hero scrolls out of view. A scroll check (rather than an
-    // IntersectionObserver on the post-hero sentinel) keeps this correct even
-    // when the hero is taller than the viewport.
     const update = () => {
       const sentinel = heroSentinelRef.current;
       if (!sentinel) return;
@@ -52,87 +194,18 @@ function App() {
     };
   }, [view]);
 
-  const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers } =
-    useFilterState();
-
-  const filteredMembers = filterMembers(members);
-
-  const handleSelectDinner = (slug: string) => {
-    setSelectedDinnerSlug(slug);
-    setView('dinner-detail');
-  };
-
-  const handleBackToDinners = () => {
-    setView('dinners');
-    setSelectedDinnerSlug(null);
-  };
-
   const navHidden = view === 'home' && heroVisible;
+  const contentProps: ContentProps = { view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef };
 
   return (
     <>
       <Nav currentView={view} onViewChange={setView} hidden={navHidden} />
       <div className={styles.app}>
         <main>
-          {view === 'home' && (
-            <>
-              <LandingHero
-                latestDinner={dinners[0]}
-                memberCount={membersLoading ? undefined : members.length}
-                onViewChange={setView}
-              />
-              <div ref={heroSentinelRef} style={{ height: 0 }} />
-              <LandingIntro />
-            </>
-          )}
-          {view === 'people' && (
-            <>
-              <SignedIn>
-                <section className={styles.section}>
-                  <MemberList
-                    members={filteredMembers}
-                    filters={filters}
-                    toggleFilter={toggleFilter}
-                    clearFilters={clearFilters}
-                    hasActiveFilters={hasActiveFilters}
-                  />
-                </section>
-              </SignedIn>
-              <SignedOut>
-                <GatePrompt />
-              </SignedOut>
-            </>
-          )}
-          {view === 'dinners' && (
-            <>
-              <SignedIn>
-                <section className={styles.section}>
-                  <DinnersPage
-                    dinners={dinnersLoading ? [] : dinners}
-                    onSelectDinner={handleSelectDinner}
-                  />
-                </section>
-              </SignedIn>
-              <SignedOut>
-                <GatePrompt />
-              </SignedOut>
-            </>
-          )}
-          {view === 'dinner-detail' && selectedDinnerSlug && (
-            <>
-              <SignedIn>
-                <section className={styles.section}>
-                  <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
-                </section>
-              </SignedIn>
-              <SignedOut>
-                <GatePrompt />
-              </SignedOut>
-            </>
-          )}
-          {view === 'styleguide' && (
-            <StyleGuide />
-          )}
+          {authEnabled
+            ? <AuthContent {...contentProps} />
+            : <StaticContent {...contentProps} />
+          }
         </main>
         <Footer />
       </div>
