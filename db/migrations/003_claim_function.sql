@@ -1,44 +1,47 @@
--- 003_claim_function.sql: Identity linking via email-match claim
--- Links an authenticated Clerk user to their existing member row by email match.
--- On first sign-in, call claim_member_by_email(email) to stamp clerk_user_id.
+-- 003_claim_function.sql — Secure identity linking on sign-in.
+-- claim_member() reads BOTH the user id and the verified email from the JWT
+-- (never from client input), so a caller can only: return their own linked row,
+-- claim an UNCLAIMED row whose email matches their verified email, or create
+-- their own row. No impersonation is possible. Exposed via PostgREST as
+-- POST /rpc/claim_member.
 
--- Function: claim_member_by_email
--- Links the currently authenticated Clerk user to the member row with matching email.
--- Safe: can only stamp your own clerk_user_id onto a row matching your verified email.
-CREATE OR REPLACE FUNCTION claim_member_by_email(p_email TEXT)
-RETURNS UUID AS $$
+CREATE OR REPLACE FUNCTION claim_member()
+RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 DECLARE
-  v_member_id UUID;
+  v_uid   TEXT := auth.user_id();
+  v_email TEXT := lower(auth.jwt() ->> 'email');
+  v_member members%ROWTYPE;
 BEGIN
-  -- Update the member row that matches this email AND has no clerk_user_id yet
-  UPDATE members
-  SET clerk_user_id = auth.user_id(),
-      updated_at = NOW()
-  WHERE email = p_email
-    AND (clerk_user_id IS NULL OR clerk_user_id = auth.user_id())
-  RETURNING id INTO v_member_id;
-
-  -- If no matching member row exists, create a placeholder
-  IF v_member_id IS NULL THEN
-    INSERT INTO members (email, clerk_user_id, name, slug)
-    VALUES (
-      p_email,
-      auth.user_id(),
-      split_part(p_email, '@', 1), -- name defaults to email local part
-      auth.user_id()               -- slug defaults to clerk user id (temporary)
-    )
-    ON CONFLICT (clerk_user_id) DO NOTHING
-    RETURNING id INTO v_member_id;
+  IF v_uid IS NULL THEN
+    RAISE EXCEPTION 'not authenticated';
   END IF;
 
-  RETURN v_member_id;
+  SELECT * INTO v_member FROM members WHERE clerk_user_id = v_uid LIMIT 1;
+  IF FOUND THEN
+    RETURN to_jsonb(v_member);
+  END IF;
+
+  IF v_email IS NOT NULL THEN
+    UPDATE members SET clerk_user_id = v_uid, email = v_email, updated_at = NOW()
+    WHERE lower(email) = v_email AND clerk_user_id IS NULL
+    RETURNING * INTO v_member;
+    IF FOUND THEN
+      RETURN to_jsonb(v_member);
+    END IF;
+  END IF;
+
+  INSERT INTO members (clerk_user_id, email, name, slug)
+  VALUES (v_uid, v_email, COALESCE(NULLIF(split_part(v_email, '@', 1), ''), 'member'), v_uid)
+  ON CONFLICT (clerk_user_id) DO UPDATE SET updated_at = NOW()
+  RETURNING * INTO v_member;
+
+  RETURN to_jsonb(v_member);
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
--- Grant execute to authenticated role
-GRANT EXECUTE ON FUNCTION claim_member_by_email(TEXT) TO authenticated;
-
--- Policy: allow authenticated user to see their own member row (after claim)
--- This supplements the existing "authenticated_select_members" policy.
--- The existing policy already allows all authenticated users to read all members
--- so no additional policy is needed for reading.
+GRANT EXECUTE ON FUNCTION claim_member() TO authenticated;
+REVOKE EXECUTE ON FUNCTION claim_member() FROM anonymous;
