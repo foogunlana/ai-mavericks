@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA fallback: serve the app shell for any path so client-side
+# navigation and post-auth redirects resolve to index.html instead of a 404.
+# (GitHub Pages ignores this file — it only reads Netlify/Cloudflare _redirects.)
+/*    /index.html   200
