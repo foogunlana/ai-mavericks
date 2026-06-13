@@ -55,6 +55,9 @@ const COMPANY_LOGOS: Record<string, { file: string; invert?: boolean }> = {
   'VodafoneThree': { file: 'vodafonethree.svg' },
 };
 
+// Luma event page for the upcoming dinner. Update when a new dinner is scheduled.
+const NEXT_DINNER_URL = 'https://luma.com/c4o67n9q?tk=ozhTMR';
+
 // Public marketing count of the community. Static (like COMPANIES above) because
 // the public landing is shown to signed-out visitors who cannot query the gated
 // member table — deriving from it returns 0 ("0+ builders"). The signed-in
@@ -132,7 +135,9 @@ export function LandingHero({ latestDinner, memberCount = PUBLIC_MEMBER_COUNT, o
                 No panels, no pitches. Just one table and the people shaping what comes next.
               </p>
             </div>
-            <FlashyBtn>Apply to Join</FlashyBtn>
+            <FlashyBtn onClick={() => window.open(NEXT_DINNER_URL, '_blank', 'noopener,noreferrer')}>
+              Join the next dinner
+            </FlashyBtn>
             <p className="flex items-center gap-2 font-sans text-[length:var(--font-size-base)] text-secondary m-0">
               <span className="font-semibold text-[length:var(--font-size-md)] text-text">{memberCount}+</span>
               builders and counting
