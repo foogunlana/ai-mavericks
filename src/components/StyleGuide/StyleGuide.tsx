@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-type SectionId = 'landing-hero' | 'hero-redesign' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'nav-signin' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
+type SectionId = 'landing-hero' | 'hero-redesign' | 'objection' | 'member-hover' | 'member-flip' | 'typography' | 'button' | 'tag' | 'avatar' | 'card' | 'icons' | 'logo' | 'filter' | 'nav' | 'nav-signin' | 'member-list' | 'view-toggle' | 'member-views' | 'dinner-card' | 'dinner-list' | 'dinner-hero' | 'dinner-detail-hero';
 
 const SECTION_LABELS: { id: SectionId; label: string }[] = [
   { id: 'landing-hero', label: 'Landing Hero' },
   { id: 'hero-redesign', label: 'Hero — Redesign' },
+  { id: 'objection',    label: 'Objection Section' },
   { id: 'member-hover', label: 'MemberCard — Hover' },
   { id: 'member-flip',  label: 'MemberCard — Flip' },
   { id: 'typography', label: 'Typography' },
@@ -90,6 +91,35 @@ export function StyleGuide() {
                 <HeroRedesignDemo variant={opt.variant} />
               </div>
             ))}
+          </div>
+        </Section>
+      )}
+
+      {activeSection === 'objection' && (
+        <Section title="Landing Page — Objection-Handling Section (mavericks-ik8)">
+          <p style={{ fontFamily: FONT, fontSize: TYPE.body.size, color: COLORS.textSecondary, marginBottom: '24px' }}>
+            Public social-proof content below the hero. Member testimonial cards with photos carry the
+            three objections — depth of conversation, who's in the room, and the payoff of joining —
+            instead of a bullet list. Quotes &amp; faces are PLACEHOLDER (stock photos, drafted copy) to
+            settle the visual direction. Three card layouts to compare.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="A — Testimonial grid (three quote cards, avatar attribution)" />
+              <div style={{ backgroundColor: COLORS.bg }}><ObjectionVariantA /></div>
+            </div>
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="B — Portrait quote cards (photo beside quote, two columns)" />
+              <div style={{ backgroundColor: COLORS.bg }}><ObjectionVariantB /></div>
+            </div>
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="C — Featured testimonial + supporting stack (asymmetric)" />
+              <div style={{ backgroundColor: COLORS.bg }}><ObjectionVariantC /></div>
+            </div>
+            <div style={{ border: `1px solid ${COLORS.border}`, borderRadius: '4px', overflow: 'hidden' }}>
+              <OptionHeader label="D — Direct objection-handling text + testimonial (combination)" />
+              <div style={{ backgroundColor: COLORS.bg }}><ObjectionVariantD /></div>
+            </div>
           </div>
         </Section>
       )}
@@ -2419,6 +2449,262 @@ function DinnerCardDemo({ cardBg, textColor, secondaryColor, mutedColor, tagBord
             London
           </span>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Objection-handling section (mavericks-ik8) ───────────────────────────────
+// Public social-proof content shown below the hero. Member testimonial cards
+// carry the three objections — what's discussed, who attends, why it's worth it.
+// PLACEHOLDER: stock photos + drafted quotes to settle the visual direction.
+
+interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  photo: string;
+  theme: string; // which objection this quote answers
+}
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    quote:
+      "I've been to a hundred AI meetups. This is the only one where the conversation gets past the demo and into what's actually breaking in production.",
+    name: 'Bode Ogunlana', role: 'CTO', company: 'Stears', theme: 'The conversation',
+    photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&h=800&fit=crop&crop=face',
+  },
+  {
+    quote:
+      'Everyone at the table is actually shipping. No tourists, no one selling you something — just builders comparing notes on the same hard problems.',
+    name: 'Christina Banjo', role: 'Founder', company: 'Always Create', theme: "Who's in the room",
+    photo: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=600&h=800&fit=crop&crop=face',
+  },
+  {
+    quote:
+      'I left my first dinner with two intros that turned into real collaborations. That just doesn’t happen on a conference floor.',
+    name: 'Elias Nema', role: 'Engineering Manager', company: 'Meta', theme: 'The payoff',
+    photo: 'https://images.unsplash.com/photo-1550525811-e5869dd03032?w=600&h=800&fit=crop&crop=face',
+  },
+  {
+    quote:
+      "It's the one room where people admit what isn't working yet. You learn more from that candor than from any keynote.",
+    name: 'Harvey Yorke', role: 'Co-founder & CTO', company: 'Valyu', theme: 'The candor',
+    photo: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=800&fit=crop&crop=face',
+  },
+  {
+    quote:
+      'We spent a whole evening on evals and reliability. I changed how we ship the following week.',
+    name: 'Joel Miller', role: 'Co-founder', company: 'ExoBrain', theme: 'The conversation',
+    photo: 'https://images.unsplash.com/photo-1589156280159-27a852681d0f?w=600&h=800&fit=crop&crop=face',
+  },
+  {
+    quote:
+      'A genuinely mixed table — engineers, founders, operators. The cross-pollination is the whole point.',
+    name: 'Gabriella', role: 'Freelance Producer', company: 'Channel 4', theme: "Who's in the room",
+    photo: 'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?w=600&h=800&fit=crop&crop=face',
+  },
+];
+
+const objEyebrow =
+  'font-sans text-[length:var(--font-size-sm)] font-medium tracking-[2px] uppercase text-muted m-0';
+const objHeading =
+  'font-sans font-light text-[1.75rem] md:text-[2.125rem] leading-[1.15] text-text m-0';
+const objIntro =
+  'font-sans font-normal text-[1.0625rem] leading-[1.55] text-secondary m-0 max-w-[560px]';
+
+// Section heading shared across variants.
+function ObjectionHeading() {
+  return (
+    <div className="flex flex-col gap-4 mb-8! max-w-[620px]">
+      <p className={objEyebrow}>From the table</p>
+      <h2 className={objHeading}>What members actually say</h2>
+      <p className={objIntro}>
+        No panels, no pitches. Here&rsquo;s what people who keep coming back tell us about the
+        conversation, the room, and why it&rsquo;s worth the evening.
+      </p>
+    </div>
+  );
+}
+
+// Attribution row: small grayscale avatar + name + role/company.
+function Attribution({ t }: { t: Testimonial }) {
+  return (
+    <div className="flex items-center gap-3 mt-auto!">
+      <img
+        src={t.photo}
+        alt={t.name}
+        className="h-[48px] w-[48px] rounded-sm object-cover object-top grayscale shrink-0"
+        loading="lazy"
+      />
+      <div className="flex flex-col">
+        <span className="font-sans font-medium text-[length:var(--font-size-base)] text-text leading-tight">
+          {t.name}
+        </span>
+        <span className="font-sans text-[length:var(--font-size-sm)] tracking-[0.5px] uppercase text-muted leading-tight mt-1!">
+          {t.role}{t.company ? ` · ${t.company}` : ''}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// A — Testimonial grid: three quote cards, avatar attribution at the foot.
+function ObjectionVariantA() {
+  const cards = TESTIMONIALS.slice(0, 3);
+  return (
+    <div className="max-w-[var(--content-max)] mx-auto! px-5! py-12!">
+      <ObjectionHeading />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {cards.map(t => (
+          <figure
+            key={t.name}
+            className="flex flex-col gap-6 rounded-sm bg-background border border-border-light p-7! shadow-[0_4px_12px_rgba(0,0,0,0.10)] m-0"
+          >
+            <p className={objEyebrow}>{t.theme}</p>
+            <blockquote className="font-sans font-light text-[1.1875rem] leading-[1.5] text-text m-0 flex-1">
+              &ldquo;{t.quote}&rdquo;
+            </blockquote>
+            <Attribution t={t} />
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// B — Portrait quote cards: tall photo beside the quote, two per row.
+function ObjectionVariantB() {
+  const cards = TESTIMONIALS.slice(0, 4);
+  return (
+    <div className="max-w-[var(--content-max)] mx-auto! px-5! py-[80px]!">
+      <ObjectionHeading />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {cards.map(t => (
+          <figure
+            key={t.name}
+            className="flex gap-6 rounded-sm bg-background border border-border-light overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.10)] m-0"
+          >
+            <img
+              src={t.photo}
+              alt={t.name}
+              className="w-[140px] shrink-0 object-cover object-top grayscale self-stretch"
+              loading="lazy"
+            />
+            <div className="flex flex-col gap-4 py-7! pr-7!">
+              <p className={objEyebrow}>{t.theme}</p>
+              <blockquote className="font-sans font-light text-[1.125rem] leading-[1.5] text-text m-0 flex-1">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <div className="flex flex-col">
+                <span className="font-sans font-medium text-[length:var(--font-size-base)] text-text leading-tight">
+                  {t.name}
+                </span>
+                <span className="font-sans text-[length:var(--font-size-sm)] tracking-[0.5px] uppercase text-muted leading-tight mt-1!">
+                  {t.role}{t.company ? ` · ${t.company}` : ''}
+                </span>
+              </div>
+            </div>
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// C — Featured testimonial (large portrait + long quote) + supporting stack.
+function ObjectionVariantC() {
+  const [feature, ...rest] = TESTIMONIALS;
+  const supporting = rest.slice(0, 2);
+  return (
+    <div className="max-w-[var(--content-max)] mx-auto! px-5! py-[80px]!">
+      <ObjectionHeading />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        {/* Featured */}
+        <figure className="flex flex-col rounded-sm bg-background border border-border-light overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.10)] m-0">
+          <img
+            src={feature.photo}
+            alt={feature.name}
+            className="w-full aspect-[4/3] object-cover object-top grayscale"
+            loading="lazy"
+          />
+          <div className="flex flex-col gap-5 p-7!">
+            <p className={objEyebrow}>{feature.theme}</p>
+            <blockquote className="font-sans font-light text-[1.375rem] leading-[1.45] text-text m-0">
+              &ldquo;{feature.quote}&rdquo;
+            </blockquote>
+            <Attribution t={feature} />
+          </div>
+        </figure>
+        {/* Supporting stack */}
+        <div className="flex flex-col gap-6">
+          {supporting.map(t => (
+            <figure
+              key={t.name}
+              className="flex flex-col gap-5 rounded-sm bg-surface border border-border-light p-7! m-0 flex-1"
+            >
+              <p className={objEyebrow}>{t.theme}</p>
+              <blockquote className="font-sans font-light text-[1.125rem] leading-[1.5] text-text m-0 flex-1">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <Attribution t={t} />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// D — Direct objection-handling text + testimonial (combination).
+interface ObjectionAnswer {
+  question: string;
+  answer: string;
+}
+
+const OBJECTION_ANSWERS: ObjectionAnswer[] = [
+  {
+    question: "Isn't this just another networking event?",
+    answer:
+      "No badges, no elevator pitches, no one working the room. Just one table and a real conversation that goes past the demo.",
+  },
+  {
+    question: "Will I actually fit in?",
+    answer:
+      "If you're building with AI, you belong here. Founders, engineers, operators — the one thing everyone shares is that they ship.",
+  },
+  {
+    question: "I'm busy — is it worth the evening?",
+    answer:
+      "One evening a quarter. People leave with intros that turn into collaborations, and answers they couldn't get anywhere else.",
+  },
+];
+
+function ObjectionVariantD() {
+  return (
+    <div>
+      {/* Part 1 — direct objection-handling text, vertically stacked */}
+      <div className="max-w-[var(--content-max)] mx-auto! px-5! py-12!">
+        <div className="flex flex-col gap-4 mb-8! max-w-[620px]">
+          <p className={objEyebrow}>Before you apply</p>
+        </div>
+        <div className="flex flex-col">
+          {OBJECTION_ANSWERS.map((a) => (
+            <div key={a.question} className="py-8! border-b border-border-light first:pt-0! last:border-b-0">
+              <p className="font-sans font-normal text-[1.333rem] leading-[1.3] text-text m-0">
+                {a.question}
+              </p>
+              <p className="font-sans font-normal text-[1.0625rem] leading-[1.55] text-secondary m-0 mt-3! max-w-[640px]">
+                {a.answer}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Part 2 — vertically separated; testimonial grid, identical to Option A */}
+      <div className="border-t border-border-light">
+        <ObjectionVariantA />
       </div>
     </div>
   );

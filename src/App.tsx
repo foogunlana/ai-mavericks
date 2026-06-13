@@ -8,6 +8,7 @@ import { Footer } from './components/Footer/Footer';
 import { StyleGuide } from './components/StyleGuide/StyleGuide';
 import { LandingHero } from './components/LandingHero/LandingHero';
 import { LandingIntro } from './components/LandingIntro/LandingIntro';
+import { ObjectionSection } from './components/ObjectionSection/ObjectionSection';
 import { MemberList } from './components/MemberList/MemberList';
 import { GatePrompt } from './components/Auth/GatePrompt';
 import { useFilterState } from './hooks/useFilterState';
@@ -103,6 +104,7 @@ function AppViews({
           />
           <div ref={heroSentinelRef} style={{ height: 0 }} />
           <LandingIntro />
+          <ObjectionSection />
         </>
       )}
 
