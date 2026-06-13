@@ -15,11 +15,14 @@
  * - The UPDATE condition `AND (clerk_user_id IS NULL OR clerk_user_id =
  *   auth.user_id())` ensures you can only claim an unclaimed row or re-claim
  *   your own.
+ *
+ * NOTE: The write path (profile claiming) is not yet implemented via PostgREST.
+ * It requires a SECURITY DEFINER RPC exposed through the Neon Data API.
+ * TODO: implement claim via SECURITY DEFINER RPC
  */
 
 import { useState, useEffect, useRef } from 'react'
 import { useAuth, useUser } from '@clerk/react'
-import { useNeon } from '../lib/neon'
 
 export interface ClaimProfileState {
   memberId: string | null
@@ -31,9 +34,8 @@ export interface ClaimProfileState {
 export function useClaimProfile(): ClaimProfileState {
   const { isSignedIn } = useAuth()
   const { user } = useUser()
-  const { query } = useNeon()
 
-  const [memberId, setMemberId] = useState<string | null>(null)
+  const [memberId] = useState<string | null>(null)
   const [claimed, setClaimed] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
@@ -51,21 +53,17 @@ export function useClaimProfile(): ClaimProfileState {
     hasRun.current = true
     setLoading(true)
 
-    query(`SELECT claim_member_by_email('${email.replace(/'/g, "''")}') AS member_id`)
-      .then((results) => {
-        const row = results[0]?.rows[0]
-        const id: string | null = row?.member_id ?? null
-        setMemberId(id)
-        setClaimed(true)
-        setLoading(false)
-      })
-      .catch((err: unknown) => {
-        setError(err instanceof Error ? err : new Error(String(err)))
-        setLoading(false)
-        // Allow retry on next render if claim failed
-        hasRun.current = false
-      })
-  }, [isSignedIn, user, query])
+    // Profile claiming not yet implemented — needs a SECURITY DEFINER RPC
+    // exposed via the Neon Data API (PostgREST /rpc/claim_member_by_email).
+    // Once the RPC is available, replace this stub with:
+    //   POST {VITE_NEON_API_URL}/rpc/claim_member_by_email { "email": email }
+    const err = new Error('Profile claiming not yet implemented (needs Neon RPC)')
+    setError(err)
+    setClaimed(false)
+    setLoading(false)
+    // Allow retry on next render
+    hasRun.current = false
+  }, [isSignedIn, user])
 
   return { memberId, claimed, loading, error }
 }

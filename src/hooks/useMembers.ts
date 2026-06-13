@@ -25,34 +25,8 @@ function mapRowToMember(row: Record<string, unknown>): Member {
   };
 }
 
-const MEMBERS_QUERY = `
-  SELECT
-    m.id,
-    m.clerk_user_id,
-    m.email,
-    m.name,
-    m.slug,
-    m.title,
-    m.company,
-    m.bio,
-    m.photo_url,
-    m.linkedin,
-    m.twitter,
-    m.website,
-    m.role_type,
-    m.created_at,
-    array_agg(DISTINCT mt.tag_id) FILTER (WHERE mt.tag_id IS NOT NULL) AS tag_ids,
-    array_agg(DISTINCT d.slug) FILTER (WHERE d.slug IS NOT NULL) AS dinner_slugs
-  FROM members m
-  LEFT JOIN member_tags mt ON mt.member_id = m.id
-  LEFT JOIN dinner_attendees da ON da.member_id = m.id
-  LEFT JOIN dinners d ON d.id = da.dinner_id
-  GROUP BY m.id
-  ORDER BY m.name ASC
-`;
-
 export function useMembers(): UseMembersResult {
-  const { query } = useNeon();
+  const { apiGet } = useNeon();
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -64,9 +38,8 @@ export function useMembers(): UseMembersResult {
       setLoading(true);
       setError(null);
       try {
-        const results = await query(MEMBERS_QUERY);
+        const rows = await apiGet<Record<string, unknown>>('members_with_relations?select=*&order=name.asc');
         if (cancelled) return;
-        const rows: Record<string, unknown>[] = results[0]?.rows ?? [];
         setMembers(rows.map(mapRowToMember));
       } catch (err) {
         if (cancelled) return;
