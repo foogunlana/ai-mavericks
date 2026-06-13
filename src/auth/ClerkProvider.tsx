@@ -3,11 +3,11 @@ import type { ReactNode } from 'react'
 
 const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
-if (!publishableKey) {
-  throw new Error('Missing VITE_CLERK_PUBLISHABLE_KEY environment variable')
-}
-
 export function ClerkProvider({ children }: { children: ReactNode }) {
+  if (!publishableKey) {
+    // No Clerk key configured — render without auth (public content still works)
+    return <>{children}</>
+  }
   return (
     <ClerkReactProvider publishableKey={publishableKey}>
       {children}
