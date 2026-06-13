@@ -1,6 +1,9 @@
 import { SignedIn, UserButton as ClerkUserButton } from '@clerk/clerk-react';
 
+const clerkEnabled = !!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
 export function UserButton() {
+  if (!clerkEnabled) return null;
   return (
     <SignedIn>
       <div className="flex items-center">
