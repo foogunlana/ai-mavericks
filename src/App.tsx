@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
 import { DinnersPage } from './components/DinnersPage/DinnersPage';
@@ -6,7 +7,9 @@ import { DinnerDetail } from './components/DinnerDetail/DinnerDetail';
 import { Footer } from './components/Footer/Footer';
 import { StyleGuide } from './components/StyleGuide/StyleGuide';
 import { LandingHero } from './components/LandingHero/LandingHero';
+import { LandingIntro } from './components/LandingIntro/LandingIntro';
 import { MemberList } from './components/MemberList/MemberList';
+import { GatePrompt } from './components/Auth/GatePrompt';
 import { useFilterState } from './hooks/useFilterState';
 import { members } from './data/members';
 import { dinners } from './data/dinners';
@@ -68,37 +71,50 @@ function App() {
             <>
               <LandingHero latestDinner={dinners[0]} onViewChange={setView} />
               <div ref={heroSentinelRef} style={{ height: 0 }} />
-              <section className={styles.section}>
-                <MemberList
-                  members={filteredMembers}
-                  filters={filters}
-                  toggleFilter={toggleFilter}
-                  clearFilters={clearFilters}
-                  hasActiveFilters={hasActiveFilters}
-                />
-              </section>
+              <LandingIntro />
             </>
           )}
           {view === 'people' && (
-            <section className={styles.section}>
-              <MemberList
-                members={filteredMembers}
-                filters={filters}
-                toggleFilter={toggleFilter}
-                clearFilters={clearFilters}
-                hasActiveFilters={hasActiveFilters}
-              />
-            </section>
+            <>
+              <SignedIn>
+                <section className={styles.section}>
+                  <MemberList
+                    members={filteredMembers}
+                    filters={filters}
+                    toggleFilter={toggleFilter}
+                    clearFilters={clearFilters}
+                    hasActiveFilters={hasActiveFilters}
+                  />
+                </section>
+              </SignedIn>
+              <SignedOut>
+                <GatePrompt />
+              </SignedOut>
+            </>
           )}
           {view === 'dinners' && (
-            <section className={styles.section}>
-              <DinnersPage onSelectDinner={handleSelectDinner} />
-            </section>
+            <>
+              <SignedIn>
+                <section className={styles.section}>
+                  <DinnersPage onSelectDinner={handleSelectDinner} />
+                </section>
+              </SignedIn>
+              <SignedOut>
+                <GatePrompt />
+              </SignedOut>
+            </>
           )}
           {view === 'dinner-detail' && selectedDinnerSlug && (
-            <section className={styles.section}>
-              <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
-            </section>
+            <>
+              <SignedIn>
+                <section className={styles.section}>
+                  <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
+                </section>
+              </SignedIn>
+              <SignedOut>
+                <GatePrompt />
+              </SignedOut>
+            </>
           )}
           {view === 'styleguide' && (
             <StyleGuide />
