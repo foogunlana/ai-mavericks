@@ -1,5 +1,7 @@
 .intro {
-  padding: 48px 24px 40px;
+  /* No horizontal padding — left-aligns with the marquee label and objection
+     section below, which sit flush to the .app content edge. */
+  padding: 48px 0 40px;
   max-width: 680px;
 }
 
