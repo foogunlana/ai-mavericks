@@ -15,6 +15,7 @@
   "dependencies": {
     "@clerk/backend": "^3.7.0",
     "@clerk/clerk-react": "^5.61.8",
+    "@clerk/react": "^6.9.1",
     "@clerk/types": "^4.101.25",
     "@keystatic/core": "^0.5.50",
     "@neondatabase/serverless": "^0.10.4",
