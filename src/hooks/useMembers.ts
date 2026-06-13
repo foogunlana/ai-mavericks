@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNeon } from '../lib/neon';
+import { resolveAsset } from '../lib/resolveAsset';
 import type { Member } from '../types';
 
 interface UseMembersResult {
@@ -15,7 +16,7 @@ function mapRowToMember(row: Record<string, unknown>): Member {
     title: (row.title as string) ?? '',
     company: (row.company as string) ?? '',
     bio: (row.bio as string) ?? '',
-    photo: (row.photo_url as string) ?? '',
+    photo: resolveAsset(row.photo_url as string | undefined),
     linkedin: (row.linkedin as string) ?? '',
     twitter: (row.twitter as string) ?? '',
     website: (row.website as string) ?? '',

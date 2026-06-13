@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNeon } from '../lib/neon';
+import { resolveAsset } from '../lib/resolveAsset';
 import type { Dinner, Topic } from '../types';
 
 interface UseDinnersResult {
@@ -23,7 +24,7 @@ function mapRowToDinner(row: Record<string, unknown>): Dinner {
     slug,
     date,
     venue: (row.venue as string) ?? '',
-    groupPhoto: (row.group_photo_url as string | null) ?? null,
+    groupPhoto: row.group_photo_url ? resolveAsset(row.group_photo_url as string) : null,
     description: (row.description as string) ?? '',
     topics: (row.topics as Topic[] | null) ?? [],
     attendees: (row.attendee_slugs as string[] | null) ?? [],
