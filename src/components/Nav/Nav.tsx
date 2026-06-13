@@ -35,37 +35,39 @@ export function Nav({ currentView, onViewChange, hidden = false }: Props) {
           <span className={`${styles.bar} ${menuOpen ? styles.barMid : ''}`} />
           <span className={`${styles.bar} ${menuOpen ? styles.barBot : ''}`} />
         </button>
-        <div className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
-          <button
-            className={`${styles.link} ${currentView === 'home' ? styles.active : ''}`}
-            onClick={() => navigate('home')}
-          >
-            Home
-          </button>
-          <button
-            className={`${styles.link} ${currentView === 'people' ? styles.active : ''}`}
-            onClick={() => navigate('people')}
-          >
-            People
-          </button>
-          <button
-            className={`${styles.link} ${currentView === 'dinners' || currentView === 'dinner-detail' ? styles.active : ''}`}
-            onClick={() => navigate('dinners')}
-          >
-            Dinners
-          </button>
-          {import.meta.env.DEV && (
+        <div className="flex items-center gap-8 ml-auto">
+          <div className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
             <button
-              className={`${styles.link} ${currentView === 'styleguide' ? styles.active : ''}`}
-              onClick={() => navigate('styleguide')}
+              className={`${styles.link} ${currentView === 'home' ? styles.active : ''}`}
+              onClick={() => navigate('home')}
             >
-              Style Guide
+              Home
             </button>
-          )}
-        </div>
-        <div className="flex items-center gap-3 ml-6">
-          <SignInButton />
-          <UserButton />
+            <button
+              className={`${styles.link} ${currentView === 'people' ? styles.active : ''}`}
+              onClick={() => navigate('people')}
+            >
+              People
+            </button>
+            <button
+              className={`${styles.link} ${currentView === 'dinners' || currentView === 'dinner-detail' ? styles.active : ''}`}
+              onClick={() => navigate('dinners')}
+            >
+              Dinners
+            </button>
+            {import.meta.env.DEV && (
+              <button
+                className={`${styles.link} ${currentView === 'styleguide' ? styles.active : ''}`}
+                onClick={() => navigate('styleguide')}
+              >
+                Style Guide
+              </button>
+            )}
+          </div>
+          <div className="flex items-center gap-3">
+            <SignInButton />
+            <UserButton />
+          </div>
         </div>
       </div>
     </nav>

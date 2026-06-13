@@ -1,6 +1,8 @@
 import type { Dinner } from '../../types';
 import type { View } from '../../App';
 import { FlashyBtn } from '../FlashyBtn/FlashyBtn';
+import { SignInButton } from '../Auth/SignInButton';
+import { UserButton } from '../Auth/UserButton';
 
 // Static list of featured companies shown in the marquee.
 // Update this list when notable new members join rather than deriving from the
@@ -91,6 +93,8 @@ export function LandingHero({ latestDinner, memberCount = COMPANIES.length, onVi
             >
               Newsletter
             </a>
+            <SignInButton />
+            <UserButton />
           </div>
         </nav>
 
