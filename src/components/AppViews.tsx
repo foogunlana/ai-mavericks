@@ -5,6 +5,7 @@ import { DinnerDetail } from './DinnerDetail/DinnerDetail';
 import { StyleGuide } from './StyleGuide/StyleGuide';
 import { LandingHero } from './LandingHero/LandingHero';
 import { LandingIntro } from './LandingIntro/LandingIntro';
+import { ObjectionSection } from './ObjectionSection/ObjectionSection';
 import { MemberList } from './MemberList/MemberList';
 import { GatePrompt } from './Auth/GatePrompt';
 import { useFilterState } from '../hooks/useFilterState';
@@ -61,6 +62,7 @@ export function AppViews({
           />
           <div ref={heroSentinelRef} style={{ height: 0 }} />
           <LandingIntro />
+          <ObjectionSection />
         </>
       )}
 
