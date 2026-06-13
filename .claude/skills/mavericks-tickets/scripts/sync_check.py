@@ -11,6 +11,9 @@ Convention enforced (see SKILL.md):
   - "Active" = any non-closed status (open, in_progress, blocked).
   - The issue body ends with:  ## Bead\n\nTracked as `mavericks-xxx`
   - Only ACTIVE beads are mirrored. CLOSED beads are intentionally NOT mirrored.
+  - Only TOP-LEVEL beads are mirrored. Subtask beads (dotted child ids like
+    "mavericks-j4v.1") are intentionally NOT mirrored — they live under an epic
+    that already has its own issue, so they never count toward missing-issue drift.
 """
 import json
 import re
@@ -73,10 +76,15 @@ def main():
         else:
             issues_unknown_ref.append(entry)
 
+    # Subtask beads (dotted child ids like "mavericks-j4v.1") are NOT mirrored to
+    # GitHub — only their parent epic carries an issue. Exclude them from
+    # missing-issue drift so the detector stays quiet about queued subtasks. They
+    # remain in active_by_id so an issue that *does* reference one still resolves.
     beads_missing_issue = [
         {"id": bid, "title": b["title"], "type": b.get("issue_type"),
          "priority": b.get("priority")}
-        for bid, b in active_by_id.items() if not bead_to_issues[bid]
+        for bid, b in active_by_id.items()
+        if not bead_to_issues[bid] and "." not in bid
     ]
     beads_multi_issue = [
         {"id": bid, "issues": nums}

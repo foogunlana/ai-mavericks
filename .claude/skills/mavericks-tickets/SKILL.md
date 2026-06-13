@@ -15,7 +15,7 @@ The user may ask for just one (e.g. "are the tickets in sync?" or "what's next?"
 ## Setup conventions (non-obvious — read before acting)
 
 - **Bead prefix:** `mavericks-` (e.g. `mavericks-bah`). GitHub repo is auto-detected via `gh` (currently `foogunlana/ai-mavericks`).
-- **Mirror rule:** every **active** bead (status open / in_progress / blocked) gets exactly one GitHub issue. **Closed beads are intentionally NOT mirrored** — GitHub only tracks the live roadmap. Do not back-fill issues for closed beads.
+- **Mirror rule:** every **active, top-level** bead (status open / in_progress / blocked) gets exactly one GitHub issue. **Closed beads are intentionally NOT mirrored** — GitHub only tracks the live roadmap. Do not back-fill issues for closed beads. **Subtask beads (dotted child ids like `mavericks-j4v.1`) are also NOT mirrored** — their parent epic already carries an issue, so `sync_check.py` ignores them for missing-issue drift. Don't create issues for subtasks.
 - **Back-reference:** each GitHub issue body ends with a `## Bead` section: `` Tracked as `mavericks-xxx` ``. This is the only link between the two systems — match on it, not on titles.
 - **Source of ordering truth:** the Release-checklist epic (`bd show mavericks-0vi`) lists the MVP steps in order. Its `notes` field records any work order the user has agreed to. Always read it before recommending.
 
