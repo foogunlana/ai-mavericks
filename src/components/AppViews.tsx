@@ -1,4 +1,5 @@
 import { Show } from '@clerk/react';
+import { Routes, Route, Navigate, useNavigate, useParams } from 'react-router-dom';
 import styles from '../App.module.css';
 import { DinnersPage } from './DinnersPage/DinnersPage';
 import { DinnerDetail } from './DinnerDetail/DinnerDetail';
@@ -35,10 +36,6 @@ export function pathToView(pathname: string): View {
 }
 
 export interface ContentProps {
-  view: View;
-  setView: (v: View) => void;
-  selectedDinnerSlug: string | null;
-  setSelectedDinnerSlug: (s: string | null) => void;
   heroSentinelRef: React.RefObject<HTMLDivElement | null>;
 }
 
@@ -51,24 +48,37 @@ export interface ViewsProps extends ContentProps {
   firstName?: string;
 }
 
+// Wrap an element in Clerk gating when `gated`: signed-in sees it, signed-out
+// gets the GatePrompt. When not gated (no auth configured), render as-is.
+function gate(gated: boolean, element: React.ReactNode): React.ReactNode {
+  if (!gated) return element;
+  return (
+    <>
+      <Show when="signed-in">{element}</Show>
+      <Show when="signed-out"><GatePrompt /></Show>
+    </>
+  );
+}
+
 export function AppViews({
-  view, setView,
-  selectedDinnerSlug, setSelectedDinnerSlug,
-  heroSentinelRef,
   members, dinners,
   membersLoading, dinnersLoading,
   gated,
   firstName,
+  heroSentinelRef,
 }: ViewsProps) {
+  const navigate = useNavigate();
   const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers } = useFilterState();
   const filteredMembers = filterMembers(members);
 
-  // Public landing (signed-out / no-credentials): marketing hero + intro + objections.
+  const goToView = (view: View) => navigate(viewToPath(view));
+  const goToDinner = (slug: string) => navigate(`/dinners/${slug}`);
+
   const publicLanding = (
     <>
       <LandingHero
         latestDinner={dinners[0]}
-        onViewChange={setView}
+        onViewChange={goToView}
         navLocked={gated}
       />
       <div ref={heroSentinelRef} style={{ height: 0 }} />
@@ -77,87 +87,68 @@ export function AppViews({
     </>
   );
 
-  const handleSelectDinner = (slug: string) => {
-    setSelectedDinnerSlug(slug);
-    setView('dinner-detail');
-  };
+  const home = gated ? (
+    <>
+      <Show when="signed-in">
+        <MemberHome
+          dinners={dinnersLoading ? [] : dinners}
+          memberCount={membersLoading ? undefined : members.length}
+          firstName={firstName}
+          onViewChange={goToView}
+          onSelectDinner={goToDinner}
+        />
+      </Show>
+      <Show when="signed-out">{publicLanding}</Show>
+    </>
+  ) : publicLanding;
 
-  const handleBackToDinners = () => {
-    setView('dinners');
-    setSelectedDinnerSlug(null);
-  };
+  const people = (
+    <section className={styles.section}>
+      <MemberList members={filteredMembers} filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters} hasActiveFilters={hasActiveFilters} />
+    </section>
+  );
+
+  const dinnersList = (
+    <section className={styles.section}>
+      <DinnersPage dinners={dinnersLoading ? [] : dinners} onSelectDinner={goToDinner} />
+    </section>
+  );
 
   return (
-    <>
-      {view === 'home' && (
-        gated ? (
-          <>
-            <Show when="signed-in">
-              <MemberHome
-                dinners={dinnersLoading ? [] : dinners}
-                memberCount={membersLoading ? undefined : members.length}
-                firstName={firstName}
-                onViewChange={setView}
-                onSelectDinner={handleSelectDinner}
-              />
-            </Show>
-            <Show when="signed-out">{publicLanding}</Show>
-          </>
-        ) : publicLanding
-      )}
-
-      {view === 'people' && (
-        gated ? (
-          <>
-            <Show when="signed-in">
-              <section className={styles.section}>
-                <MemberList members={filteredMembers} filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters} hasActiveFilters={hasActiveFilters} />
-              </section>
-            </Show>
-            <Show when="signed-out"><GatePrompt /></Show>
-          </>
-        ) : (
-          <section className={styles.section}>
-            <MemberList members={filteredMembers} filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters} hasActiveFilters={hasActiveFilters} />
-          </section>
-        )
-      )}
-
-      {view === 'dinners' && (
-        gated ? (
-          <>
-            <Show when="signed-in">
-              <section className={styles.section}>
-                <DinnersPage dinners={dinnersLoading ? [] : dinners} onSelectDinner={handleSelectDinner} />
-              </section>
-            </Show>
-            <Show when="signed-out"><GatePrompt /></Show>
-          </>
-        ) : (
-          <section className={styles.section}>
-            <DinnersPage dinners={dinners} onSelectDinner={handleSelectDinner} />
-          </section>
-        )
-      )}
-
-      {view === 'dinner-detail' && selectedDinnerSlug && (
-        gated ? (
-          <>
-            <Show when="signed-in">
-              <section className={styles.section}>
-                <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
-              </section>
-            </Show>
-            <Show when="signed-out"><GatePrompt /></Show>
-          </>
-        ) : (
-          <section className={styles.section}>
-            <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
-          </section>
-        )
-      )}
-
-      {view === 'styleguide' && <StyleGuide />}
-    </>
+    <Routes>
+      <Route path="/" element={home} />
+      <Route path="/people" element={gate(gated, people)} />
+      <Route path="/dinners" element={gate(gated, dinnersList)} />
+      <Route
+        path="/dinners/:slug"
+        element={
+          <DinnerDetailRoute
+            dinners={dinnersLoading ? [] : dinners}
+            members={members}
+            gated={gated}
+            onBack={() => navigate('/dinners')}
+          />
+        }
+      />
+      {import.meta.env.DEV && <Route path="/styleguide" element={<StyleGuide />} />}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
+}
+
+function DinnerDetailRoute({
+  dinners, members, gated, onBack,
+}: {
+  dinners: Dinner[];
+  members: Member[];
+  gated: boolean;
+  onBack: () => void;
+}) {
+  const { slug } = useParams();
+  const detail = (
+    <section className={styles.section}>
+      <DinnerDetail dinnerSlug={slug ?? ''} dinners={dinners} members={members} onBack={onBack} />
+    </section>
+  );
+  return <>{gate(gated, detail)}</>;
 }

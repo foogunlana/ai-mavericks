@@ -8,7 +8,9 @@ import tailwindcss from '@tailwindcss/vite'
 const base = process.env.CF_PAGES ? '/' : '/ai-mavericks/'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   base,
   plugins: [tailwindcss(), react()],
-})
+  // Disable HMR in test mode so Playwright's networkidle state can settle.
+  server: mode === 'test' ? { hmr: false } : {},
+}))
