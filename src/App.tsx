@@ -1,38 +1,27 @@
-import { useState, useRef, useEffect } from 'react';
-import { Show } from '@clerk/react';
+import { useState, useRef, useEffect, lazy, Suspense } from 'react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
-import { DinnersPage } from './components/DinnersPage/DinnersPage';
-import { DinnerDetail } from './components/DinnerDetail/DinnerDetail';
 import { Footer } from './components/Footer/Footer';
-import { StyleGuide } from './components/StyleGuide/StyleGuide';
-import { LandingHero } from './components/LandingHero/LandingHero';
-import { LandingIntro } from './components/LandingIntro/LandingIntro';
-import { MemberList } from './components/MemberList/MemberList';
-import { GatePrompt } from './components/Auth/GatePrompt';
-import { useFilterState } from './hooks/useFilterState';
+import { AppViews } from './components/AppViews';
+import { useClaimProfile } from './hooks/useClaimProfile';
 import { useMembers } from './hooks/useMembers';
 import { useDinners } from './hooks/useDinners';
-import { useClaimProfile } from './hooks/useClaimProfile';
-import { members as staticMembers } from './data/members';
-import { dinners as staticDinners } from './data/dinners';
 import { authEnabled } from './lib/authConfig';
-import type { Member } from './types';
-import type { Dinner } from './types';
+import type { ContentProps, View } from './components/AppViews';
 
-export type View = 'home' | 'people' | 'dinners' | 'dinner-detail' | 'styleguide';
+// Re-exported so existing consumers (Nav, LandingHero) can keep importing from './App'.
+export type { View } from './components/AppViews';
+
+// DEV-only lazy fallback — Vite replaces import.meta.env.DEV with `false` in
+// production builds, so this dynamic import is dead-code-eliminated and the
+// static member/dinner JSON files are never bundled into the production JS.
+const StaticContent = import.meta.env.DEV
+  ? lazy(() => import('./StaticContent'))
+  : null;
 
 // ── Authenticated inner app (Clerk + Neon hooks) ─────────────────────────────
 // Only rendered when authEnabled=true, so useAuth() calls are always inside
 // a real ClerkProvider context.
-
-interface ContentProps {
-  view: View;
-  setView: (v: View) => void;
-  selectedDinnerSlug: string | null;
-  setSelectedDinnerSlug: (s: string | null) => void;
-  heroSentinelRef: React.RefObject<HTMLDivElement | null>;
-}
 
 function AuthContent({ view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef }: ContentProps) {
   useClaimProfile();
@@ -46,120 +35,6 @@ function AuthContent({ view, setView, selectedDinnerSlug, setSelectedDinnerSlug,
     membersLoading={membersLoading} dinnersLoading={dinnersLoading}
     gated
   />;
-}
-
-// ── Static fallback (no credentials configured) ───────────────────────────────
-
-function StaticContent({ view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef }: ContentProps) {
-  return <AppViews
-    view={view} setView={setView}
-    selectedDinnerSlug={selectedDinnerSlug} setSelectedDinnerSlug={setSelectedDinnerSlug}
-    heroSentinelRef={heroSentinelRef}
-    members={staticMembers} dinners={staticDinners}
-    membersLoading={false} dinnersLoading={false}
-    gated={false}
-  />;
-}
-
-// ── Shared view rendering ─────────────────────────────────────────────────────
-
-interface ViewsProps extends ContentProps {
-  members: Member[];
-  dinners: Dinner[];
-  membersLoading: boolean;
-  dinnersLoading: boolean;
-  gated: boolean;
-}
-
-function AppViews({
-  view, setView,
-  selectedDinnerSlug, setSelectedDinnerSlug,
-  heroSentinelRef,
-  members, dinners,
-  membersLoading, dinnersLoading,
-  gated,
-}: ViewsProps) {
-  const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers } = useFilterState();
-  const filteredMembers = filterMembers(members);
-
-  const handleSelectDinner = (slug: string) => {
-    setSelectedDinnerSlug(slug);
-    setView('dinner-detail');
-  };
-
-  const handleBackToDinners = () => {
-    setView('dinners');
-    setSelectedDinnerSlug(null);
-  };
-
-  return (
-    <>
-      {view === 'home' && (
-        <>
-          <LandingHero
-            latestDinner={dinners[0]}
-            memberCount={membersLoading ? undefined : members.length}
-            onViewChange={setView}
-          />
-          <div ref={heroSentinelRef} style={{ height: 0 }} />
-          <LandingIntro />
-        </>
-      )}
-
-      {view === 'people' && (
-        gated ? (
-          <>
-            <Show when="signed-in">
-              <section className={styles.section}>
-                <MemberList members={filteredMembers} filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters} hasActiveFilters={hasActiveFilters} />
-              </section>
-            </Show>
-            <Show when="signed-out"><GatePrompt /></Show>
-          </>
-        ) : (
-          <section className={styles.section}>
-            <MemberList members={filteredMembers} filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters} hasActiveFilters={hasActiveFilters} />
-          </section>
-        )
-      )}
-
-      {view === 'dinners' && (
-        gated ? (
-          <>
-            <Show when="signed-in">
-              <section className={styles.section}>
-                <DinnersPage dinners={dinnersLoading ? [] : dinners} onSelectDinner={handleSelectDinner} />
-              </section>
-            </Show>
-            <Show when="signed-out"><GatePrompt /></Show>
-          </>
-        ) : (
-          <section className={styles.section}>
-            <DinnersPage dinners={dinners} onSelectDinner={handleSelectDinner} />
-          </section>
-        )
-      )}
-
-      {view === 'dinner-detail' && selectedDinnerSlug && (
-        gated ? (
-          <>
-            <Show when="signed-in">
-              <section className={styles.section}>
-                <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
-              </section>
-            </Show>
-            <Show when="signed-out"><GatePrompt /></Show>
-          </>
-        ) : (
-          <section className={styles.section}>
-            <DinnerDetail dinnerSlug={selectedDinnerSlug} onBack={handleBackToDinners} />
-          </section>
-        )
-      )}
-
-      {view === 'styleguide' && <StyleGuide />}
-    </>
-  );
 }
 
 // ── App shell (routing, scroll tracking) ─────────────────────────────────────
@@ -199,8 +74,9 @@ function App() {
         <main>
           {authEnabled
             ? <AuthContent {...contentProps} />
-            : <StaticContent {...contentProps} />
-          }
+            : StaticContent
+              ? <Suspense fallback={null}><StaticContent {...contentProps} /></Suspense>
+              : null}
         </main>
         <Footer />
       </div>

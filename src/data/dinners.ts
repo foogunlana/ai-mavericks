@@ -1,10 +1,5 @@
 import type { Dinner } from '../types';
 
-const dinnerModules = import.meta.glob<{ default: Dinner }>(
-  '../../content/dinners/*.json',
-  { eager: true }
-);
-
 const BASE = import.meta.env.BASE_URL;
 
 function resolvePhoto(path: string | null | undefined): string | null {
@@ -14,12 +9,24 @@ function resolvePhoto(path: string | null | undefined): string | null {
   return `${BASE}${clean}`;
 }
 
-export const dinners: Dinner[] = Object.values(dinnerModules)
-  .map((d) => ({
-    ...d.default,
-    groupPhoto: resolvePhoto(d.default.groupPhoto) as string,
-  }))
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+// Only load JSON content in dev — production uses Neon (data/dinners.ts is
+// a DEV-only fallback). import.meta.env.DEV is statically replaced by Vite
+// at build time so the glob branch is dead-code-eliminated in production,
+// preventing private dinner data from being bundled into the shipped JS.
+export const dinners: Dinner[] = import.meta.env.DEV
+  ? (() => {
+      const dinnerModules = import.meta.glob<{ default: Dinner }>(
+        '../../content/dinners/*.json',
+        { eager: true },
+      );
+      return Object.values(dinnerModules)
+        .map((d) => ({
+          ...d.default,
+          groupPhoto: resolvePhoto(d.default.groupPhoto) as string,
+        }))
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    })()
+  : [];
 
 export function getDinnerBySlug(slug: string): Dinner | undefined {
   return dinners.find((d) => d.slug === slug);
