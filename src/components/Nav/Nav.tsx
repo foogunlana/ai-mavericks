@@ -57,7 +57,7 @@ export function Nav({ currentView, onViewChange, hidden = false, locked = false 
               People
             </button>
             <button
-              className={`${styles.link} ${currentView === 'dinners' || currentView === 'dinner-detail' ? styles.active : ''}`}
+              className={`${styles.link} ${currentView === 'dinners' ? styles.active : ''}`}
               onClick={() => navigate('dinners')}
               {...lockedProps}
             >

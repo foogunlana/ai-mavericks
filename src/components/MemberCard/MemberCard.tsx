@@ -45,10 +45,10 @@ export function MemberCard({ member }: Props) {
             className={`${styles.photo} ${hovered ? styles.photoHovered : ''}`}
             loading="lazy"
             onError={(e) => {
-                      const img = e.target as HTMLImageElement;
-                      img.onerror = null;
-                      img.src = `${import.meta.env.BASE_URL}images/members/${member.slug}.svg`;
-                    }}
+              const img = e.target as HTMLImageElement;
+              img.onerror = null;
+              img.src = `${import.meta.env.BASE_URL}images/members/${member.slug}.svg`;
+            }}
           />
           {/* Default gradient overlay */}
           <div className={`${styles.gradientOverlay} ${hovered ? styles.hidden : ''}`}>
@@ -80,10 +80,10 @@ export function MemberCard({ member }: Props) {
               alt={member.name}
               className={styles.backAvatar}
               onError={(e) => {
-                      const img = e.target as HTMLImageElement;
-                      img.onerror = null;
-                      img.src = `${import.meta.env.BASE_URL}images/members/${member.slug}.svg`;
-                    }}
+                const img = e.target as HTMLImageElement;
+                img.onerror = null;
+                img.src = `${import.meta.env.BASE_URL}images/members/${member.slug}.svg`;
+              }}
             />
             <div>
               <p className={styles.backName}>{member.name}</p>

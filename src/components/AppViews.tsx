@@ -14,7 +14,7 @@ import { useFilterState } from '../hooks/useFilterState';
 import type { Member } from '../types';
 import type { Dinner } from '../types';
 
-export type View = 'home' | 'people' | 'dinners' | 'dinner-detail' | 'styleguide';
+export type View = 'home' | 'people' | 'dinners' | 'styleguide';
 
 /** Map a logical view to its URL path (basename-relative). */
 export function viewToPath(view: View): string {
@@ -22,7 +22,6 @@ export function viewToPath(view: View): string {
     case 'home': return '/';
     case 'people': return '/people';
     case 'dinners': return '/dinners';
-    case 'dinner-detail': return '/dinners';
     case 'styleguide': return '/styleguide';
   }
 }
