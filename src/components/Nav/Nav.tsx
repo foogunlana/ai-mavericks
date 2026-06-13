@@ -8,10 +8,16 @@ interface Props {
   currentView: View;
   onViewChange: (view: View) => void;
   hidden?: boolean;
+  // When true (auth enabled but signed-out), the gated People/Dinners views are
+  // unreachable, so their nav buttons are disabled rather than leading to a gate.
+  locked?: boolean;
 }
 
-export function Nav({ currentView, onViewChange, hidden = false }: Props) {
+export function Nav({ currentView, onViewChange, hidden = false, locked = false }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const lockedProps = locked
+    ? { disabled: true, title: 'Sign in to access', style: { opacity: 0.4, cursor: 'not-allowed' as const } }
+    : {};
 
   function navigate(view: View) {
     onViewChange(view);
@@ -46,12 +52,14 @@ export function Nav({ currentView, onViewChange, hidden = false }: Props) {
             <button
               className={`${styles.link} ${currentView === 'people' ? styles.active : ''}`}
               onClick={() => navigate('people')}
+              {...lockedProps}
             >
               People
             </button>
             <button
               className={`${styles.link} ${currentView === 'dinners' || currentView === 'dinner-detail' ? styles.active : ''}`}
               onClick={() => navigate('dinners')}
+              {...lockedProps}
             >
               Dinners
             </button>

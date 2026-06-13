@@ -49,8 +49,8 @@ export function AppViews({
     <>
       <LandingHero
         latestDinner={dinners[0]}
-        memberCount={membersLoading ? undefined : members.length}
         onViewChange={setView}
+        navLocked={gated}
       />
       <div ref={heroSentinelRef} style={{ height: 0 }} />
       <LandingIntro />

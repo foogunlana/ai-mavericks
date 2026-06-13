@@ -55,6 +55,12 @@ const COMPANY_LOGOS: Record<string, { file: string; invert?: boolean }> = {
   'VodafoneThree': { file: 'vodafonethree.svg' },
 };
 
+// Public marketing count of the community. Static (like COMPANIES above) because
+// the public landing is shown to signed-out visitors who cannot query the gated
+// member table — deriving from it returns 0 ("0+ builders"). The signed-in
+// MemberHome uses the real members.length. Bump this as the community grows.
+export const PUBLIC_MEMBER_COUNT = 60;
+
 const navLinkClass =
   'appearance-none bg-transparent border-none cursor-pointer no-underline font-sans text-[length:var(--font-size-sm)] font-medium tracking-[2px] uppercase text-secondary hover:text-text transition-colors';
 
@@ -62,9 +68,15 @@ interface LandingHeroProps {
   latestDinner: Dinner | undefined;
   memberCount?: number;
   onViewChange: (view: View) => void;
+  // When true (auth enabled but signed-out), People/Dinners are gated — disable
+  // their nav buttons rather than routing to a gate prompt.
+  navLocked?: boolean;
 }
 
-export function LandingHero({ latestDinner, memberCount = COMPANIES.length, onViewChange }: LandingHeroProps) {
+export function LandingHero({ latestDinner, memberCount = PUBLIC_MEMBER_COUNT, onViewChange, navLocked = false }: LandingHeroProps) {
+  const lockedProps = navLocked
+    ? { disabled: true, title: 'Sign in to access', style: { opacity: 0.4, cursor: 'not-allowed' as const } }
+    : {};
   const marqueeItems = [...COMPANIES, ...COMPANIES];
   // Signed-in users get the latest dinner from Neon; signed-out visitors can't
   // (it's gated), so fall back to the latest dinner photo (public). Update this
@@ -86,8 +98,8 @@ export function LandingHero({ latestDinner, memberCount = COMPANIES.length, onVi
             />
           </button>
           <div className="flex items-center gap-6">
-            <button className={navLinkClass} onClick={() => onViewChange('people')}>People</button>
-            <button className={navLinkClass} onClick={() => onViewChange('dinners')}>Dinners</button>
+            <button className={navLinkClass} onClick={() => onViewChange('people')} {...lockedProps}>People</button>
+            <button className={navLinkClass} onClick={() => onViewChange('dinners')} {...lockedProps}>Dinners</button>
             <a
               className={navLinkClass}
               href="https://ai-mavericks-ldn.beehiiv.com"

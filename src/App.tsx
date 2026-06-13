@@ -80,12 +80,14 @@ function App() {
   }, [view]);
 
   const navHidden = view === 'home' && heroVisible && !signedIn;
+  // Gated views (People/Dinners) are unreachable when auth is on but signed-out.
+  const navLocked = authEnabled && !signedIn;
   const contentProps: ContentProps = { view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef };
 
   return (
     <>
       {authEnabled && <SignedInReporter onChange={setSignedIn} />}
-      <Nav currentView={view} onViewChange={setView} hidden={navHidden} />
+      <Nav currentView={view} onViewChange={setView} hidden={navHidden} locked={navLocked} />
       <div className={styles.app}>
         <main>
           {authEnabled

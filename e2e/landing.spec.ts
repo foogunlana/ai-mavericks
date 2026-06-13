@@ -24,3 +24,16 @@ test('landing page renders hero and is not blank', async ({ page }) => {
     maxDiffPixelRatio: 0.02,
   });
 });
+
+test('public hero shows a positive builder count, never "0+"', async ({ page }) => {
+  // Regression: the public landing is shown to signed-out visitors who cannot
+  // query the gated member table, so deriving the count from members.length
+  // returns 0 ("0+ builders"). It must use a static public count instead.
+  await page.goto('./');
+  await page.waitForLoadState('networkidle');
+
+  const builders = page.getByText(/builders and counting/);
+  await expect(builders).toBeVisible();
+  // A leading 0 ("0+") fails this; a real count like "60+" passes.
+  await expect(builders).toContainText(/[1-9]\d*\+/);
+});
