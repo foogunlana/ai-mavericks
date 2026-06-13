@@ -9,9 +9,13 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "keystatic": "keystatic dev",
-    "seed": "tsx scripts/seed-neon.ts"
+    "seed": "tsx scripts/seed-neon.ts",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@clerk/backend": "^3.7.0",
+    "@clerk/clerk-react": "^5.61.8",
+    "@clerk/types": "^4.101.25",
     "@keystatic/core": "^0.5.50",
     "@neondatabase/serverless": "^0.10.4",
     "@tailwindcss/vite": "^4.2.2",
@@ -22,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@playwright/test": "^1.60.0",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

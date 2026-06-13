@@ -4,7 +4,8 @@ test('landing page renders hero and is not blank', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (err) => errors.push(err.message));
 
-  await page.goto('/');
+  // Relative goto resolves against baseURL (which includes the /ai-mavericks/ base)
+  await page.goto('./');
   await page.waitForLoadState('networkidle');
 
   // The app root must have rendered actual content (not a blank crash)

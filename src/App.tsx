@@ -16,16 +16,11 @@ import { useDinners } from './hooks/useDinners';
 import { useClaimProfile } from './hooks/useClaimProfile';
 import { members as staticMembers } from './data/members';
 import { dinners as staticDinners } from './data/dinners';
+import { authEnabled } from './lib/authConfig';
 import type { Member } from './types';
 import type { Dinner } from './types';
 
 export type View = 'home' | 'people' | 'dinners' | 'dinner-detail' | 'styleguide';
-
-// True only when both Clerk and Neon are wired up
-const authEnabled = !!(
-  import.meta.env.VITE_CLERK_PUBLISHABLE_KEY &&
-  import.meta.env.VITE_NEON_API_URL
-);
 
 // ── Authenticated inner app (Clerk + Neon hooks) ─────────────────────────────
 // Only rendered when authEnabled=true, so useAuth() calls are always inside

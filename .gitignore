@@ -37,3 +37,17 @@ dist/
 
 # Images
 *.png
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+# Keep e2e screenshot baselines despite the global *.png ignore above
+!e2e/**/*.png
+
+# Local env (use .env.example as template)
+.env
+.env.local
+# Claude worktrees
+.claude/worktrees/

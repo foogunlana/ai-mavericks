@@ -1,6 +1,5 @@
 import { SignedIn, UserButton as ClerkUserButton } from '@clerk/clerk-react';
-
-const clerkEnabled = !!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+import { clerkEnabled } from '../../lib/authConfig';
 
 export function UserButton() {
   if (!clerkEnabled) return null;
