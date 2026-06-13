@@ -11,8 +11,8 @@ import { LandingIntro } from './components/LandingIntro/LandingIntro';
 import { MemberList } from './components/MemberList/MemberList';
 import { GatePrompt } from './components/Auth/GatePrompt';
 import { useFilterState } from './hooks/useFilterState';
-import { members } from './data/members';
-import { dinners } from './data/dinners';
+import { useMembers } from './hooks/useMembers';
+import { useDinners } from './hooks/useDinners';
 
 export type View = 'home' | 'people' | 'dinners' | 'dinner-detail' | 'styleguide';
 
@@ -21,6 +21,9 @@ function App() {
   const [selectedDinnerSlug, setSelectedDinnerSlug] = useState<string | null>(null);
   const [heroVisible, setHeroVisible] = useState(true);
   const heroSentinelRef = useRef<HTMLDivElement>(null);
+
+  const { members, loading: membersLoading } = useMembers();
+  const { dinners, loading: dinnersLoading } = useDinners();
 
   useEffect(() => {
     if (view !== 'home') {
@@ -69,7 +72,11 @@ function App() {
         <main>
           {view === 'home' && (
             <>
-              <LandingHero latestDinner={dinners[0]} onViewChange={setView} />
+              <LandingHero
+                latestDinner={dinners[0]}
+                memberCount={membersLoading ? undefined : members.length}
+                onViewChange={setView}
+              />
               <div ref={heroSentinelRef} style={{ height: 0 }} />
               <LandingIntro />
             </>
@@ -96,7 +103,10 @@ function App() {
             <>
               <SignedIn>
                 <section className={styles.section}>
-                  <DinnersPage onSelectDinner={handleSelectDinner} />
+                  <DinnersPage
+                    dinners={dinnersLoading ? [] : dinners}
+                    onSelectDinner={handleSelectDinner}
+                  />
                 </section>
               </SignedIn>
               <SignedOut>
