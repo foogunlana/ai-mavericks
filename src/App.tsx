@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, lazy, Suspense } from 'react';
+import { useAuth, useUser } from '@clerk/react';
 import styles from './App.module.css';
 import { Nav } from './components/Nav/Nav';
 import { Footer } from './components/Footer/Footer';
@@ -25,6 +26,7 @@ const StaticContent = import.meta.env.DEV
 
 function AuthContent({ view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef }: ContentProps) {
   useClaimProfile();
+  const { user } = useUser();
   const { members, loading: membersLoading } = useMembers();
   const { dinners, loading: dinnersLoading } = useDinners();
   return <AppViews
@@ -33,8 +35,20 @@ function AuthContent({ view, setView, selectedDinnerSlug, setSelectedDinnerSlug,
     heroSentinelRef={heroSentinelRef}
     members={members} dinners={dinners}
     membersLoading={membersLoading} dinnersLoading={dinnersLoading}
+    firstName={user?.firstName ?? undefined}
     gated
   />;
+}
+
+// Reports Clerk signed-in state up to the shell so the global Nav can stay
+// visible on the signed-in home view (which shows MemberHome, not the hero).
+// Only rendered when authEnabled, so useAuth() is always inside ClerkProvider.
+function SignedInReporter({ onChange }: { onChange: (v: boolean) => void }) {
+  const { isSignedIn } = useAuth();
+  useEffect(() => {
+    onChange(Boolean(isSignedIn));
+  }, [isSignedIn, onChange]);
+  return null;
 }
 
 // ── App shell (routing, scroll tracking) ─────────────────────────────────────
@@ -43,6 +57,7 @@ function App() {
   const [view, setView] = useState<View>('home');
   const [selectedDinnerSlug, setSelectedDinnerSlug] = useState<string | null>(null);
   const [heroVisible, setHeroVisible] = useState(true);
+  const [signedIn, setSignedIn] = useState(false);
   const heroSentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,11 +79,12 @@ function App() {
     };
   }, [view]);
 
-  const navHidden = view === 'home' && heroVisible;
+  const navHidden = view === 'home' && heroVisible && !signedIn;
   const contentProps: ContentProps = { view, setView, selectedDinnerSlug, setSelectedDinnerSlug, heroSentinelRef };
 
   return (
     <>
+      {authEnabled && <SignedInReporter onChange={setSignedIn} />}
       <Nav currentView={view} onViewChange={setView} hidden={navHidden} />
       <div className={styles.app}>
         <main>

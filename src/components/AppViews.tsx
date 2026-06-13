@@ -6,6 +6,7 @@ import { StyleGuide } from './StyleGuide/StyleGuide';
 import { LandingHero } from './LandingHero/LandingHero';
 import { LandingIntro } from './LandingIntro/LandingIntro';
 import { ObjectionSection } from './ObjectionSection/ObjectionSection';
+import { MemberHome } from './MemberHome/MemberHome';
 import { MemberList } from './MemberList/MemberList';
 import { GatePrompt } from './Auth/GatePrompt';
 import { useFilterState } from '../hooks/useFilterState';
@@ -28,6 +29,7 @@ export interface ViewsProps extends ContentProps {
   membersLoading: boolean;
   dinnersLoading: boolean;
   gated: boolean;
+  firstName?: string;
 }
 
 export function AppViews({
@@ -37,9 +39,24 @@ export function AppViews({
   members, dinners,
   membersLoading, dinnersLoading,
   gated,
+  firstName,
 }: ViewsProps) {
   const { filters, toggleFilter, clearFilters, hasActiveFilters, filterMembers } = useFilterState();
   const filteredMembers = filterMembers(members);
+
+  // Public landing (signed-out / no-credentials): marketing hero + intro + objections.
+  const publicLanding = (
+    <>
+      <LandingHero
+        latestDinner={dinners[0]}
+        memberCount={membersLoading ? undefined : members.length}
+        onViewChange={setView}
+      />
+      <div ref={heroSentinelRef} style={{ height: 0 }} />
+      <LandingIntro />
+      <ObjectionSection />
+    </>
+  );
 
   const handleSelectDinner = (slug: string) => {
     setSelectedDinnerSlug(slug);
@@ -54,16 +71,20 @@ export function AppViews({
   return (
     <>
       {view === 'home' && (
-        <>
-          <LandingHero
-            latestDinner={dinners[0]}
-            memberCount={membersLoading ? undefined : members.length}
-            onViewChange={setView}
-          />
-          <div ref={heroSentinelRef} style={{ height: 0 }} />
-          <LandingIntro />
-          <ObjectionSection />
-        </>
+        gated ? (
+          <>
+            <Show when="signed-in">
+              <MemberHome
+                dinners={dinnersLoading ? [] : dinners}
+                memberCount={membersLoading ? undefined : members.length}
+                firstName={firstName}
+                onViewChange={setView}
+                onSelectDinner={handleSelectDinner}
+              />
+            </Show>
+            <Show when="signed-out">{publicLanding}</Show>
+          </>
+        ) : publicLanding
       )}
 
       {view === 'people' && (
